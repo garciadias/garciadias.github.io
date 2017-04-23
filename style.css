@@ -1,0 +1,23 @@
+#gitHubAvatar{
+    width:12rem;
+    height:12rem;
+    border: 4px solid;
+    border-color: white;
+    border-radius:100px;
+}
+.offset-top-50{
+    margin-top:100px;
+}
+body{
+    background-image: url("assets/background.jpg");
+}
+#gitHubUser{
+    margin-top:10px;
+    color: white;
+    font-size:30px;
+}
+#gitHubLocation{
+    margin-top:10px;
+    color: white;
+    font-size:30px;
+}
