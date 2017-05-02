@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>KMeans for Stars &#8212; KMeans for stars 1.0 documentation</title>
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../my_files/w3.css">
+    <link rel="stylesheet" href="../my_files/css_002.css">
+    <link rel="stylesheet" href="../my_files/font-awesome.css">
+    <link rel="stylesheet" href="static/agogo.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <link rel="top" title="KMeans for stars 1.0 documentation" href="#" /> 
+  </head>
+<body role="document">
+<div class="w3-top">
+  <div class="w3-bar w3-black w3-card-2">
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    <a href="../index.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
+    <a href="../cv/curriculum-vitae.pdf" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CV</a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large w3-hide-small">StarClustering</a>
+    <a href="../publications/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Publications</a>
+    <a href="https://github.com/garciadias" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GitHub</a>
+    <div class="w3-dropdown-hover w3-hide-small">
+      <button class="w3-padding-large w3-button" title="More">Graphics <i class="fa fa-caret-down"></i></button>
+      <div class="w3-dropdown-content w3-bar-block w3-card-4">
+        <a href="#" class="w3-bar-item w3-button">Soon</a>
+      </div>
+    </div>
+    <a href="https://github.com/garciadias" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-github"></i></a>
+  </div>
+</div>
+
+
+    <div class="header-wrapper" role="banner">
+      <div class="header">
+        <div class="headertitle"><a
+          href="#">KMeans for stars 1.0 documentation</a></div>
+        <div class="rel" role="navigation" aria-label="related navigation">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a>
+        </div>
+       </div>
+    </div>
+
+    <div class="content-wrapper">
+      <div class="content">
+        <div class="document">
+            
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#kmeans-for-stars" id="id3">KMeans for Stars</a><ul>
+<li><a class="reference internal" href="#introduction" id="id4">Introduction</a></li>
+<li><a class="reference internal" href="#documenting-objects" id="id5">Documenting objects</a></li>
+<li><a class="reference internal" href="#test-code-input" id="id6">Test code input</a><ul>
+<li><a class="reference internal" href="#printing-some-interactive-coding" id="id7">Printing some interactive coding:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="kmeans-for-stars">
+<h1><a class="toc-backref" href="#id3">KMeans for Stars</a><a class="headerlink" href="#kmeans-for-stars" title="Permalink to this headline">¶</a></h1>
+<p>KMeans for stars is a python tool kit developed to apply <em>K</em>-means <a class="reference external" href="http://www-m9.ma.tum.de/foswiki/pub/WS2010/CombOptSem/kMeans.pdf">(MacQueen,
+1967)</a>
+clustering in astrophysics. This tools ware previously used in:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://arxiv.org/abs/1601.01631">Sánchez Almeida et al. (2016)</a> - Search for Extremely Metal-poor Galaxies in the Sloan Digital Sky Survey (II): high electron temperature objects</li>
+<li><a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2014A%26A...565A..53O&amp;db_key=AST&amp;link_type=PREPRINT">Ordovás-Pascual &amp; Sánchez Almeida (2014)</a> - A fast version of the k-means classification algorithm for astronomical applications</li>
+<li><a class="reference external" href="http://arxiv.org/abs/1211.5321">Sánchez Almeida &amp; Allende Prieto (2013)</a> - Automated unsupervised classification of the Sloan Digital Sky Survey stellar spectra using k-means clustering</li>
+<li><a class="reference external" href="http://arxiv.org/abs/1109.0235">Morales-Luis et al. (2011)</a> - Systematic search for extremely metal poor galaxies in the Sloan Digital Sky Survey</li>
+<li><a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2010ApJ...714..487S&amp;db_key=AST&amp;link_type=PREPRINT">Sánchez Almeida et. al (2010)</a> - Automatic Unsupervised Classification of All Sloan Digital Sky Survey Data Release 7 Galaxy Spectra</li>
+<li><a class="reference external" href="http://adsabs.harvard.edu/cgi-bin/nph-data_query?bibcode=2009ApJ...698.1497S&amp;db_key=AST&amp;link_type=PREPRINT">Sánchez Almeida et. al (2009)</a> -  Search for Blue Compact Dwarf Galaxies During Quiescence. II. Metallicities of Gas and Stars, Ages, and Star Formation Rates</li>
+<li><a class="reference external" href="http://iopscience.iop.org/article/10.1086/308603/pdf">Sánchez Almeida &amp; Lites (2000)</a> - Physical Properties of the Solar Magnetic Photosphere under the MISMA Hypothesis. II. Network and Internetwork Fields at the Disk Center</li>
+</ul>
+<div class="math">
+<p><img src="_images/math/27f620ec1ab745643eca34a7b15a873e76036bcc.png" alt="(a + b)^2 = a^2 + 2ab + b^2
+(\alpha - b)^2 = \alpha^2 - 2 \alpha b + b^2"/></p>
+</div><div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div class="align-left figure align-center" id="id2">
+<!--<iframe width="900" height="800" frameborder="0" scrolling="no" src="https://plot.ly/~garciadias/7.embed"></iframe>
+<a class="reference internal image-reference" href="_images/Groups_MH_Teff_cont_fill.png"><img alt="alternate text" src="_images/Groups_MH_Teff_cont_fill.png" style="width: 1068.3px; height: 706.5px;" /></a>-->
+<p class="caption"><span class="caption-text"><strong>Contour diagrams in the Teff x MH space. Different colors are used to distinguish classes, there is any touching borders with the same color. Each class is represented by five color shades, from dark to light, the shades enclose 15%, 30%, 45% and</strong> <img class="math" src="_images/math/49d4d420882348d6c5361c0cbd5bc58e816ead44.png" alt="1\sigma"/>. <strong>The groups are parted in four plots minimizing superposition of classes. Panel a shows groups 0, 1, 4 and 5, panel</strong> b <strong>groups 7, panel</strong> c <strong>groups 2 and 3, and panel</strong> d <strong>shows group 6. Except of panel</strong> b <strong>, which has its classes identified as in the legend box, each class is tagged with a floating label in the form G</strong> X <strong>C</strong> XX <strong>, C referring to class and G to its group.</strong></span></p>
+</div>
+</div>
+<div class="section" id="documenting-objects">
+<h2><a class="toc-backref" href="#id5">Documenting objects</a><a class="headerlink" href="#documenting-objects" title="Permalink to this headline">¶</a></h2>
+<p>One of Sphinx&#8217; main objectives is easy documentation of <em class="dfn">objects</em> (in a
+very general sense) in any <em class="dfn">domain</em>.  A domain is a collection of object
+types that belong together, complete with markup to create and reference
+descriptions of these objects.</p>
+<p>The most prominent domain is the Python domain.  To e.g. document the Python
+built-in function <code class="docutils literal"><span class="pre">enumerate()</span></code>, you would add this to one of your source
+files:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">py</span><span class="p">:</span><span class="n">function</span><span class="p">::</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sequence</span><span class="p">[,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">])</span>
+
+   <span class="n">Return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">that</span> <span class="n">yields</span> <span class="n">tuples</span> <span class="n">of</span> <span class="n">an</span> <span class="n">index</span> <span class="ow">and</span> <span class="n">an</span> <span class="n">item</span> <span class="n">of</span> <span class="n">the</span>
+   <span class="o">*</span><span class="n">sequence</span><span class="o">*.</span> <span class="p">(</span><span class="n">And</span> <span class="n">so</span> <span class="n">on</span><span class="o">.</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This is rendered like this:</p>
+<dl class="function">
+<dt id="enumerate">
+<code class="descname">enumerate</code><span class="sig-paren">(</span><em>sequence</em><span class="optional">[</span>, <em>start=0</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#enumerate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator that yields tuples of an index and an item of the
+<em>sequence</em>. (And so on.)</p>
+</dd></dl>
+
+<p>The argument of the directive is the <em class="dfn">signature</em> of the object you
+describe, the content is the documentation for it.  Multiple signatures can be
+given, each in its own line.</p>
+<p>The Python domain also happens to be the default domain, so you don&#8217;t need to
+prefix the markup with the domain name</p>
+</div>
+<div class="section" id="test-code-input">
+<h2><a class="toc-backref" href="#id6">Test code input</a><a class="headerlink" href="#test-code-input" title="Permalink to this headline">¶</a></h2>
+<p>Run:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">KMeans</span> <span class="n">impor</span> <span class="n">assign_array</span>
+<span class="n">assign_array</span><span class="p">(</span><span class="n">Centres</span><span class="p">,</span> <span class="n">Your_data</span><span class="p">,</span> <span class="n">i_worker</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span>
+<span class="k">def</span> <span class="nf">assign_array</span><span class="p">(</span><span class="n">clusters_tmp</span><span class="p">,</span> <span class="n">fullset</span><span class="p">,</span> <span class="n">i_worker</span><span class="p">,</span> <span class="n">output</span><span class="p">):</span>
+	<span class="sd">&quot;&quot;&quot;Assign vectors to classes minimizing euclidean distances.</span>
+<span class="sd">	This line is run in parallel.</span>
+<span class="sd">	</span>
+<span class="sd">	Parameters</span>
+<span class="sd">	----------</span>
+<span class="sd">	clusters_tmp : 2D array-like, shape=(n_clusters, n_features)</span>
+<span class="sd">		Array with the partial cluster centers (n_clusters, n_features).</span>
+<span class="sd">	</span>
+<span class="sd">	fullset : 2D array, shape=(n_samples, n_features)</span>
+<span class="sd">		Array with all objects in to be classified.</span>
+<span class="sd">	</span>
+<span class="sd">	i_worker : int</span>
+<span class="sd">		Identifier to the ith job. As it runs in parallel is important to index each result.</span>
+
+<span class="sd">	output : object type</span>
+<span class="sd">		Object keeping the results to each job.</span>
+<span class="sd">	</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">		The return in this function is implicit as output attributes.</span>
+<span class="sd">		The output is a list (n_samples + 1) witch the first value correspond to ith job and other values are</span>
+<span class="sd">		the classification of the objects in the sample.</span>
+<span class="sd">	&quot;&quot;&quot;</span>
+	<span class="n">output</span><span class="o">.</span><span class="n">put</span><span class="p">([</span><span class="n">i_worker</span><span class="p">]</span> <span class="o">+</span> <span class="p">[(((</span><span class="n">clusters_tmp</span> <span class="o">-</span> <span class="n">line</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">argmin</span><span class="p">()</span> <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">fullset</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="section" id="printing-some-interactive-coding">
+<h3><a class="toc-backref" href="#id7">Printing some interactive coding:</a><a class="headerlink" href="#printing-some-interactive-coding" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span>
+<span class="go">2</span>
+</pre></div>
+</div>
+<p>Some text that requires a footnote <a class="footnote-reference" href="#f1" id="id1">[1]</a> .</p>
+<p class="rubric">Footnotes</p>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Text of the first footnote.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+        </div>
+        <div class="sidebar">
+          <h3>Table Of Contents</h3>
+          <div role="search">
+            <h3 style="margin-top: 1.5em;">Search</h3>
+          <!--
+            <form class="search" action="search.html" method="get">
+                <input type="text" name="q" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+	    </form>-->
+          </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+
+    <div class="footer-wrapper">
+      <div class="footer">
+        <div class="left">
+          <div role="navigation" aria-label="related navigaton">
+            <a href="genindex.html" title="General Index"
+              >index</a>
+          </div>
+          <div role="note" aria-label="source link">
+              <br/>
+              <a href="_sources/index.txt"
+                rel="nofollow">Show Source</a>
+          </div>
+        </div>
+
+        <div class="right">
+          
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2016, R. Garcia-Dias.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.6.
+    </div>
+        </div>
+        <div class="clearer"></div>
+      </div>
+    </div>
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="../cv/curriculum-vitae.pdf" 	     class="w3-bar-item w3-button w3-padding-large">CV</a>
+  <a href="../StarClustering/html/tmp.html" class="w3-bar-item w3-button w3-padding-large">StarClustering</a>
+  <a href="../publications/index.html"        class="w3-bar-item w3-button w3-padding-large">Publications</a>
+  <a href="https://github.com/garciadias"    class="w3-bar-item w3-button w3-padding-large">GitHub</a>
+</div>
+
+
+  </body>
+</html>
