@@ -64,7 +64,7 @@
 			</blockquote>
 		</div>
 		<div style="width:25%; margin-left: 70%; margin-top: -350px;" align="center">
-			<img style="width:100%" src="./pictures/marvin.jpg" ></img>
+			<img style="width:100%" src="./pictures/marvin.jpg" >
 		</div>
 		<figure>
 			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
@@ -75,7 +75,7 @@
 		<div align='center' >
 			<h2 style="margin-bottom: 5px; text-align:center; background-color:#8531A4; color:#FFF;">K-means</h2>
 			<p style="line-height: 30px;"> Unclassified objects in a N-dimensional space.</p>
-			<img style="width:40%" src="./pictures/k-means_0.png" ></img>
+			<img style="width:40%" src="./pictures/k-means_0.png" >
 		</div>
 		<figure>
 			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
@@ -88,7 +88,7 @@
 			<ol >
 				<li>Choose initial centroids</li>
 			</ol>
-			<img style="width:100%" src="./pictures/k-means_1.png" ></img>			
+			<img style="width:100%" src="./pictures/k-means_1.png" >			
 		</div>
 		<figure>
 			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
@@ -105,25 +105,7 @@
 					<li>Assign objects to the nearest centroid.</li>
 				</ol>
 			</ol>
-			<img style="width:100%" src="./pictures/k-means_2.png" ></img>
-		</div>
-		<figure>
-			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
-		</figure>
-	</section>
-
-	<section class="slide">
-		<div class="double">
-			<h2>K-means</h2>
-			<ol type="i" style="line-height: 30px;">
-				<li>Choose initial centroids.</li>
-				<li>While != Stability condition:</li>
-				<ol start='I'>
-					<li>Assign objects to the nearest centroid.</li>
-					<li>Recalculate centroids as the mean of the objects in each class.</li>
-				</ol>
-			</ol>
-			<img style="width:100%" src="./pictures/k-means_4.png" ></img>
+			<img style="width:100%" src="./pictures/k-means_2.png" >
 		</div>
 		<figure>
 			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
@@ -141,7 +123,25 @@
 					<li>Recalculate centroids as the mean of the objects in each class.</li>
 				</ol>
 			</ol>
-			<img style="width:100%" src="./pictures/k-means_3.png" ></img>
+			<img style="width:100%" src="./pictures/k-means_4.png" >
+		</div>
+		<figure>
+			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
+		</figure>
+	</section>
+
+	<section class="slide">
+		<div class="double">
+			<h2>K-means</h2>
+			<ol type="i" style="line-height: 30px;">
+				<li>Choose initial centroids.</li>
+				<li>While != Stability condition:</li>
+				<ol start='I'>
+					<li>Assign objects to the nearest centroid.</li>
+					<li>Recalculate centroids as the mean of the objects in each class.</li>
+				</ol>
+			</ol>
+			<img style="width:100%" src="./pictures/k-means_3.png" >
 		</div>
 		<figure>
 			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
@@ -161,7 +161,7 @@
 				<li>Finish.</li>
 				<li>Repeat as many times you need to be sure the random initialization doesn't affect the results.</li>
 			</ol>
-			<img style="width:100%" src="./pictures/k-means_5.png" ></img>
+			<img style="width:100%" src="./pictures/k-means_5.png" >
 		</div>
 		<figure>
 			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
@@ -191,13 +191,15 @@
 	</section>
 
 	<section class="slide">
-		<div class="double">
+		<div style="width: 45%;">
 			<h2>Choosing K</h2>
-			<p style="line-height: 30px; width:137%">K was chosen based in the variation of the median within cluster standard deviation with K.</p>
-			<p>\[ \lim_{K \rightarrow \infty}\frac{d\widehat{\sigma}}{dK} \rightarrow 0\]
-			<script type="text/javascript" src="http://www.hostmath.com/Math/MathJax.js?config=OK"></script>
+			<p style="line-height: 30px;">K was chosen based in the variation of the median within cluster standard deviation with K.</p>
 			</p>
-			<img style="width:70%" src="./pictures/mean_std_real.png" align="right"></img>
+			<p align="center">
+			<img src="./pictures/eq_01.png" width="50%"></p>
+		</div>
+		<div style="width: 40%; margin-left: 55%;">
+			<img style="width:100%; margin-top: -370px;" src="./pictures/mean_std_real.png" align="right">
 		</div>
 		<figure>
 			<img class="cover" src="pictures/cover.jpg" alt="Intro" style="opacity: 0.65;">
