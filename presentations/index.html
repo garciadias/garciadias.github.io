@@ -1,77 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-      <style type="text/css">.gm-style .gm-style-mtc label,.gm-style .gm-style-mtc
-        div{font-weight:400}
-      </style>
-      <link type="text/css" rel="stylesheet" href="../my_files/css.css">
-      <style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc
-        div{font-size:10px}
-      </style>
-      <style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}
-      </style>
+    <link type="text/css" rel="stylesheet" href="../static/css/w3.css">
+    <link type="text/css" rel="stylesheet" href="../static/css/font-awesome.css">
+    <link rel="shortcut icon" href="../static/img/favicon.ico"/>
     <title>Garcia-Dias</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../my_files/w3.css">
-    <link rel="stylesheet" href="../my_files/css_002.css">
-    <link rel="stylesheet" href="../my_files/font-awesome.css">
-    <link rel="shortcut icon" href="../my_files/favicon.ico"/>
-    <style>
-      body {font-family: "Lato", sans-serif}
-      .mySlides {display: none}
-    </style>
-    <script type="text/javascript" charset="UTF-8" src="../my_files/common.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="../my_files/map.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="../my_files/util.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="../my_files/marker.js"></script>
-    <style type="text/css">.gm-style{font: 400 11px Roboto, Arial, sans-serif; text-decoration: none;}.gm-style img{ max-width: none;}</style>
-    <script type="text/javascript" charset="UTF-8" src="../my_files/onion.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="../my_files/stats.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="../my_files/controls.js"></script>
   </head>
-<body>
-<!-- Navbar -->
-  <div class="w3-top">
-    <div class="w3-bar w3-black w3-card-2">
-      <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
-      <a href="../index.html" class="w3-bar-item w3-button w3-padding-large">HOME</a>
-      <a href="../cv/curriculum-vitae.pdf" class="w3-bar-item w3-button w3-padding-large w3-hide-small">CV</a>
-      <!-- <a href="../StarClustering/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">StarClustering</a> -->
-      <a href="../APOGEE/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">APOGEE</a>
-      <a href="https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Publications</a>
+  <body>
+    <div class='w3-top'>
+    <div class='w3-bar w3-black w3-card-2'>
+      <a class='w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right' href='javascript:void(0)' onclick='myFunction()' title='Toggle Navigation Menu'><i class='fa fa-bars'></i></a>
+      <a href='../index.html' class='w3-bar-item w3-button w3-padding-large'>Home</a>
+      <a href='../static/img/cv/curriculum-vitae.pdf' class='w3-bar-item w3-button w3-padding-large w3-hide-small'>CV</a>
+      <a href='http://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en' class='w3-bar-item w3-button w3-padding-large w3-hide-small'>Publications</a>
       <a href="../presentations/index.html" class="w3-bar-item w3-button w3-padding-large w3-hide-small">Presentations</a>
-      <a href="https://github.com/garciadias" class="w3-bar-item w3-button w3-padding-large w3-hide-small">GitHub</a>
-      <div class="w3-dropdown-hover w3-hide-small">
-        <button class="w3-padding-large w3-button" title="More">Charts<i class="fa fa-caret-down"></i></button>
-        <div class="w3-dropdown-content w3-bar-block w3-card-4">
-        <a href="/charts/index.html" class="w3-bar-item w3-button">M67 - Bokeh</a>
-        </div>
-      </div>
       <a href="https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-graduation-cap"></i></a>
-<a href="https://github.com/garciadias" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-github"></i></a>
+      <a href="https://github.com/garciadias" class="w3-padding-large w3-hover-red w3-hide-small w3-right"><i class="fa fa-github"></i></a>
     </div>
   </div>
 
-<!-- Navbar on small screens -->
-  <div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
-    <a href="../cv/curriculum-vitae.pdf"        class="w3-bar-item w3-button w3-padding-large">CV</a>
-    <!-- <a href="../StarClustering/index.html" class="w3-bar-item w3-button w3-padding-large">StarClustering</a> -->
-    <a href="https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en"        class="w3-bar-item w3-button w3-padding-large">Publications</a>
-    <a href="../APOGEE/index.html"              class="w3-bar-item w3-button w3-padding-large">APOGEE</a>
-    <a href="../presentations/index.html"       class="w3-bar-item w3-button w3-padding-large">Presentations</a>
-    <a href="https://github.com/garciadias"    class="w3-bar-item w3-button w3-padding-large">GitHub</a>
+  <!-- Navbar on small screens -->
+  <div id='navDemo' class='w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top' style='margin-top:46px'>
+    <a href='../index.html' class='w3-bar-item w3-button w3-padding-large'>Home</a>
+    <a href='../static/img/cv/curriculum-vitae.pdf' class='w3-bar-item w3-button w3-padding-large'>CV</a>
+    <a href='https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en' class='w3-bar-item w3-button w3-padding-large'>Publications</a>
+    <a href="https://github.com/garciadias" class='w3-bar-item w3-button w3-padding-large'>GitHub</a>
   </div>
-
-
-
   <div class="w3-container w3-content w3-center w3-padding-32" style="max-width:900px" id="band">
     <div class="w3-row-padding w3-padding-32" style="margin:0 -300px">
     <div class="w3-third w3-margin-bottom">
-     <a href='https://docs.google.com/presentation/d/15VAcyD-IAOz96VFhINBCdCg25nUkmg8JVofXWWOd8gk/present?token=AC4w5Vjqi25ByRMdSO_xFYbgjOn-w6NFyQ%3A1524075561013&includes_info_params=1#slide=id.p'><img src="../my_files/open_science.png" alt="Ciencia abierta"  style="height:258px;" class="w3-hover-opacity"></a>
+     <a href='https://docs.google.com/presentation/d/15VAcyD-IAOz96VFhINBCdCg25nUkmg8JVofXWWOd8gk/present?token=AC4w5Vjqi25ByRMdSO_xFYbgjOn-w6NFyQ%3A1524075561013&includes_info_params=1#slide=id.p'><img src="../static/img/presentations/open_science.png" alt="Ciencia abierta"  style="height:258px;" class="w3-hover-opacity"></a>
      <div class="w3-container w3-white">
 	    <h4><p>Ciencia abierta - museo de la ciencia<br> (April 2018) <br>
         <a href="http://www.museosdetenerife.org/mcc-museo-de-la-ciencia-y-el-cosmos/evento/4955">Evento</a> </p> <h6><br /><br /></h6></h4>
@@ -79,14 +38,14 @@
      </div>
     </div>
       <div class="w3-third w3-margin-bottom">
-       <a href='https://docs.google.com/presentation/d/1GxgV1BAlXdab_wki2fjEVBfS5uEQ0lW2x6wbCaZEh_k/present?token=AC4w5Vj5bvrp3KNri-6Zfp2KVoI-wA-oVw%3A1521454368752&includes_info_params=1#slide=id.g227a7dbed0_0_5'><img src="../my_files/APOGEE_meeting_Besancon.png" alt="APOGEE-MEETING-FRANCE"  style="height:258px;" class="w3-hover-opacity"></a>
+       <a href='https://docs.google.com/presentation/d/1GxgV1BAlXdab_wki2fjEVBfS5uEQ0lW2x6wbCaZEh_k/present?token=AC4w5Vj5bvrp3KNri-6Zfp2KVoI-wA-oVw%3A1521454368752&includes_info_params=1#slide=id.g227a7dbed0_0_5'><img src="../static/img/presentations/APOGEE_meeting_Besancon.png" alt="APOGEE-MEETING-FRANCE"  style="height:258px;" class="w3-hover-opacity"></a>
        <div class="w3-container w3-white">
  	    <h4><p>APOGEE meeting at Besançon <br> (March 2018)</p> <h6><br /><br /></h6></h4>
  	    <a href="./html-presentations/index.html"><button class="w3-button w3-black w3-margin-bottom">See more</button></a>
        </div>
       </div>
     <div class="w3-third w3-margin-bottom">
-     <a href='https://docs.google.com/presentation/d/1Sfax-NVF1v3h31cdFdt_bt-2reoXKTFASWeVVsked5o/present?token=AC4w5VjnQqxlLM8LgKkkPIvARMwOTLy7mw%3A1511455242424&includes_info_params=1#slide=id.g297646e45a_0_324'><img src="../my_files/git_presentation.png" alt="APOGEE-MEETING/Git presentation"  style="height:258px;" class="w3-hover-opacity"></a>
+     <a href='https://docs.google.com/presentation/d/1Sfax-NVF1v3h31cdFdt_bt-2reoXKTFASWeVVsked5o/present?token=AC4w5VjnQqxlLM8LgKkkPIvARMwOTLy7mw%3A1511455242424&includes_info_params=1#slide=id.g297646e45a_0_324'><img src="../static/img/presentations/git_presentation.png" alt="APOGEE-MEETING/Git presentation"  style="height:258px;" class="w3-hover-opacity"></a>
      <div class="w3-container w3-white">
        <h4><p>APOGEE meeting at IAC <br> (Nov. 24th, 2017)</p> <h6><br /><br /></h6></h4>
        <a href="https://docs.google.com/presentation/d/1Sfax-NVF1v3h31cdFdt_bt-2reoXKTFASWeVVsked5o/present?token=AC4w5VjnQqxlLM8LgKkkPIvARMwOTLy7mw%3A1511455242424&includes_info_params=1#slide=id.g297646e45a_0_324"><button class="w3-button w3-black w3-margin-bottom">See more</button></a>
@@ -101,14 +60,14 @@
 
     <div class="w3-row-padding w3-padding-32" style="margin:0 -300px">
     <div class="w3-third w3-margin-bottom">
-     <a href='https://docs.google.com/presentation/d/1Qk1iu7_mh3O6ApX-hBuItUuPVBVx98hR8p-qMBC98v4/present?slide=id.g227a7dbed0_0_5'><img src="../my_files/SDSS-MEETING-CHILE_cover.png" alt="APOGEE-MEETING"  style="height:258px;" class="w3-hover-opacity"></a>
+     <a href='https://docs.google.com/presentation/d/1Qk1iu7_mh3O6ApX-hBuItUuPVBVx98hR8p-qMBC98v4/present?slide=id.g227a7dbed0_0_5'><img src="../static/img/presentations/SDSS-MEETING-CHILE_cover.png" alt="APOGEE-MEETING"  style="height:258px;" class="w3-hover-opacity"></a>
      <div class="w3-container w3-white">
        <h4><p>SDSS meeting at Santiago Chile <br> (July 26th, 2017)</p> <h6><br /><br /></h6></h4>
        <a href="https://docs.google.com/presentation/d/1Qk1iu7_mh3O6ApX-hBuItUuPVBVx98hR8p-qMBC98v4/present?slide=id.g227a7dbed0_0_5"><button class="w3-button w3-black w3-margin-bottom">See more</button></a>
      </div>
     </div>
      <div class="w3-third w3-margin-bottom">
-      <a href='./html-presentations/index.html'><img src="../my_files/apogee_meeting_sample.png" alt="APOGEE-MEETING"  style="height:258px;" class="w3-hover-opacity"></a>
+      <a href='./html-presentations/index.html'><img src="../static/img/presentations/apogee_meeting_sample.png" alt="APOGEE-MEETING"  style="height:258px;" class="w3-hover-opacity"></a>
       <div class="w3-container w3-white">
 	    <h4><p>APOGEE meeting at IAC <br> (Feb. 6th, 2017)</p> <h6><br /><br /></h6></h4>
 	    <a href="./html-presentations/index.html"><button class="w3-button w3-black w3-margin-bottom">See more</button></a>
@@ -117,51 +76,24 @@
    </div>
   </div>
 
-<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
-  <a href="https://twitter.com/Don_Rafael"><i class="fa fa-twitter-square"></i></a>
-  <a href='https://www.instagram.com/don_rafael_dias/'><i class="fa fa-instagram w3-hover-opacity"></i></a>
-  <a href='https://github.com/garciadias/'><i class="fa fa-github w3-hover-opacity"></i></a>
-<a href='https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en'><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
-  <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
-  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
-</footer>
-
-
-<script>
-// Automatic Slideshow - change image every 4 seconds
-var myIndex = 0;
-carousel();
-
-function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-       x[i].style.display = "none";
+  <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+    <a href="https://twitter.com/Don_Rafael"><i class="fa fa-twitter-square"></i></a>
+    <a href='https://www.instagram.com/don_rafael_dias/'><i class="fa fa-instagram w3-hover-opacity"></i></a>
+    <a href='https://github.com/garciadias/'><i class="fa fa-github w3-hover-opacity"></i></a>
+    <a href='https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en'><i class="fa fa-graduation-cap" aria-hidden="true"></i></a>
+    <p class="w3-medium">Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a>
+  </footer>
+  // Used to toggle the menu on small screens when clicking on the menu button
+  <script type="text/javascript">
+    function myFunction() {
+        var x = document.getElementById("navDemo");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
     }
-    myIndex++;
-    if (myIndex > x.length) {myIndex = 1}
-    x[myIndex-1].style.display = "block";
-    setTimeout(carousel, 4000);
-}
-
-// Used to toggle the menu on small screens when clicking on the menu button
-function myFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-    }
-}
-
-// When the user clicks anywhere outside of the modal, close it
-var modal = document.getElementById('ticketModal');
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
-
-</body>
+  </script>
+  </body>
 </html>
