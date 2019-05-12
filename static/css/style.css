@@ -1,0 +1,150 @@
+body {margin:0}
+html,body {
+  --kings-red: #df2925ff;
+  font-family: impact, helvetica;
+  font-size:15px;
+  line-height:1.5
+  }
+a{color:inherit}
+
+.container{
+  padding: 0.01em 16px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  background-color: #ffffff}
+
+.content{
+  max-width:980px;
+  margin:auto;
+  overflow:hidden}
+
+.centered {text-align: center;}
+.justify {text-align: justify;}
+.right {
+  text-align: right;
+  float: right;
+}
+.left {
+  text-align: left;
+  float: left;
+}
+
+.title {
+  font-variant: small-caps;
+  font-family: impact, helvetica, Times;
+  font-weight: bold;
+  color: #df2925ff;
+  font-size:24px;
+}
+
+.subtitle {
+  font-family: impact, helvetica;
+  font-weight: bold;
+  color: #df2925;
+}
+
+
+.padding-top{padding-top:50px!important}
+.padding-large{padding:12px 24px!important}
+.hover-red:hover {
+  color:#fff!important;
+  background-color:#f44336!important}
+
+.pagination {
+  padding-top: 100px;
+  padding-bottom: 50px;
+  font-weight: bold;
+}
+
+.disabled {
+  cursor:not-allowed;
+  opacity:0.3;
+  pointer-events:none
+}
+
+.thumbnail {
+  padding:0.01em 16px;
+  margin-top:16px;
+  margin-bottom:16px;
+  background-color: #ffffff;
+}
+
+.top {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+  top: 0;
+}
+
+.nav-div {
+  /* background-color: #000000; */
+  background-color: #df2925ff;
+  color: #ffffff;
+  width: 100%;
+  height: 47px;
+}
+
+.bar-item {
+  padding: 8px 16px;
+  /* background-color: #000000; */
+  background-color: #df2925ff;
+  text-decoration: none;
+}
+
+.bar-item:hover {
+  background-color: #c1c1c1;
+  text-decoration: none;
+  color: #df2925ff;
+}
+
+.footer-style {
+  padding: 64px;
+  text-align: center;
+  background-color: #0a2d50;
+  font-size:36px!important;
+  color: #ffffff;
+  font-weight: normal;
+
+}
+
+
+.fab:hover {
+  color: #df2925ff;
+}
+
+
+.title:hover {
+  color: #2196F3;
+}
+
+.padding-bottom {
+  padding-bottom: 15px;
+}
+
+.padding-right {
+  padding-right: 15px;
+}
+
+.third {
+  width: 33.2%
+}
+
+.fourth {
+  width: 25%;
+  display: inline-block;
+}
+
+.float-left {
+  float: left;
+}
+
+.grey {
+  background-color: #757575;
+}
+
+.half-div {
+  width: 55%;
+  border: 2px solid var(--kings-red);
+}
+
+.round {border-radius: 16px}
