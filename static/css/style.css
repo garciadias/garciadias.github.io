@@ -81,7 +81,9 @@ a{color:inherit}
   background-color: #df2925ff;
   color: #ffffff;
   width: 100%;
-  height: 47px;
+  font-weight: bold;
+  font-size:22px!important;
+  height: 57px;
 }
 
 .bar-item {
@@ -148,3 +150,8 @@ a{color:inherit}
 }
 
 .round {border-radius: 16px}
+
+.red-border {
+  border: 3px solid var(--kings-red);
+  border-radius: 16px;
+}
