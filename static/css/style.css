@@ -1,7 +1,7 @@
 body {margin:0}
 html,body {
   --kings-red: #df2925ff;
-  font-family: impact, helvetica;
+  font-family: Helvetica, Arial;
   font-size:15px;
   line-height:1.5
   }
@@ -31,14 +31,14 @@ a{color:inherit}
 
 .title {
   font-variant: small-caps;
-  font-family: impact, helvetica, Times;
+  font-family: Helvetica, Arial;
   font-weight: bold;
   color: #df2925ff;
   font-size:24px;
 }
 
 .subtitle {
-  font-family: impact, helvetica;
+  font-family: Helvetica, Arial;
   font-weight: bold;
   color: #df2925;
 }
