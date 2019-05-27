@@ -7,16 +7,27 @@
     <title>Projects — Garcia-Dias</title>
 </head>
 <body>
-  <div class='nav-div'>
-  <a class='bar-item padding-large left' href="../">Home</a>
+  <div class="topnav" id="myTopnav">
+  <a class="bar-item padding-large left" href="../">Home</a>
   
-    <a class='bar-item padding-large left' href="../publications/">Publications</a>
+  <a class="bar-item padding-large left" href="../publications/">Publications</a>
   
   <a href="https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en"
     class="bar-item right padding-large"><i class="fab fas fa-graduation-cap"></i></a>
   <a href="https://github.com/garciadias" class="bar-item right padding-large">
     <i class="fab fa-github"></i></a>
+  <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+    <i class="fa fa-bars"></i>
+  </a>
 </div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<!-- <div id="navDemo" class="bar-block black hide hide-large hide-medium top" style="margin-top:46px">
+  <a href="#band" class="bar-item button padding-large" onclick="myFunction()">BAND</a>
+  <a href="#tour" class="bar-item button padding-large" onclick="myFunction()">TOUR</a>
+  <a href="#contact" class="bar-item button padding-large" onclick="myFunction()">CONTACT</a>
+  <a href="#" class="bar-item button padding-large" onclick="myFunction()">MERCH</a>
+</div> -->
   <div class="container content centered" style="max-width:800px">
     
   <p>This is a list of the projects:</p>
@@ -30,20 +41,20 @@
   </div>
  <footer class="footer-style">
  <a href="https://twitter.com/Don_Rafael"><i class="fab fa-twitter-square"></i></a>
- <a href='https://www.instagram.com/don_rafael_dias/'><i class="fab fa-instagram"></i></a>
- <a href='https://github.com/garciadias/'><i class="fab fa-github"></i></a>
- <a href='https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en'><i class="fab fas fa-graduation-cap"></i></a>
- <a href='https://www.linkedin.com/in/garcia-dias/'><i class="fab fa-linkedin"></i></a><br>
+ <a href="https://www.instagram.com/don_rafael_dias/"><i class="fab fa-instagram"></i></a>
+ <a href="https://github.com/garciadias/"><i class="fab fa-github"></i></a>
+ <a href="https://scholar.google.co.uk/citations?user=MlwZerQAAAAJ&hl=en"><i class="fab fas fa-graduation-cap"></i></a>
+ <a href="https://www.linkedin.com/in/garcia-dias/"><i class="fab fa-linkedin"></i></a><br>
  <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><i class="fab fa-creative-commons"></i></a>
  </footer>
 <script type="text/javascript">
   function myFunction() {
-      var x = document.getElementById("navDemo");
-      if (x.className.indexOf("w3-show") == -1) {
-          x.className += " w3-show";
-      } else {
-          x.className = x.className.replace(" w3-show", "");
-      }
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
   }
+}
 </script>
 </body>
