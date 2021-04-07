@@ -24,6 +24,9 @@ a{color:inherit}
   text-align: right;
   float: right;
 }
+.text_left {
+  text-align: left;
+}
 .left {
   text-align: left;
   float: left;
