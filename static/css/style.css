@@ -1,6 +1,6 @@
 body {margin:0}
 html,body {
-  --kings-red: #df2925ff;
+  --kings-red: #027d82;
   font-family: Helvetica, Arial;
   font-size:15px;
   line-height:1.5
@@ -36,7 +36,7 @@ a{color:inherit}
   font-variant: small-caps;
   font-family: Helvetica, Arial;
   font-weight: bold;
-  color: #df2925ff;
+  color: #df2925;
   font-size:24px;
 }
 
@@ -51,7 +51,7 @@ a{color:inherit}
 .padding-large{padding:12px 24px!important}
 .hover-red:hover {
   color:#fff!important;
-  background-color:#f44336!important}
+  background-color:#027d82!important}
 
 .pagination {
   padding-top: 100px;
@@ -82,7 +82,7 @@ a{color:inherit}
 .bar-item {
   padding: 8px 16px;
   /* background-color: #000000; */
-  background-color: #df2925ff;
+  background-color: #027d82;
   text-decoration: none;
 }
 
@@ -95,7 +95,7 @@ a{color:inherit}
 .footer-style {
   padding: 64px;
   text-align: center;
-  background-color: #0a2d50;
+  background-color: #027d82;
   font-size:36px!important;
   color: #ffffff;
   font-weight: normal;
