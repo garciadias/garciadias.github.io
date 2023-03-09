@@ -1,12 +1,16 @@
 body {margin:0}
 html,body {
-  --kings-red: #0a2d50ff;
+  --dark-blue: #0a2d50ff;
   font-family: Helvetica, Arial;
+  font-weight: lighter;
   font-size:15px;
-  line-height:1.5
+  line-height:1.5;
   }
-a{color:inherit}
-
+a {color:inherit}
+div {
+  text-align: justify;
+  font-weight: normal;
+}
 .container{
   padding: 0.01em 16px;
   margin-top: 16px;
@@ -136,20 +140,20 @@ a{color:inherit}
 
 .half-div {
   width: 55%;
-  border: 2px solid var(--kings-red);
+  border: 2px solid var(--dark-blue);
 }
 
 .round {border-radius: 16px}
 
 .red-border {
-  border: 3px solid var(--kings-red);
+  border: 3px solid var(--dark-blue);
   border-radius: 16px;
 }
 
 
 /* Add a black background color to the top navigation */
 .topnav {
- background-color: var(--kings-red);
+ background-color: var(--dark-blue);
  overflow: hidden;
 }
 
