@@ -11,7 +11,7 @@ const routes = [
     path: '/cv',
     name: 'cv',
     component: () => import('@/views/CVView.vue'),
-    meta: { title: 'CV & Experience' }
+    meta: { title: 'Career' }
   },
   {
     path: '/projects',
