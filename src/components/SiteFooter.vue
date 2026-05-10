@@ -20,7 +20,7 @@ const year = new Date().getFullYear()
       </div>
       <div class="flex items-center gap-1">
         <a
-          v-for="s in profile.socials"
+          v-for="s in profile.socials.filter((s) => s.icon !== 'mail')"
           :key="s.label"
           :href="s.href"
           :aria-label="s.label"
