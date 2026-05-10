@@ -1,0 +1,56 @@
+[
+  {
+    "title": "Neuroharmony: A new tool for harmonizing volumetric MRI data from unseen scanners",
+    "venue": "NeuroImage",
+    "year": 2020,
+    "type": "Journal article",
+    "description": "First out-of-sample harmonisation tool for neuroimaging — a key step toward clinical translation of imaging ML.",
+    "links": [
+      { "label": "Article (PDF)", "href": "/static/img/portifolio/neuroharmony_article.pdf" },
+      { "label": "Documentation", "href": "https://neuroharmony.readthedocs.io/en/latest/" }
+    ]
+  },
+  {
+    "title": "Machine learning in APOGEE: Identification of stellar populations through chemical abundances",
+    "venue": "Astronomy & Astrophysics",
+    "year": 2019,
+    "type": "Journal article",
+    "description": "Supervised learning over high-resolution stellar spectra to identify stellar populations.",
+    "links": [
+      { "label": "Article (PDF)", "href": "/static/img/portifolio/supervised_clusters_article.pdf" },
+      { "label": "arXiv", "href": "https://arxiv.org/abs/1907.12796" }
+    ]
+  },
+  {
+    "title": "Machine learning in APOGEE — Unsupervised spectral classification with K-means",
+    "venue": "Astronomy & Astrophysics",
+    "year": 2018,
+    "type": "Journal article",
+    "description": "Unsupervised K-means clustering applied to 250,000+ stellar spectra.",
+    "links": [
+      { "label": "arXiv", "href": "https://arxiv.org/abs/1801.07912" },
+      { "label": "A&A", "href": "https://www.aanda.org/articles/aa/abs/2018/04/aa32134-17/aa32134-17.html" }
+    ]
+  },
+  {
+    "title": "Clustering — chapter in Machine Learning: Methods and Applications to Brain Disorders",
+    "venue": "Elsevier",
+    "year": 2020,
+    "type": "Book chapter",
+    "description": "One of six chapters authored / co-authored in this edited volume.",
+    "links": [
+      { "label": "Chapter (PDF)", "href": "/static/img/portifolio/clustering_chapter.pdf" },
+      { "label": "Book", "href": "https://books.google.co.uk/books?id=72C-DwAAQBAJ" }
+    ]
+  },
+  {
+    "title": "Thesis — Automated algorithms for spectroscopic classification of stars and applications to APOGEE",
+    "venue": "PhD thesis · Universidad de La Laguna",
+    "year": 2018,
+    "type": "Thesis",
+    "description": "Cum Laude. Foundation work in unsupervised and supervised learning on stellar spectra.",
+    "links": [
+      { "label": "Read", "href": "https://drive.google.com/open?id=1pMNBOr-qnJuJQlszE1OCfpGz3uJtllx2" }
+    ]
+  }
+]
