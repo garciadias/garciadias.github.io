@@ -27,6 +27,11 @@ export const profile = {
       href: 'https://github.com/londonaicentre/FLIP'
     },
     {
+      title: 'Audify',
+      description: 'LLM-powered Spotify playlist generator with semantic search.',
+      href: 'https://github.com/garciadias/audify'
+    },
+    {
       title: 'Neurofind',
       description: 'Diagnostic tool aiding mental-disorder diagnosis from 3D brain MRI.',
       href: 'https://neurofind.ai/'
