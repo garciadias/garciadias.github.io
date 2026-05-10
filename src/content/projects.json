@@ -1,0 +1,77 @@
+[
+  {
+    "id": "flip",
+    "title": "FLIP — Federated Learning & Interoperability Platform",
+    "tagline": "Federated learning across 11 NHS Trusts. Apache 2.0.",
+    "description": "Open-source platform that lets researchers train AI on medical imaging and EHR data sitting inside NHS Trust firewalls — without moving patient data. Built on FastAPI microservices, Docker Swarm, AWS and OpenTofu, with NVIDIA FLARE and Flower as pluggable FL backends.",
+    "tags": ["Federated Learning", "Healthcare", "FastAPI", "AWS", "NVIDIA FLARE", "Flower"],
+    "year": "2024 – present",
+    "image": null,
+    "links": [
+      { "label": "GitHub", "href": "https://github.com/londonaicentre/FLIP" },
+      { "label": "Demo video", "href": "https://www.youtube.com/watch?v=MsqOxLXN6WM" }
+    ]
+  },
+  {
+    "id": "neurofind",
+    "title": "Neurofind",
+    "tagline": "AI-assisted diagnosis of mental disorders from 3D brain MRI.",
+    "description": "Backend, cloud infrastructure and ML models for Neurofind.ai — taking neuroimaging research toward clinical practice. Flask + Celery + Redis API connecting frontend job requests to a containerised AI backend on AWS.",
+    "tags": ["Healthcare AI", "Neuroimaging", "Flask", "Docker", "AWS"],
+    "year": "2018 – 2022",
+    "image": "/static/img/portifolio/neurofind_dashboard.pdf",
+    "links": [
+      { "label": "neurofind.ai", "href": "https://neurofind.ai/" },
+      { "label": "Dashboard preview (PDF)", "href": "/static/img/portifolio/neurofind_dashboard.pdf" }
+    ]
+  },
+  {
+    "id": "neuroharmony",
+    "title": "Neuroharmony",
+    "tagline": "First out-of-sample harmonisation tool for neuroimaging.",
+    "description": "Open-source tool that mitigates scanner bias in MRI-derived features so models trained on one site generalise to another. Recognised with a £109,000 MRC research grant.",
+    "tags": ["Open Source", "Neuroimaging", "scikit-learn", "Python"],
+    "year": "2020",
+    "image": null,
+    "links": [
+      { "label": "Documentation", "href": "https://neuroharmony.readthedocs.io/en/latest/" },
+      { "label": "Article (PDF)", "href": "/static/img/portifolio/neuroharmony_article.pdf" }
+    ]
+  },
+  {
+    "id": "monzo-overdraft",
+    "title": "Monzo Overdraft GBM",
+    "tagline": "20–100% Gini gain on a £259M lending portfolio.",
+    "description": "GBM-based overdraft-application model serving 7M+ Monzo customers, deployed in Docker on GCP. Refactored Monzo’s internal modelling library to standardise monitoring across all lending products, surfacing previously invisible subgroup performance gaps.",
+    "tags": ["Credit Risk", "GBM", "GCP", "BigQuery", "dbt"],
+    "year": "2022 – 2023",
+    "image": null,
+    "links": [
+      { "label": "Monzo Annual Report 2022", "href": "https://monzo.com/static/docs/monzo-annual-report-2022.pdf" }
+    ]
+  },
+  {
+    "id": "floe",
+    "title": "Floe Oral Care",
+    "tagline": "From research concept to deployed clinical tool.",
+    "description": "Founding ML engineer. Designed the clinical trials, shipped logistic-regression and tree-based diagnostic models plus an OpenAI-backed RAG recommendation system. Built the full AWS CDK infrastructure and Django backend.",
+    "tags": ["AWS CDK", "Django", "RAG", "OpenAI", "Healthcare"],
+    "year": "2023 – 2024",
+    "image": "/static/img/portifolio/floe_dashborad.png",
+    "links": [
+      { "label": "Dashboard preview (PNG)", "href": "/static/img/portifolio/floe_dashborad.png" }
+    ]
+  },
+  {
+    "id": "monai",
+    "title": "MONAI Core & MONAI Generative",
+    "tagline": "Open-source contributor to medical-imaging AI frameworks.",
+    "description": "Active contributions to MONAI Core and MONAI Generative, the libraries the wider medical-imaging research community relies on for deep-learning workflows.",
+    "tags": ["Open Source", "PyTorch", "Medical Imaging"],
+    "year": "Ongoing",
+    "image": null,
+    "links": [
+      { "label": "monai.io", "href": "https://monai.io/" }
+    ]
+  }
+]
