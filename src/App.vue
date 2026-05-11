@@ -7,9 +7,9 @@ import SiteFooter from '@/components/SiteFooter.vue'
   <div class="min-h-screen flex flex-col">
     <SiteHeader />
     <main class="flex-1">
-      <router-view v-slot="{ Component }">
+      <router-view v-slot="{ Component, route }">
         <transition name="fade" mode="out-in">
-          <component :is="Component" />
+          <component :is="Component" :key="route.path" />
         </transition>
       </router-view>
     </main>
