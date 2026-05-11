@@ -9,7 +9,7 @@ const mobileOpen = ref(false)
 
 const links = [
   { name: 'home', label: 'Home' },
-  { name: 'cv', label: 'Experience' },
+  { name: 'cv', label: 'Career' },
   { name: 'projects', label: 'Projects' },
   { name: 'publications', label: 'Publications' },
   { name: 'talks', label: 'Talks' }

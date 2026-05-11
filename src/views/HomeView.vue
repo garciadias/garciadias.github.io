@@ -1,6 +1,5 @@
 <script setup>
 import { profile } from '@/content/profile'
-import SocialIcon from '@/components/SocialIcon.vue'
 </script>
 
 <template>
@@ -36,21 +35,6 @@ import SocialIcon from '@/components/SocialIcon.vue'
               See projects
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </router-link>
-            <a
-              :href="profile.cvPath"
-              target="_blank"
-              rel="noopener"
-              class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100 px-5 py-2.5 text-sm font-semibold transition"
-            >
-              Download CV (PDF)
-            </a>
-            <a
-              :href="`mailto:${profile.email}`"
-              class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-transparent hover:bg-gray-50 dark:hover:bg-gray-800 text-gray-900 dark:text-gray-100 px-5 py-2.5 text-sm font-semibold transition"
-            >
-              <SocialIcon name="mail" />
-              Get in touch
-            </a>
           </div>
           <p class="mt-4 text-xs text-gray-500 dark:text-gray-500">{{ profile.rightToWork }}</p>
         </div>
@@ -62,20 +46,6 @@ import SocialIcon from '@/components/SocialIcon.vue'
             <img src="/static/img/4.png" alt="Giving a talk about GitHub" class="rounded-xl object-cover w-full h-32 sm:h-40" />
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Metrics -->
-  <section class="container-wide pb-12">
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      <div
-        v-for="m in profile.metrics"
-        :key="m.label"
-        class="card p-6"
-      >
-        <div class="text-3xl font-bold font-display text-gray-900 dark:text-white">{{ m.value }}</div>
-        <div class="mt-1 text-sm text-gray-600 dark:text-gray-400">{{ m.label }}</div>
       </div>
     </div>
   </section>

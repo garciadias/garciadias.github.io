@@ -5,48 +5,54 @@ import { profile } from '@/content/profile'
 
 <template>
   <div class="container-prose py-12 sm:py-16">
-    <div class="section-eyebrow">Experience</div>
-    <div class="flex items-end justify-between flex-wrap gap-4 mb-10">
-      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">CV & Experience</h1>
+    <div class="section-eyebrow">Working life</div>
+    <div class="flex items-end justify-between flex-wrap gap-4 mb-4">
+      <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">Career</h1>
       <a
         :href="profile.cvPath"
         target="_blank"
         rel="noopener"
         class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 px-4 py-2 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-800"
       >
-        Download PDF
+        Download CV (PDF)
       </a>
     </div>
+    <p class="text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">
+      A decade of work spanning healthcare AI, foundation models, credit risk and astrophysics.
+    </p>
 
-    <ol class="relative border-l border-gray-200 dark:border-gray-800 space-y-10 pl-6">
-      <li v-for="(role, idx) in experience" :key="idx" class="relative">
-        <span class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-primary-500 ring-4 ring-white dark:ring-gray-950"></span>
+    <div v-if="experience && experience.length" class="space-y-6">
+      <article
+        v-for="(role, idx) in experience"
+        :key="idx"
+        class="card p-6"
+      >
+        <div class="flex flex-wrap items-baseline justify-between gap-2">
+          <h2 class="font-display font-bold text-xl text-gray-900 dark:text-white">{{ role.role }}</h2>
+          <span class="text-xs font-mono text-gray-500 dark:text-gray-400 whitespace-nowrap">{{ role.period }}</span>
+        </div>
+        <div class="mt-1 text-sm text-primary-600 dark:text-primary-400 font-medium">
+          {{ role.org }}<span v-if="role.location"> · {{ role.location }}</span>
+        </div>
+        <p v-if="role.summary" class="mt-3 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+          {{ role.summary }}
+        </p>
 
-        <div class="card p-6">
-          <div class="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 class="font-display font-bold text-xl text-gray-900 dark:text-white">{{ role.role }}</h2>
-            <span class="text-xs font-mono text-gray-500 dark:text-gray-400">{{ role.period }}</span>
-          </div>
-          <div class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ role.org }} · {{ role.location }}
-          </div>
-          <p v-if="role.summary" class="mt-3 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
-            {{ role.summary }}
-          </p>
-
-          <div v-for="(s, i) in role.sections" :key="i" class="mt-5">
+        <template v-for="(s, i) in role.sections" :key="i">
+          <div class="mt-5">
             <h3 v-if="s.heading" class="font-semibold text-gray-900 dark:text-white">
               <a v-if="s.href" :href="s.href" target="_blank" rel="noopener" class="link">{{ s.heading }}</a>
               <span v-else>{{ s.heading }}</span>
               <span v-if="s.subheading" class="ml-2 text-xs font-normal text-gray-500 dark:text-gray-400">{{ s.subheading }}</span>
             </h3>
-            <ul class="mt-2 space-y-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed list-disc pl-5 marker:text-primary-500">
+            <ul v-if="s.bullets && s.bullets.length" class="mt-2 space-y-2 text-sm text-gray-700 dark:text-gray-300 leading-relaxed list-disc pl-5">
               <li v-for="(b, bi) in s.bullets" :key="bi">{{ b }}</li>
             </ul>
           </div>
-        </div>
-      </li>
-    </ol>
+        </template>
+      </article>
+    </div>
+    <p v-else class="text-gray-500 dark:text-gray-400">No experience entries available.</p>
 
     <section class="mt-16">
       <div class="section-eyebrow">Education</div>
