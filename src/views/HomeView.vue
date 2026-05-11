@@ -3,6 +3,7 @@ import { profile } from '@/content/profile'
 </script>
 
 <template>
+  <div>
   <!-- Hero -->
   <section class="relative overflow-hidden">
     <div class="absolute inset-0 bg-grid pointer-events-none" aria-hidden="true"></div>
@@ -93,4 +94,5 @@ import { profile } from '@/content/profile'
       </div>
     </div>
   </section>
+  </div>
 </template>

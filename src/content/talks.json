@@ -8,5 +8,35 @@
     "youtubeId": "MsqOxLXN6WM",
     "description": "Walkthrough of the FLIP platform: how it lets researchers train models across 11 NHS Trusts without moving patient data.",
     "tags": ["Federated Learning", "Healthcare AI", "Demo"]
+  },
+  {
+    "id": "why-ml-models-fail",
+    "title": "Why Do Some Machine Learning Models Fail?",
+    "speaker": "Rafael Garcia-Dias",
+    "venue": "Invited talk",
+    "year": 2019,
+    "youtubeId": "OfimPKsYl9Q",
+    "description": "A look at common failure modes in machine learning systems and what they tell us about evaluation, dataset shift and generalisation.",
+    "tags": ["Machine Learning", "Evaluation"]
+  },
+  {
+    "id": "seminario-2021",
+    "title": "Seminário com Dr. Rafael Garcia-Dias",
+    "speaker": "Rafael Garcia-Dias",
+    "venue": "Academic seminar (Portuguese)",
+    "year": 2021,
+    "youtubeId": "yKL3g44wswc",
+    "description": "Seminar talk (in Portuguese) covering applied machine learning research and lessons from working at the intersection of AI and healthcare.",
+    "tags": ["Seminar", "Português"]
+  },
+  {
+    "id": "monai-fl-wg-2026-03",
+    "title": "MONAI Federated Learning Working Group — March 2026",
+    "speaker": "Rafael Garcia-Dias",
+    "venue": "MONAI FL Working Group",
+    "year": 2026,
+    "youtubeId": "419pL4QSW00",
+    "description": "Update at the MONAI Federated Learning Working Group meeting, sharing progress and lessons from running federated training across NHS Trusts.",
+    "tags": ["Federated Learning", "MONAI", "Healthcare AI"]
   }
 ]

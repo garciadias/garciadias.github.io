@@ -3,7 +3,14 @@ import { computed } from 'vue'
 import publications from '@/content/publications.json'
 import { profile } from '@/content/profile'
 
-const sorted = computed(() => [...publications].sort((a, b) => b.year - a.year))
+const sorted = computed(() =>
+  [...publications].sort((a, b) => {
+    const af = a.firstAuthor ? 1 : 0
+    const bf = b.firstAuthor ? 1 : 0
+    if (af !== bf) return bf - af
+    return b.year - a.year
+  })
+)
 </script>
 
 <template>
@@ -11,15 +18,16 @@ const sorted = computed(() => [...publications].sort((a, b) => b.year - a.year))
     <div class="section-eyebrow">Research output</div>
     <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">Publications</h1>
     <p class="text-gray-600 dark:text-gray-400 mb-10">
-      18 Q1 journal articles · h-index 19 · 5,000+ citations.
-      Full list on
+      Peer-reviewed journal articles, book chapters, conference proceedings and theses.
+      First-author publications are listed first, then co-authored work — newest at the top within each group.
+      Live metrics on
       <a
         href="https://scholar.google.co.uk/citations?hl=en&user=MlwZerQAAAAJ"
         target="_blank"
         rel="noopener"
         class="link"
         >Google Scholar</a
-      >. Selected highlights below.
+      >.
     </p>
 
     <ul class="space-y-4">
@@ -34,7 +42,11 @@ const sorted = computed(() => [...publications].sort((a, b) => b.year - a.year))
           <span class="font-medium">{{ p.venue }}</span>
           <span class="mx-1.5">·</span>
           <span>{{ p.type }}</span>
+          <span v-if="p.firstAuthor" class="ml-2 inline-flex items-center text-[10px] font-mono uppercase tracking-wider px-1.5 py-0.5 rounded bg-primary-50 dark:bg-primary-950/40 text-primary-700 dark:text-primary-300">First author</span>
         </div>
+        <p v-if="p.authors" class="mt-1 text-xs text-gray-500 dark:text-gray-500 leading-relaxed">
+          {{ p.authors }}
+        </p>
         <p v-if="p.description" class="mt-3 text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
           {{ p.description }}
         </p>

@@ -1,9 +1,21 @@
 [
   {
+    "title": "FLAME: An open-source federated platform for deeply phenotyped and multimodal studies at population scale",
+    "authors": "R Garcia-Dias, AT Bagur, V Fernandez, P Wright, L Adams, M Fernandes, et al.",
+    "venue": "Value in Health",
+    "year": 2025,
+    "type": "Journal article",
+    "firstAuthor": true,
+    "description": "Open-source federated platform enabling multimodal population-scale studies across NHS Trusts.",
+    "links": []
+  },
+  {
     "title": "Neuroharmony: A new tool for harmonizing volumetric MRI data from unseen scanners",
+    "authors": "R Garcia-Dias, C Scarpazza, L Baecker, S Vieira, WHL Pinaya, A Corvin, et al.",
     "venue": "NeuroImage",
     "year": 2020,
     "type": "Journal article",
+    "firstAuthor": true,
     "description": "First out-of-sample harmonisation tool for neuroimaging — a key step toward clinical translation of imaging ML.",
     "links": [
       { "label": "Article (PDF)", "href": "/static/img/portifolio/neuroharmony_article.pdf" },
@@ -11,32 +23,12 @@
     ]
   },
   {
-    "title": "Machine learning in APOGEE: Identification of stellar populations through chemical abundances",
-    "venue": "Astronomy & Astrophysics",
-    "year": 2019,
-    "type": "Journal article",
-    "description": "Supervised learning over high-resolution stellar spectra to identify stellar populations.",
-    "links": [
-      { "label": "Article (PDF)", "href": "/static/img/portifolio/supervised_clusters_article.pdf" },
-      { "label": "arXiv", "href": "https://arxiv.org/abs/1907.12796" }
-    ]
-  },
-  {
-    "title": "Machine learning in APOGEE — Unsupervised spectral classification with K-means",
-    "venue": "Astronomy & Astrophysics",
-    "year": 2018,
-    "type": "Journal article",
-    "description": "Unsupervised K-means clustering applied to 250,000+ stellar spectra.",
-    "links": [
-      { "label": "arXiv", "href": "https://arxiv.org/abs/1801.07912" },
-      { "label": "A&A", "href": "https://www.aanda.org/articles/aa/abs/2018/04/aa32134-17/aa32134-17.html" }
-    ]
-  },
-  {
-    "title": "Clustering — chapter in Machine Learning: Methods and Applications to Brain Disorders",
+    "title": "Clustering analysis — chapter in Machine Learning: Methods and Applications to Brain Disorders",
+    "authors": "R Garcia-Dias, S Vieira, WHL Pinaya, A Mechelli",
     "venue": "Elsevier",
     "year": 2020,
     "type": "Book chapter",
+    "firstAuthor": true,
     "description": "One of six chapters authored / co-authored in this edited volume.",
     "links": [
       { "label": "Chapter (PDF)", "href": "/static/img/portifolio/clustering_chapter.pdf" },
@@ -44,13 +36,343 @@
     ]
   },
   {
-    "title": "Thesis — Automated algorithms for spectroscopic classification of stars and applications to APOGEE",
+    "title": "Machine learning in APOGEE: Identification of stellar populations through chemical abundances",
+    "authors": "R Garcia-Dias, C Allende Prieto, J Sanchez Almeida, P Alonso Palicio",
+    "venue": "Astronomy & Astrophysics",
+    "year": 2019,
+    "type": "Journal article",
+    "firstAuthor": true,
+    "description": "Supervised learning over high-resolution stellar spectra to identify stellar populations.",
+    "links": [
+      { "label": "Article (PDF)", "href": "/static/img/portifolio/supervised_clusters_article.pdf" },
+      { "label": "arXiv", "href": "https://arxiv.org/abs/1907.12796" }
+    ]
+  },
+  {
+    "title": "Automated algorithms for spectroscopic classification of stars and applications to APOGEE",
+    "authors": "R Garcia-Dias",
     "venue": "PhD thesis · Universidad de La Laguna",
     "year": 2018,
     "type": "Thesis",
+    "firstAuthor": true,
     "description": "Cum Laude. Foundation work in unsupervised and supervised learning on stellar spectra.",
     "links": [
       { "label": "Read", "href": "https://drive.google.com/open?id=1pMNBOr-qnJuJQlszE1OCfpGz3uJtllx2" }
     ]
+  },
+  {
+    "title": "Machine learning in APOGEE — Unsupervised spectral classification with K-means",
+    "authors": "R Garcia-Dias, C Allende Prieto, J Sanchez Almeida, I Ordovás-Pascual",
+    "venue": "Astronomy & Astrophysics",
+    "year": 2018,
+    "type": "Journal article",
+    "firstAuthor": true,
+    "description": "Unsupervised K-means clustering applied to 250,000+ stellar spectra.",
+    "links": [
+      { "label": "arXiv", "href": "https://arxiv.org/abs/1801.07912" },
+      { "label": "A&A", "href": "https://www.aanda.org/articles/aa/abs/2018/04/aa32134-17/aa32134-17.html" }
+    ]
+  },
+  {
+    "title": "Análise fotométrica e espectroscópica de aglomerados abertos da galáxia",
+    "authors": "RAG Dias",
+    "venue": "MSc dissertation",
+    "year": 2015,
+    "type": "Thesis",
+    "firstAuthor": true,
+    "description": "Photometric and spectroscopic analysis of open clusters in the Galaxy.",
+    "links": []
+  },
+  {
+    "title": "Parameters for SMC clusters from CMD modeling",
+    "authors": "RAG Dias, C Bonatto",
+    "venue": "Revista Mexicana de Astronomía y Astrofísica (Conference Series)",
+    "year": 2014,
+    "type": "Conference proceedings",
+    "firstAuthor": true,
+    "description": "Stellar parameters for Small Magellanic Cloud clusters derived from colour-magnitude diagram modelling.",
+    "links": []
+  },
+  {
+    "title": "A PSF-fitting pipeline for VVV-ESO: the star cluster Pismis 24",
+    "authors": "RAG Dias, C Bonatto",
+    "venue": "Revista Mexicana de Astronomía y Astrofísica (Conference Series)",
+    "year": 2014,
+    "type": "Conference proceedings",
+    "firstAuthor": true,
+    "description": "Custom PSF-fitting photometric pipeline applied to VVV survey data of the massive cluster Pismis 24.",
+    "links": []
+  },
+  {
+    "title": "Algoritmo para extração fotométrica nos dados do ESO-VVV: o aglomerado estelar massivo Pismis 24",
+    "authors": "RAG Dias",
+    "venue": "Conference presentation",
+    "year": 2013,
+    "type": "Conference",
+    "firstAuthor": true,
+    "description": "Photometric extraction algorithm for ESO-VVV data applied to the massive star cluster Pismis 24.",
+    "links": []
+  },
+  {
+    "title": "Estudo fotométrico de aglomerados estelares abertos",
+    "authors": "RAG Dias",
+    "venue": "Undergraduate thesis · UFRGS",
+    "year": 2012,
+    "type": "Thesis",
+    "firstAuthor": true,
+    "description": "Photometric study of open stellar clusters.",
+    "links": []
+  },
+  {
+    "title": "Evolução e morte de aglomerados estelares e a taxa de formação estelar da galáxia",
+    "authors": "RAG Dias",
+    "venue": "Undergraduate research project · UFRGS",
+    "year": 2011,
+    "type": "Research project",
+    "firstAuthor": true,
+    "description": "Evolution and dissolution of stellar clusters and the Galactic star formation rate.",
+    "links": []
+  },
+  {
+    "title": "Nanopontas de tungstênio",
+    "authors": "RAG Dias",
+    "venue": "Salão de Iniciação Científica · UFRGS",
+    "year": 2010,
+    "type": "Undergraduate presentation",
+    "firstAuthor": true,
+    "description": "Undergraduate research on tungsten nanotips.",
+    "links": []
+  },
+  {
+    "title": "Fabricação de nanopontas de tungstênio",
+    "authors": "RAG Dias, RORR Cunha, J Schmidt",
+    "venue": "Salão de Iniciação Científica · UFRGS",
+    "year": 2009,
+    "type": "Undergraduate presentation",
+    "firstAuthor": true,
+    "description": "Fabrication process for tungsten nanotips.",
+    "links": []
+  },
+  {
+    "title": "Neurofind: using deep learning to make individualised inferences in brain-based disorders",
+    "authors": "S Vieira, L Baecker, WHL Pinaya, R Garcia-Dias, C Scarpazza, et al.",
+    "venue": "Translational Psychiatry",
+    "year": 2025,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Deep-learning tool for individual-level inference in neuropsychiatric disorders.",
+    "links": []
+  },
+  {
+    "title": "Challenges in using mHealth data from smartphones and wearable devices to predict depression symptom severity: retrospective analysis",
+    "authors": "S Sun, AA Folarin, Y Zhang, N Cummins, R Garcia-Dias, C Stewart, et al.",
+    "venue": "Journal of Medical Internet Research",
+    "year": 2023,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Retrospective analysis of mHealth signals for depression severity prediction.",
+    "links": []
+  },
+  {
+    "title": "Machine learning for brain age prediction: introduction to methods and clinical applications",
+    "authors": "L Baecker, R Garcia-Dias, S Vieira, C Scarpazza, A Mechelli",
+    "venue": "EBioMedicine",
+    "year": 2021,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Review of methods and clinical applications for ML-based brain age prediction.",
+    "links": []
+  },
+  {
+    "title": "Brain age prediction: a comparison between machine learning models using region- and voxel-based morphometric data",
+    "authors": "L Baecker, J Dafflon, PF Da Costa, R Garcia-Dias, S Vieira, C Scarpazza, et al.",
+    "venue": "Human Brain Mapping",
+    "year": 2021,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Benchmark of brain-age models across region- and voxel-based morphometric features.",
+    "links": []
+  },
+  {
+    "title": "Using normative modelling to detect disease progression in mild cognitive impairment and Alzheimer's disease in a cross-sectional multi-cohort study",
+    "authors": "WHL Pinaya, C Scarpazza, R Garcia-Dias, S Vieira, L Baecker, et al.",
+    "venue": "Scientific Reports",
+    "year": 2021,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Cross-sectional multi-cohort study using normative models to track MCI/AD progression.",
+    "links": []
+  },
+  {
+    "title": "Translating research findings into clinical practice: a systematic and critical review of neuroimaging-based clinical tools for brain disorders",
+    "authors": "C Scarpazza, M Ha, L Baecker, R Garcia-Dias, WHL Pinaya, S Vieira, et al.",
+    "venue": "Translational Psychiatry",
+    "year": 2020,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Systematic review of neuroimaging-based clinical tools for psychiatric and neurological disorders.",
+    "links": []
+  },
+  {
+    "title": "Normative modelling using deep autoencoders: a multi-cohort study on mild cognitive impairment and Alzheimer's disease",
+    "authors": "WHL Pinaya, C Scarpazza, R Garcia-Dias, S Vieira, L Baecker, et al.",
+    "venue": "bioRxiv",
+    "year": 2020,
+    "type": "Preprint",
+    "firstAuthor": false,
+    "description": "Deep-autoencoder normative modelling across MCI and Alzheimer's cohorts.",
+    "links": []
+  },
+  {
+    "title": "Autoencoders — chapter in Machine Learning: Methods and Applications to Brain Disorders",
+    "authors": "WHL Pinaya, S Vieira, R Garcia-Dias, A Mechelli",
+    "venue": "Elsevier",
+    "year": 2020,
+    "type": "Book chapter",
+    "firstAuthor": false,
+    "description": "Introductory chapter on autoencoder architectures for neuroimaging.",
+    "links": []
+  },
+  {
+    "title": "Convolutional neural networks — chapter in Machine Learning: Methods and Applications to Brain Disorders",
+    "authors": "WHL Pinaya, S Vieira, R Garcia-Dias, A Mechelli",
+    "venue": "Elsevier",
+    "year": 2020,
+    "type": "Book chapter",
+    "firstAuthor": false,
+    "description": "CNN methods applied to brain imaging.",
+    "links": []
+  },
+  {
+    "title": "Deep neural networks — chapter in Machine Learning: Methods and Applications to Brain Disorders",
+    "authors": "S Vieira, WHL Pinaya, R Garcia-Dias, A Mechelli",
+    "venue": "Elsevier",
+    "year": 2020,
+    "type": "Book chapter",
+    "firstAuthor": false,
+    "description": "Overview of deep neural network architectures.",
+    "links": []
+  },
+  {
+    "title": "Multimodal integration — chapter in Machine Learning: Methods and Applications to Brain Disorders",
+    "authors": "S Vieira, WHL Pinaya, R Garcia-Dias, A Mechelli",
+    "venue": "Elsevier",
+    "year": 2020,
+    "type": "Book chapter",
+    "firstAuthor": false,
+    "description": "Methods for integrating multimodal data in brain-disorder modelling.",
+    "links": []
+  },
+  {
+    "title": "A step-by-step tutorial on how to build a machine learning model — chapter in Machine Learning: Methods and Applications to Brain Disorders",
+    "authors": "S Vieira, R Garcia-Dias, WHL Pinaya",
+    "venue": "Elsevier",
+    "year": 2020,
+    "type": "Book chapter",
+    "firstAuthor": false,
+    "description": "Practical tutorial on building a machine-learning model end to end.",
+    "links": []
+  },
+  {
+    "title": "The Pristine Survey X — a large population of low-metallicity stars permeates the Galactic disc",
+    "authors": "F Sestito, NF Martin, E Starkenburg, A Arentsen, RA Ibata, N Longeard, et al.",
+    "venue": "Monthly Notices of the Royal Astronomical Society: Letters",
+    "year": 2020,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Discovery of a widespread low-metallicity stellar population in the Galactic disc.",
+    "links": []
+  },
+  {
+    "title": "Chemical abundances of main-sequence, turnoff, subgiant, and red giant stars from APOGEE spectra. II. Atomic diffusion in M67 stars",
+    "authors": "D Souto, C Allende Prieto, K Cunha, M Pinsonneault, VV Smith, R Garcia-Dias, et al.",
+    "venue": "The Astrophysical Journal",
+    "year": 2019,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Evidence of atomic diffusion in M67 stars from APOGEE chemical abundances.",
+    "links": []
+  },
+  {
+    "title": "The Pristine Survey VI — the first three years of medium-resolution follow-up spectroscopy of Pristine EMP star candidates",
+    "authors": "DS Aguado, K Youakim, JI González Hernández, C Allende Prieto, et al.",
+    "venue": "Monthly Notices of the Royal Astronomical Society",
+    "year": 2019,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Follow-up spectroscopy of extremely metal-poor candidates from the Pristine Survey.",
+    "links": []
+  },
+  {
+    "title": "The Fifteenth Data Release of the Sloan Digital Sky Surveys: first release of MaNGA-derived quantities, data visualization tools, and stellar library",
+    "authors": "DS Aguado, R Ahumada, A Almeida, SF Anderson, BH Andrews, et al.",
+    "venue": "The Astrophysical Journal Supplement Series",
+    "year": 2019,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "SDSS DR15 — first release of MaNGA-derived data products and stellar library.",
+    "links": []
+  },
+  {
+    "title": "The Fourteenth Data Release of the Sloan Digital Sky Survey: first spectroscopic data from the extended Baryon Oscillation Spectroscopic Survey and from the second phase of SDSS-IV",
+    "authors": "B Abolfathi, DS Aguado, G Aguilar, C Allende Prieto, A Almeida, TT Ananna, et al.",
+    "venue": "The Astrophysical Journal Supplement Series",
+    "year": 2018,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "SDSS DR14 — first eBOSS spectroscopic data release.",
+    "links": []
+  },
+  {
+    "title": "Sloan Digital Sky Survey IV: mapping the Milky Way, nearby galaxies, and the distant Universe",
+    "authors": "MR Blanton, MA Bershady, B Abolfathi, FD Albareti, C Allende Prieto, A Almeida, et al.",
+    "venue": "The Astronomical Journal",
+    "year": 2017,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Overview of the SDSS-IV survey programme.",
+    "links": []
+  },
+  {
+    "title": "The 13th Data Release of the Sloan Digital Sky Survey: first spectroscopic data from the SDSS-IV survey mapping nearby galaxies at Apache Point Observatory",
+    "authors": "FD Albareti, C Allende Prieto, A Almeida, F Anders, S Anderson, BH Andrews, et al.",
+    "venue": "The Astrophysical Journal Supplement Series",
+    "year": 2017,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "SDSS DR13 — first MaNGA spectroscopic data release.",
+    "links": []
+  },
+  {
+    "title": "OCCASO-II — physical parameters and Fe abundances of red clump stars in 18 open clusters",
+    "authors": "L Casamiquela, R Carrera, S Blanco-Cuaresma, C Jordi, et al.",
+    "venue": "Monthly Notices of the Royal Astronomical Society",
+    "year": 2017,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Physical parameters and iron abundances for red clump stars in 18 open clusters.",
+    "links": []
+  },
+  {
+    "title": "The Astropy problem",
+    "authors": "D Muna, M Alexander, A Allen, R Ashley, D Asmus, R Azzollini, et al.",
+    "venue": "arXiv preprint",
+    "year": 2016,
+    "type": "Preprint",
+    "firstAuthor": false,
+    "description": "Community paper on the sustainability of open-source scientific Python (Astropy).",
+    "links": [
+      { "label": "arXiv", "href": "https://arxiv.org/abs/1610.03159" }
+    ]
+  },
+  {
+    "title": "Bridge over troubled gas: clusters and associations under the SMC and LMC tidal stresses",
+    "authors": "E Bica, B Santiago, C Bonatto, R Garcia-Dias, L Kerber, B Dias, B Barbuy, et al.",
+    "venue": "Monthly Notices of the Royal Astronomical Society",
+    "year": 2015,
+    "type": "Journal article",
+    "firstAuthor": false,
+    "description": "Stellar clusters and associations in the Magellanic Bridge under tidal stress.",
+    "links": []
   }
 ]
