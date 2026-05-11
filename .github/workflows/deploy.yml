@@ -2,7 +2,7 @@ name: Deploy site to GitHub Pages
 
 on:
   push:
-    branches: [master, main]
+    branches: [master, main, claude/redesign-personal-website-vsxFC]
   workflow_dispatch:
 
 permissions:
