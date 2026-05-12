@@ -1,5 +1,5 @@
 <script setup>
-import { profile } from '@/content/profile'
+import { profile } from '@/content/profile';
 </script>
 
 <template>
@@ -37,7 +37,6 @@ import { profile } from '@/content/profile'
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-4 h-4"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </router-link>
           </div>
-          <p class="mt-4 text-xs text-gray-500 dark:text-gray-500">{{ profile.rightToWork }}</p>
         </div>
 
         <div class="lg:col-span-4">
