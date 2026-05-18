@@ -1,6 +1,11 @@
 <script setup>
 import { experience, education } from '@/content/experience'
 import { profile } from '@/content/profile'
+import { generateCVPDF } from '@/utils/generateCVPDF'
+
+const downloadCV = () => {
+  generateCVPDF(experience, education, profile)
+}
 </script>
 
 <template>
@@ -8,14 +13,12 @@ import { profile } from '@/content/profile'
     <div class="section-eyebrow">Working life</div>
     <div class="flex items-end justify-between flex-wrap gap-4 mb-4">
       <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">Career</h1>
-      <a
-        :href="profile.cvPath"
-        target="_blank"
-        rel="noopener"
-        class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 px-4 py-2 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-800"
+      <button
+        @click="downloadCV"
+        class="inline-flex items-center gap-2 rounded-lg border border-gray-300 dark:border-gray-700 px-4 py-2 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-800 cursor-pointer"
       >
         Download CV (PDF)
-      </a>
+      </button>
     </div>
     <p class="text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">
       A decade of work spanning healthcare AI, foundation models, credit risk and astrophysics.
