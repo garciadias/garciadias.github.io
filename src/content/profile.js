@@ -1,7 +1,7 @@
 export const profile = {
   name: 'Dr Rafael Garcia-Dias',
   shortName: 'Rafael Garcia-Dias',
-  headline: 'Senior AI Engineer — Federated Learning, Foundation Models & Healthcare AI at NHS Scale',
+  headline: 'Staff ML Engineer & Systems Architect — Federated Learning, Foundation Models & Healthcare AI at NHS Scale',
   location: 'London, UK',
   rightToWork: 'Right to work in the UK — no sponsorship required.',
   cvPath: '/static/img/cv/curriculum-vitae.pdf',
@@ -11,7 +11,7 @@ export const profile = {
     { label: 'Google Scholar', href: 'https://scholar.google.co.uk/citations?hl=en&user=MlwZerQAAAAJ', icon: 'scholar' }
   ],
   intro:
-    'Senior AI Engineer with a PhD in Machine Learning and 10+ years of production Python experience. Currently building FLIP — the open-source federated learning platform that connects NHS Trusts and serves AI development across the UK population. I work end-to-end: foundation-model research (multimodal vision-language models for radiology), platform engineering (FastAPI, Docker Swarm, AWS, OpenTofu) and federated MLOps (NVIDIA FLARE, Flower).',
+    'Staff ML Engineer and Systems Architect with a PhD in Machine Learning and a decade of production Python experience. Proven expertise in defining technical roadmaps and scaling complex, privacy-preserving AI platforms across federated environments. Adept at bridging the gap between foundational ML research and enterprise-grade MLOps, currently serving as a lead architect for the multi-Trust FLIP platform deployed across the UK NHS. Strong track record of standardising engineering practices, directing cross-functional teams, and driving a metrics-first culture from initial research to clinical deployment.',
   metrics: [
     { value: '18', label: 'Q1 journal articles' },
     { value: '5,000+', label: 'Citations · h-index 19' }
@@ -49,6 +49,7 @@ export const profile = {
     }
   ],
   stack: {
+    'Architecture & leadership': ['Technical roadmaps', 'Systems architecture', 'Cross-functional leadership', 'Engineering standards', 'Mentoring & code review'],
     'Languages & ML': ['Python', 'PyTorch', 'scikit-learn', 'TensorFlow', 'R', 'SQL'],
     'Foundation models / GenAI': ['Vision-language models', 'LLM fine-tuning & evaluation', 'RAG', 'OpenAI APIs', 'MONAI Generative'],
     'Federated learning': ['NVIDIA FLARE', 'Flower Framework', 'Transfer learning'],

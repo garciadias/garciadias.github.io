@@ -1,27 +1,28 @@
 export const experience = [
   {
-    role: 'Senior AI Engineer — Foundation Models for Healthcare',
+    role: 'Staff AI Engineer — Foundation Models for Healthcare',
     org: 'AI Centre for Value-Based Healthcare / King’s College London',
     location: 'London, UK',
     period: 'Nov 2024 – Present',
     summary:
-      'Building production AI infrastructure and foundation models across an NHS Trust federation in collaboration with universities (KCL, GSTT) and industry partners (NVIDIA, deepc, Flower Labs, OneLondon).',
+      'Principal technical lead and architect for production AI infrastructure and foundation models across an NHS Trust federation, in collaboration with universities (KCL, GSTT) and tier-1 industry partners (NVIDIA, deepc, Flower Labs, OneLondon).',
     sections: [
       {
         heading: 'FLIP — Federated Learning & Interoperability Platform',
         subheading: 'Open source · Apache 2.0',
         href: 'https://github.com/londonaicentre/FLIP',
         bullets: [
-          'Core contributor to the multi-Trust platform launched publicly in Feb 2026, enabling privacy-preserving AI training across NHS firewalls without moving patient data. Microservice architecture: central hub API, per-Trust APIs, imaging and data-access services, FastAPI throughout, deployed via Docker Swarm and AWS.',
-          'Integrated NVIDIA FLARE and Flower Framework as parallel federated-learning backends, allowing research teams to choose between two industry-standard frameworks against the same data plane.',
-          'Designed the trust-authentication and internal-service-key model for secure outbound-only Trust-to-Hub communication via CloudFront/ALB; contributed to the OpenTofu/Terraform AWS deployment for production environments.',
+          'Platform architecture & strategy: architected and served as the principal technical lead for FLIP, a multi-Trust federated learning platform (publicly launched Feb 2026), defining the technical strategy for privacy-preserving AI training across NHS firewalls without moving patient data.',
+          'Cross-functional leadership: acted as the primary technical liaison aligning clinical researchers, academic institutions (KCL, GSTT) and tier-1 industry partners (NVIDIA, Flower Labs) to establish standardised, secure deployment workflows.',
+          'System design: designed a highly scalable microservice architecture (FastAPI, Docker Swarm, AWS) featuring a central hub API, per-Trust APIs, and secure outbound-only Trust-to-Hub communication via CloudFront/ALB; contributed the OpenTofu/Terraform AWS deployment for production environments.',
+          'MLOps & framework integration: directed the integration of dual industry-standard federated learning backends (NVIDIA FLARE and Flower Framework), enabling parallel execution and standardising the data plane for diverse research teams.',
           'Integrated DICOM imaging infrastructure (Orthanc, XNAT) and OMOP CDM structured-data layer, giving researchers unified multimodal access across imaging and EHR within each Trust’s secure enclave.'
         ]
       },
       {
         heading: 'Multimodal foundation models for radiology',
         bullets: [
-          'Leading development of vision-language foundation models that fuse medical imaging (X-ray, CT, MRI) with radiology reports, supporting downstream applications: automated report generation, image synthesis from reports, scan/report discrepancy detection, and LLM-based report classification.',
+          'Foundational model innovation: spearheaded the development of cutting-edge vision-language foundation models fusing multi-modal medical imaging (X-ray, CT, MRI) with radiology reports — supporting automated report generation, image synthesis from reports, scan/report discrepancy detection, and LLM-based report classification — setting the methodology for responsible, clinically safe LLM scaling.',
           'Validated robustness of latent representations (including LLM embeddings) so smaller task-specific models built on top remain reliable — a prerequisite for clinical translation.',
           'Active open-source contributor to MONAI Core and MONAI Generative, advancing foundational algorithms used by the wider medical-imaging research community.',
           'Drives methodology for the responsible scaling of LLMs in clinical settings — bridging cutting-edge AI capability with NHS governance, safety and real-world clinical workflows.'
@@ -30,19 +31,19 @@ export const experience = [
     ]
   },
   {
-    role: 'Machine Learning Engineer',
+    role: 'Founding ML Engineer',
     org: 'Floe Oral Care',
     location: 'London, UK',
     period: 'May 2023 – Nov 2024',
-    summary: 'Founding ML engineer; took the product from research concept to deployed clinical tool.',
+    summary: 'Founding ML engineer; defined and executed the end-to-end technical architecture, taking the product from research concept to deployed clinical diagnostic tool.',
     sections: [
       {
         bullets: [
+          'Technical vision & execution: defined the end-to-end technical architecture, taking the product from an initial research concept to a fully deployed clinical diagnostic tool.',
+          'Infrastructure & standards: architected the complete cloud stack on AWS (CDK), establishing rigorous CI/CD pipelines, SOLID principles, and a strong organisational testing culture.',
+          'Engineering leadership: directed the front-end engineering team and built the integration layers (Django backend) to ensure seamless communication between user-facing applications and ML assets.',
           'Owned the science: designed the clinical trials that validated the diagnostic concept and produced the training data for the production models.',
-          'Shipped multiple ML models: logistic regression mapping protein concentrations to health risk, tree-based models over questionnaire data, and an OpenAI-backed RAG recommendation system.',
-          'Built the full cloud stack on AWS with AWS CDK, including databases, ML asset storage and web infrastructure; CI/CD throughout.',
-          'Created the Django backend, integrated the contractor-built front end and directed the front-end engineering team.',
-          'Iterated production models post-launch based on real user data, applying SOLID principles and a strong testing culture.'
+          'Shipped multiple ML models: logistic regression mapping protein concentrations to health risk, tree-based models over questionnaire data, and an OpenAI-backed RAG recommendation system; iterated production models post-launch based on real user data.'
         ]
       }
     ]
@@ -57,8 +58,8 @@ export const experience = [
     sections: [
       {
         bullets: [
-          'Shipped a GBM-based overdraft-application model delivering 20–100% Gini gains over the previous baseline, deployed in Docker on GCP.',
-          'Refactored the internal modelling library to standardise monitoring across Monzo’s lending products, surfacing performance gaps across customer subgroups that had previously been invisible.',
+          'Organisational standardisation: spearheaded the refactoring of the internal modelling library to standardise ML monitoring practices across all Monzo lending products, surfacing critical performance gaps across previously unmonitored customer subgroups.',
+          'High-impact delivery: shipped a GBM-based overdraft model (GCP/Docker) that achieved 20–100% Gini gains over previous baselines on a £259M lending portfolio serving 7M+ customers.',
           'Stack: Python, scikit-learn, BigQuery, dbt, Looker, GCP.'
         ]
       }
