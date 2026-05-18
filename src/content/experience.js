@@ -5,7 +5,7 @@ export const experience = [
     location: 'London, UK',
     period: 'Nov 2024 – Present',
     summary:
-      'Building production AI infrastructure and foundation models across an 11-NHS-Trust federation in collaboration with universities (KCL, GSTT) and industry partners (NVIDIA, deepc, Flower Labs, OneLondon).',
+      'Building production AI infrastructure and foundation models across an NHS Trust federation in collaboration with universities (KCL, GSTT) and industry partners (NVIDIA, deepc, Flower Labs, OneLondon).',
     sections: [
       {
         heading: 'FLIP — Federated Learning & Interoperability Platform',

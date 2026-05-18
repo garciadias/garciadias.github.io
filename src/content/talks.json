@@ -6,7 +6,7 @@
     "venue": "London AI Centre demo",
     "year": 2026,
     "youtubeId": "MsqOxLXN6WM",
-    "description": "Walkthrough of the FLIP platform: how it lets researchers train models across 11 NHS Trusts without moving patient data.",
+    "description": "Walkthrough of the FLIP platform: how it lets researchers train models across NHS Trusts without moving patient data.",
     "tags": ["Federated Learning", "Healthcare AI", "Demo"]
   },
   {

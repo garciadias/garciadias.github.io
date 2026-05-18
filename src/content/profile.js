@@ -4,26 +4,22 @@ export const profile = {
   headline: 'Senior AI Engineer — Federated Learning, Foundation Models & Healthcare AI at NHS Scale',
   location: 'London, UK',
   rightToWork: 'Right to work in the UK — no sponsorship required.',
-  email: 'rafaelagd@gmail.com',
   cvPath: '/static/img/cv/curriculum-vitae.pdf',
   socials: [
     { label: 'GitHub', href: 'https://github.com/garciadias', icon: 'github' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/garcia-dias/', icon: 'linkedin' },
-    { label: 'Google Scholar', href: 'https://scholar.google.co.uk/citations?hl=en&user=MlwZerQAAAAJ', icon: 'scholar' },
-    { label: 'Email', href: 'mailto:rafaelagd@gmail.com', icon: 'mail' }
+    { label: 'Google Scholar', href: 'https://scholar.google.co.uk/citations?hl=en&user=MlwZerQAAAAJ', icon: 'scholar' }
   ],
   intro:
-    'Senior AI Engineer with a PhD in Machine Learning and 10+ years of production Python experience. Currently building FLIP — the open-source federated learning platform that connects 11 NHS Trusts and serves AI development across a population of 10M+ patients. I work end-to-end: foundation-model research (multimodal vision-language models for radiology), platform engineering (FastAPI, Docker Swarm, AWS, OpenTofu) and federated MLOps (NVIDIA FLARE, Flower).',
+    'Senior AI Engineer with a PhD in Machine Learning and 10+ years of production Python experience. Currently building FLIP — the open-source federated learning platform that connects NHS Trusts and serves AI development across the UK population. I work end-to-end: foundation-model research (multimodal vision-language models for radiology), platform engineering (FastAPI, Docker Swarm, AWS, OpenTofu) and federated MLOps (NVIDIA FLARE, Flower).',
   metrics: [
-    { value: '10M+', label: 'NHS patients served by FLIP' },
-    { value: '11', label: 'NHS Trusts in the federation' },
     { value: '18', label: 'Q1 journal articles' },
     { value: '5,000+', label: 'Citations · h-index 19' }
   ],
   highlights: [
     {
       title: 'FLIP',
-      description: 'Open-source federated learning platform connecting 11 NHS Trusts.',
+      description: 'Open-source federated learning platform connecting NHS Trusts.',
       href: 'https://github.com/londonaicentre/FLIP'
     },
     {

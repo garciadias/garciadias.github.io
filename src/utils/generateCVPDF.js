@@ -2,12 +2,12 @@ import html2pdf from 'html2pdf.js'
 
 export function generateCVPDF(experience, education, profile) {
   const htmlContent = `
-    <div style="font-family: Arial, sans-serif; color: #000; line-height: 1.3;">
+    <div style="font-family: Arial, sans-serif; color: #000; line-height: 1.3; padding-bottom: 12px;">
       <!-- Header -->
       <div style="margin-bottom: 10px; border-bottom: 2px solid #000; padding-bottom: 8px;">
         <h1 style="margin: 0 0 2px 0; font-size: 20px; font-weight: bold;">${profile.shortName}</h1>
         <p style="margin: 2px 0; font-size: 10px; color: #333;">
-          ${profile.location} • ${profile.email}
+          ${profile.location}
         </p>
       </div>
 
@@ -23,7 +23,7 @@ export function generateCVPDF(experience, education, profile) {
       <div style="margin-bottom: 12px;">
         <h2 style="margin: 0 0 8px 0; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Professional Experience</h2>
         ${experience.map((role, idx) => `
-          <div style="margin-bottom: 10px; ${idx > 0 ? 'border-top: 1px solid #ddd; padding-top: 8px;' : ''}">
+          <div style="margin-bottom: 10px; page-break-inside: avoid; break-inside: avoid; ${idx > 0 ? 'border-top: 1px solid #ddd; padding-top: 8px;' : ''}">
             <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 1px;">
               <h3 style="margin: 0; font-size: 10px; font-weight: bold;">${role.role}</h3>
               <span style="font-size: 9px; color: #666; margin-left: 12px; white-space: nowrap;">${role.period}</span>
@@ -49,7 +49,7 @@ export function generateCVPDF(experience, education, profile) {
       <div style="margin-bottom: 12px;">
         <h2 style="margin: 0 0 6px 0; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px;">Education</h2>
         ${education.map((edu, idx) => `
-          <div style="margin-bottom: 4px; ${idx > 0 ? 'border-top: 1px solid #ddd; padding-top: 4px;' : ''}">
+          <div style="margin-bottom: 4px; page-break-inside: avoid; break-inside: avoid; ${idx > 0 ? 'border-top: 1px solid #ddd; padding-top: 4px;' : ''}">
             <div style="display: flex; justify-content: space-between; align-items: baseline;">
               <h3 style="margin: 0; font-size: 10px; font-weight: bold;">${edu.degree}</h3>
               <span style="font-size: 9px; color: #666; margin-left: 12px;">${edu.year}</span>
@@ -70,12 +70,12 @@ export function generateCVPDF(experience, education, profile) {
   `
 
   const opt = {
-    margin: [8, 8, 8, 8],
+    margin: [10, 8, 12, 8],
     filename: 'CV-Rafael-Garcia-Dias.pdf',
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 2, useCORS: true },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
+    pagebreak: { mode: ['css', 'legacy'] }
   }
 
   html2pdf().set(opt).from(htmlContent).save()

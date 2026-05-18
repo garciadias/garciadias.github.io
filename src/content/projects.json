@@ -2,7 +2,7 @@
   {
     "id": "flip",
     "title": "FLIP — Federated Learning & Interoperability Platform",
-    "tagline": "Federated learning across 11 NHS Trusts. Apache 2.0.",
+    "tagline": "Federated learning across NHS Trusts. Apache 2.0.",
     "description": "Open-source platform that lets researchers train AI on medical imaging and EHR data sitting inside NHS Trust firewalls — without moving patient data. Built on FastAPI microservices, Docker Swarm, AWS and OpenTofu, with NVIDIA FLARE and Flower as pluggable FL backends.",
     "tags": ["Federated Learning", "Healthcare", "FastAPI", "AWS", "NVIDIA FLARE", "Flower"],
     "year": "2024 – present",
