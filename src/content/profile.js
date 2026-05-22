@@ -11,7 +11,7 @@ export const profile = {
     { label: 'Google Scholar', href: 'https://scholar.google.co.uk/citations?hl=en&user=MlwZerQAAAAJ', icon: 'scholar' }
   ],
   intro:
-    'Technical lead and PhD Machine Learning researcher with 10+ years of production Python experience. I build population-scale clinical AI spanning foundation models, federated learning, and NHS infrastructure. Currently leading the development of FLIP, the open-source platform that enables distributed training across three large NHS Trusts encompassing millions of patients, in partnership with NVIDIA, deepc, and Flower Labs. My work covers the full ML lifecycle: multimodal biomedical foundation models (vision-language models fusing radiology imaging with clinical text), representation learning, transfer learning via fine-tuning on downstream clinical tasks, and production deployment on AWS. I also chair the MONAI Federated Learning Working Group, co-chairing alongside NVIDIA.',
+    'Senior AI Engineer and PhD Machine Learning researcher with 10+ years of production experience on Machine Learning applied to healthcare. Building population-scale clinical AI spanning foundation models, federated learning, and NHS infrastructure. Currently leading the development of FLIP, the open-source platform that enables distributed training across three large NHS Trusts encompassing millions of patients, in partnership with NVIDIA, deepc, and Flower Labs. My work covers the full ML lifecycle: multimodal biomedical foundation models (vision-language models fusing radiology imaging with clinical text), representation learning, transfer learning via fine-tuning on downstream clinical tasks, and production deployment on AWS. I also chair the MONAI Federated Learning Working Group, co-chairing alongside NVIDIA.',
   metrics: [
     { value: '18', label: 'Q1 journal articles' },
     { value: '5,000+', label: 'Citations · h-index 19' }
@@ -23,8 +23,8 @@ export const profile = {
       href: 'https://github.com/londonaicentre/FLIP'
     },
     {
-      title: 'MONAI FL Chair',
-      description: 'Co-chair of the MONAI Federated Learning Working Group with NVIDIA.',
+      title: 'MONAI FL Chair & core contributor',
+      description: 'Co-chair of the MONAI Federated Learning Working Group with NVIDIA. Active contributor to MONAI Core',
       href: 'https://project-monai.github.io/wg_federated_learning.html'
     },
     {
@@ -46,11 +46,6 @@ export const profile = {
       title: 'Neuroharmony',
       description: 'First out-of-sample harmonisation tool for neuroimaging.',
       href: 'https://neuroharmony.readthedocs.io/en/latest/'
-    },
-    {
-      title: 'MONAI contributor',
-      description: 'Active contributor to MONAI Core & MONAI Generative.',
-      href: 'https://monai.io/'
     }
   ],
   stack: {

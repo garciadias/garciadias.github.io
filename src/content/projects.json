@@ -14,9 +14,9 @@
   },
   {
     "id": "monai",
-    "title": "MONAI Core & MONAI Generative",
+    "title": "MONAI Core & MONAI FL Chair",
     "tagline": "Open-source contributor to medical-imaging AI frameworks.",
-    "description": "Active contributions to MONAI Core and MONAI Generative, the libraries the wider medical-imaging research community relies on for deep-learning workflows.",
+    "description": "Active contributions to MONAI Core, the libraries the wider medical-imaging research community relies on for deep-learning workflows. Co-chair of the MONAI Federated Learning Working Group with NVIDIA, leading the development of federated learning tools for medical imaging.",
     "tags": ["Open Source", "PyTorch", "Medical Imaging"],
     "year": "Ongoing",
     "image": null,
