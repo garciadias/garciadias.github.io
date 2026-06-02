@@ -22,9 +22,10 @@ export const experience = [
         heading: 'Multimodal foundation models for radiology',
         bullets: [
           'Leading development of vision-language foundation models that fuse medical imaging (X-ray, CT, MRI) with radiology reports, supporting downstream applications: automated report generation, image synthesis from reports, scan/report discrepancy detection, and LLM-based report classification.',
-          'Validated robustness of latent representations (including LLM embeddings) so smaller task-specific models built on top remain reliable — a prerequisite for clinical translation.',
-          'Active open-source contributor to MONAI Core and MONAI Generative, advancing foundational algorithms used by the wider medical-imaging research community.',
-          'Drives methodology for the responsible scaling of LLMs in clinical settings — bridging cutting-edge AI capability with NHS governance, safety and real-world clinical workflows.'
+          'Validated robustness of latent representations (including LLM embeddings) so smaller task-specific models built on top remain reliable - a prerequisite for clinical translation.',
+          'Active open-source contributor to MONAI Core and MONAI Generative. Appointed Federated Learning Chair of the MONAI Working Group, co-chairing alongside NVIDIA to set direction for federated learning standards and best practices across the global medical-imaging community.',
+          'Drives methodology for the responsible scaling of LLMs in clinical settings — bridging cutting-edge AI capability with NHS governance, safety and real-world clinical workflows.',
+          'Applied transfer learning by fine-tuning foundation models on the myskin.org psoriasis detection task, demonstrating how models pre-trained on broad biomedical data adapt to a specific downstream clinical diagnostic use case.'
         ]
       }
     ]
