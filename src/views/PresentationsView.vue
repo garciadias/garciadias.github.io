@@ -7,13 +7,7 @@ import { presentations } from '@/content/presentations'
     <div class="section-eyebrow">Slides</div>
     <h1 class="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-2">Presentations</h1>
     <p class="text-gray-600 dark:text-gray-400 mb-10 max-w-2xl">
-      Interactive slide decks built with
-      <a href="https://revealjs.com" target="_blank" rel="noopener" class="link">reveal.js</a>.
-      Open one and use the arrow keys (or on-screen controls) to navigate; press
-      <kbd class="font-mono text-xs px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800">F</kbd> for
-      fullscreen,
-      <kbd class="font-mono text-xs px-1.5 py-0.5 rounded bg-gray-100 dark:bg-gray-800">Esc</kbd> for
-      the slide overview.
+      A selection of my recent and upcoming presentations.
     </p>
 
     <div

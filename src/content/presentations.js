@@ -11,10 +11,10 @@ export const presentations = [
     subtitle: 'A FLIP-eyed read of FLA³ — Federated Learning with Authentication · Authorisation · Accounting',
     date: '2 Jun 2026',
     venue: 'AMIGO team meeting',
-    cover: `${import.meta.env.BASE_URL}presentations/fla3/cover.png`,
+    cover: `${import.meta.env.BASE_URL}presentations/fla3/x4.png`,
     description:
       'A walkthrough of the FLA³ paper (arXiv 2603.10063) through one question: what can our FLIP platform take from it? FLA³ enforces Authentication, Authorisation & Accounting as a runtime control plane — per-round XACML policy decisions, fail-closed, with cryptographically signed audit. Its thesis: in regulated healthcare the breach is unauthorised computation, not data movement — and governance costs nothing in accuracy (federation matches centralised on the INTERVAL iron-deficiency task, and lifts the weakest sites most). Every slide carries an honest FLIP verdict: where we already match, and the upgrades worth weighing.',
-    tags: ['Federated Learning', 'Governance / AAA', 'XACML PDP', 'Healthcare AI', 'FLIP'],
+    tags: ['Federated Learning', 'Governance', 'Healthcare AI', 'FLIP', 'FLA³'],
     deck: () => import('@/decks/Fla3Deck.vue')
   }
 ]
