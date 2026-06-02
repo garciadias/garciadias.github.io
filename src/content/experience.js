@@ -1,6 +1,6 @@
 export const experience = [
   {
-    role: 'Senior AI Engineer — Foundation Models for Healthcare',
+    role: 'Senior AI Engineer - Foundation Models for Healthcare',
     org: 'AI Centre for Value-Based Healthcare / King’s College London',
     location: 'London, UK',
     period: 'Nov 2024 – Present',
@@ -58,15 +58,16 @@ export const experience = [
     sections: [
       {
         bullets: [
-          'Shipped a GBM-based overdraft-application model delivering 20–100% Gini gains over the previous baseline, deployed in Docker on GCP.',
+          'Shipped a GBM-based overdraft-application model delivering 20-100% Gini gains over the previous baseline, deployed in Docker on GCP.',
           'Refactored the internal modelling library to standardise monitoring across Monzo’s lending products, surfacing performance gaps across customer subgroups that had previously been invisible.',
+          'Mentored a junior team member, guiding their development in production ML engineering and credit-risk modelling.',
           'Stack: Python, scikit-learn, BigQuery, dbt, Looker, GCP.'
         ]
       }
     ]
   },
   {
-    role: 'Research Associate — Founding Engineer, Neurofind',
+    role: 'Research Associate - Founding Engineer, Neurofind',
     org: 'Neurofind / King’s College London',
     location: 'London, UK',
     period: 'Aug 2018 – Aug 2022 · 4 years, fixed-term renewed 4×',
@@ -78,6 +79,7 @@ export const experience = [
           'Authored Neuroharmony, the first published out-of-sample harmonisation tool for neuroimaging — a key step toward clinical translation of imaging ML by mitigating cross-scanner bias.',
           'Won a £109,000 MRC grant as named investigator.',
           'Authored one chapter and co-authored five more in Machine Learning: Methods and Applications to Brain Disorders (Elsevier).',
+          'Supervised a Master’s and a PhD student, guiding their research in neuroimaging ML and contributing to the group’s publication output.',
           'Stack: Python, PyTorch, TensorFlow, scikit-learn, AWS, Docker, MLflow, Plotly, R.'
         ]
       }
