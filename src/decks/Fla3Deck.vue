@@ -28,9 +28,11 @@ const baseUrl = import.meta.env.BASE_URL
         <p class="venue-note">Slides: tinyurl.com/amigo-fla3</p>
       </a>
       <aside class="notes">
-        Thesis we are landing: in regulated healthcare the binding constraint isn't data
-        leakage, it's unauthorised computation — and enforcing governance at runtime is both
-        feasible and free of accuracy cost. The cyan asides track how FLIP makes the same calls.
+        Frame the talk for our own team: this is a read of the FLA³ paper through one question —
+        what can FLIP take from it? Their thesis, and the one to hold onto: in regulated healthcare
+        the binding constraint isn't data leakage, it's unauthorised computation — and runtime
+        governance is feasible at zero accuracy cost. The cyan FLIP asides throughout track where we
+        already match them and where we don't.
       </aside>
     </section>
 
@@ -73,10 +75,10 @@ const baseUrl = import.meta.env.BASE_URL
         the same call, and where do they diverge? What can we learn from them?</em>
       </div>
       <aside class="notes">
-        This is the opener — set the scene, don't argue yet. Everyone knows FL keeps data local;
-        the hook is the turn at the end: keeping data local is necessary but not sufficient once a
-        regulator is involved. That gap is what the whole paper is about, and it's where the next
-        few slides go. Introduce FLIP here as the peer system we'll read against throughout.
+        The opener — set the scene, don't argue yet. Everyone knows FL keeps data local; the hook is
+        the turn at the end: that's necessary but not sufficient once a regulator is in the room —
+        who may compute, on what, for how long. That gap is the whole paper. Introduce FLIP here as
+        the peer system we read against the rest of the way.
       </aside>
     </section>
 
@@ -104,8 +106,10 @@ const baseUrl = import.meta.env.BASE_URL
         authorisation. Those are orchestration-layer problems.
       </p>
       <aside class="notes">
-        Most FL work assumes trusted participants and ideal conditions. Real healthcare can't —
-        accountability is a primary requirement, not a footnote.
+        Let the numbers do the work: ~5% of healthcare FL reaches deployment, 98% lacked node
+        authentication, and zero shipped an openly specified governance implementation. The line to
+        voice: privacy tech (DP, secure aggregation) stops information leakage but not unauthorised
+        computation — governance is an orchestration-layer problem most FL simply skips.
       </aside>
     </section>
 
@@ -142,8 +146,10 @@ const baseUrl = import.meta.env.BASE_URL
         runtime, or automation on study-level policies.
       </div>
       <aside class="notes">
-        This is the honest framing for an FL audience: these are all good systems; the gap is
-        runtime, per-study, time-bounded enforcement bound into orchestration.
+        Honest framing for an FL crowd — Flower, PySyft and FLARE are all good systems; the gap is
+        runtime, per-study, time-bounded enforcement bound into orchestration. The note for us: FLIP
+        builds on NVFLARE + Flower, so it inherits exactly this gap at the FL layer — we add our
+        governance at the hub/Trust APIs instead.
       </aside>
     </section>
 
@@ -189,8 +195,10 @@ const baseUrl = import.meta.env.BASE_URL
         friction, but we definitely should revisit the trade-offs and consider adding these features in the future.
       </div>
       <aside class="notes">
-        Key phrase: governance as a first-class privacy-preserving control, not paperwork bolted
-        on afterwards.
+        The one-line pitch: governance as a first-class control plane, not paperwork bolted on after.
+        Walk the three AAA blocks — the FLIP verdict under each is the point: we match on
+        authentication (✅), but only partially on authorisation (no per-round PDP) and accounting
+        (no signed audit). Plant the idea that both are ours to close.
       </aside>
     </section>
 
@@ -247,9 +255,10 @@ const baseUrl = import.meta.env.BASE_URL
         </li>
       </ol>
       <aside class="notes">
-        The roadmap for the rest of the talk: contributions 1–3 are the mechanism (next ~10
-        slides), 4 is the proof (results), 5 is what you can clone today. Each maps to a section
-        coming up.
+        The paper's five contributions, each with our honest FLIP verdict. We already match on
+        multi-study (✅) and open-source (🏆); the partials — formal cross-jurisdictional
+        requirements, XACML PDP + signed audit, and FedMAP — are the candidate borrows. This doubles
+        as the roadmap: 1–3 are the mechanism, 4 is the proof, 5 is what we could clone.
       </aside>
     </section>
 
@@ -295,12 +304,14 @@ const baseUrl = import.meta.env.BASE_URL
         </li>
       </ul>
       <aside class="notes">
-        These recur across every jurisdiction analysed. They become enforceable system
-        requirements, not static preconditions checked once at onboarding.
+        R1–R5 recur across every jurisdiction they analysed — enforceable system properties, not
+        box-ticking checked once at onboarding. Per requirement, flag where FLIP stands: R2 and R3
+        are close matches; R4 (temporal auto-expiry) is the real gap; R1 and R5 are partial. These
+        are the same five we return to in the discussion.
       </aside>
     </section>
 
-    <!-- 7 · Threat model -->
+    <!-- 8 · Threat model -->
     <section>
       <div class="eyebrow">Threat model</div>
       <h2>Authenticated ≠ authorised</h2>
@@ -322,12 +333,15 @@ const baseUrl = import.meta.env.BASE_URL
         </div>
       </div>
       <aside class="notes">
-        Flag the scope boundary now — it returns on the limitations slide and is exactly where
-        secure aggregation / robust aggregation would compose.
+        The mental-model flip: stop picturing the hoodie-in-a-server-room hacker (the meme) — the
+        real adversary is authenticated, holds valid credentials and API access, and simply isn't
+        authorised at that moment. A1–A4 are all governance-layer. Flag the scope boundary now:
+        Byzantine / malicious-update defence is out of scope and complementary — it comes back on
+        the limitations slide.
       </aside>
     </section>
 
-    <!-- 8 · Architecture (Figure 1) -->
+    <!-- 9 · Architecture (Figure 1) -->
     <section>
       <div class="eyebrow">System architecture · Fig. 1</div>
       <h2>Three layers, governance in the middle</h2>
@@ -350,31 +364,42 @@ const baseUrl = import.meta.env.BASE_URL
         </div>
       </div>
       <aside class="notes">
-        Note ephemeral ClientApps: long-running infra stays stable while study logic runs in
-        isolated, short-lived processes.
+        Three layers, governance in the middle: SuperLink coordinates, SuperNodes sit at each site,
+        ClientApps are ephemeral per-study processes, and the AAA box (PDP + audit) wraps the server.
+        For us: this maps onto FLIP's Central Hub + per-Trust APIs — but our control points are the
+        APIs, not a PDP woven into the FL rounds.
       </aside>
     </section>
 
-    <!-- 9 · Multi-study federation + deployment -->
+    <!-- 10 · Multi-study federation + deployment -->
     <section>
       <div class="eyebrow">Multi-study federation &amp; deployment</div>
       <h2>Many studies, one platform, no inbound ports</h2>
-      <ul class="small">
-        <li><strong>Client-initiated gRPC unary</strong> calls — no inbound connectivity needed; deployable behind restrictive hospital firewalls &amp; TREs (outbound-only).</li>
-        <li><strong>Concurrent studies</strong> — each with its own member set, policies &amp; validity window; identified by <strong>immutable study IDs</strong>.</li>
-        <li>Credential compromise is <strong>contained to a single study</strong>.</li>
-      </ul>
-      <div class="flip-note">
-        <span class="flip-tag">FLIP</span> FLIP solves the same network limitations with a similar client-initiated design.
-        FLIP's per-Trust APIs are also scoped to projects, which provide the same isolation and guarantees as FLA3's study-scoped design.
+      <div class="fig-split" style="--cols: 1.7fr 1fr; align-items: center">
+        <div>
+          <ul class="small">
+            <li><strong>Client-initiated gRPC unary</strong> calls — no inbound connectivity needed; deployable behind restrictive hospital firewalls &amp; TREs (outbound-only).</li>
+            <li><strong>Concurrent studies</strong> — each with its own member set, policies &amp; validity window; identified by <strong>immutable study IDs</strong>.</li>
+            <li>Credential compromise is <strong>contained to a single study</strong>.</li>
+          </ul>
+          <div class="flip-note">
+            <span class="flip-tag">FLIP</span> FLIP solves the same network limitations with a similar client-initiated design.
+            FLIP's per-Trust APIs are also scoped to projects, which provide the same isolation and guarantees as FLA3's study-scoped design.
+          </div>
+        </div>
+        <div class="panel center">
+          <img :src="`${baseUrl}presentations/fla3/flex-meme.gif`" alt="Kid flexing, captioned FLEX" style="max-height: 320px;" />
+        </div>
       </div>
       <aside class="notes">
-        The outbound-only constraint is real and common — many hospitals simply won't allow
-        inbound connections. Client-initiated calls are what make multi-site deployment possible.
+        Two real-world wins worth dwelling on: client-initiated gRPC needs no inbound ports, so it
+        deploys behind hospital firewalls and TREs; and study-scoping contains a credential
+        compromise to a single study. The flex is earned — and FLIP earns it too: our per-Trust,
+        project-scoped, client-initiated design gives the same guarantees.
       </aside>
     </section>
 
-    <!-- 10 · Authentication -->
+    <!-- 11 · Authentication -->
     <section>
       <div class="eyebrow">AAA · Authentication</div>
       <h2>Identity, not privilege</h2>
@@ -389,9 +414,15 @@ const baseUrl = import.meta.env.BASE_URL
         Cognito</strong> and institutions with TLS certificates. This provides the same level of identity assurance as FLA<sup>3</sup>,
         but also extends the identity to individual users, which allows for more granular access control and auditing.
       </div>
+      <aside class="notes">
+        The key distinction to land: authentication is identity only — it grants nothing. mTLS
+        institutional certs just feed attributes to the PDP; authorisation happens next. For us this
+        is a ✅, and arguably finer-grained: FLIP authenticates institutions with TLS and individual
+        users via Cognito, which is what gives us per-user audit.
+      </aside>
     </section>
 
-    <!-- 11 · Authorisation: the request model (core) -->
+    <!-- 12 · Authorisation: the request model (core) -->
     <section>
       <div class="eyebrow">AAA · Authorisation — the core mechanism</div>
       <h2>One request, three predicates, fail-closed</h2>
@@ -413,12 +444,14 @@ const baseUrl = import.meta.env.BASE_URL
         Missing attribute or eval error → <strong class="pink">DENY</strong>.
       </p>
       <aside class="notes">
-        Per-round enforcement is what makes temporal validity real: an approval expiring during
-        training blocks the node on the very next round, not at some future audit.
+        The core mechanism: one request ⟨node, action, study, time⟩, three predicates, PERMIT only if
+        all hold — and it's re-checked every aggregation round, which is what makes temporal validity
+        real (an approval lapsing mid-training blocks the very next round, not at some future audit).
+        Be honest about the caveat on the slide: the Luas PDP engine itself isn't open-source.
       </aside>
     </section>
 
-    <!-- 12 · Obligation → mechanism mapping (Table 1) -->
+    <!-- 13 · Obligation → mechanism mapping (Table 1) -->
     <section>
       <div class="eyebrow">Table 1 · Obligations → mechanisms</div>
       <h2>Regulation, mapped to enforcement</h2>
@@ -436,13 +469,13 @@ const baseUrl = import.meta.env.BASE_URL
         </tbody>
       </table>
       <aside class="notes">
-        This table is the spine of the contribution: each legal obligation has a concrete,
-        runtime-checkable mechanism and a named component. Don't read it all — point at the
-        through-line.
+        The spine of the contribution: every legal obligation maps to a concrete, runtime-checkable
+        mechanism and a named component (R1–R5). Don't read the table out — point at the
+        through-line: regulation on the left, an enforceable mechanism on the right, for each row.
       </aside>
     </section>
 
-    <!-- 13 · Accounting -->
+    <!-- 14 · Accounting -->
     <section>
       <div class="eyebrow">AAA · Accounting</div>
       <h2>Tamper-evident by construction</h2>
@@ -457,12 +490,14 @@ const baseUrl = import.meta.env.BASE_URL
         regulatory defensibility.
       </div>
       <aside class="notes">
-        This directly answers the "accountability evasion" threat: you cannot quietly rewrite
-        what happened.
+        Tamper-evident by construction: every decision is a JWS-signed record, so you can't quietly
+        rewrite history — the direct answer to the A3 accountability-evasion threat. For us this is
+        the clearest thing to import: FLIP logs at the platform/API level, but those logs aren't
+        cryptographically signed.
       </aside>
     </section>
 
-    <!-- 14 · Validation: operational deployment -->
+    <!-- 15 · Validation: operational deployment -->
     <section>
       <div class="eyebrow">Validation · Operational feasibility</div>
       <h2>5 institutions · 4 countries · 4 legal regimes</h2>
@@ -476,12 +511,13 @@ const baseUrl = import.meta.env.BASE_URL
         constraints. <em>This study proves it deploys — the next proves it predicts.</em>
       </p>
       <aside class="notes">
-        Be precise: this is the *operational* study (does governance hold up live across borders).
-        The clinical numbers next come from a separate, UK simulated federation.
+        Be precise: this is the operational study — does governance actually hold up live across 4
+        countries and 4 legal regimes (some outbound-only)? It proves the platform deploys. The
+        clinical numbers next come from a separate, UK simulated federation — don't conflate the two.
       </aside>
     </section>
 
-    <!-- 15 · Clinical setup: what is actually being measured -->
+    <!-- 16 · Clinical setup: what is actually being measured -->
     <section>
       <div class="eyebrow">Validation · Clinical utility · INTERVAL trial (ISRCTN24760606)</div>
       <h2>The test: flag <span class="accent">iron deficiency</span> from a routine blood count</h2>
@@ -511,14 +547,14 @@ const baseUrl = import.meta.env.BASE_URL
         (forbidden) centralised ceiling?</strong>
       </p>
       <aside class="notes">
-        Spend time here — this is the frame for both result slides. Three ways to train; centralised
-        is the ceiling you're not allowed to use; the whole point is whether FedMAP, with governance
-        on, reaches it. ROC–AUC: probability the model ranks a random deficient donor above a random
-        non-deficient one.
+        Spend time here — it frames both result slides. Three ways to train: individual (status quo),
+        federated FedMAP (governance on), and centralised (the upper bound governance forbids). The
+        whole question: does governed federation reach that forbidden ceiling? ROC–AUC ≈ the
+        probability the model ranks a random iron-deficient donor above a random healthy one.
       </aside>
     </section>
 
-    <!-- 16 · Clinical result: no accuracy cost (Fig 2) -->
+    <!-- 17 · Clinical result: no accuracy cost (Fig 2) -->
     <section>
       <div class="eyebrow">Result 1 · Predictive performance · Fig. 2</div>
       <h2>Governance at <span class="green">zero accuracy cost</span></h2>
@@ -542,12 +578,13 @@ const baseUrl = import.meta.env.BASE_URL
         </div>
       </div>
       <aside class="notes">
-        Headline for an ML audience: you do not trade accuracy for governance. FedMAP's mean sits on
-        the centralised dashed line (both 0.872), comfortably above individual training (0.845).
+        Headline for an ML audience: you don't trade accuracy for governance. FedMAP's mean (0.872)
+        lands exactly on the centralised dashed line, well above individual training (0.845) — and it
+        gets there without pooling a single record. That's the whole "zero cost" claim in one chart.
       </aside>
     </section>
 
-    <!-- 17 · Clinical result: equity (Fig 3 + Fig 4) -->
+    <!-- 18 · Clinical result: equity (Fig 3 + Fig 4) -->
     <section>
       <div class="eyebrow">Result 2 · Equity across centres · Figs. 3–4</div>
       <h2>The weakest sites gain the most</h2>
@@ -574,75 +611,60 @@ const baseUrl = import.meta.env.BASE_URL
       </p>
       <aside class="notes">
         The fairness story: federation doesn't just lift the mean (Fig. 2), it compresses the spread.
-        The one centre that dipped already had the best baseline (0.898) — it had least to gain.
-        Strong message for healthcare equity and a regulatory expectation for multi-centre AI.
+        The worse a centre started, the more it gained (r = −0.74), and regional variation nearly
+        halved. The one centre that dipped already had the best baseline — least to gain. This is the
+        equity argument regulators care about for multi-centre AI.
       </aside>
     </section>
 
-    <!-- 17 · Limitations (honest) -->
+    <!-- 18b · The worry scale (interlude) -->
+    <section>
+      <div class="eyebrow">Are we being replaced by FLA<sup>3</sup>?</div>
+      <h2>So… how worried should we be?</h2>
+      <div class="cols" style="--n: 3; align-items: end">
+        <div class="panel center">
+          <img :src="`${baseUrl}presentations/fla3/worry-1.gif`" alt="Calm dog basking in the sun" style="min-height: 230px; border-radius: 8px; margin: 0.3em 0" />
+        </div>
+        <div class="panel center">
+          <img :src="`${baseUrl}presentations/fla3/worry-3.gif`" alt="Fry squinting suspiciously" style="min-height: 330px; border-radius: 8px; margin: 0.3em 0" />
+        </div>
+        <div class="panel center">
+          <img :src="`${baseUrl}presentations/fla3/worry-5.gif`" alt="Person hyperventilating into a paper bag" style="min-height: 330px; border-radius: 8px; margin: 0.3em 0" />
+        </div>
+      </div>
+      <div class="scale-bar"></div>
+      <div class="scale-ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+      <aside class="notes">
+        Comic beat with a real question — "are we (FLIP) being replaced by FLA³?" Answer over the
+        next slides: no. Read the scale left to right: 1 = calm (data stays local and it works),
+        3 = vigilant (authenticated ≠ authorised), 5 = panic (an approval lapsed mid-study and
+        nothing stopped the next round). The point under the joke: runtime governance slides you back
+        toward 1. Sets up the honest limitations.
+      </aside>
+    </section>
+
+    <!-- 19 · Limitations (honest) -->
     <section>
       <div class="eyebrow">Honest limitations</div>
-      <h2>What this paper does <span class="pink">not</span> yet claim</h2>
+      <h2><span class="pink">Limitations</span></h2>
       <ul class="crosslist small">
         <li>Clinical evaluation is a <strong>simulated</strong> federation — not yet live end-to-end training across the deployed sites.</li>
-        <li>No defence against <strong>Byzantine</strong> participants with valid credentials submitting malicious updates.</li>
-        <li>XACML policies are <strong>manually authored</strong> — room for specification error.</li>
+        <li>No risk profile for <strong>Byzantine</strong> participants with valid credentials submitting malicious updates.</li>
+        <li>No risk profile for arbitrary code execution.</li>
+        <li>No consideration of <strong>patient opt-out status</strong>.</li>
         <li>Composition with <strong>differential privacy / secure aggregation</strong> not yet empirically validated.</li>
+        <li>XACML policies are <strong>manually authored</strong> — room for specification error.</li>
       </ul>
-      <p class="muted small">
-        Future work: live federated training, policy-authoring tools + formal verification, and DP
-        / secure-agg composition.
-      </p>
       <div class="flip-note">
         <span class="flip-tag">FLIP</span> Several of these are exactly where <strong>we're</strong>
-        strong — FLIP already runs live multi-Trust training, a project-lifecycle UI and production
-        hardening. The honest gaps run both ways.
+        strong, but we also have limitations to overcome.
       </div>
       <aside class="notes">
-        Showing limitations builds trust and sets up the synthesis: FLA3's governance plane +
-        FLIP's production maturity is a stronger whole than either alone. Note the symmetry — FLA3's
-        biggest limitation (simulated, not live) is FLIP's biggest strength.
-      </aside>
-    </section>
-
-    <!-- 18 · Synthesis: FLA3 × FLIP -->
-    <section>
-      <div class="eyebrow">Bringing it together</div>
-      <h2>FLA<sup>3</sup> &nbsp;×&nbsp; <span class="cyan">FLIP</span> — complementary halves</h2>
-      <table>
-        <thead>
-          <tr><th>Dimension</th><th>FLA<sup>3</sup></th><th>FLIP</th></tr>
-        </thead>
-        <tbody>
-          <tr><td>Centre of gravity</td><td class="fla3-col">Runtime governance (AAA) control plane</td><td class="flip-col">Imaging interoperability + NHS-scale production</td></tr>
-          <tr><td>Authz model</td><td class="fla3-col">XACML PDP — per-round, study-scoped, temporal, fail-closed</td><td class="flip-col">Project-scoped Cognito roles + fail-closed checks — but not per-round or auto-expiring</td></tr>
-          <tr><td>Audit</td><td class="fla3-col">Cryptographic JWS (ES256), tamper-evident</td><td class="flip-col">Platform / API logging (not tamper-evident)</td></tr>
-          <tr><td>Modality / stack</td><td class="fla3-col">Tabular FBC · Flower</td><td class="flip-col">DICOM imaging + OMOP · NVFLARE + Flower · XNAT/Orthanc</td></tr>
-          <tr><td>Scope · maturity</td><td class="fla3-col">4 countries · reference impl + simulated clinical</td><td class="flip-col">UK NHS Trusts · production + full deploy tooling</td></tr>
-        </tbody>
-      </table>
-      <p class="center accent" style="margin-top: 0.4em">
-        The honest read: <strong>two halves of one platform</strong> — FLA<sup>3</sup>'s governance
-        plane and FLIP's production imaging stack would be stronger combined than either alone.
-      </p>
-      <aside class="notes">
-        Land it as complementarity, not competition. After a whole talk of woven asides, the
-        audience already feels it — make it explicit, then move to the concrete FLIP decisions.
-      </aside>
-    </section>
-
-    <!-- 19 · Takeaways -->
-    <section>
-      <div class="eyebrow">Takeaways</div>
-      <h2>Three things to remember</h2>
-      <ol>
-        <li>The breach is <strong>unauthorised computation</strong>, not data movement — the adversary is an <em>authenticated</em> insider, not an outsider.</li>
-        <li><strong>Governance as a runtime control plane</strong> (per-round, time-bounded, fail-closed, cryptographically audited) is feasible <em>and</em> free — FedMAP matched centralised (0.872) <em>and</em> the <strong>weakest centres gained the most</strong>.</li>
-        <li>For <span class="cyan">FLIP</span> we're already broadly aligned — the candidate upgrades are <strong>per-round PDP</strong>, <strong>temporal auto-expiry</strong> &amp; <strong>cryptographically signed audit</strong>.</li>
-      </ol>
-      <aside class="notes">
-        Pause on each. Point 1 is the thesis (slide 8), point 2 is the proof (slides 16–17), point 3
-        hands straight to the discussion slide — the concrete decisions for our own platform.
+        Honest about what the paper doesn't yet claim: simulated (not live) federation, no risk
+        profile for Byzantine participants or arbitrary code execution, no patient opt-out handling,
+        and manually authored policies. Voicing these builds trust — and several are exactly where
+        FLIP is strong (we run live, multi-Trust). The gaps run both ways; that's the bridge to the
+        discussion.
       </aside>
     </section>
 
@@ -675,9 +697,10 @@ const baseUrl = import.meta.env.BASE_URL
         <span class="cyan">github.com/londonaicentre/FLIP</span>
       </p>
       <aside class="notes">
-        Close on our turf: these three are the actionable upgrades FLA3 suggests for FLIP, framed as
-        open questions for the team rather than prescriptions. Let the room argue per-round PDP vs
-        latency first — that's the live one.
+        Close on our turf — four things FLA³ suggests for FLIP, framed as open questions, not
+        prescriptions: their cross-jurisdictional governance analysis to learn from, a per-round PDP,
+        temporal auto-expiry, and signed audit. Open the floor on per-round PDP vs latency first —
+        that's the live debate for us at NHS scale.
       </aside>
     </section>
 
@@ -741,7 +764,8 @@ const baseUrl = import.meta.env.BASE_URL
         </div>
       </div>
       <aside class="notes">
-        Reference only — not presented line-by-line. Left up after the close for Q&amp;A.
+        Reference only — don't walk through it. Leave it up during Q&amp;A so any acronym is one
+        glance away.
       </aside>
     </section>
   </RevealDeck>

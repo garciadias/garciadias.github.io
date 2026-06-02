@@ -339,6 +339,27 @@ html:not(.dark) .reveal.deck-theme {
 .reveal.deck-theme .glossary p { margin: 0 0 0.18em; }
 .reveal.deck-theme .glossary b { color: var(--accent-cyan); font-weight: 700; }
 
+/* Horizontal "worry scale" — gradient track with 1–5 ticks under three meme cards. */
+.reveal.deck-theme .scale-bar {
+  height: 0.4em;
+  border-radius: 999px;
+  margin: 0.2em 0 0.15em;
+  background: linear-gradient(90deg, var(--accent-green) 0%, var(--accent-orange) 50%, var(--accent-pink) 100%);
+}
+.reveal.deck-theme .scale-ticks {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--r-code-font);
+  font-size: 0.55em;
+  color: var(--comment);
+}
+.reveal.deck-theme .worry-num {
+  font-family: var(--r-heading-font);
+  font-weight: 700;
+  font-size: 1.5em;
+  line-height: 1;
+}
+
 /* Figures from the paper — framed on a light card. In dark mode the card lifts
    the matplotlib white backgrounds off the dark deck; in light mode a subtle
    border separates the (white) figure from the (white) slide. */
