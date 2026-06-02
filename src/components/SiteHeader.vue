@@ -12,7 +12,8 @@ const links = [
   { name: 'cv', label: 'Career' },
   { name: 'projects', label: 'Projects' },
   { name: 'publications', label: 'Publications' },
-  { name: 'talks', label: 'Talks' }
+  { name: 'talks', label: 'Talks' },
+  { name: 'presentations', label: 'Presentations' }
 ]
 </script>
 

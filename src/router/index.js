@@ -32,6 +32,18 @@ const routes = [
     meta: { title: 'Talks & Videos' }
   },
   {
+    path: '/presentations',
+    name: 'presentations',
+    component: () => import('@/views/PresentationsView.vue'),
+    meta: { title: 'Presentations' }
+  },
+  {
+    path: '/presentations/:id',
+    name: 'presentation',
+    component: () => import('@/views/PresentationDeckView.vue'),
+    meta: { title: 'Presentation' }
+  },
+  {
     path: '/:pathMatch(.*)*',
     name: 'not-found',
     component: () => import('@/views/NotFoundView.vue'),
