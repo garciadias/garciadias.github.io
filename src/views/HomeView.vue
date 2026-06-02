@@ -41,13 +41,13 @@ import { profile } from '@/content/profile';
 
         <div class="lg:col-span-4">
           <div class="grid grid-cols-2 gap-3">
-            <img src="/static/img/3.png" alt="Rafael with the Neurofind team" class="rounded-xl object-cover w-full h-32 sm:h-40 col-span-2" />
             <img src="/static/img/5.png" alt="Portrait" class="rounded-xl object-cover w-full h-32 sm:h-40" />
-            <img src="/static/img/4.png" alt="Giving a talk about GitHub" class="rounded-xl object-cover w-full h-32 sm:h-40" />
-            <img src="/static/img/rafa_alex.jpg" alt="Presenting a poster at a conference" class="rounded-xl object-cover w-full h-32 sm:h-40" />
-            <img src="/static/img/rafa_seb.webp" alt="With the Director of the AI Centre" class="rounded-xl object-cover w-full h-32 sm:h-40" />
             <img src="/static/img/talk.JPG" alt="Presenting at Codemotion Milan" class="rounded-xl object-cover w-full h-32 sm:h-40" />
-            <img src="/static/img/team_iac.jpg" alt="AI Centre team cooking together" class="rounded-xl object-cover w-full h-32 sm:h-40" />
+            <img src="/static/img/rafa_seb.webp" alt="With the Director of the AI Centre" class="rounded-xl object-cover w-full h-32 sm:h-40" />
+            <img src="/static/img/rafa_alex.jpg" alt="Presenting a poster at a conference" class="rounded-xl object-cover w-full h-32 sm:h-40" />
+            <img src="/static/img/4.png" alt="Giving a talk about GitHub" class="rounded-xl object-cover w-full h-32 sm:h-40" />
+            <img src="/static/img/3.png" alt="Rafael with the Neurofind team" class="rounded-xl object-cover w-full h-32 sm:h-40 sm:h-40" />
+            <img src="/static/img/team_iac.jpg" alt="AI Centre team cooking together" class="rounded-xl object-cover w-full h-32 col-span-2" />
           </div>
         </div>
       </div>
