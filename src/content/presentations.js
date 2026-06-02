@@ -7,13 +7,14 @@
 export const presentations = [
   {
     id: 'fla3-governance-federated-learning',
-    title: 'Governance as a First-Class Control',
-    subtitle: 'FLA³ (Federated Learning with AAA) — read throughout against FLIP',
-    date: '2026',
-    venue: 'Paper walkthrough · arXiv 2603.10063',
+    title: 'What can FLIP learn from FLA³?',
+    subtitle: 'A FLIP-eyed read of FLA³ — Federated Learning with Authentication · Authorisation · Accounting',
+    date: '2 Jun 2026',
+    venue: 'AMIGO team meeting',
+    cover: `${import.meta.env.BASE_URL}presentations/fla3/cover.png`,
     description:
-      'A technical walkthrough of FLA³ — a federated learning platform that enforces Authentication, Authorisation and Accounting as a runtime control plane (XACML PDP, per-round, fail-closed, cryptographically audited). The argument: in regulated healthcare the breach is unauthorised computation, not data movement — and governance can be enforced at zero accuracy cost. FLIP is woven in throughout as a peer system.',
-    tags: ['Federated Learning', 'Governance / AAA', 'XACML', 'Healthcare AI', 'FLIP'],
+      'A walkthrough of the FLA³ paper (arXiv 2603.10063) through one question: what can our FLIP platform take from it? FLA³ enforces Authentication, Authorisation & Accounting as a runtime control plane — per-round XACML policy decisions, fail-closed, with cryptographically signed audit. Its thesis: in regulated healthcare the breach is unauthorised computation, not data movement — and governance costs nothing in accuracy (federation matches centralised on the INTERVAL iron-deficiency task, and lifts the weakest sites most). Every slide carries an honest FLIP verdict: where we already match, and the upgrades worth weighing.',
+    tags: ['Federated Learning', 'Governance / AAA', 'XACML PDP', 'Healthcare AI', 'FLIP'],
     deck: () => import('@/decks/Fla3Deck.vue')
   }
 ]
