@@ -16,7 +16,7 @@ export const experience = [
           'Appointed Federated Learning Chair of the MONAI Working Group, co-chairing alongside NVIDIA to set direction for federated learning standards and best practices across the global medical-imaging community.',
           'Integrated NVIDIA FLARE and Flower Framework as parallel federated-learning backends, allowing research teams to choose between two industry-standard frameworks against the same data plane.',
           'Designed the trust-authentication and internal-service-key model for secure outbound-only Trust-to-Hub communication via CloudFront/ALB; contributed to the OpenTofu/Terraform AWS deployment for production environments.',
-          'Integrated DICOM imaging infrastructure (Orthanc, XNAT) and OMOP CDM structured-data layer, giving researchers unified multimodal access across imaging and EHR within each Trust's secure enclave.'
+          'Integrated DICOM imaging infrastructure (Orthanc, XNAT) and OMOP CDM structured-data layer, giving researchers unified multimodal access across imaging and EHR within each Trust’s secure enclave.'
         ]
       },
       {
@@ -60,7 +60,7 @@ export const experience = [
       {
         bullets: [
           'Shipped a GBM-based overdraft-application model delivering 20-100% Gini gains over the previous baseline, deployed in Docker on GCP.',
-          'Refactored the internal modelling library to standardise monitoring across Monzo's lending products, surfacing performance gaps across customer subgroups that had previously been invisible.',
+          'Refactored the internal modelling library to standardise monitoring across Monzo’s lending products, surfacing performance gaps across customer subgroups that had previously been invisible.',
           'Mentored a junior team member, guiding their development in production ML engineering and credit-risk modelling.',
           'Stack: Python, scikit-learn, BigQuery, dbt, Looker, GCP.'
         ]
@@ -69,7 +69,7 @@ export const experience = [
   },
   {
     role: 'Research Associate - Founding Engineer, Neurofind',
-    org: 'Neurofind / King's College London',
+    org: 'Neurofind / King’s College London',
     location: 'London, UK',
     period: 'Aug 2018 - Aug 2022 · 4 years, fixed-term renewed 4×',
     summary: '',
@@ -80,7 +80,7 @@ export const experience = [
           'Authored Neuroharmony, the first published out-of-sample harmonisation tool for neuroimaging - a key step toward clinical translation of imaging ML by mitigating cross-scanner bias.',
           'Won a £109,000 MRC grant as named investigator.',
           'Authored one chapter and co-authored five more in Machine Learning: Methods and Applications to Brain Disorders (Elsevier).',
-          'Supervised a Master's and a PhD student, guiding their research in neuroimaging ML and contributing to the group's publication output.',
+          'Supervised a Master’s and a PhD student, guiding their research in neuroimaging ML and contributing to the group’s publication output.',
           'Stack: Python, PyTorch, TensorFlow, scikit-learn, AWS, Docker, MLflow, Plotly, R.'
         ]
       }
