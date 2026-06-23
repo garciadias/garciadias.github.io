@@ -38,6 +38,14 @@ const routes = [
     meta: { title: 'Presentations' }
   },
   {
+    // Secret full index (unlisted decks included). Must precede the :id route
+    // so "list" is matched here rather than treated as a deck id.
+    path: '/presentations/list',
+    name: 'presentations-list',
+    component: () => import('@/views/PresentationsListView.vue'),
+    meta: { title: 'All presentations' }
+  },
+  {
     path: '/presentations/:id',
     name: 'presentation',
     component: () => import('@/views/PresentationDeckView.vue'),
