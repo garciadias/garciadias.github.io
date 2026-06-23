@@ -4,6 +4,10 @@
 //
 // To add a new presentation: create src/decks/<Name>Deck.vue, then add an entry
 // here. Nothing else needs editing.
+//
+// Set `unlisted: true` to publish a deck without showing it on the public
+// /presentations gallery. Unlisted decks still work at their direct
+// /presentations/:id URL and appear on the secret /presentations/list index.
 export const presentations = [
   {
     id: 'fla3-governance-federated-learning',
@@ -16,8 +20,23 @@ export const presentations = [
       'A walkthrough of the FLA³ paper (arXiv 2603.10063) through one question: what can our FLIP platform take from it? FLA³ enforces Authentication, Authorisation & Accounting as a runtime control plane — per-round XACML policy decisions, fail-closed, with cryptographically signed audit. Its thesis: in regulated healthcare the breach is unauthorised computation, not data movement — and governance costs nothing in accuracy (federation matches centralised on the INTERVAL iron-deficiency task, and lifts the weakest sites most). Every slide carries an honest FLIP verdict: where we already match, and the upgrades worth weighing.',
     tags: ['Federated Learning', 'Governance', 'Healthcare AI', 'FLIP', 'FLA³'],
     deck: () => import('@/decks/Fla3Deck.vue')
+  },
+  {
+    id: 'miccai_decaf_2026_draft',
+    title: 'Federated chest X-ray learning, UK ⇄ Thailand',
+    subtitle: 'Cross-continental federated fine-tuning of a CXR foundation model with FLIP — MICCAI 2026 / DECAF working draft',
+    date: '2026',
+    venue: 'MICCAI 2026 · DECAF (draft)',
+    description:
+      'A working-draft walkthrough of a UK–Thailand proof of concept: deploying FLIP — our Federated Learning & Interoperability Platform, validated at NHS scale — in a setting it was not designed for, a live cross-continental, cross-sector federation linking UK academia with a private Thai hospital group. Not a new algorithm: a reproducible federated fine-tuning workflow for a pretrained chest X-ray foundation model, a four-arm comparison (zero-shot · local-only · federated · centralised) over locally generated synthetic data, and an evaluation that pairs predictive metrics with system- and deployment-level measurements. Unlisted draft for internal review.',
+    tags: ['Federated Learning', 'Chest X-ray', 'Foundation Models', 'FLIP', 'MICCAI 2026', 'Draft'],
+    unlisted: true,
+    deck: () => import('@/decks/MiccaiDecaf2026Deck.vue')
   }
 ]
+
+// Decks shown on the public gallery (everything not flagged `unlisted`).
+export const listedPresentations = presentations.filter((p) => !p.unlisted)
 
 export function getPresentation(id) {
   return presentations.find((p) => p.id === id)
