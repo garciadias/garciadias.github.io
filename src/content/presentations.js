@@ -32,6 +32,24 @@ export const presentations = [
     tags: ['Federated Learning', 'Chest X-ray', 'Foundation Models', 'FLIP', 'MICCAI 2026', 'Draft'],
     unlisted: true,
     deck: () => import('@/decks/MiccaiDecaf2026Deck.vue')
+  },
+  {
+    id: 'pydata-london-flip-lightning-2026',
+    title: 'AI on the NHS: can federated learning preserve patient privacy?',
+    subtitle: 'A 5-minute case for sending the model to the data, not the other way round',
+    date: '2026',
+    venue: 'PyData London · Lightning talk',
+    cover: `${import.meta.env.BASE_URL}presentations/flip-maturity-pitch-2026/flip-architecture-symmetric.png`,
+    description:
+      'Federated learning inverts the logic of big-data lakes for training AI models: instead of bringing ' +
+      'data to models, we send the models to be trained where the data is. A fast, informal cut of FLIP — ' +
+      'the platform the AI Centre for Value-Based Healthcare runs in production across the NHS and a ' +
+      'Thai hospital group — built for a PyData lightning-talk slot: the problem, the one idea, the ' +
+      'architecture in one diagram, real production numbers, and the open-source Python stack underneath ' +
+      'it. Draft — pending final gifs and confirmed talk date.',
+    tags: ['Federated Learning', 'Privacy', 'NHS', 'PyData', 'Lightning Talk', 'FLIP'],
+    unlisted: true,
+    deck: () => import('@/decks/PydataLondonFlipLightningDeck.vue')
   }
 ]
 

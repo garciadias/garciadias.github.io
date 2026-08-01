@@ -52,6 +52,12 @@ onBeforeUnmount(() => {
     <div class="slides">
       <slot />
     </div>
+    <!-- Optional persistent overlay (e.g. branding watermarks): a sibling of
+         .slides rather than nested in a section, so it anchors to the stable,
+         full-size .reveal box instead of any one slide's own (content-height-
+         dependent, center:true-shifted) box. Renders nothing unless a deck
+         fills the slot. -->
+    <slot name="chrome" />
   </div>
 </template>
 
@@ -371,7 +377,8 @@ html:not(.dark) .reveal.deck-theme {
   display: inline-block;
   box-shadow: var(--fig-shadow);
 }
-.reveal.deck-theme .figure img {
+.reveal.deck-theme .figure img,
+.reveal.deck-theme .figure video {
   display: block;
   margin: 0;
   border-radius: 6px;
@@ -515,4 +522,46 @@ html:not(.dark) .reveal.deck-theme {
   align-items: center;
 }
 .reveal.deck-theme .fig-split .figure { width: 100%; text-align: center; }
+.reveal.deck-theme .fig-split .figure-placeholder { width: 100%; }
+
+/* Stand-in for a not-yet-sourced image: a dashed frame naming exactly what to
+   shoot/screenshot and the filename it will slot into once dropped in place. */
+.reveal.deck-theme .figure-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+  background: var(--surface);
+  border: 2px dashed var(--line);
+  border-radius: 12px;
+  padding: 0.8em 1.1em;
+  min-height: 170px;
+  text-align: center;
+}
+.reveal.deck-theme .figure-placeholder.compact {
+  min-height: 92px;
+  padding: 0.5em 1em;
+}
+.reveal.deck-theme .figure-placeholder__tag {
+  font-family: var(--r-code-font);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.42em;
+  color: var(--accent-orange);
+  border: 1px solid var(--accent-orange);
+  border-radius: 999px;
+  padding: 0.15em 0.9em;
+}
+.reveal.deck-theme .figure-placeholder__desc {
+  font-size: 0.56em;
+  color: var(--r-main-color);
+  max-width: 34em;
+  line-height: 1.3;
+}
+.reveal.deck-theme .figure-placeholder__target {
+  font-family: var(--r-code-font);
+  font-size: 0.44em;
+  color: var(--comment);
+}
 </style>
