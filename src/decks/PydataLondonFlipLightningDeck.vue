@@ -2,7 +2,7 @@
 import DeckBrand from '@/components/DeckBrand.vue';
 import RevealDeck from '@/components/RevealDeck.vue';
 
-// An 11-slide lightning talk for a PyData London audience. Narrative: imaging
+// A 10-slide lightning talk for a PyData London audience. Narrative: imaging
 // is the largest untapped modality in UK health data (locked in PACS + free
 // text reports) → two things block it at national scale, an infrastructure
 // problem (bespoke federated nodes) and a trust problem (privacy isn't
@@ -30,8 +30,7 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
         Yes, but only if privacy is architecture, not a promise. Here's how FLIP unlocks the
         millions of NHS scans, without exposing patient data.
       </p>
-      <!-- <p class="byline">Rafael Garcia-Dias · AI Centre for Value-Based Healthcare, King's College London</p> -->
-      <p class="venue-note">Rafael Garcia-Dias · AI Centre for Value-Based Healthcare, King's College London</p>
+      <p class="venue-note">Rafael Garcia-Dias · AI Centre for Value-Based Healthcare · King's College London</p>
       <aside class="notes">
         (~20s) Hook fast: imaging is the biggest untapped modality in UK health data, and the reason
         isn't the maths — it's engineering and trust. That's the whole talk in one sentence.
@@ -46,7 +45,7 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
         <div>
           <p class="small">
             Every major NHS trust has a PACS archive going back decades. <br/>
-            X-rays, CTs, MRIs, and every single one already has an expert interpretation attached to it.
+            It holds X-rays, CTs, and MRIs, and every single one already has an expert interpretation attached to it.
           </p>
           <ul class="checklist small">
             <li>Millions of studies per trust, accumulating every year</li>
@@ -71,12 +70,12 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
       <div class="eyebrow">Problem one · infrastructure</div>
       <h2>FLIP it! Sending the model to the data</h2>
         <p class="small">
-          Imaging data is too large and too sensitive to centralise. Law, policy, governance and ethics block the transfer of raw data, so the model has to go to the data, not the other way around.
+          Imaging data is too large and too sensitive to centralise. Law, policy, governance, and ethics block the transfer of raw data, so the model has to go to the data, not the other way around.
         </p>
       <div class="fig-split" style="--cols: 1.4fr 0.8fr; margin-top: 0.3em">
         <div>
         <p class="small">
-          But making it part a permanent, reusable platform is another story.
+          But making it part of a permanent, reusable platform is another story.
         </p>
           <div class="cols" style="--n: 2; margin-top: 0.6em">
             <div class="panel">
@@ -96,17 +95,17 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
       </aside>
     </section>
 
-    <!-- 2 · Problem one: infrastructure -->
+    <!-- 3 · Problem one: infrastructure (cont.) -->
     <section data-transition="fade">
       <div class="eyebrow">Problem one · infrastructure</div>
       <h2>FLIP it! Sending the model to the data</h2>
         <p class="small">
-          Imaging data is too large and too sensitive to centralise. Law, policy, governance and ethics block the transfer of raw data, so the model has to go to the data, not the other way around.
+          Imaging data is too large and too sensitive to centralise. Law, policy, governance, and ethics block the transfer of raw data, so the model has to go to the data, not the other way around.
         </p>
       <div class="fig-split" style="--cols: 1.4fr 0.8fr; margin-top: 0.3em">
         <div>
         <p class="small">
-          But making it part a permanent, reusable platform is another story.
+          But making it part of a permanent, reusable platform is another story.
         </p>
           <div class="cols" style="--n: 2; margin-top: 0.6em">
             <div class="panel">
@@ -130,7 +129,7 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
         <div class="figure" style="aspect-ratio: 5 / 3">
           <img
             :src="asset('no_time.gif')"
-            alt="gif of the 'ain't nobody got time for that' meme"
+            alt="GIF of the 'ain't nobody got time for that' meme"
           />
         </div>
       </div>
@@ -140,7 +139,38 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
       </aside>
     </section>
 
-    <!-- 3 · Problem two: trust -->
+    <!-- 4 · The result -->
+    <section>
+      <div class="eyebrow">The result</div>
+      <h2>Going to production in real hospitals is challenging</h2>
+      <div class="fig-split" style="--cols: 1.1fr 0.65fr; margin-top: 0.3em; align-items: start">
+        <div>
+          <ul class="checklist small">
+            <li>One brilliant pilot presented once at one conference</li>
+          </ul>
+          <ul class="crosslist small">
+            <li>"privacy-preserving" was never independently guaranteed</li>
+            <li>No institution approves it for live infrastructure</li>
+            <li>No shared infrastructure for the next hospital to plug into, so it starts from zero, again</li>
+          </ul>
+        </div>
+        <div class="figure" style="width: fit-content; max-width: 100%; margin: 0 auto; text-align: center">
+          <a href="https://imgflip.com/i/axwkg1" target="_blank" rel="noopener">
+            <img
+              src="https://i.imgflip.com/axwkg1.jpg"
+              alt="Meme illustrating that federated imaging AI often ends up as one-off pilots without shared infrastructure or guaranteed privacy"
+              style="max-height: 340px; max-width: 100%"
+            />
+          </a>
+        </div>
+      </div>
+      <aside class="notes">
+        (~20s) Land this as the punchline of the problem section — pause here. This is the "so what"
+        the rest of the talk answers.
+      </aside>
+    </section>
+
+    <!-- 5 · Problem two: trust -->
     <section>
       <div class="eyebrow">Problem two · trust</div>
       <h2>Your phone is doing it and you should be concerned</h2>
@@ -173,42 +203,10 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
       </aside>
     </section>
 
-    <!-- 4 · The result -->
-    <section>
-      <div class="eyebrow">The result</div>
-      <h2>Going to production in real hospitals is challenging</h2>
-      <div class="fig-split" style="--cols: 1.1fr 0.65fr; margin-top: 0.3em; align-items: start">
-        <div>
-          <ul class="checklist small">
-            <li>One brilliant pilot presented once at one conference</li>
-          </ul>
-          <ul class="crosslist small">
-            <li>"privacy-preserving" was never independently guaranteed</li>
-            <li>No institution approves it to be in live infrastructure</li>
-            <li>No shared infrastructure for the next hospital to plug into, so it starts from zero, again</li>
-          </ul>
-        </div>
-        <div class="figure" style="width: fit-content; max-width: 100%; margin: 0 auto; text-align: center">
-          <a href="https://imgflip.com/i/axwkg1" target="_blank" rel="noopener">
-            <img
-              src="https://i.imgflip.com/axwkg1.jpg"
-              alt="Meme illustrating that federated imaging AI often ends up as one-off pilots without shared infrastructure or guaranteed privacy"
-              style="max-height: 340px; max-width: 100%"
-            />
-          </a>
-        </div>
-      </div>
-      <aside class="notes">
-        (~20s) Land this as the punchline of the problem section — pause here. This is the "so what"
-        the rest of the talk answers.
-      </aside>
-    </section>
-
-
     <!-- 6 · Enter FLIP -->
     <section>
       <div class="eyebrow">Enter FLIP</div>
-      <h2>FLIP turns an one-off PoC into a reusable platform</h2>
+      <h2>FLIP turns a one-off PoC into a reusable platform</h2>
       <p class="small">
         FLIP is a multi-application, open-source federated learning platform. It packages the work
         needed for medical imaging studies into a repeatable layer, so each new project can reuse the
@@ -247,7 +245,7 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
         <div class="figure center">
           <img
             :src="sharedAsset('flip-maturity-pitch-2026/flip-architecture-uk-thailand.png')"
-            alt="Symmetric FLIP architecture: two mirrored trust nodes, each taking PACS, EHR and other clinical systems into a secure enclave holding a structured OMOP database and XNAT, feeding an AI training client, connected through a FLIP node to the platform"
+            alt="Symmetric FLIP architecture: two mirrored trust nodes, each taking PACS, EHR, and other clinical systems into a secure enclave holding a structured OMOP database and XNAT, feeding an AI training client, connected through a FLIP node to the platform"
             style="max-height: 290px; max-width: 100%"
           />
         </div>
@@ -275,7 +273,7 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
       </aside>
     </section>
 
-    <!-- 10 · Thank you -->
+    <!-- 9 · Thank you -->
     <section class="title-slide center">
       <div class="eyebrow">Federated Learning and Interoperability Platform</div>
       <h1>Contribute: Help build FLIP</h1>
@@ -304,12 +302,12 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
           </div>
         </div>
         <div>
-          <p class="figure-placeholder__desc" style="margin-bottom: 0.35em">AI centre team</p>
+          <p class="figure-placeholder__desc" style="margin-bottom: 0.35em">AI Centre team</p>
           <div class="figure-placeholder compact" style="aspect-ratio: 1 / 1; min-height: 0; padding: 0.55em">
             <img
               :src="asset('ai_centre.png')"
               alt="https://www.aicentre.co.uk/about/meet-the-team"
-              title="AI centre team"
+              title="AI Centre team"
               style="display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 6px"
             />
           </div>
