@@ -45,10 +45,8 @@ export const presentations = [
       'data to models, we send the models to be trained where the data is. A fast, informal cut of FLIP — ' +
       'the platform the AI Centre for Value-Based Healthcare runs in production across the NHS and a ' +
       'Thai hospital group — built for a PyData lightning-talk slot: the problem, the one idea, the ' +
-      'architecture in one diagram, real production numbers, and the open-source Python stack underneath ' +
-      'it. Draft — pending final gifs and confirmed talk date.',
+      'architecture in one diagram, real production numbers, and the open-source Python stack underneath it.',
     tags: ['Federated Learning', 'Privacy', 'NHS', 'PyData', 'Lightning Talk', 'FLIP'],
-    unlisted: true,
     deck: () => import('@/decks/PydataLondonFlipLightningDeck.vue')
   }
 ]

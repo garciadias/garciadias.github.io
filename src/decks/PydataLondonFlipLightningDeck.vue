@@ -2,16 +2,17 @@
 import DeckBrand from '@/components/DeckBrand.vue';
 import RevealDeck from '@/components/RevealDeck.vue';
 
-// A 10-slide lightning talk for a PyData London audience. Narrative: imaging
+// An 11-slide lightning talk for a PyData London audience. Narrative: imaging
 // is the largest untapped modality in UK health data (locked in PACS + free
 // text reports) → two things block it at national scale, an infrastructure
-// problem (bespoke federated nodes) and a trust problem (privacy isn't
-// automatic in FL) → the result is one-off pilots, not standing
-// infrastructure → FLIP fixes both, reusable + privacy-preserving + governed.
-// Gif spots are left as dashed placeholders (see .figure-placeholder in
-// RevealDeck.vue); drop a real file at the named path under
-// public/presentations/pydata-london-flip-lightning-2026/ and swap the
-// placeholder <div> for an <img>/<video> once you've picked the gifs.
+// problem (no reusable, standardised way to stand up a federated node) and a
+// trust problem (privacy isn't automatic in FL, per the Gboard attack) → the
+// result is one-off pilots, not standing infrastructure → FLIP fixes both,
+// reusable + privacy-preserving + governed → closes with the team and a call
+// to contribute.
+// asset() resolves paths under this deck's own folder; sharedAsset() resolves
+// paths under public/presentations/ shared across decks (the FLIP
+// architecture diagram, the team headshots).
 const asset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-london-flip-lightning-2026/${name}`
 const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
 </script>
@@ -65,7 +66,7 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
       </aside>
     </section>
 
-    <!-- 2 · Problem one: infrastructure -->
+    <!-- 2 · Problem one: infrastructure (requirements) -->
     <section>
       <div class="eyebrow">Problem one · infrastructure</div>
       <h2>FLIP it! Sending the model to the data</h2>
@@ -90,12 +91,12 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
         </div>
       </div>
       <aside class="notes">
-        (~25s) This is the infrastructure half of the problem — federating isn't hard conceptually,
-        standing up the plumbing at every site, repeatedly, is.
+        (~15s) State the requirement bar first: data never leaves the site, training runs locally.
+        Achievable for one pilot — the harder claim, teased by the last line, is doing it repeatedly.
       </aside>
     </section>
 
-    <!-- 3 · Problem one: infrastructure (cont.) -->
+    <!-- 3 · Problem one: infrastructure (reality + reaction gif) -->
     <section data-transition="fade">
       <div class="eyebrow">Problem one · infrastructure</div>
       <h2>FLIP it! Sending the model to the data</h2>
@@ -127,15 +128,15 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
           </div>
         </div>
         <div class="figure" style="aspect-ratio: 5 / 3">
-          <img
-            :src="asset('no_time.gif')"
-            alt="GIF of the 'ain't nobody got time for that' meme"
+            <img
+              src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExM2R6ODN6OGpieHdpeG5xN3A3c2t6anVpbzMzam1kc2xoYXZ6Ym94OCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/0VxdFBlV73nIWeVSH7/giphy.gif"
+            alt="Rupaul's Drag Race GIF of a contestant saying 'the time has come'"
           />
         </div>
       </div>
       <aside class="notes">
-        (~25s) This is the infrastructure half of the problem — federating isn't hard conceptually,
-        standing up the plumbing at every site, repeatedly, is.
+        (~10s) Fade in the punchline: standing up the plumbing at every site, repeatedly, is the actual
+        infrastructure problem — federating isn't hard conceptually, doing it again and again is.
       </aside>
     </section>
 
@@ -273,7 +274,45 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
       </aside>
     </section>
 
-    <!-- 9 · Thank you -->
+
+    
+    <!-- 9 · The team -->
+    <section>
+      <div class="eyebrow">Building FLIP together</div>
+      <h2>FLIP Team</h2>
+      <div class="cols" style="display: block; width: fit-content; margin: 0 auto">
+        <img
+          :src="sharedAsset('shared/seb_kcl.png')"
+          alt="Professor Sebastien Ourselin, Head of School, School of Biomedical Engineering & Imaging Sciences"
+          style="max-height: 145px"
+        />
+      </div>
+      <div class="cols" style="--n: 2; margin-top: 0.3em; gap: 1.2em; align-items: start">
+        <div>
+          <div class="eyebrow" style="text-align: center; color: #eb2f2d; font-weight: 600; font-size: large;">King's College London</div>
+          <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4em; margin-top: 0.3em">
+            <img :src="sharedAsset('shared/jorge.png')" alt="Dr M. Jorge Cardoso, Group Lead & Reader" style="height: 165px" />
+            <img :src="sharedAsset('shared/alex_kcl.png')" alt="Alexandre Triay Bagur, Senior AI Engineer" style="height: 165px" />
+            <img :src="sharedAsset('shared/rafa_kcl.png')" alt="Rafael Dias, Senior AI Engineer on Foundational Models for Healthcare" style="height: 165px" />
+            <img :src="sharedAsset('shared/virginia_kcl.png')" alt="Virginia Fernandez, Research Associate" style="height: 165px" />
+          </div>
+        </div>
+        <div>
+          <div class="eyebrow" style="text-align: center; color: #005EB8; font-weight: 600; font-size: large;">Guy's and St Thomas' Trust</div>
+          <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4em; margin-top: 0.3em">
+            <img :src="sharedAsset('shared/joe_gstt.png')" alt="Joe Zhang, Head of Data Science" style="height: 165px; border-radius: 8px" />
+            <img :src="sharedAsset('shared/lawrence_gstt.png')" alt="Lawrence Adams, Lead Analytics Engineer" style="height: 165px; border-radius: 8px" />
+            <img :src="sharedAsset('shared/martin_gstt.png')" alt="Martin Chapman, Lead NLP Engineer" style="height: 165px; border-radius: 8px" />
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        (~10s) Credit the team behind FLIP — researchers and engineers across King's and Guy's and St
+        Thomas', working together on both sides of the trust boundary.
+      </aside>
+    </section>
+
+    <!-- 10 · Contribute -->
     <section class="title-slide center">
       <div class="eyebrow">Federated Learning and Interoperability Platform</div>
       <h1>Contribute: Help build FLIP</h1>
