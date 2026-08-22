@@ -48,6 +48,26 @@ export const presentations = [
       'architecture in one diagram, real production numbers, and the open-source Python stack underneath it.',
     tags: ['Federated Learning', 'Privacy', 'NHS', 'PyData', 'Lightning Talk', 'FLIP'],
     deck: () => import('@/decks/PydataLondonFlipLightningDeck.vue')
+  },
+  {
+    id: 'flip-reusable-fl-platform-2026',
+    title: 'FLIP: a reusable, general-purpose open-source FL platform',
+    subtitle: 'From Zero to Hero: Federated AI in Healthcare Systems · St John\'s College, Cambridge',
+    date: '2026',
+    venue: 'Federated AI in Healthcare Systems · Cambridge',
+    cover: `${import.meta.env.BASE_URL}presentations/flip-maturity-pitch-2026/flip-architecture-symmetric.png`,
+    description:
+      'A 25-minute workshop talk on what it takes to turn federated learning from a research project ' +
+      'into standing infrastructure. The argument: the FL frameworks are ready — Flower and NVIDIA FLARE ' +
+      'made the federated core something you can build on — but every collaboration still rebuilds ' +
+      'cohort definition, harmonisation, per-site approval, scheduling and audit by hand. FLIP is that ' +
+      'layer between the hospital and the framework, solved once, open source and Apache 2.0. Covers the ' +
+      'services it decomposes into, the single outbound connection it asks a hospital network for, and ' +
+      'where the guardrails execute — then a demo of a real UK ⇄ Thailand deployment: cohort query, ' +
+      'per-site approval, and a live federated training run.',
+    tags: ['Federated Learning', 'FLIP', 'NHS', 'Open Source', 'Platform', 'Cambridge'],
+    unlisted: true,
+    deck: () => import('@/decks/FlipReusableFlPlatformDeck.vue')
   }
 ]
 
