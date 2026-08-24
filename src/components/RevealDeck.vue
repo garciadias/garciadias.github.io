@@ -13,12 +13,33 @@ const props = defineProps({
 const root = ref(null)
 let deck = null
 
+// Present mode (/?deck=<id>) mounts a deck with no router in the page, so reveal
+// can own the hash there — and it has to, because the speaker view addresses
+// slides by hash. On the /#/presentations/:id route the hash is vue-router's.
+const presentMode = new URLSearchParams(window.location.search).has('deck')
+
 onMounted(async () => {
   await nextTick()
+
+  // Speaker view: press S for a second window carrying the notes, a clock and
+  // the next slide, kept in sync with this one over postMessage — so the deck
+  // can be full-screen on the projector while the notes stay on the laptop, and
+  // either window can advance the talk. reveal 6 inlines the speaker-view markup
+  // and document.write()s it into a popup, so it needs no plugin file on disk and
+  // works as-is through Vite; it does need popups allowed for the origin.
+  //
+  // Loaded only in present mode, for two reasons: on the router-driven route the
+  // speaker view cannot reach the deck (its preview iframes address slides by
+  // hash, which is vue-router's there), so S would open a window that never
+  // connects — and the plugin bundles a markdown parser, which is dead weight on
+  // the route visitors actually land on.
+  const plugins = presentMode ? [(await import('reveal.js/plugin/notes')).default] : []
+
   deck = new Reveal(root.value, {
-    // We run inside a vue-router hash route, so reveal's own hash navigation
-    // would fight with the router — keep it off and drive with the keyboard.
-    hash: false,
+    plugins,
+    // On the router-driven route reveal's own hash navigation would fight with
+    // vue-router, so it stays off there and the deck is driven by the keyboard.
+    hash: presentMode,
     embedded: false,
     controls: true,
     progress: true,

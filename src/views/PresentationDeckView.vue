@@ -61,15 +61,34 @@ function onFullscreenChange() {
   wake()
 }
 
+// Present mode is outside the router (see views/PresentView.vue), so getting
+// there is a real navigation rather than a router push. Same tab, so the browser
+// back button comes straight back here.
+function openPresentMode() {
+  const id = route.params.id
+  if (id) window.location.assign(`${import.meta.env.BASE_URL}?deck=${encodeURIComponent(id)}`)
+}
+
+// Claimed in the capture phase on window, and stopped there. reveal binds its
+// own keys on document, and L is one of them ("navigate right") — so handling
+// the laser on the way up meant every L toggled the laser AND advanced a slide.
+// window's capture phase runs before document's listener, so stopping
+// propagation here keeps these two keys ours alone.
 function onKeydown(e) {
-  // Don't steal typing in inputs; the deck has none, but be safe.
-  if (e.key === 'l' || e.key === 'L') laserOn.value = !laserOn.value
+  const key = e.key.toLowerCase()
+  if (key !== 'l' && key !== 'v') return
+  // Leave browser shortcuts (ctrl/cmd+L etc.) alone.
+  if (e.metaKey || e.ctrlKey || e.altKey) return
+  e.preventDefault()
+  e.stopPropagation()
+  if (key === 'l') laserOn.value = !laserOn.value
+  else openPresentMode()
 }
 
 onMounted(() => {
   window.addEventListener('mousemove', wake)
   window.addEventListener('mousedown', wake)
-  window.addEventListener('keydown', onKeydown)
+  window.addEventListener('keydown', onKeydown, true)
   document.addEventListener('fullscreenchange', onFullscreenChange)
   isFullscreen.value = !!document.fullscreenElement
   wake()
@@ -78,7 +97,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener('mousemove', wake)
   window.removeEventListener('mousedown', wake)
-  window.removeEventListener('keydown', onKeydown)
+  window.removeEventListener('keydown', onKeydown, true)
   document.removeEventListener('fullscreenchange', onFullscreenChange)
   clearTimeout(idleTimer)
   clearTimeout(laserTimer)
@@ -137,6 +156,31 @@ onBeforeUnmount(() => {
           <path d="M12 2v3M12 19v3M2 12h3M19 12h3" />
         </svg>
         Pointer
+      </button>
+
+      <!-- Into present mode: full-screen deck in this window, speaker notes in a
+           second one (S). Deliberately the last chip so Exit and Pointer stay
+           where the muscle memory expects them. -->
+      <button
+        type="button"
+        @click="openPresentMode"
+        class="inline-flex items-center gap-2 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur px-3.5 py-2 text-xs font-medium text-white ring-1 ring-white/20 transition"
+        title="Present with speaker notes (V) — then press S for the notes window"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="w-4 h-4"
+        >
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8M12 17v4" />
+        </svg>
+        Present
       </button>
     </div>
 
