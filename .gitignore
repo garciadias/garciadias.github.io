@@ -5,3 +5,5 @@ dist
 .env.local
 .vscode
 *.log
+.data/
+pi-diff-output.txt

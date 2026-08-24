@@ -20,7 +20,7 @@ const sharedAsset = (name) => `${import.meta.env.BASE_URL}presentations/${name}`
 <template>
   <RevealDeck :options="{ center: true }">
     <template #chrome>
-      <DeckBrand />
+      <DeckBrand :qr="asset('presentation.png')" />
     </template>
 
     <!-- 0 · Title -->

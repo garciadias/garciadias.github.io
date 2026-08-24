@@ -1,7 +1,7 @@
 <script setup>
-import { ref, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import Reveal from 'reveal.js'
 import 'reveal.js/reveal.css'
+import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 
 // A thin Vue wrapper around reveal.js. Slot content must be a sequence of
 // <section> elements (the slides). The deck is initialised on mount and torn
@@ -13,12 +13,33 @@ const props = defineProps({
 const root = ref(null)
 let deck = null
 
+// Present mode (/?deck=<id>) mounts a deck with no router in the page, so reveal
+// can own the hash there — and it has to, because the speaker view addresses
+// slides by hash. On the /#/presentations/:id route the hash is vue-router's.
+const presentMode = new URLSearchParams(window.location.search).has('deck')
+
 onMounted(async () => {
   await nextTick()
+
+  // Speaker view: press S for a second window carrying the notes, a clock and
+  // the next slide, kept in sync with this one over postMessage — so the deck
+  // can be full-screen on the projector while the notes stay on the laptop, and
+  // either window can advance the talk. reveal 6 inlines the speaker-view markup
+  // and document.write()s it into a popup, so it needs no plugin file on disk and
+  // works as-is through Vite; it does need popups allowed for the origin.
+  //
+  // Loaded only in present mode, for two reasons: on the router-driven route the
+  // speaker view cannot reach the deck (its preview iframes address slides by
+  // hash, which is vue-router's there), so S would open a window that never
+  // connects — and the plugin bundles a markdown parser, which is dead weight on
+  // the route visitors actually land on.
+  const plugins = presentMode ? [(await import('reveal.js/plugin/notes')).default] : []
+
   deck = new Reveal(root.value, {
-    // We run inside a vue-router hash route, so reveal's own hash navigation
-    // would fight with the router — keep it off and drive with the keyboard.
-    hash: false,
+    plugins,
+    // On the router-driven route reveal's own hash navigation would fight with
+    // vue-router, so it stays off there and the deck is driven by the keyboard.
+    hash: presentMode,
     embedded: false,
     controls: true,
     progress: true,
@@ -49,15 +70,22 @@ onBeforeUnmount(() => {
 
 <template>
   <div ref="root" class="reveal deck-theme">
-    <div class="slides">
-      <slot />
-    </div>
     <!-- Optional persistent overlay (e.g. branding watermarks): a sibling of
          .slides rather than nested in a section, so it anchors to the stable,
          full-size .reveal box instead of any one slide's own (content-height-
          dependent, center:true-shifted) box. Renders nothing unless a deck
-         fills the slot. -->
+         fills the slot.
+
+         Deliberately placed BEFORE .slides. reveal gives .slides z-index 1 and
+         leaves .backgrounds on auto, so chrome at z-index 1 paints above the
+         backgrounds (beating an opaque background video) while losing the
+         same-z tie-break to .slides, which comes later in DOM order — meaning
+         slide text still paints over the logos. Any higher z-index would put
+         the chrome above the slide content and hide it. -->
     <slot name="chrome" />
+    <div class="slides">
+      <slot />
+    </div>
   </div>
 </template>
 
@@ -97,6 +125,7 @@ html.dark .reveal.deck-theme {
   --grad-b: #8be9fd;
   --title-sub: #f8f8f2;
   --fig-bg: #f8f8f2;
+  --body-veil: rgba(40, 42, 54, 0.82);
   --fig-border: transparent;
   --fig-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   --flip-bg: rgba(139, 233, 253, 0.08);
@@ -109,6 +138,8 @@ html.dark .reveal.deck-theme {
   --fla3-col-bg: rgba(189, 147, 249, 0.08);
   --flip-col-bg: rgba(139, 233, 253, 0.07);
   --code-color: #50fa7b;
+  background:
+    linear-gradient(to bottom, #282A3600 0%, #282a36 100%),
 }
 
 /* LIGHT theme — default for presenting; better for holding attention */
@@ -130,6 +161,7 @@ html:not(.dark) .reveal.deck-theme {
   --grad-b: #0891b2;
   --title-sub: #21222c;
   --fig-bg: #ffffff;
+  --body-veil: rgba(255, 255, 255, 0.85);
   --fig-border: #e2e2ec;
   --fig-shadow: 0 8px 24px rgba(24, 18, 48, 0.12);
   --flip-bg: rgba(8, 145, 178, 0.07);
@@ -142,6 +174,8 @@ html:not(.dark) .reveal.deck-theme {
   --fla3-col-bg: rgba(124, 58, 237, 0.07);
   --flip-col-bg: rgba(8, 145, 178, 0.07);
   --code-color: #b91c1c;
+  background:
+    linear-gradient(to bottom, #DF428B35 0%, #DF428B20 10%, #ffffff00 60%);
 }
 
 .reveal.deck-theme .slides {
@@ -188,11 +222,12 @@ html:not(.dark) .reveal.deck-theme {
 .reveal.deck-theme .orange { color: var(--accent-orange); }
 .reveal.deck-theme .muted { color: var(--comment); }
 .reveal.deck-theme .small { font-size: 0.7em; }
+.reveal.deck-theme .medium { font-size: 0.85em; }
 .reveal.deck-theme .center { text-align: center; }
 
 /* Title slide */
 .reveal.deck-theme .title-slide h1 {
-  font-size: 2.4em;
+  font-size: 2.0em;
   background: linear-gradient(120deg, var(--grad-a), var(--grad-b));
   -webkit-background-clip: text;
   background-clip: text;
@@ -204,13 +239,13 @@ html:not(.dark) .reveal.deck-theme {
   margin-top: 0.2em;
 }
 .reveal.deck-theme .title-slide .byline {
-  margin-top: 1.2em;
+  margin-top: 0.2em;
   color: var(--comment);
   font-size: 0.7em;
 }
 .reveal.deck-theme .title-slide .venue-note {
   display: inline-block;
-  margin-top: 1.4em;
+  margin-top: 0.2em;
   font-family: var(--r-code-font);
   font-size: 0.6em;
   letter-spacing: 0.04em;
@@ -235,6 +270,13 @@ html:not(.dark) .reveal.deck-theme {
   padding: 0.7em 0.9em;
 }
 .reveal.deck-theme .panel h3 { margin-top: 0; }
+/* Compact row: panels that are a supporting inventory rather than the slide's
+   argument — a label, one short line, its pills — so the figure above them can
+   have the vertical space instead. */
+.reveal.deck-theme .cols.compact .panel { padding: 0.45em 0.7em; }
+.reveal.deck-theme .cols.compact .panel h3 { font-size: 0.85em; margin-bottom: 0.1em; }
+.reveal.deck-theme .cols.compact .panel p { margin: 0 0 0.2em; }
+.reveal.deck-theme .cols.compact .panel .pill { margin-top: 0; margin-bottom: 0; }
 .reveal.deck-theme .panel.fla3 { border-top: 3px solid var(--accent); }
 .reveal.deck-theme .panel.flip { border-top: 3px solid var(--accent-cyan); }
 
@@ -250,6 +292,31 @@ html:not(.dark) .reveal.deck-theme {
   font-family: var(--r-code-font);
   margin: 0.15em 0.2em 0.15em 0;
 }
+/* The pill that is us, in a list of other people's work: same shape and size,
+   so it reads as one of the group rather than a ranking, but findable at a
+   glance from the back of the room. Accent border and text rather than an
+   accent fill, which keeps it legible in both themes. */
+.reveal.deck-theme .pill.ours {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+/* A dot marking pills that carry a second, orthogonal fact — on a roll-call of
+   other projects, "someone from this one is in the room". Kept as a ::before
+   marker rather than another colour so it composes with .ours instead of
+   fighting it over the same two properties. .here-dot is the same mark, for
+   naming the convention in a legend line. */
+.reveal.deck-theme .pill.here::before,
+.reveal.deck-theme .here-dot {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  margin-right: 0.4em;
+}
+.reveal.deck-theme .here-dot { width: 0.42em; height: 0.42em; }
 
 /* Tables */
 .reveal.deck-theme table {
@@ -320,6 +387,13 @@ html:not(.dark) .reveal.deck-theme {
   font-weight: 700;
   margin-right: 0.5em;
 }
+.reveal.deck-theme .dotlist { list-style: none; margin-left: 0; }
+.reveal.deck-theme .dotlist li::before {
+  content: '\2022';
+  color: var(--accent);
+  font-weight: 700;
+  margin-right: 0.5em;
+}
 
 /* Compact reference glossary (appendix) — dense multi-column term list, denser
    than content slides on purpose since it is scanned, not presented line-by-line. */
@@ -364,6 +438,94 @@ html:not(.dark) .reveal.deck-theme {
   font-weight: 700;
   font-size: 1.5em;
   line-height: 1;
+}
+
+/* Everything on a slide that isn't the eyebrow or the heading lives in one of
+   these. The persistent DeckBrand logo bar is anchored to the .reveal box, so
+   tall slides can run over it — white logo chips behind body text made both
+   unreadable. A semi-transparent veil in the deck's own background colour keeps
+   the text legible wherever it lands, while still letting the branding show
+   through. Backdrop blur is a progressive enhancement: browsers without it
+   simply get the flat translucent panel, which is already enough. */
+.reveal.deck-theme .slide-body {
+  background: var(--body-veil);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 14px;
+  padding: 0.5em 0.7em;
+  position: relative;
+  z-index: 1;
+}
+/* Centred slides (title/divider) read better without a hard-edged panel, so the
+   veil there is a soft pad rather than a card. */
+.reveal.deck-theme .title-slide .slide-body {
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+}
+/* fit-content + auto margins, NOT inline-block: the veil hugs the text but each
+   child keeps its own line, so a byline and a pill don't end up side by side. */
+.reveal.deck-theme .title-slide .slide-body > * {
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--body-veil);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 12px;
+  padding: 0.15em 0.6em;
+}
+/* .venue-note is already a pill with its own background and padding — leave it
+   alone rather than stacking a second veil behind it. */
+.reveal.deck-theme .title-slide .slide-body > .venue-note {
+  background: var(--req-bg);
+  padding: 0.3em 1em;
+}
+
+/* A slide whose backdrop is a full-bleed video (reveal's own
+   data-background-video layer). The FLIP globe artwork is light, so this slide
+   flips to ink-on-white in BOTH themes rather than inheriting the dark palette —
+   otherwise pale text would sit on a near-white globe. Content rides on a soft
+   card so the dotted globe never eats a letter. */
+/* Poster behind the background video. reveal offers no poster option for
+   data-background-video, and setting data-background-image instead would win the
+   if/else in its background loader and suppress the video entirely — so the
+   still is painted on the background layer underneath, showing through until the
+   video paints, or permanently if the browser blocks autoplay. */
+.reveal.deck-theme .slide-background.video-hero .slide-background-content {
+  background-image: var(--hero-poster);
+  background-size: cover;
+  background-position: center;
+}
+.reveal.deck-theme section.video-hero {
+  --r-main-color: #21222c;
+  --r-heading-color: #1a1b26;
+  --accent: #a21caf;
+  --accent-cyan: #0e7490;
+  --comment: #52525b;
+  --grad-a: #7c3aed;
+  --grad-b: #db2777;
+  --req-bg: rgba(124, 58, 237, 0.12);
+  --line: #cfcde0;
+  --title-sub: #21222c;
+  --body-veil: transparent;
+  color: var(--r-main-color);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  border-radius: 18px;
+  padding: 0.6em 1em 0.8em;
+}
+/* The section is already the card — don't stack a second veil inside it. */
+.reveal.deck-theme section.video-hero .slide-body > * {
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.reveal.deck-theme section.video-hero .slide-body > .venue-note {
+  background: var(--req-bg);
 }
 
 /* Figures from the paper — framed on a light card. In dark mode the card lifts
@@ -474,6 +636,9 @@ html:not(.dark) .reveal.deck-theme {
   padding-left: 2em;
   margin-bottom: 0.4em;
 }
+/* Five-item version of the list: the default gap tips it over the slide box, and
+   losing a third of the gap is cheaper than losing type size. */
+.reveal.deck-theme ol.contribs.tight > li { margin-bottom: 0.22em; }
 .reveal.deck-theme ol.contribs > li::before {
   content: counter(c);
   position: absolute;
@@ -522,7 +687,34 @@ html:not(.dark) .reveal.deck-theme {
   align-items: center;
 }
 .reveal.deck-theme .fig-split .figure { width: 100%; text-align: center; }
+/* .figure img/video are display:block with margin:0, so a picture narrower than
+   its (100%-wide) split column would hug the left edge — text-align can't move
+   a block. Recentre with auto side margins; a picture that fills the column is
+   unaffected. */
+.reveal.deck-theme .fig-split .figure img,
+.reveal.deck-theme .fig-split .figure video { margin-inline: auto; }
 .reveal.deck-theme .fig-split .figure-placeholder { width: 100%; }
+
+/* Rounded portrait chips, the same trick DeckBrand uses for the logo bar: the
+   corners come from a wrapper that clips its contents, not from the picture, so
+   a headshot supplied as a flat card (name and role baked into the PNG, its own
+   background colour and all) rounds off exactly like a bare portrait does.
+   Sizing stays on the img — the chip shrink-wraps whatever it is given. */
+.reveal.deck-theme .photo-chip {
+  display: inline-flex;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.reveal.deck-theme .photo-chip img { display: block; }
+
+/* A centred, wrapping row of those chips — one per organisation on a team slide. */
+.reveal.deck-theme .people {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin-top: 0.3em;
+}
 
 /* Stand-in for a not-yet-sourced image: a dashed frame naming exactly what to
    shoot/screenshot and the filename it will slot into once dropped in place. */
