@@ -55,7 +55,7 @@ export const presentations = [
     subtitle: 'From Zero to Hero: Federated AI in Healthcare Systems · St John\'s College, Cambridge',
     date: '2026',
     venue: 'Federated AI in Healthcare Systems · Cambridge',
-    cover: `${import.meta.env.BASE_URL}presentations/flip-maturity-pitch-2026/flip-architecture-symmetric.png`,
+    cover: `${import.meta.env.BASE_URL}presentations/flip-reusable-fl-platform/intro-globe-poster.jpg`,
     description:
       'A 25-minute workshop talk on what it takes to turn federated learning from a research project ' +
       'into standing infrastructure. The argument: the FL frameworks are ready — Flower and NVIDIA FLARE ' +
@@ -66,7 +66,6 @@ export const presentations = [
       'where the guardrails execute — then a demo of a real UK ⇄ Thailand deployment: cohort query, ' +
       'per-site approval, and a live federated training run.',
     tags: ['Federated Learning', 'FLIP', 'NHS', 'Open Source', 'Platform', 'Cambridge'],
-    unlisted: true,
     deck: () => import('@/decks/FlipReusableFlPlatformDeck.vue')
   }
 ]
