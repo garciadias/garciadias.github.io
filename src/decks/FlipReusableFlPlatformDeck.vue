@@ -647,7 +647,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
                 <h3 style="font-size: 0.78em; margin-bottom: 0.1em">Open it yourself</h3>
                 <p class="small muted" style="margin: 0; font-size: 0.62em">
                   A read-only snapshot of these Ark+ runs, in the real interface.<br>
-                  <code>app.flip.aicentre.co.uk/ark_demo</code>
+                  <code>app.flip.aicentre.co.uk/ark_demo/</code>
                 </p>
               </div>
             </div>
