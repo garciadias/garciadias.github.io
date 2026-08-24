@@ -843,7 +843,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
                 <img :src="sharedAsset('shared/jorge.png')" alt="Dr M. Jorge Cardoso, Group Lead & Reader" style="height: 170px" />
               </div>
               <div class="photo-chip">
-                <img :src="sharedAsset('shared/rafa_kcl.png')" alt="Rafael Dias, Senior AI Engineer on Foundational Models for Healthcare" style="height: 170px" />
+                <img :src="sharedAsset('shared/rafa_kcl.png')" alt="Rafael Garcia-Dias, Senior AI Engineer on Foundational Models for Healthcare" style="height: 170px" />
               </div>
               <div class="photo-chip">
                 <img :src="sharedAsset('shared/alex_kcl.png')" alt="Alexandre Triay Bagur, Senior AI Engineer" style="height: 170px" />

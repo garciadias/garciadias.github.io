@@ -50,21 +50,6 @@ export const presentations = [
     deck: () => import('@/decks/PydataLondonFlipLightningDeck.vue')
   },
   {
-    id: 'flip-maturity-pitch-2026',
-    title: 'FLIP is production infrastructure now',
-    subtitle: 'A year of engineering turned federated learning from a prototype into live clinical infrastructure — running today across the UK and Thailand.',
-    date: 'Jul 2026',
-    venue: 'AMIGO team meeting',
-    cover: `${import.meta.env.BASE_URL}presentations/flip-maturity-pitch-2026/flip-architecture-symmetric.png`,
-    description:
-      'A platform status and roll-out briefing: five slides on the last year of FLIP engineering — from a ' +
-      'single-machine prototype to live NHS and Thai trust nodes — then the shared case for going live, backed ' +
-      'by dated, screenshotted evidence rather than roadmap promises.',
-    tags: ['Federated Learning', 'FLIP', 'NHS', 'Platform', 'Production'],
-    unlisted: true,
-    deck: () => import('@/decks/FlipMaturityPitch2026Deck.vue')
-  },
-  {
     id: 'flip-reusable-fl-platform-2026',
     title: 'FLIP: a reusable, general-purpose open-source FL platform',
     subtitle: 'From Zero to Hero: Federated AI in Healthcare Systems · St John\'s College, Cambridge',
@@ -76,84 +61,12 @@ export const presentations = [
       'into standing infrastructure. The argument: the FL frameworks are ready — Flower and NVIDIA FLARE ' +
       'made the federated core something you can build on — but every collaboration still rebuilds ' +
       'cohort definition, harmonisation, per-site approval, scheduling and audit by hand. FLIP is that ' +
-      'layer between the hospital and the framework, solved once, open source and ' +
-      'Apache 2.0. Centred on a demo of a real UK ⇄ Thailand deployment — cohort query, governance, live ' +
-      'training run — followed by what the deployment measured, what actually broke, and the lessons ' +
-      'that only show up in production.',
+      'layer between the hospital and the framework, solved once, open source and Apache 2.0. Covers the ' +
+      'services it decomposes into, the single outbound connection it asks a hospital network for, and ' +
+      'where the guardrails execute — then a demo of a real UK ⇄ Thailand deployment: cohort query, ' +
+      'per-site approval, and a live federated training run.',
     tags: ['Federated Learning', 'FLIP', 'NHS', 'Open Source', 'Platform', 'Cambridge'],
     deck: () => import('@/decks/FlipReusableFlPlatformDeck.vue')
-  },
-  {
-    id: 'flip-dev-report-2026-jun-jul',
-    title: 'v0.3.0 shipped — one codebase, Kubernetes trusts, foundation-model FL',
-    subtitle: 'FLIP development report · 1 Jun – 14 Jul 2026',
-    date: '14 Jul 2026',
-    venue: 'FLIP development report',
-    cover: `${import.meta.env.BASE_URL}presentations/flip-dev-report-2026-jun-jul/slide-4k.png`,
-    description:
-      'Single-slide development report for 1 Jun – 14 Jul 2026: v0.3.0 shipped with one merged FL codebase ' +
-      '(NVFLARE and Flower in-tree), Kubernetes trust deployment via Helm, and federated foundation-model ' +
-      'fine-tuning of the Ark+ chest X-ray model — 105 PRs merged, 247k lines changed, 5 epics closed.',
-    tags: ['FLIP', 'v0.3.0', 'Kubernetes', 'Foundation Models', 'Report'],
-    unlisted: true,
-    deck: () => import('@/decks/FlipReportJunJul2026Deck.vue')
-  },
-  {
-    id: 'miccai-decaf-2026-results',
-    title: 'Making Cross-Continental Federated Learning Repeatable with FLIP',
-    subtitle: 'A multi-application study — federated fine-tuning & evaluation of a chest X-ray foundation model, UK ⇄ Thailand.',
-    date: '28 Jul 2026',
-    venue: 'AMIGO team meeting',
-    cover: `${import.meta.env.BASE_URL}presentations/miccai-decaf-2026-results/flip-architecture-diagram.png`,
-    description:
-      'Results talk for the MICCAI 2026 / DECAF workshop submission (anonymised, under review): a ' +
-      'multi-application study testing whether FLIP — reusable federated-learning infrastructure — holds up ' +
-      'outside the NHS, exercising two distinct FL applications on real UK ⇄ Thailand sites.',
-    tags: ['Federated Learning', 'Chest X-ray', 'Foundation Models', 'FLIP', 'MICCAI 2026', 'Results'],
-    unlisted: true,
-    deck: () => import('@/decks/MiccaiDecaf2026ResultsDeck.vue')
-  },
-  // The Boehringer interview deck lives in .data/ (gitignored) so it never
-  // publishes to the public site. Its registry entry is parked here rather than
-  // deleted: re-enable it only alongside a deck file that is safe to publish.
-  //   To view it locally without committing it:
-  //     ln -s ../../.data/BoehringerSeniorMLEngineerDeck.vue src/decks/
-  //     echo 'src/decks/BoehringerSeniorMLEngineerDeck.vue' >> .gitignore
-  //   then uncomment the block below.
-  // {
-  //   id: 'boehringer-senior-ml-engineer-2026',
-  //   title: 'From Research Prototype to Production: Multimodal Foundation Models for Drug Discovery',
-  //   subtitle: 'Senior ML Engineer · AI Accelerator · Boehringer Ingelheim',
-  //   date: 'Aug 2026',
-  //   venue: 'Interview presentation',
-  //   description:
-  //     'Interview presentation: taking a dual-encoder EHR + proteomics transformer from a research notebook ' +
-  //     'to a production-grade, scalable, fine-tunable foundation model for drug discovery — without breaking ' +
-  //     'the biology.',
-  //   tags: ['Foundation Models', 'Drug Discovery', 'Multimodal', 'ML Engineering'],
-  //   unlisted: true,
-  //   deck: () => import('@/decks/BoehringerSeniorMLEngineerDeck.vue')
-  // },
-  // The Boehringer MLOps interview deck lives in .data/ (gitignored) so it never
-  // publishes to the public site. Its registry entry is parked here rather than
-  // deleted: re-enable it only alongside a deck file that is safe to publish.
-  //   To view it locally without committing it:
-  //     ln -s ../../.data/boehringer-mlops-engineer-2026/BoehringerSeniorMLOpsEngineerDeck.vue src/decks/
-  //     echo 'src/decks/BoehringerSeniorMLOpsEngineerDeck.vue' >> .gitignore
-  //   then uncomment the block below.
-  {
-    id: 'boehringer-senior-mlops-engineer-2026',
-    title: 'Operationalising Foundation Models for Drug Discovery',
-    subtitle: 'Senior MLOps Engineer · AI Enablement · Boehringer Ingelheim',
-    date: '2026',
-    venue: 'Interview presentation',
-    description:
-      'Interview presentation: an end-to-end MLOps operating model for training, serving and governing ' +
-      'multimodal foundation models and their downstream fine-tuned models — lineage, reproducibility, ' +
-      'compute cost, monitoring, handover and lifecycle.',
-    tags: ['MLOps', 'Foundation Models', 'Drug Discovery', 'Lineage'],
-    unlisted: true,
-    deck: () => import('@/decks/BoehringerSeniorMLOpsEngineerDeck.vue')
   }
 ]
 
