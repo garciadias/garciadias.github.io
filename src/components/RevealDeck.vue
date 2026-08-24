@@ -271,6 +271,31 @@ html:not(.dark) .reveal.deck-theme {
   font-family: var(--r-code-font);
   margin: 0.15em 0.2em 0.15em 0;
 }
+/* The pill that is us, in a list of other people's work: same shape and size,
+   so it reads as one of the group rather than a ranking, but findable at a
+   glance from the back of the room. Accent border and text rather than an
+   accent fill, which keeps it legible in both themes. */
+.reveal.deck-theme .pill.ours {
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+/* A dot marking pills that carry a second, orthogonal fact — on a roll-call of
+   other projects, "someone from this one is in the room". Kept as a ::before
+   marker rather than another colour so it composes with .ours instead of
+   fighting it over the same two properties. .here-dot is the same mark, for
+   naming the convention in a legend line. */
+.reveal.deck-theme .pill.here::before,
+.reveal.deck-theme .here-dot {
+  content: '';
+  display: inline-block;
+  width: 0.5em;
+  height: 0.5em;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  margin-right: 0.4em;
+}
+.reveal.deck-theme .here-dot { width: 0.42em; height: 0.42em; }
 
 /* Tables */
 .reveal.deck-theme table {
@@ -648,6 +673,27 @@ html:not(.dark) .reveal.deck-theme {
 .reveal.deck-theme .fig-split .figure img,
 .reveal.deck-theme .fig-split .figure video { margin-inline: auto; }
 .reveal.deck-theme .fig-split .figure-placeholder { width: 100%; }
+
+/* Rounded portrait chips, the same trick DeckBrand uses for the logo bar: the
+   corners come from a wrapper that clips its contents, not from the picture, so
+   a headshot supplied as a flat card (name and role baked into the PNG, its own
+   background colour and all) rounds off exactly like a bare portrait does.
+   Sizing stays on the img — the chip shrink-wraps whatever it is given. */
+.reveal.deck-theme .photo-chip {
+  display: inline-flex;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.reveal.deck-theme .photo-chip img { display: block; }
+
+/* A centred, wrapping row of those chips — one per organisation on a team slide. */
+.reveal.deck-theme .people {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin-top: 0.3em;
+}
 
 /* Stand-in for a not-yet-sourced image: a dashed frame naming exactly what to
    shoot/screenshot and the filename it will slot into once dropped in place. */

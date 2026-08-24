@@ -8,7 +8,7 @@ import RevealDeck from '@/components/RevealDeck.vue';
 // rather than algorithm-first.
 //
 // Narrative, in four movements (slide numbers in the comments below match the
-// order of the sections in this file, 0-19):
+// order of the sections in this file, 0-20):
 //   0-3   the problem: the data exists, cannot move, and its diversity is the
 //         point → Flower and NVIDIA FLARE solved the federated core, so what is
 //         left unsolved is the layer between a hospital and the framework.
@@ -19,7 +19,8 @@ import RevealDeck from '@/components/RevealDeck.vue';
 //         this specifically, so it sits at the centre of the talk, ~7 min) —
 //         the four researcher steps, per-site approval, a live run, then two
 //         recorded walkthroughs on unrelated workloads.
-//   18-19 the team, and the close.
+//   18-20 what's next: the platforms other groups are building and the offer to
+//         converge with them, the team, and the close.
 //
 // deckAsset()  → this deck's own folder: bridge artwork, the intro globe, the
 //                UI recordings, the two demo-video QR codes.
@@ -62,26 +63,24 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
       <div class="eyebrow">From Zero to Hero: Federated AI in Healthcare Systems · St John's College, Cambridge</div>
       <h1>FLIP: a reusable, general-purpose open-source FL platform</h1>
       <div class="slide-body">
+        <p class="subtitle">
+          Federated Learning & Interoperability Platform
+        </p>
         <p class="byline">
           Rafael Garcia-Dias
         </p>
         <p class="venue-note">github.com/londonaicentre/FLIP · Apache 2.0</p>
       </div>
       <aside class="notes">
-        (~45s) Open with the thesis, not the CV. Most FL talks are about algorithms; this one is about
-        the boring 90% that decides whether an FL collaboration happens at all. FLIP is our answer:
-        one platform, installed once per site, reused across projects — open source, Apache 2.0.
-        Everything in this talk is backed by a running deployment and dated screenshots, not a roadmap.
-        Say up front there is a live demo in the middle, so the room knows to stay awake for it.
-        The globe loops for ~7s — let it run while you open, it earns its keep as the room settles.
+        (~15s) (at 0:00) 
       </aside>
     </section>
 
     <!-- 1 · Roadmap. Four beats, so the room knows the demo is coming and can
          hold its questions until the end. -->
     <section>
-      <div class="eyebrow">What you'll get in the next 25 minutes</div>
-      <h2>FLIP — Federated Learning Interoperability Platform</h2>
+      <div class="eyebrow">FLIP: Federated Learning Interoperability Platform</div>
+      <h2>What you'll get in the next ~20 minutes</h2>
       <div class="slide-body medium">
         <ol class="contribs">
           <li><strong>The gap</strong> Why are the FL frameworks ready, but not yet mainstream in hospitals?</li>
@@ -91,9 +90,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </ol>
       </div>
       <aside class="notes">
-        (~45s) Set expectations explicitly, especially the last line: this audience will hear plenty of
-        algorithm talks over two days. Position this one as the deployment counterweight. Signpost that
-        the demo is roughly the middle third of the talk.
+        (~45s) (at 0:15)
       </aside>
     </section>
 
@@ -126,32 +123,15 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~45s) Lead with scale, not scarcity: this is not a small-data problem, it is a huge,
-        already-labelled dataset nobody can train on yet — the chart is England alone, ~47M imaging
-        procedures a year and climbing. Then turn to why it is unreachable: healthcare data is siloed
-        by design, for good reasons. The third bullet is the one worth landing for a clinical
-        audience — this isn't only about volume, it's about generalisation across scanners,
-        protocols and populations.
+        (~45s) (at 1:00) Why FLIP focus on imaging?
       </aside>
     </section>
 
-    <!-- 3 · The problem, 2 of 2 — the thesis slide, and the load-bearing one.
-         Framed as "the frameworks solved their half, and solved it well; this is
-         the half nobody owns yet". Flower Labs sponsors this event and has
-         committed code to FLIP, so the argument builds on the FL stacks rather
-         than positioning FLIP against them. The pills here are the agenda for
-         slides 6-11, and the two piers set up the two backends named on 6. -->
+    <!-- 3 · The problem, 2 of 2  -->
     <section>
       <div class="eyebrow">The problem · 2 of 2 · the thesis of this talk</div>
-      <h2>On the shoulders of giants</h2>
+      <h2>On the shoulders of giants; Connecting institutions.</h2>
       <div class="slide-body">
-        <!-- align-items: start keeps the two columns independent: the text sets its own
-             height and stays anchored under the heading instead of being pushed down to
-             the vertical centre of whatever the (taller) figure column happens to be.
-             flip_bridge.png is 992×1074 and nearly square, so it is wide enough to force
-             the grid columns open on its own — min-width: 0 lets the cell shrink, and the
-             image is capped in both axes so the ratio below is what actually decides the
-             split. -->
         <div class="fig-split" style="--cols: 1.65fr 1fr; margin-top: 0; align-items: start">
           <div>
             <div class="panel flip">
@@ -184,20 +164,11 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~1 min) The load-bearing slide of the talk — and the one where tone matters most, with
-        Flower in the room as a sponsor. Walk the drawing: the two piers are Flower and NVIDIA
-        FLARE, and everything above them only stands because they are there. We depend on both,
-        and Flower Labs engineers have committed code to FLIP. The gap this talk is about is the
-        deck of the bridge — from a hospital's own PACS, EHR and governance office out to the FL
-        network. It isn't anyone's research contribution, so it gets rebuilt by hand every time.
-        Admit we were guilty of it too: the first version of FLIP was project-shaped. The pivot
-        was deciding the platform outlives the project.
+        (~1 min) (at 1:45) Why FLIP exists?
       </aside>
     </section>
 
-    <!-- 4 · Architecture, 1 of 2 — the symmetric picture plus the four
-         properties a site cares about. Deliberately shares its heading with the
-         next slide: same claim, then the same claim in detail. -->
+    <!-- 4 · Architecture, 1 of 2  -->
     <section>
       <div class="eyebrow">The platform · how it physically works</div>
       <h2>One Central Hub, one Trust Node per site</h2>
@@ -219,18 +190,11 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~1 min) Walk the diagram right to left for a clinical audience: PACS and the EHR are systems
-        they already know; the enclave is the bit their IT department already runs; FLIP is the thin
-        layer that makes those two things addressable by a researcher who will never log in. The
-        outbound-only point is the single most effective thing to say to a hospital network team —
-        approving one outbound HTTPS connection is a categorically easier conversation than an
-        inbound rule.
+        (~1 min) (at 2:45) Central hub and Nodes
       </aside>
     </section>
 
-    <!-- 5 · Architecture, 2 of 2 — the full component diagram, given the whole
-         slide. Same eyebrow, heading and notes as slide 4 on purpose; if only
-         one of the two survives a timing cut, either works alone. -->
+    <!-- 5 · Architecture, 2 of 2  -->
     <section>
       <div class="eyebrow">The platform · how it physically works</div>
       <h2>One Central Hub, one Trust Node per site</h2>
@@ -244,19 +208,11 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~1 min) Walk the diagram right to left for a clinical audience: PACS and the EHR are systems
-        they already know; the enclave is the bit their IT department already runs; FLIP is the thin
-        layer that makes those two things addressable by a researcher who will never log in. The
-        outbound-only point is the single most effective thing to say to a hospital network team —
-        approving one outbound HTTPS connection is a categorically easier conversation than an
-        inbound rule.
+        (~3 min) (at 3:45) UI, CH, Trust, APIs, FL clients and servers
       </aside>
     </section>
 
-    <!-- 6 · Microservice inventory. Every name here is the real Compose service
-         key from the FLIP monorepo, so anyone who clones the repo reads the same
-         words. The two "only" claims are the point of the slide: one service
-         reaches the OMOP database, one reaches the imaging archive. -->
+    <!-- 6 · Microservice inventory. -->
     <section>
       <div class="eyebrow">The platform · what the boxes on that diagram actually are</div>
       <h2>Small services, one job each</h2>
@@ -300,19 +256,46 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~45s) The point of this slide is that the architecture diagram is not aspirational — these
-        are the container names. Land the two "only" claims: exactly one service can reach the OMOP
-        database and exactly one can reach the imaging archive, which is what makes the trust-side
-        attack surface reviewable by a hospital security team in an afternoon. The per-net pair is
-        the detail people miss: FL servers are not a single shared bottleneck, they are provisioned
-        per network. If time is short, read the four panels and move on.
+        (~15s) (at 6:45) For people to see offline, don't explain much
       </aside>
     </section>
 
-    <!-- 7 · The outbound-only mechanism, with the constants taken from the code
-         (POLL_INTERVAL_SECONDS = 5, HEARTBEAT_TIMEOUT_SECONDS = 30, six TaskType
-         values). This is the slide that answers "what did you open on our
-         network?" with a number. -->
+    <!-- 9 · Deployment modes — three objections (how, what hardware, what network) answered before anyone raises them. -->
+    <section>
+      <div class="eyebrow">The platform · will it fit our stack?</div>
+      <h2>Low-barrier deployment on Trust Nodes</h2>
+      <div class="slide-body">
+        <div class="cols" style="--n: 3">
+          <div class="panel">
+            <h3>Deploy how you already operate</h3>
+            <p class="small">
+              Microservices deployable via <strong>Docker Compose</strong>, a <strong>Kubernetes</strong>
+              Helm chart, or <strong>cloud</strong> infrastructure-as-code. A site picks the one its IT team already runs.
+            </p>
+          </div>
+          <div class="panel">
+            <h3>Simple hardware requirements</h3>
+            <p class="small">
+              Minimum to join: a <strong>consumer-grade GPU</strong>, <strong>16&nbsp;GB</strong> RAM,
+              <strong>1&nbsp;TB</strong> storage beyond patient data. No datacentre purchase required
+              before the first project.
+            </p>
+          </div>
+          <div class="panel flip">
+            <h3>Network security teams say yes</h3>
+            <p class="small">
+              <strong>No ingress connections</strong> to the Trust, ever. All communication is outbound
+              and encrypted, compatible with strict hospital network policies.
+            </p>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        (~1min) (at 7:00) How easy is to deploy a new node?
+      </aside>
+    </section>
+
+    <!-- 7 · The outbound-only mechanism -->
     <section>
       <div class="eyebrow">The platform · what we asked the network team for</div>
       <h2>Simple and secure design</h2>
@@ -334,7 +317,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
           </div>
           <div class="panel center">
             <div class="stat" style="font-size: 1.5em">6</div>
-            <div class="stat-label">API verbs — the hub's entire request vocabulary</div>
+            <div class="stat-label">API verbs; the hub's entire request vocabulary</div>
           </div>
         </div>
         <div class="fig-split" style="--cols: 1.25fr 0.8fr; margin-top: 0.5em; align-items: center">
@@ -353,18 +336,11 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~1 min) This is the slide to have ready for anyone from an IT or infosec team, and the
-        numbers are the whole argument: nothing to open, a five-second poll outbound over HTTPS, and
-        a command vocabulary short enough to print. Say the last bullet plainly — the hub cannot
-        reach in, so "unplugging" is not an escalation, it is the site stopping its own poller. The
-        six verbs are worth reading out: notice how much of what people fear a platform can do is
-        simply not expressible.
+        (~1 min) (at 8:00) Simplify it for IT and Trust security teams
       </aside>
     </section>
 
-    <!-- 8 · Where the guardrails physically execute. The asymmetry is deliberate
-         and is the interesting engineering claim: the hub's copy of the query
-         validator is convenience, the trust's copy is the control. -->
+    <!-- 8 · Where the guardrails physically execute. -->
     <section>
       <div class="eyebrow">The platform · governance encoded, not promised</div>
       <h2>Every guardrail runs on the trust's side of the wire</h2>
@@ -398,58 +374,11 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~1 min) The engineering claim worth landing: the hub and the trust both validate cohort
-        queries, and that duplication is deliberate rather than sloppy — the hub's version exists so
-        a typo fails in the researcher's hand instead of after a fan-out, while the trust's version
-        is the one that is actually load-bearing. The suppression detail in panel two is the one
-        governance leads react to: a shared refusal string means a researcher cannot use repeated
-        small queries to infer a count. If asked about signature-based AV: structural scanning is in
-        place today, signature scanning is tracked separately.
+        (~1 min) (at 9:00) More security guarantees
       </aside>
     </section>
 
-    <!-- 9 · Deployment modes — three objections (how, what hardware, what
-         network) answered before anyone raises them. -->
-    <section>
-      <div class="eyebrow">The platform · will it fit our stack?</div>
-      <h2>Low-barrier deployment on Trust Nodes</h2>
-      <div class="slide-body">
-        <div class="cols" style="--n: 3">
-          <div class="panel">
-            <h3>Deploy how you already operate</h3>
-            <p class="small">
-              Microservices deployable via <strong>Docker Compose</strong>, a <strong>Kubernetes</strong>
-              Helm chart, or <strong>cloud</strong> infrastructure-as-code. A site picks the one its IT team already runs.
-            </p>
-          </div>
-          <div class="panel">
-            <h3>Simple hardware requirements</h3>
-            <p class="small">
-              Minimum to join: a <strong>consumer-grade GPU</strong>, <strong>16&nbsp;GB</strong> RAM,
-              <strong>1&nbsp;TB</strong> storage beyond patient data. No datacentre purchase required
-              before the first project.
-            </p>
-          </div>
-          <div class="panel flip">
-            <h3>Network security teams say yes</h3>
-            <p class="small">
-              <strong>No ingress connections</strong> to the Trust, ever. All communication is outbound
-              and encrypted, compatible with strict hospital network policies.
-            </p>
-          </div>
-        </div>
-      </div>
-      <aside class="notes">
-        (~45s) This slide exists to kill three objections before they're raised. The hardware one is
-        the surprise for most people: the entire UK–Thailand validation ran on single workstations
-        with one consumer GPU each. Production workloads want more, but the entry ticket is not a
-        cluster — it's a machine a research group already has under a desk.
-      </aside>
-    </section>
-
-    <!-- 10 · Governance as architecture rather than paperwork: the per-site
-         veto, the two legal regimes it has already passed, and the guardrails
-         that make the veto structural. -->
+    <!-- 10 · Governance as architecture -->
     <section>
       <div class="eyebrow">The platform · governance is architecture, not paperwork</div>
       <h2>Every site keeps its own veto, on every project</h2>
@@ -481,11 +410,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~1 min) The point to land: governance that lives in a signed PDF gets renegotiated every
-        project; governance encoded in the platform is enforced by default. The Thailand example is
-        the strongest evidence that the model travels — a completely different legal regime, reviewed
-        by a third party we had no relationship with, and the answer was still "the node is
-        acceptable" because the guarantees are structural.
+        (~1 min) (at 10:00) Governance is architecture.
       </aside>
     </section>
 
@@ -544,12 +469,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~45s) Two ideas, one slide. First, the job type is the modularity boundary: the server
-        side is fixed per job type, the researcher writes only the client-side app, so a new
-        workflow deploys as a bundle + job type with no platform reconfiguration. Second, that
-        boundary is not theoretical — the shipped tutorials already span classification,
-        segmentation, evaluation and synthesis, each on one or both backends, which is the
-        evidence that one contract adapts to functionally unrelated workflows.
+        (~45s) (at 11:00) Focus on the researcher's view. The platform needs to be easy to use.
       </aside>
     </section>
 
@@ -565,14 +485,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         <p class="venue-note">Cohort query → governance → training run → results</p>
       </div>
       <aside class="notes">
-        (~20s) Deliberate gear change. Everything before this was argument; everything after is the
-        product on screen. If running live, this is the moment to switch to the browser — say out loud
-        that the screenshots in the deck are the fallback and are from the same system on dated runs.
-        DEMO RUN-SHEET (target ~7 min): 1) sign in to the Central Hub; 2) show the two live sites;
-        3) run the cohort query and show the per-site aggregate counts; 4) show the approval/DAC
-        screen; 5) upload or open an existing app; 6) show the live training feed and loss curves;
-        7) show the finished run's provenance record. If the network is unreliable, drive the same
-        seven beats from the screenshots and the recorded videos that follow.
+        (~5s) (at 11:45)
       </aside>
     </section>
 
@@ -582,6 +495,9 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
       <div class="eyebrow">The demo · the deployment behind it</div>
       <h2>Cross-continental deployment</h2>
       <div class="center">
+        <p class="small">
+          KCL and BDMS (Bangkok Dusit Medical Services)
+        </p>
         <div class="figure center" style="width: 80%">
             <img
               :src="asset('flip-architecture-uk-thailand.png')"
@@ -597,11 +513,8 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~45s) Why this pairing is the interesting test and not just a nice map: it deliberately
-        crosses every axis at once — jurisdiction, sector (public/private), language, network estate,
-        and hardware. If the platform abstraction leaked anywhere, it would leak here. Note for
-        honesty: this particular study ran on synthetic imaging cohorts. There is no limitations slide
-        any more, so say it here rather than being caught by it in Q&amp;A.
+        (~45s) (at 11:50) BDMS example. 
+
       </aside>
     </section>
 
@@ -644,7 +557,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </p>
       </div>
       <aside class="notes">
-        (~45s) This is the map for the demo slides that follow — say it once, then let the screenshots do the
+        (~45s) (at 12:35) This is the map for the demo slides that follow — say it once, then let the screenshots do the
         work. The closing line is the one clinicians and IT directors both care about, from opposite
         directions: no external researcher ever gets a shell on a hospital machine.
       </aside>
@@ -657,7 +570,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
       <h2>The approval step, in the product</h2>
       <div class="slide-body">
         <div class="fig-split" style="--cols: 1fr 1.1fr">
-          <ul class="checklist small">
+          <ul class="dotlist small">
             <li>The project stays <strong>"Awaiting Approval"</strong> until every named trust decides. Nothing executes locally before that.</li>
             <li>Approval is a <strong>per-trust toggle</strong>, saved explicitly by that site's administrator. One site's switch says nothing about another's.</li>
             <li>Only on approval does FLIP resolve the cohort to DICOM series and cache images from PACS into the site's own XNAT.</li>
@@ -674,12 +587,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~45s) This slide is where a clinical/governance audience leans in — it's the one screen that
-        turns "we promise you keep control" into something they can see. Let the animation loop while
-        you talk; the beat that matters is the Trust Approval toggle flipping for one named trust and
-        nothing else. If the live demo is running, show the real screen instead.
-        Worth saying: approval is also the trigger for image movement — before it, no DICOM has been
-        touched. That ordering is the reassurance, not the approval button itself.
+        (~45s) (at 13:20) 
       </aside>
     </section>
 
@@ -692,14 +600,16 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         <!-- Rebalanced now the right column carries the QR as well as the figure:
              a wider text column wraps into fewer lines, which is what pays for the
              QR panel's height. -->
-        <div class="fig-split" style="--cols: 1.15fr 1.35fr; align-items: center">
-          <ul class="checklist small">
-            <li>Upload the app bundle, or pick one of the ready-made tutorials.</li>
-            <li>Test the setup in a local simulation.</li>
-            <li>FLIP schedules the job across every approved site and starts the rounds.</li>
-            <li>Live activity feed plus per-site training-loss curves. The researcher watches both ends of the federation from one screen.</li>
-            <li>Everything is retained: cohort SQL, site responses, app files, weights, per-round metrics, approvals and logs.</li>
-          </ul>
+        <div class="fig-split" style="--cols: 1.05fr 1.3fr; align-items: center">
+          <div class="contribs small">
+            <ul class="dotlist">
+              <li>Upload the app bundle, or pick one of the ready-made tutorials.</li>
+              <li>Test the setup in a local simulation.</li>
+              <li>FLIP schedules the job across every approved site and starts the rounds.</li>
+              <li>Live activity feed plus per-site training-loss curves. The researcher watches both ends of the federation from one screen.</li>
+              <li>Everything is retained: cohort SQL, site responses, app files, weights, per-round metrics, approvals and logs.</li>
+            </ul>
+          </div>
           <!-- Figure and QR share the right-hand grid cell: .fig-split is a
                two-column grid, so a third child would drop the screenshot onto a
                second row. The QR resolves to a read-only snapshot of these same
@@ -731,10 +641,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </div>
       </div>
       <aside class="notes">
-        (~1 min) Point at the two loss curves and note they belong to machines 9,000 km apart. The
-        provenance bullet is the sleeper feature for anyone who has tried to reconstruct what a
-        federated experiment actually did six months later — the deployed run keeps the full record,
-        which is a different and arguably more useful kind of reproducibility than a released script.
+        (~1 min) (at 14:05) 
       </aside>
     </section>
 
@@ -795,62 +702,186 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         </p>
       </div>
       <aside class="notes">
-        (~1 min) The reuse claim made concrete: 3D organ segmentation shares no application code with
-        2D classification, and neither required a platform change. The spleen clip is filmed from the
-        site administrator's side rather than the researcher's, which shows the governance half of the
-        workflow. If time is tight, play neither and point at the QR codes — the room can watch both
-        later, and the job-types slide has already made the point.
+        (~1 min) (at 15:05) 
       </aside>
     </section>
 
-    <!-- 18 · The team — engineering, clinical and governance people in one
+    <!-- 18 · The wider ecosystem, opening the "what's next" movement promised on
+         slide 1. Deliberately a roll-call and not the capability matrix it was
+         drawn from: the point is that these exist and were built for different
+         jobs, so a per-platform scorecard would invite exactly the line-by-line
+         argument this slide is trying to avoid. Grouped four ways, which is the
+         only claim being made about them. Three columns rather than four —
+         peer-to-peer (2 names) and analytics (3) stack into the middle one, so
+         the widest group (the engines, 8) gets a column to wrap in and the
+         panels come out roughly level. One short line per group and nothing more:
+         at a third of the slide's width, a sentence of any length wraps to four
+         or five lines and the panels grow to pay for it. The FLIP pill is marked
+         .ours so the room can find us in the list without the slide having to
+         rank anything.
+
+         The .here dots are the cooperation argument, and every one was checked
+         against this workshop's own programme (FromZeroToHero_programme_v4.pdf)
+         and the platforms' papers:
+           Flower    — Nicholas Lane (co-founder/CSO, chairs panel 2) and Javier
+                       Fernandez-Marques (Flower SuperGrid demo, tutorial 2);
+                       Flower Labs is also the exclusive sponsor.
+           PharosAI  — Gregory Verghese (co-founder/CTO, chairs panel 1), Concetta
+                       Piazzese and Bangxiang Guan (talks), Olaoluwa Ademolu (on
+                       panel 2 with us). KCL + QMUL + GSTT + Barts, so partly the
+                       same institutions as the team slide. Not in the comparison
+                       table this slide was drawn from — it belongs there.
+           FLA³      — Fan Zhang (lead organiser, first author) and Michael Roberts
+                       (BloodCounts! lead); arXiv 2603.10063 also lists Kreuter,
+                       Fernandez-Marques, Verghese, Lane and Schönlieb, which is
+                       seven of the nine organisers.
+           vantage6  — André Dekker (keynote 1) leads Clinical Data Science
+                       Maastricht, which co-developed vantage6 and originated the
+                       Personal Health Train concept behind it.
+         Carsten Maple, Mark Durkee, John Smith, Shiqiang Wang, Bing Luo and Huw
+         Day work on federated security, government pilots and FL research rather
+         than a named platform, so they are deliberately not dotted. -->
+    <section>
+      <div class="eyebrow">What's next · the wider ecosystem</div>
+      <h2>An ecosystem, not a race</h2>
+      <div class="slide-body">
+        <p class="small">
+          FLIP is one of many federated learning platforms. Each was built for a different purpose, and each has its own
+          strengths. The point is not to compare them, but to show that the ecosystem is rich and that agreeing on
+          interfaces is cheaper than rebuilding platforms.
+        </p>
+        <div class="cols compact" style="--n: 3; gap: 0.8em; align-items: start">
+          <div class="panel flip">
+            <h3>Deployed platforms</h3>
+            <p class="small muted">End to end, inside hospital estates. Our closest neighbours.</p>
+            <div>
+              <span class="pill ours here">FLIP</span><span class="pill here">PharosAI</span
+              ><span class="pill here">FLA<sup>3</sup></span><span class="pill">CODA</span
+              ><span class="pill">FeatureCloud</span><span class="pill">JIP / Kaapana</span
+              ><span class="pill">MedPerf</span>
+            </div>
+          </div>
+          <div>
+            <div class="panel">
+              <h3>Federated analytics</h3>
+              <p class="small muted">Statistics across sites, no imaging path.</p>
+              <div>
+                <span class="pill here">vantage6</span><span class="pill">TrainTracks</span
+                ><span class="pill">DataSHIELD</span>
+              </div>
+            </div>
+            <div class="panel" style="margin-top: 0.55em">
+              <h3>Peer-to-peer</h3>
+              <p class="small muted">No central coordinator. The one thing FLIP does not do.</p>
+              <div>
+                <span class="pill">Swarm Learning</span><span class="pill">Fedstellar</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>FL engines</h3>
+            <p class="small muted">The training core. FLIP runs on two of these and competes with none.</p>
+            <div>
+              <span class="pill here">Flower</span><span class="pill">NVIDIA FLARE</span
+              ><span class="pill">OpenFL</span><span class="pill">Fed-BioMed</span
+              ><span class="pill">Substra</span><span class="pill">FEDn</span
+              ><span class="pill">FATE</span><span class="pill">FedML</span>
+            </div>
+          </div>
+        </div>
+        <p class="small muted" style="margin-top: 0.5em">
+          <span class="here-dot"></span>someone building it is in this room this week
+        </p>
+      </div>
+      <aside class="notes">
+        (~1 min) (at 16:05) Generous tone, and no scorecard: read the room's own work back to it — four
+        different jobs, not four attempts at the same one. Concede the peer-to-peer column
+        outright: FLIP has a central hub and always will, so that group is solving something we
+        are not. Concede the analytics column's governance maturity too.
+
+        Then work the dots, because they are the whole point of the slide and they are all in the
+        room: Flower — Nic Lane, chairing our own panel, and Javier Fernandez-Marques, who demos
+        SuperGrid and runs tutorial 2. PharosAI — Gregory Verghese chairing panel 1, plus Concetta
+        Piazzese, Bangxiang Guan, and Olaoluwa Ademolu sitting on panel 2 next to me; and it is
+        KCL, Guy's and Barts, so partly the same institutions as our own team slide. FLA³ — Fan
+        Zhang and Michael Roberts, who organised this workshop. vantage6 — André Dekker's
+        department co-developed it, and this morning's keynote is his.
+
+        The strongest single fact, worth saying out loud: seven of the nine people who organised
+        this workshop are co-authors on FLA³, one of the platforms on this slide — Flower Labs and
+        PharosAI among them. Nobody in this field is actually competing; we just have not agreed
+        the seams yet. That is the invitation.
+
+        If asked for the detailed comparison, say it is written up as a capability matrix per
+        layer and offer it afterwards rather than putting it on screen.
+      </aside>
+    </section>
+
+    <!-- 19 · The team — engineering, clinical and governance people in one
          group, which is itself part of why the deployment happened. -->
     <section>
       <div class="eyebrow">Building FLIP together</div>
-      <h2>Our team</h2>
+      <h2>FLIP team</h2>
       <div class="slide-body">
-        <div class="cols" style="display: block; width: fit-content; margin: 0 auto">
-          <img
-            :src="sharedAsset('shared/seb_kcl.png')"
-            alt="Professor Sébastien Ourselin, Head of School, School of Biomedical Engineering & Imaging Sciences"
-            style="max-height: 165px"
-          />
+        <!-- Every headshot sits in a .photo-chip, which is what rounds its corners:
+             these PNGs are flat cards with the name, role and a background colour
+             baked in, so the softening has to be clipped on by the wrapper. -->
+        <div class="people" style="margin-top: 0">
+          <div class="photo-chip">
+            <img
+              :src="sharedAsset('shared/seb_kcl.png')"
+              alt="Professor Sébastien Ourselin, Head of School, School of Biomedical Engineering & Imaging Sciences"
+              style="max-height: 165px"
+            />
+          </div>
         </div>
         <div class="fig-split" style="--cols: 4fr 3fr; margin-top: 0.3em; gap: 1.2em; align-items: start">
           <div>
             <div class="eyebrow" style="text-align: center; color: #eb2f2d; font-weight: 600; font-size: large;">King's College London</div>
-            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4em; margin-top: 0.3em">
-              <img :src="sharedAsset('shared/jorge.png')" alt="Dr M. Jorge Cardoso, Group Lead & Reader" style="height: 170px" />
-              <img :src="sharedAsset('shared/rafa_kcl.png')" alt="Rafael Dias, Senior AI Engineer on Foundational Models for Healthcare" style="height: 170px" />
-              <img :src="sharedAsset('shared/alex_kcl.png')" alt="Alexandre Triay Bagur, Senior AI Engineer" style="height: 170px" />
-              <img :src="sharedAsset('shared/virginia_kcl.png')" alt="Virginia Fernandez, Research Associate" style="height: 170px" />
+            <div class="people">
+              <div class="photo-chip">
+                <img :src="sharedAsset('shared/jorge.png')" alt="Dr M. Jorge Cardoso, Group Lead & Reader" style="height: 170px" />
+              </div>
+              <div class="photo-chip">
+                <img :src="sharedAsset('shared/rafa_kcl.png')" alt="Rafael Dias, Senior AI Engineer on Foundational Models for Healthcare" style="height: 170px" />
+              </div>
+              <div class="photo-chip">
+                <img :src="sharedAsset('shared/alex_kcl.png')" alt="Alexandre Triay Bagur, Senior AI Engineer" style="height: 170px" />
+              </div>
+              <div class="photo-chip">
+                <img :src="sharedAsset('shared/virginia_kcl.png')" alt="Virginia Fernandez, Research Associate" style="height: 170px" />
+              </div>
             </div>
           </div>
           <div>
             <div class="eyebrow" style="text-align: center; color: #005EB8; font-weight: 600; font-size: large;">Guy's and St Thomas' Trust</div>
-            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 0.4em; margin-top: 0.3em">
-              <img :src="sharedAsset('shared/joe_gstt.png')" alt="Joe Zhang, Head of Data Science" style="height: 170px; border-radius: 8px" />
-              <img :src="sharedAsset('shared/lawrence_gstt.png')" alt="Lawrence Adams, Lead Analytics Engineer" style="height: 170px; border-radius: 8px" />
-              <img :src="sharedAsset('shared/martin_gstt.png')" alt="Martin Chapman, Lead NLP Engineer" style="height: 170px; border-radius: 8px" />
+            <div class="people">
+              <div class="photo-chip">
+                <img :src="sharedAsset('shared/joe_gstt.png')" alt="Joe Zhang, Head of Data Science" style="height: 170px" />
+              </div>
+              <div class="photo-chip">
+                <img :src="sharedAsset('shared/lawrence_gstt.png')" alt="Lawrence Adams, Lead Analytics Engineer" style="height: 170px" />
+              </div>
+              <div class="photo-chip">
+                <img :src="sharedAsset('shared/martin_gstt.png')" alt="Martin Chapman, Lead NLP Engineer" style="height: 170px" />
+              </div>
             </div>
           </div>
         </div>
       </div>
       <aside class="notes">
-        (~20s) Fast slide — put faces to the platform and name the collaboration. Worth one sentence
-        that this is engineering, clinical and governance people in the same team, which is itself part
-        of why the deployment happened.
+        (~20s) (at 17:05) 
       </aside>
     </section>
 
-    <!-- 19 · Close. Stays up through Q&A so the three QR codes remain on
+    <!-- 20 · Close. Stays up through Q&A so the three QR codes remain on
          screen. -->
     <section class="title-slide center">
       <div class="eyebrow">Federated Learning Interoperability Platform</div>
       <h1>Send the model to the data</h1>
       <div class="slide-body">
         <p class="subtitle">
-          Open source, Apache 2.0, running today across two continents. Come and use it.
+          Open source, Apache 2.0. Use it, change it, contribute.
         </p>
         <div class="cols" style="--n: 3; gap: 0.7em; max-width: 24em; margin: 0.8em auto 0; align-items: stretch">
           <div>
@@ -887,14 +918,9 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
             </div>
           </div>
         </div>
-        <p class="byline">Questions — especially the awkward ones.</p>
       </div>
       <aside class="notes">
-        (~20s, then 5 min Q&amp;A) Land on the one-line identity: open source, Apache 2.0, no lock-in,
-        already running. Leave this slide up through Q&amp;A so the QR codes stay on screen.
-        Likely questions to have ready: differential privacy and formal guarantees; what happens when
-        the funding ends; how FLIP compares to Flower's own deployment tooling; whether a site can
-        leave; how long onboarding really takes; and why synthetic data.
+        (~20s, then 5 min Q&amp;A) (at 17:25) 
       </aside>
     </section>
   </RevealDeck>
