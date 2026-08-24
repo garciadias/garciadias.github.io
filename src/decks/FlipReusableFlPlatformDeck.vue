@@ -453,11 +453,11 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
     <!-- 12 · Demo divider. Deliberate gear change: argument before, product
          on screen after. Carries the demo run-sheet in its notes. -->
     <section class="title-slide center">
-      <div class="eyebrow">Part three · roughly a third of this talk</div>
+      <div class="eyebrow">Part three · Demo</div>
       <h1>Let's look at the real thing</h1>
       <div class="slide-body">
         <p class="subtitle">
-          A live cross-continental deployment: <strong>UK ⇄ Thailand</strong>, running today.
+          <strong>UK ⇄ Thailand</strong> Ark+ fine-tuning on five CXR pathology classes
         </p>
         <p class="venue-note">Cohort query → governance → training run → results</p>
       </div>
@@ -503,11 +503,11 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
         <div class="fig-split" style="--cols: 1.05fr 1fr; align-items: center">
           <ol class="contribs small">
             <li>
-              <strong>Define the cohort.</strong> One SQL query against each site's OMOP database — any
-              cohort definable by procedure, diagnosis, demographics or lab value. <code>SELECT</code>-only.
+              <strong>Define the cohort.</strong> One SQL query against each site's OMOP database. Any
+              cohort definable by procedure, diagnosis, demographics or lab value.
             </li>
             <li>
-              <strong>Site evaluation.</strong> Each site's governance lead reviews and can veto,
+              <strong>Submit to site evaluation.</strong> Each site's governance lead reviews and can veto,
               independently, through their own Data Access Committee.
             </li>
             <li>
@@ -525,7 +525,7 @@ const pydataAsset = (name) => `${import.meta.env.BASE_URL}presentations/pydata-l
               alt="Animated FLIP walkthrough, recorded end to end: a project with no cohort query yet, an OMOP SQL query written in the cohort query editor, a Run on all trusts action, the per-trust response panel moving each of four trusts from queued to running to a returned count, a live aggregated cohort settling at 5,654 records across four trusts with one count suppressed, then the project page staging each trust and advancing to Awaiting Approval"
               style="max-height: 300px"
             />
-            <div class="caption">Steps 1–2: one query, four sites answer, then approval.</div>
+            <div class="caption">Steps 1–2: one query, four sites answer, submit for approval.</div>
           </div>
         </div>
         <p class="small muted" style="margin-top: 0.4em">
