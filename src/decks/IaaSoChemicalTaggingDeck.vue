@@ -1832,7 +1832,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     <!-- 48 · Lessons -->
     <section>
       <div class="eyebrow">What the numbers teach</div>
-      <h2>Six lessons from the benchmark</h2>
+      <h2>Eight lessons from the benchmark</h2>
       <div class="slide-body">
       <ol class="contribs tight small">
         <li><strong>All-sky collapses.</strong> One embedding of every clean star buries each cluster in the field — cut a sky region around it, as Kos et al. did (40° around the Pleiades).</li>
@@ -1841,9 +1841,11 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         <li><strong>Globulars tag cleanly, open clusters don't.</strong> M 3 / M 5 / M 15 reach kNN purity ≈ 0.4–0.5; solar-metallicity open clusters stay ≲ 0.2 — the paper's own caveat.</li>
         <li><strong>t-SNE isolates, UMAP over-merges, EVoC is fast but coarse.</strong> Three sets of assumptions, three answers.</li>
         <li><strong>Element weights are the biggest single lever.</strong> Weighting each element by 1/σ <em>after</em> standardising lifts t-SNE recall 0.09 → 0.44 and EVoC recall 0.38 → 0.45 on M 67 — the noisiest elements were owning every distance.</li>
+        <li><strong>Spectra beat abundances.</strong> A CNN-LSTM-Attention latent (256-d) trained on the raw spectrum beats the 16 ASPCAP abundances on every benchmark — and it carries the age signal that element ratios miss (metal-poor globulars: abundances collapse, spectra win).</li>
+        <li><strong>Two surveys, two parameters.</strong> APOGEE sees giants (red clump → distance); GALAH sees the main sequence (turnoff → age). Combine them and the isochrone separates — NGC 2243 age residual 0.09.</li>
       </ol>
       <p class="small muted center" style="margin-top: 0.5em">
-        And a seventh, quieter one: row-normalisation is what breaks the blob — precision rises three- to
+        And one quieter lesson: row-normalisation is what breaks the blob — precision rises three- to
         fivefold and recall falls. No setting hands you both.
       </p>
       </div>
@@ -1886,7 +1888,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
 
     <!-- 49b · The assignment -->
     <section>
-      <div class="eyebrow">The assignment · 23 clusters, ~30 of you</div>
+      <div class="eyebrow">The assignment · 25 clusters, ~30 of you</div>
       <h2>Take a cluster, beat our baseline</h2>
       <p class="small">
         The results you just saw are a <strong>baseline, not a ceiling</strong>. Each of you gets one
@@ -1898,7 +1900,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         <div class="panel">
           <h3>Your cluster</h3>
           <p class="small">
-            16 open clusters (Pleiades, M 67, NGC 188, NGC 6819, …) and 7 globulars (M 3, M 5, M 13,
+            18 open clusters (Pleiades, M 67, NGC 188, NGC 6819, NGC 2243, Collinder 261, …) and 7 globulars (M 3, M 5, M 13,
             M 15, M 71, M 107, M 92). Pair up on the crowded fields. The globulars already tag
             cleanly — your real job is the open clusters that don't.
           </p>
@@ -1908,7 +1910,9 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
           <p class="small">
             Element-wise 1/σ weights (after standardising) — the single biggest gain. HDBSCAN
             <code>min_cluster_size</code>, t-SNE <code>perplexity</code>, SNR cut, dwarf-only,
-            element subset. All logged in <code>docs/experiment_results.md</code>.
+            element subset. Newer levers: the <strong>RNN spectral latent</strong> (256-d), the
+            <strong>red-clump / isochrone</strong> fit, and the <strong>GALAH main-sequence</strong> cross-match.
+            All logged in <code>docs/experiment_results.md</code>.
           </p>
         </div>
         <div class="panel flip">
@@ -1944,7 +1948,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
 uv run cluster run --fast
 uv run marimo edit notebooks/chemical_tagging.py</code></pre>
       <p class="byline">
-        <a href="https://github.com/garciadias/iaa-advanced-neural-networks-2026" target="_blank" rel="noopener">github.com/garciadias/iaa-advanced-neural-networks-2026</a>
+        <a href="https://github.com/garciadias/iaa-advanced-neural-networks-2026-draft" target="_blank" rel="noopener">github.com/garciadias/iaa-advanced-neural-networks-2026</a>
       </p>
       <div class="cols" style="--n: 3; gap: 0.7em; max-width: 22em; margin: 0.8em auto 0; align-items: stretch">
         <div>
@@ -2025,7 +2029,7 @@ uv run marimo edit notebooks/chemical_tagging.py</code></pre>
         Code:
         <a href="https://github.com/TutteInstitute/evoc" target="_blank" rel="noopener">EVoC</a> ·
         <a href="https://github.com/jelmerbot/fast_plscan" target="_blank" rel="noopener">PLSCAN</a> ·
-        <a href="https://github.com/garciadias/iaa-advanced-neural-networks-2026" target="_blank" rel="noopener">workshop repo</a>
+        <a href="https://github.com/garciadias/iaa-advanced-neural-networks-2026-draft" target="_blank" rel="noopener">workshop repo</a>
       </p>
       <aside class="notes">
         (~1 min)
