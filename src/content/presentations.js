@@ -50,6 +50,25 @@ export const presentations = [
     deck: () => import('@/decks/PydataLondonFlipLightningDeck.vue')
   },
   {
+    id: 'iaa-so-chemical-tagging-2026',
+    title: 'Chemical tagging: finding lost star clusters',
+    subtitle: 'From K-means to EVoC — clustering chemistry to reconstruct dissolved clusters',
+    date: '2026',
+    venue: 'IAA-SO School on AI/ML in Astronomy 2026 · Unsupervised Learning',
+    cover: `${import.meta.env.BASE_URL}presentations/iaa-so-chemical-tagging-2026/benchmark_grid.png`,
+    description:
+      'A ~90-minute lecture for the IAA-SO School on AI/ML in Astronomy (unsupervised-learning pillar). ' +
+      'It walks the clustering toolbox one algorithm at a time, each chosen to fix the failure of the last — ' +
+      'K-means, KNN, DBSCAN, HDBSCAN*, PLSCAN (Bot, McInnes & Aerts 2025), t-SNE, UMAP, and finally EVoC, ' +
+      'which fuses all three ideas — embedding, density clustering, and persistence-based scale selection — ' +
+      'into one pass. The running example is chemical tagging: reconstructing dissolved star clusters from ' +
+      '16-D APOGEE DR17 + Gaia EDR3 abundances (Kos et al. 2017), with every method scored against kinematic ' +
+      'ground truth. Through-line: there are no bad models, only models applied outside their assumptions — ' +
+      'so know your data and validate against reality.',
+    tags: ['Astronomy', 'Chemical Tagging', 'Clustering', 'KNN', 't-SNE', 'UMAP', 'HDBSCAN', 'PLSCAN', 'EVoC', 'Unsupervised Learning'],
+    deck: () => import('@/decks/IaaSoChemicalTaggingDeck.vue')
+  },
+  {
     id: 'flip-reusable-fl-platform-2026',
     title: 'FLIP: a reusable, general-purpose open-source FL platform',
     subtitle: 'From Zero to Hero: Federated AI in Healthcare Systems · St John\'s College, Cambridge',
