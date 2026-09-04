@@ -1942,13 +1942,18 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       <div class="eyebrow">Hands-on module</div>
       <h1>Run it yourself</h1>
       <p class="subtitle">
-        Reproduce and extend Kos et al. 2017 — t-SNE vs UMAP vs EVoC — in ~1 minute on a laptop.
+        Reproduce and extend Kos et al. 2017 — t-SNE vs UMAP vs EVoC — in ~1 minute, on a laptop or in Docker.
       </p>
       <pre class="small" style="text-align: left; max-width: 28em; margin: 0.6em auto"><code>uv sync &amp;&amp; uv run cluster download
 uv run cluster run --fast
 uv run marimo edit notebooks/chemical_tagging.py</code></pre>
       <p class="byline">
-        <a href="https://github.com/garciadias/iaa-advanced-neural-networks-2026-draft" target="_blank" rel="noopener">github.com/garciadias/iaa-advanced-neural-networks-2026</a>
+        <a href="https://github.com/garciadias/iaa-advanced-neural-networks-2026-draft" target="_blank" rel="noopener">github.com/garciadias/iaa-advanced-neural-networks-2026-draft</a>
+      </p>
+      <p class="small muted" style="margin-top: 0.35em">
+        Full walkthrough &middot; <code>docs/student_activities.md</code> &nbsp;&middot;&nbsp;
+        cluster assignment &middot; <code>docs/cluster_assignment.md</code> &nbsp;&middot;&nbsp;
+        Docker-only path &middot; <code>docs/docker.md</code>
       </p>
       <div class="cols" style="--n: 3; gap: 0.7em; max-width: 22em; margin: 0.8em auto 0; align-items: stretch">
         <div>
