@@ -20,7 +20,7 @@ import RevealDeck from '@/components/RevealDeck.vue';
 // (K-means, KNN, DBSCAN, SSE/silhouette/dip/homogeneity), Bot et al. 2025
 // (PLSCAN, persistence-based multiscale density clustering), and Kos et al.
 // 2017 (t-SNE chemical tagging) — then the benchmark we run in this repo:
-// t-SNE vs UMAP vs EVoC on APOGEE DR17 + Gaia EDR3, scored against kinematic
+// t-SNE vs UMAP vs EVoC on APOGEE DR19 + Gaia DR3, scored against kinematic
 // ground truth.
 //
 // Style follows the PyData lightning deck (same RevealDeck + DeckBrand
@@ -110,8 +110,8 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         <div>
           <p class="small">
             One star → one point in <strong>C-space</strong>, the space of its elemental
-            abundances relative to iron. <strong>APOGEE DR17</strong> supplies the chemistry;
-            <strong>Gaia EDR3</strong> astrometry is held back as ground truth.
+            abundances relative to iron. <strong>APOGEE DR19</strong> supplies the chemistry;
+            <strong>Gaia DR3</strong> astrometry is held back as ground truth.
           </p>
           <ul class="dotlist small">
             <li>16 abundance dimensions per star</li>
@@ -1436,7 +1436,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       <div class="slide-body">
       <p class="small">
         Reproduce Kos et al. 2017 — cluster by cluster, region by region — then extend it:
-        <strong>t-SNE vs UMAP vs EVoC</strong> on APOGEE DR17 + Gaia EDR3, over
+        <strong>t-SNE vs UMAP vs EVoC</strong> on APOGEE DR19 + Gaia DR3, over
         <strong>23 clusters</strong> (16 open, including the Pleiades, and 7 globular;
         Garcia-Dias et al. 2019 + Kos et al. 2017).
       </p>
@@ -1444,7 +1444,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         <div class="panel">
           <h3>Pipeline</h3>
           <p class="small">
-            allStar DR17 FITS → quality cuts (SNR ≥ 100, ASPCAPFLAG = STARFLAG = 0) → kinematic
+            astraAllStarASPCAP (DR19) FITS → quality cuts (SNR ≥ 100, ASPCAPFLAG = STARFLAG = 0) → kinematic
             membership labels → 16-D abundance matrix → embed → cluster → score.
           </p>
         </div>
@@ -1490,7 +1490,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       <div class="eyebrow">Baseline · re-creating Garcia-Dias et al. 2019</div>
       <h2>First: can we separate the clusters from each other?</h2>
       <p class="small">
-        The 2019 paper's question, re-run on our DR17 data: take <strong>only the known cluster
+        The 2019 paper's question, re-run on our DR19 data: take <strong>only the known cluster
         members</strong> (646 stars, no field), cluster them, and ask how well each star is assigned
         back to its own cluster — scored with the paper's own <strong>homogeneity / v-measure /
         accuracy</strong>.
