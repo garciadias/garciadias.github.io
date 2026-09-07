@@ -1858,9 +1858,10 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         </table>
       </div>
       <p class="small muted center" style="margin-top: 0.4em">
-        UMAP: <strong>0.87 vs 0.27</strong> &mdash; a 3&times; gap. The masked latent also beats the
-        <em>supervised</em> CNN (0.79 vs 0.56 t-SNE), so the win is not the architecture &mdash; it is
-        the <strong>self-supervised objective</strong>.
+        UMAP: <strong>0.87 vs 0.27</strong> &mdash; a 3&times; gap over the best linear baseline.
+        Full <strong>25-cluster</strong> coverage (DR17 + DR19 spectra): masked AE
+        <strong>0.65 / 0.68 / 0.64</strong> vs abundances <strong>0.42 / 0.52 / 0.49</strong>, and field
+        precision <strong>0.44 vs 0.20</strong> — the self-supervised objective, not the architecture.
       </p>
       <aside class="notes">
         (~1.5 min) The honest head-to-head, same stars, same regions, same clustering. PCA 64-d is
