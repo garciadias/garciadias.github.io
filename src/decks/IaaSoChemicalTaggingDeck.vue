@@ -1720,6 +1720,193 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </aside>
     </section>
 
+    <!-- 47c-a · Why not just PCA? -->
+    <section>
+      <div class="eyebrow">Dimensionality reduction &middot; the obvious baseline</div>
+      <h2>Why not just run PCA on the spectrum?</h2>
+      <p class="small">
+        The spectrum is <strong>8575 pixels</strong> of highly-correlated flux. The obvious move is
+        <strong>PCA</strong> &mdash; project onto the top eigenvectors of the pixel covariance. Linear,
+        fast, no labels. Let&rsquo;s see how far it gets.
+      </p>
+      <div class="cols" style="--n: 2; margin-top: 0.4em">
+        <div class="panel">
+          <h3>What PCA captures</h3>
+          <ul class="small">
+            <li>the <strong>continuum</strong> (temperature, reddening) &mdash; the first few PCs</li>
+            <li>global line-to-continuum balance</li>
+            <li>the <strong>largest variance</strong>, not the most informative directions</li>
+          </ul>
+        </div>
+        <div class="panel flip">
+          <h3>What PCA misses</h3>
+          <ul class="small">
+            <li>each element&rsquo;s <strong>narrow line windows</strong> (low pixel variance)</li>
+            <li><strong>blends</strong> &mdash; overlapping lines from several species</li>
+            <li>the <strong>nonlinear</strong> chemistry&rarr;spectrum mapping</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted center" style="margin-top: 0.4em">
+        Variance is not chemistry: the continuum dominates the pixel variance but carries
+        almost no element-ratio information.
+      </p>
+      <aside class="notes">
+        (~1.5 min) Frame the honest baseline. PCA is the textbook answer: 8575 correlated pixels,
+        project to a few eigenvectors. It is linear and maximises *variance*. But chemical tagging
+        needs *element-ratio* information, and the element ratios live in narrow, low-variance
+        absorption lines. PCA spends its budget on the continuum (temperature, reddening) because
+        that is where the variance is. So PCA is the right baseline and the wrong tool — the
+        question is whether a learned, nonlinear compression can spend its budget on chemistry
+        instead of the continuum.
+      </aside>
+    </section>
+
+    <!-- 47c-b · Masked AE mechanics -->
+    <section>
+      <div class="eyebrow">Self-supervision &middot; the masked autoencoder</div>
+      <h2>Mask part of the spectrum, predict it back</h2>
+      <p class="small">
+        A <strong>masked autoencoder</strong> (He et al. 2022): hide <strong>contiguous wavelength
+        blocks</strong>, feed the visible pixels through a conv encoder into a 256-d latent, then
+        reconstruct the hidden pixels with a decoder. <strong>Loss = MSE on the hidden pixels only.</strong>
+      </p>
+      <div class="cols" style="--n: 3; margin-top: 0.4em">
+        <div class="panel">
+          <h3>1 &middot; Mask</h3>
+          <p class="small">Hide ~50% of pixels in contiguous blocks. The model cannot interpolate across a hidden block.</p>
+        </div>
+        <div class="panel">
+          <h3>2 &middot; Encode</h3>
+          <p class="small">Conv stack reads the visible pixels &rarr; 256-d latent <strong>z</strong>.</p>
+        </div>
+        <div class="panel flip">
+          <h3>3 &middot; Reconstruct</h3>
+          <p class="small">Decoder predicts the hidden pixels from <strong>z</strong>. MSE only there.</p>
+        </div>
+      </div>
+      <p class="small muted center" style="margin-top: 0.4em">
+        To fill a hidden block, <strong>z</strong> must encode the local line physics &mdash; every
+        element&rsquo;s fingerprint &mdash; not just the bright continuum. <strong>No abundance labels anywhere.</strong>
+      </p>
+      <aside class="notes">
+        (~2 min) The mechanics. Masking is the key design choice: contiguous blocks, not random
+        pixels. Random-pixel masking is too easy — the encoder interpolates across a missing pixel
+        from its neighbours. A hidden *block* forces the latent to carry the physics: to reconstruct
+        a masked Fe I window you must know the iron abundance, the temperature, the line blending.
+        The reconstruction objective is self-supervised — the label is the spectrum itself, so the
+        latent is free of the ASPCAP element-ratio circularity. Emphasise: the only loss term is
+        MSE on the hidden pixels; the latent is never told what an element is.
+      </aside>
+    </section>
+
+    <!-- 47c-c · Why it beats PCA -->
+    <section>
+      <div class="eyebrow">Self-supervision &middot; why it beats PCA</div>
+      <h2>Reconstruction spends the budget on chemistry</h2>
+      <div class="cols" style="--n: 2; margin-top: 0.4em">
+        <div class="panel">
+          <h3>PCA &mdash; maximise variance</h3>
+          <ul class="small">
+            <li>objective: keep the directions of <strong>largest pixel variance</strong></li>
+            <li>budget spent on the continuum + temperature</li>
+            <li><strong>linear</strong> &mdash; one global linear map for all stars</li>
+            <li>the element lines are low-variance &rarr; discarded</li>
+          </ul>
+        </div>
+        <div class="panel flip">
+          <h3>Masked AE &mdash; maximise predictability</h3>
+          <ul class="small">
+            <li>objective: <strong>reconstruct hidden blocks</strong> from the latent</li>
+            <li>budget spent on the local line physics (the only way to fill a block)</li>
+            <li><strong>nonlinear</strong> &mdash; a learned manifold per stellar regime</li>
+            <li>the lines are the only clue &rarr; preserved</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted center" style="margin-top: 0.4em">
+        <strong>Variance &ne; information.</strong> The continuum has the variance; the chemistry has
+        the physics. PCA keeps the first; the masked AE is forced to learn the second.
+      </p>
+      <aside class="notes">
+        (~2 min) The conceptual core. Two different objectives answer two different questions.
+        PCA answers "which directions carry the most pixel variance?" — the continuum, the
+        temperature, the reddening. The masked AE answers "which latent lets me predict the pixels
+        I hid?" — and the only way to predict a hidden Fe I block is to know the iron, the
+        temperature, and the blends. Variance is cheap and global; predictability is expensive and
+        local. This is why the same 256-d latent is qualitatively different: one is a variance
+        summary, the other is a predictive physical model. And the nonlinearity matters: the
+        spectrum&rarr;abundance map is not a linear subspace, so a linear projector cannot align
+        its axes with the chemistry.
+      </aside>
+    </section>
+
+    <!-- 47c-d · The head-to-head -->
+    <section>
+      <div class="eyebrow">Head-to-head &middot; DR19</div>
+      <h2>The masked latent beats PCA &mdash; and the abundances</h2>
+      <div class="panel">
+        <h3>Cluster-only homogeneity (5 APO clusters, 55 members)</h3>
+        <table style="font-size: 0.5em; margin-top: 0.25em">
+          <thead><tr><th>features (all unsupervised)</th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
+          <tbody>
+            <tr><td>PCA 64-d (linear)</td><td>0.53</td><td>0.27</td><td>0.46</td></tr>
+            <tr><td>PCA 256-d (linear)</td><td>0.27</td><td>0.27</td><td>0.53</td></tr>
+            <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.79</strong></td><td><strong>0.87</strong></td><td><strong>0.77</strong></td></tr>
+            <tr><td>supervised CNN (64-d)</td><td>0.56</td><td>0.56</td><td>0.63</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="small muted center" style="margin-top: 0.4em">
+        UMAP: <strong>0.87 vs 0.27</strong> &mdash; a 3&times; gap. The masked latent also beats the
+        <em>supervised</em> CNN (0.79 vs 0.56 t-SNE), so the win is not the architecture &mdash; it is
+        the <strong>self-supervised objective</strong>.
+      </p>
+      <aside class="notes">
+        (~1.5 min) The honest head-to-head, same stars, same regions, same clustering. PCA 64-d is
+        the strongest linear baseline (t-SNE 0.53) — PCA 256 actually *hurts* t-SNE because the
+        extra 192 dimensions are noise. The masked AE at the same 256-d reaches 0.79 t-SNE and 0.87
+        UMAP — 3x the linear baseline on UMAP. Crucially it also beats the *supervised* CNN (0.56),
+        which is the same conv architecture but trained to regress ASPCAP abundances. So the
+        architecture is not the story — the self-supervised reconstruction objective is. Land: a
+        model that never saw an element ratio separates clusters better than one explicitly trained
+        on those ratios.
+      </aside>
+    </section>
+
+    <!-- 47c-e · Takeaway -->
+    <section>
+      <div class="eyebrow">Self-supervision &middot; the takeaway</div>
+      <h2>Dimensionality reduction, done by physics</h2>
+      <p class="small">
+        Both PCA and the masked AE compress the same 8575 pixels into a compact feature. The
+        difference is the <strong>objective</strong>:
+      </p>
+      <div class="cols" style="--n: 2; margin-top: 0.4em">
+        <div class="panel">
+          <h3>PCA</h3>
+          <p class="small">&ldquo;keep the directions of largest variance.&rdquo;<br>A linear summary of the pixels.</p>
+        </div>
+        <div class="panel flip">
+          <h3>Masked AE</h3>
+          <p class="small">&ldquo;predict the parts I hid from you.&rdquo;<br>A latent that must model the line physics.</p>
+        </div>
+      </div>
+      <p class="small muted center" style="margin-top: 0.4em">
+        <strong>The spectrum is its own label.</strong> No catalogue, no element ratios, no circularity &mdash;
+        and the resulting latent is the best chemical-tagging feature we measured.
+      </p>
+      <aside class="notes">
+        (~1 min) Close the arc. "Dimensionality reduction" is underspecified — it is the objective
+        that decides what the reduced space keeps. PCA keeps variance; the masked AE keeps
+        predictability. Because the element ratios are a low-variance, high-information signal, the
+        variance objective throws them away while the reconstruction objective cannot avoid them.
+        The spectrum is its own label: no ASPCAP catalogue, no circularity, and the latent beats
+        everything we measured. This reframes the workshop's own method — the RNN's real value was
+        never the regression head, it was the learned compression.
+      </aside>
+    </section>
+
     <!-- 47c · Masked foundation model -->
     <section>
       <div class="eyebrow">Deep learning &middot; masked foundation model</div>
