@@ -1720,59 +1720,58 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </aside>
     </section>
 
-    <!-- 47c · Spectral embeddings -->
+    <!-- 47c · Masked foundation model -->
     <section>
-      <div class="eyebrow">Deep learning · spectral embeddings</div>
-      <h2>The RNN latent beats abundances — consistently</h2>
+      <div class="eyebrow">Deep learning &middot; masked foundation model</div>
+      <h2>A self-supervised latent beats the abundances</h2>
       <p class="small">
-        Train a <strong>CNN-LSTM-Attention</strong> network to regress 9 abundances from the raw
-        <strong>8575-pixel APOGEE spectrum</strong> (multi-task, RTX 5090, 68k stars across the
-        full stellar range — no M-dwarf filter). Cluster on its <strong>256-d latent</strong>, and
-        compare to the 16 ASPCAP abundances on the <em>same</em> 878 members and the same scaled
-        regions.
+        A <strong>masked spectral autoencoder</strong> (MAE-style): mask contiguous
+        wavelength blocks, reconstruct them &mdash; <strong>never shown an element ratio</strong>.
+        Its 256-d latent separates clusters <em>better</em> than the 16 ASPCAP abundances, and
+        better than a supervised CNN trained on those same abundances.
       </p>
       <div class="cols" style="--n: 2; margin-top: 0.4em">
         <div class="panel">
-          <h3>Cluster-only — homogeneity</h3>
+          <h3>Cluster-only &mdash; homogeneity (DR19)</h3>
           <table style="font-size: 0.5em; margin-top: 0.25em">
             <thead><tr><th></th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
             <tbody>
-              <tr><td>abundances</td><td>0.25</td><td>0.51</td><td>0.51</td></tr>
-              <tr><td><strong>RNN latent (256-d)</strong></td><td><strong>0.40</strong></td><td><strong>0.69</strong></td><td><strong>0.64</strong></td></tr>
+              <tr><td>abundances (16-d)</td><td>0.29</td><td>0.55</td><td>0.41</td></tr>
+              <tr><td>supervised CNN (64-d)</td><td>0.56</td><td>0.56</td><td>0.63</td></tr>
+              <tr><td><strong>masked AE (256-d)</strong></td><td><strong>0.79</strong></td><td><strong>0.87</strong></td><td><strong>0.77</strong></td></tr>
+              <tr><td><strong>masked + abundance (272-d)</strong></td><td><strong>0.88</strong></td><td><strong>0.87</strong></td><td>0.71</td></tr>
             </tbody>
           </table>
         </div>
         <div class="panel flip">
-          <h3>Field retrieval — precision (recall)</h3>
+          <h3>Field precision (recall) &mdash; Simbad</h3>
           <table style="font-size: 0.5em; margin-top: 0.25em">
-            <thead><tr><th></th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
+            <thead><tr><th></th><th>t-SNE</th><th>UMAP</th></tr></thead>
             <tbody>
-              <tr><td>abundances</td><td>0.21 (0.70)</td><td>0.32 (0.54)</td><td>0.28 (0.63)</td></tr>
-              <tr><td><strong>RNN latent (256-d)</strong></td><td><strong>0.51</strong> (0.72)</td><td><strong>0.54</strong> (0.68)</td><td><strong>0.56</strong> (0.48)</td></tr>
+              <tr><td>abundances</td><td>0.11 (0.56)</td><td>0.12 (0.55)</td></tr>
+              <tr><td><strong>masked + abundance</strong></td><td>0.01 (0.93)</td><td><strong>0.23</strong> (0.65)</td></tr>
+              <tr><td>kinematics only</td><td>0.17 (0.91)</td><td>0.30 (0.73)</td></tr>
             </tbody>
           </table>
         </div>
       </div>
       <p class="small muted center" style="margin-top: 0.4em">
-        Chemical features only — <strong>no kinematics</strong> (they are the ground truth; adding
-        them is circular). The RNN latent is a better chemical-tagging feature than the 16 ASPCAP
-        abundances — on both experiments. Globulars tag near-perfectly (M 15 0.97, M 71 0.98,
-        M 92 1.00 precision); open clusters stay the hard case (M 67 0.37).
+        The abundance-free latent beats the supervised one (0.79 vs 0.56) and the ASPCAP
+        abundances (0.29) &mdash; the model reads line blends and weak features that 16 element
+        ratios discard. <strong>No circularity: it never saw an abundance.</strong>
       </p>
       <aside class="notes">
-        (~3 min) The deep-learning payoff, now a clean head-to-head. First the setup change that
-        matters: the earlier model was trained on M dwarfs only (Teff <= 4100 K), but the cluster
-        members are giants — so we rebuilt the training set across the full stellar range (68k
-        stars, no filter). Then two experiments, same population, same scaled regions.
-        Cluster-only homogeneity: the spectral latent wins every column — t-SNE 0.40 vs 0.25,
-        UMAP 0.69 vs 0.51, EVoC 0.64 vs 0.51. Field-retrieval precision: ~2x — 0.51 / 0.54 / 0.56
-        vs 0.21 / 0.32 / 0.28 — at comparable recall. Land the two messages. (1) The RNN latent is
-        a chemically-meaningful compression of the whole spectrum, not just the 16 ASPCAP elements
-        — it sees blends, line wings, and elements ASPCAP skips. (2) Globulars are the showcase
-        (M 15, M 71, M 92 near-perfect), open clusters the honest frontier (M 67 0.37) — the same
-        "globulars tag cleanly, open clusters don't" lesson, now with a better feature. Close on
-        the caveat: the regions are scaled to the cluster (max 3 deg, 10x diameter), so the field
-        is modest — a realistic search radius, not a 30-degree blanket.
+        (~3 min) The deep-learning payoff, upgraded. The supervised RNN was the honest baseline
+        (it regresses the 16 ASPCAP elements, so it can carry no more chemical information than
+        they do). The masked autoencoder removes that circularity: mask contiguous wavelength
+        blocks, reconstruct them, MSE on the hidden pixels only — no labels at all. The 256-d
+        latent then beats BOTH the supervised latent (t-SNE 0.79 vs 0.56) and the raw abundances
+        (0.29). Combined with the abundances it is synergistic (0.88). Field precision with the
+        external Simbad referee: masked+abundance 0.23 vs abundances 0.12 (UMAP); kinematics alone
+        cap the field at 0.30 — the doppelganger ceiling. Land two messages. (1) Self-supervision
+        on the full spectrum is the real chemical-tagging feature — it sees blends and weak lines
+        the 16 ratios discard. (2) The workshop's through-line: abundances suggest, kinematics
+        decide, and now the spectrum — read by a model that never saw an element — refines.
       </aside>
     </section>
 
