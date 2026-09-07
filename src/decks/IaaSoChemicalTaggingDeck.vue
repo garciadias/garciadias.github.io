@@ -1850,6 +1850,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         <table style="font-size: 0.5em; margin-top: 0.25em">
           <thead><tr><th>features (all unsupervised)</th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
           <tbody>
+            <tr><td>abundances (16-d)</td><td>0.29</td><td>0.55</td><td>0.41</td></tr>
             <tr><td>PCA 64-d (linear)</td><td>0.53</td><td>0.27</td><td>0.46</td></tr>
             <tr><td>PCA 256-d (linear)</td><td>0.27</td><td>0.27</td><td>0.53</td></tr>
             <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.79</strong></td><td><strong>0.87</strong></td><td><strong>0.77</strong></td></tr>
