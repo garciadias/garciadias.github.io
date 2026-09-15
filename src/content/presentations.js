@@ -10,6 +10,53 @@
 // /presentations/:id URL and appear on the secret /presentations/list index.
 export const presentations = [
   {
+    id: 'flare-day-2026',
+    title: 'FLIP: an open-source federated learning platform for healthcare',
+    subtitle: 'From multi-institutional research to real NHS deployment · NVIDIA FLARE Day 2026',
+    date: '16 September 2026',
+    venue: 'NVIDIA FLARE Day 2026 · US + EMEA main event',
+    cover: `${import.meta.env.BASE_URL}presentations/flare-day-2026/intro-globe-poster.jpg`,
+    description:
+      'A 20-minute talk for NVIDIA FLARE Day on what sits between a federated learning framework ' +
+      'and a hospital. FLARE solved the federated core; every collaboration still rebuilds cohort ' +
+      'definition, imaging retrieval, per-site approval, scheduling and audit by hand. FLIP — an ' +
+      'open-source project by the London AI Centre, King\'s College London and Guy\'s and St Thomas\' ' +
+      'NHS Foundation Trust — is that layer, solved once. Covers where FLIP sits on the NVIDIA stack ' +
+      '(what it delegates to FLARE, and MONAI in both directions: unmodified bundles training as a ' +
+      '3D segmentation job type, trained models leaving as MONAI Application Packages), the single ' +
+      'outbound HTTPS connection it asks an NHS network for, cohort query and per-site approval ' +
+      'shown in the product, the six sovereignty guarantees and compliance frameworks behind it, ' +
+      'a live UK ⇄ Thailand run and a standing clinical study across three trusts, the AWS Landing ' +
+      'Zone hub, and three lessons that cost us months: certificate rotation, coding heterogeneity ' +
+      'ahead of statistical heterogeneity, and governance as the long pole. Closes with a short cut ' +
+      'of our 30-platform capability audit, dotted against the FLARE Day programme.',
+    tags: ['Federated Learning', 'FLIP', 'NVIDIA FLARE', 'MONAI', 'NHS', 'Open Source', 'FLARE Day'],
+    deck: () => import('@/decks/FlareDay2026Deck.vue')
+  },
+  {
+    id: 'flip-platform-comparison-amigo',
+    title: 'Comparing FL platforms — fairly',
+    subtitle: 'Inclusion criteria, a reproducible search, and a 30-platform capability audit scored on code, not claims',
+    date: 'September 2026',
+    venue: 'AMIGO team meeting',
+    cover: `${import.meta.env.BASE_URL}presentations/flip-maturity-pitch-2026/flip-architecture-symmetric.png`,
+    description:
+      'The methods talk behind the comparison tables in our MICCAI 2026 / DeCaF paper. How do you ' +
+      'decide which federated learning platforms belong in a comparison, and how do you score them ' +
+      'so a reviewer with repository access cannot take the table apart? Covers the eligibility ' +
+      'criteria and evidence tiers, a reproducible four-source search over PubMed, GitHub, arXiv ' +
+      'and medRxiv, and the measured recall of each — PubMed recovers 13 of 30 and misses six of ' +
+      'the eight FL engines outright; GitHub reaches 20 of the 22 with a public repository, but ' +
+      'only once the metadata-poor platforms are queried by name; together the four recover all ' +
+      '30. Then the capability audit itself across 30 platforms and nine columns, every cell ' +
+      're-read from a local clone at a recorded commit rather than from publications — which ' +
+      'moved 48 cells and is how we found that two platforms have lost the headline property ' +
+      'their papers are still cited for. Includes where FLIP is beaten, and the limit we found ' +
+      'in our own approval model.',
+    tags: ['Federated Learning', 'Platform Comparison', 'Systematic Search', 'Research Methods', 'FLIP', 'MICCAI 2026'],
+    deck: () => import('@/decks/PlatformComparisonDeck.vue')
+  },
+  {
     id: 'fla3-governance-federated-learning',
     title: 'What can FLIP learn from FLA³?',
     subtitle: 'A FLIP-eyed read of FLA³ — Federated Learning with Authentication · Authorisation · Accounting',
