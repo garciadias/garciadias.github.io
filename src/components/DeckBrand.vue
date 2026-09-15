@@ -11,13 +11,8 @@
 //   <DeckBrand :qr="asset('presentation.png')" />
 // The default is the PyData deck's QR, kept only so decks predating this prop
 // render exactly as before; new decks should always pass their own.
-//
-// `showLogos` hides the partner/project logos (KCL, AI Centre, GSTT, deepC,
-// One London, and the FLIP mark) while keeping the deck's own QR. For decks
-// that are not part of the KCL/FLIP work — e.g. the IAA-SO astronomy lecture.
 const props = defineProps({
-  qr: { type: String, default: `${import.meta.env.BASE_URL}static/img/logos/presentation.png` },
-  showLogos: { type: Boolean, default: true }
+  qr: { type: String, default: `${import.meta.env.BASE_URL}static/img/logos/presentation.png` }
 })
 
 const base = `${import.meta.env.BASE_URL}static/img/logos/`
@@ -28,22 +23,20 @@ const partnersRight = ['deepC_logo.png', 'gstt_logo.png', 'onelondon_logo.png']
 <template>
   <div class="deck-brand-bottom" aria-hidden="true">
     <span class="deck-brand-group">
-      <template v-if="showLogos">
-        <span class="brand-chip" v-for="file in partnersLeft" :key="file">
-          <img :src="`${base}${file}`" alt="" />
-        </span>
-      </template>
+      <span class="brand-chip" v-for="file in partnersLeft" :key="file">
+        <img :src="`${base}${file}`" alt="" />
+      </span>
       <span class="brand-chip brand-chip--qr">
         <img :src="props.qr" alt="" />
       </span>
     </span>
-    <span v-if="showLogos" class="deck-brand-group">
+    <span class="deck-brand-group">
       <span class="brand-chip" v-for="file in partnersRight" :key="file">
         <img :src="`${base}${file}`" alt="" />
       </span>
     </span>
   </div>
-  <div v-if="showLogos" class="deck-brand-top-right" aria-hidden="true">
+  <div class="deck-brand-top-right" aria-hidden="true">
     <img :src="`${base}flip_logo.png`" alt="" />
   </div>
 </template>
