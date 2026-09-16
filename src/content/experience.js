@@ -32,7 +32,7 @@ export const experience = [
     ]
   },
   {
-    role: 'Machine Learning Engineer',
+    role: 'Senior Machine Learning Engineer',
     org: 'Floe Oral Care',
     location: 'London, UK',
     period: 'May 2023 - Nov 2024',
