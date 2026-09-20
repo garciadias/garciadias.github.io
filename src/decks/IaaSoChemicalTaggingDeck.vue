@@ -1842,6 +1842,72 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </aside>
     </section>
 
+    <!-- 47c-c2 · The five clusters -->
+    <section>
+      <div class="eyebrow">Head-to-head &middot; the subjects</div>
+      <h2>Five real clusters, one hard question</h2>
+      <div class="cols" style="--n: 5; margin-top: 0.35em; gap: 0.5em">
+        <div class="panel" v-for="c in [
+          {img:'sky_berkeley66.png', name:'Berkeley 66', kind:'open', dist:'5.3 kpc', n:'20'},
+          {img:'sky_ic166.png',     name:'IC 166',      kind:'open', dist:'4.9 kpc', n:'13'},
+          {img:'sky_m3.png',        name:'M 3',         kind:'globular', dist:'10.2 kpc', n:'142'},
+          {img:'sky_m67.png',       name:'M 67',        kind:'open', dist:'0.86 kpc', n:'271'},
+          {img:'sky_ngc188.png',    name:'NGC 188',     kind:'open', dist:'1.9 kpc', n:'27'},
+        ]" :key="c.name">
+          <div class="figure" style="aspect-ratio: 1 / 1; margin: 0 0 0.25em 0">
+            <img :src="asset(c.img)" :alt="'DSS2 sky image of ' + c.name" style="width: 100%; height: 100%; object-fit: cover; border-radius: 4px" />
+          </div>
+          <h3 style="margin: 0">{{ c.name }}</h3>
+          <p class="small muted" style="margin: 0.05em 0 0 0; font-size: 0.42em">
+            {{ c.kind }} &middot; {{ c.dist }} &middot; {{ c.n }} known members
+          </p>
+        </div>
+      </div>
+      <p class="small muted center" style="margin-top: 0.35em">
+        DSS2 sky images (SkyView, NASA GSFC). One globular — M 3 — and four open clusters;
+        the globular's presence is exactly what the control on the next slide is for.
+      </p>
+      <aside class="notes">
+        (~45 s) Meet the subjects before the numbers. These are the five clusters the head-to-head
+        table scores: four open clusters plus one globular, M 3. Real images, real distances,
+        real member counts from the literature catalogues. Keep one fact in mind: M 3 is a
+        globular at 10 kpc, completely different metallicity regime — so "we separate the five
+        clusters" could be one easy split. We will test exactly that in a moment.
+      </aside>
+    </section>
+
+    <!-- 47c-c3 · The kinematic referee -->
+    <section>
+      <div class="eyebrow">Head-to-head &middot; the labels</div>
+      <h2>The referee is kinematics, not chemistry</h2>
+      <div class="fig-split" style="--cols: 1.25fr 1fr; margin-top: 0.35em; align-items: center">
+        <div class="figure" style="aspect-ratio: 1675 / 934">
+          <img :src="asset('proper_motions.png')"
+               alt="Proper motions: each cluster's members form a tight clump in the Gaia proper-motion plane, the field stars are spread"
+               style="width: 100%; height: 100%; object-fit: contain" />
+        </div>
+        <div>
+          <ul class="checklist small">
+            <li><strong>Labels come from Gaia proper motions</strong> + parallax + radial velocity — who moves together belongs together.</li>
+            <li><strong>No chemistry in the ground truth.</strong> The benchmark asks whether the latent can recover a label it never saw, and the label was not made with abundances.</li>
+            <li>Members are the magenta clumps; the field is everything else in the cluster's patch of sky.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted center" style="margin-top: 0.35em">
+        A clean experiment: <strong>unsupervised features → clusters → kinematic referee</strong>.
+        Nothing in the loop touches element ratios.
+      </p>
+      <aside class="notes">
+        (~1 min) The benchmark's labels are kinematic: Gaia proper motions (the panels above),
+        parallax, and APOGEE radial velocities. Cluster members form a tight clump in the
+        proper-motion plane — the magenta dots; the field is the grey haze. This matters
+        because the whole claim is "spectra know chemistry, and chemistry knows clusters."
+        If our labels had been built from abundances, the benchmark would be circular. They
+        are not: the referee and the tested features are physically independent.
+      </aside>
+    </section>
+
     <!-- 47c-d · The head-to-head -->
     <section>
       <div class="eyebrow">Head-to-head &middot; DR19</div>
@@ -1880,6 +1946,31 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </aside>
     </section>
 
+    <!-- 47c-d1 · See it with your eyes -->
+    <section>
+      <div class="eyebrow">Head-to-head &middot; look at it</div>
+      <h2>Same 55 stars, two spaces — which one knows the clusters?</h2>
+      <div class="figure" style="aspect-ratio: 1456 / 765; width: 94%; margin: 0.3em auto 0">
+        <img :src="asset('headtohead_pca.png')"
+             alt="Plain linear 2-D view of the same 55 stars: in the masked AE latent the five clusters are five compact isolated islands; in the abundances they are loose and overlap"
+             style="width: 100%; height: 100%; object-fit: contain" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em">
+        No t-SNE trickery — a <strong>plain linear 2-D projection</strong> of each space.
+        <strong>Left:</strong> the masked AE latent; <strong>right:</strong> the 16 ASPCAP
+        abundances on the identical 55 stars. The silhouette scores in the panels
+        (0.47 vs 0.20) count what your eyes see.
+      </p>
+      <aside class="notes">
+        (~1 min) The table, rendered as a picture — and deliberately without any nonlinear
+        projection, because t-SNE would force separation in both panels and lie to you.
+        This is PCA-2D of each space: on the left the five clusters are five compact islands;
+        on the right the open clusters are loose, overlapping clouds. The silhouette score
+        (0.47 vs 0.20) quantifies exactly the visual difference. Same stars, same clusters,
+        no distortion — this is the 0.79 vs 0.48 in the table, made visible.
+      </aside>
+    </section>
+
     <!-- 47c-d2 · Is it just the globular? -->
     <section>
       <div class="eyebrow">Head-to-head &middot; the control</div>
@@ -1910,6 +2001,86 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         still separates them 0.76 against 0.20 for the abundances — and here even EVoC agrees,
         0.71 vs 0.23. That is a factor of nearly four on the hard subset, with error bars. If someone
         asks "isn't this just finding M 3?", this slide is the answer: no.
+      </aside>
+    </section>
+
+    <!-- 47c-d3 · The full experiment -->
+    <section>
+      <div class="eyebrow">Head-to-head &middot; the full experiment</div>
+      <h2>Not five clusters — twenty-five</h2>
+      <div class="fig-split" style="--cols: 1.35fr 1fr; margin-top: 0.35em; align-items: center">
+        <div class="figure" style="aspect-ratio: 1530 / 1530">
+          <img :src="asset('sky_montage_25.png')"
+               alt="Montage of all 25 clusters: 18 open clusters and 7 globulars, DSS2 images"
+               style="width: 100%; height: 100%; object-fit: contain" />
+        </div>
+        <div>
+          <p class="small">
+            The whole catalogue: <strong>18 open clusters + 7 globulars</strong>, every one with
+            DSS2 imaging and Gaia kinematics. Cluster-only homogeneity on all members:
+          </p>
+          <div class="panel" style="margin-top: 0.35em">
+            <table style="font-size: 0.5em; margin-top: 0.2em">
+              <thead><tr><th>features (24 clusters, 791 stars)</th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
+              <tbody>
+                <tr><td>abundances (16-d)</td><td>0.42</td><td>0.52</td><td>0.49</td></tr>
+                <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.66</strong></td><td><strong>0.68</strong></td><td><strong>0.64</strong></td></tr>
+                <tr><td>kinematics only (4-d)</td><td>0.95</td><td>0.94</td><td>0.89</td></tr>
+              </tbody>
+            </table>
+            <p class="small muted" style="font-size: 0.38em; margin-top: 0.3em">
+              Field-retrieval numbers on this mixed sample are withheld: 91% of these members were
+              embedded from a continuum-normalised product while the field is raw — a confound we
+              caught ourselves (next slide). Re-embedding from one DR19 product is under way.
+            </p>
+          </div>
+        </div>
+      </div>
+      <aside class="notes">
+        (~1 min) The scope claim: this is not a five-cluster anecdote, it is the full 25-cluster
+        benchmark — every cluster with real sky imaging and kinematic membership. Cluster-only
+        homogeneity holds at scale: 0.66 vs 0.42 on 791 stars. Be transparent about the two
+        things this slide does NOT claim: (1) field retrieval on the mixed sample — it is
+        confounded, and we caught it; (2) we are still 0.95 vs 0.66 behind kinematics, as
+        physics says we should be. Also note the honesty: the abundance arm here is the same
+        pipeline on the same stars, so this row IS comparable.
+      </aside>
+    </section>
+
+    <!-- 47c-d4 · Rigour: the confound we caught -->
+    <section>
+      <div class="eyebrow">Head-to-head &middot; rigour</div>
+      <h2>We caught our own confound — here is the proof</h2>
+      <div class="fig-split" style="--cols: 1.3fr 1fr; margin-top: 0.35em; align-items: center">
+        <div class="figure" style="aspect-ratio: 1196 / 815">
+          <img :src="asset('paired_control.png')"
+               alt="Paired control: the same 253 stars embedded through both data products land 1.7x farther from themselves than from a random different star"
+               style="width: 100%; height: 100%; object-fit: contain" />
+        </div>
+        <div>
+          <ul class="checklist small">
+            <li>253 stars were embedded through <strong>both</strong> pipelines — same star, same physics, different product.</li>
+            <li>The same star lands <strong>1.70× farther from itself</strong> across products than from a random other star (cosine 0.39).</li>
+            <li>So the latent was separating <strong>products, not populations</strong> — any field-retrieval number from the mixed sample is meaningless.</li>
+            <li><strong>Fix: re-download, not caveat.</strong> DR19 serves one uniform product for 738/738 of those stars; re-embedding is in progress.</li>
+          </ul>
+        </div>
+      </div>
+      <p class="small muted center" style="margin-top: 0.35em">
+        Why this slide exists: a paper that says "we found and fixed our own systematic" is worth
+        more than one that never had the check.
+      </p>
+      <aside class="notes">
+        (~1.5 min) The most important slide of the section, paradoxically about the result we
+        withdrew. When we merged the full sample, 91% of members came from DR17 aspcapStar —
+        continuum-normalised, median flux ~1 — while the field came from DR19 apStar, raw, ~6e3.
+        Different products, one autoencoder: the latent encodes the product. The paired control
+        makes it undeniable: 253 stars exist in both pipelines, so we can hold the star fixed and
+        change only the product — the star moves 1.7x its own width. That is how we know the
+        field-retrieval claim had to come off the slide. The fix is not a footnote: DR19
+        reanalyses and includes DR17, and serves a uniform product for every one of those stars,
+        so we re-download and re-embed. Tell the room: this is the difference between a demo and
+        a result.
       </aside>
     </section>
 
