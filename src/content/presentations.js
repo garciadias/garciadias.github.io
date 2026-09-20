@@ -10,6 +10,37 @@
 // /presentations/:id URL and appear on the secret /presentations/list index.
 export const presentations = [
   {
+    id: 'iaa-so-chemical-tagging-2026',
+    title: 'Chemical tagging: finding lost star clusters',
+    subtitle:
+      'Unsupervised learning on stellar spectra, from K-means to EVoC · IAA-SO School on AI/ML in Astronomy 2026',
+    date: '2026',
+    venue: 'IAA-SO School on AI/ML in Astronomy 2026 · Unsupervised Learning pillar',
+    cover: `${import.meta.env.BASE_URL}presentations/iaa-so-chemical-tagging-2026/benchmark_grid.png`,
+    description:
+      'A ~90-minute lecture plus hands-on for the Unsupervised Learning pillar of the IAA-SO school. ' +
+      'Stars born together share a chemical fingerprint; clusters dissolve but chemistry does not, so ' +
+      'can we reconstruct them from the spectra alone? Builds the clustering toolkit in order — ' +
+      'K-means, KNN, DBSCAN, HDBSCAN*, PLSCAN, t-SNE, UMAP, EVoC — and applies it to 25 open and ' +
+      'globular clusters in APOGEE DR19 + Gaia DR3, reproducing the opposite verdicts of Kos et al. ' +
+      '2017 and Garcia-Dias et al. 2019 before extending them. The result: a masked spectral ' +
+      'autoencoder trained with no labels at all separates clusters better than the ASPCAP ' +
+      'abundances (homogeneity 0.79/0.87 vs 0.48 on a matched sample), and the win survives ' +
+      'removing the globular that dominates the sample. Includes the batch-effect and ' +
+      'seed-stability controls behind those numbers, and a student assignment: take a cluster, ' +
+      'beat the baseline.',
+    tags: [
+      'Unsupervised Learning',
+      'Astronomy',
+      'Chemical Tagging',
+      'Clustering',
+      'Self-Supervised Learning',
+      'APOGEE',
+      'IAA-SO 2026'
+    ],
+    deck: () => import('@/decks/IaaSoChemicalTaggingDeck.vue')
+  },
+  {
     id: 'flare-day-2026',
     title: 'FLIP: an open-source federated learning platform for healthcare',
     subtitle: 'From multi-institutional research to real NHS deployment · NVIDIA FLARE Day 2026',
