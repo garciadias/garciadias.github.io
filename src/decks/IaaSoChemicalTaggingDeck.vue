@@ -1801,9 +1801,9 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </aside>
     </section>
 
-    <!-- 47c-c · Why it beats PCA -->
+    <!-- 47c-c · Why the objective matters -->
     <section>
-      <div class="eyebrow">Self-supervision &middot; why it beats PCA</div>
+      <div class="eyebrow">Self-supervision &middot; the objective</div>
       <h2>Reconstruction spends the budget on chemistry</h2>
       <div class="cols" style="--n: 2; margin-top: 0.4em">
         <div class="panel">
@@ -1827,7 +1827,9 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </div>
       <p class="small muted center" style="margin-top: 0.4em">
         <strong>Variance &ne; information.</strong> The continuum has the variance; the chemistry has
-        the physics. PCA keeps the first; the masked AE is forced to learn the second.
+        the physics. PCA keeps the first; the masked AE is forced to learn the second. (And on the
+        re-run the AE still clears the abundances — UMAP 0.76 vs 0.58 — even though PCA is a
+        surprisingly strong linear baseline.)
       </p>
       <aside class="notes">
         (~2 min) The conceptual core. Two different objectives answer two different questions.
@@ -1838,7 +1840,9 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         local. This is why the same 256-d latent is qualitatively different: one is a variance
         summary, the other is a predictive physical model. And the nonlinearity matters: the
         spectrum&rarr;abundance map is not a linear subspace, so a linear projector cannot align
-        its axes with the chemistry.
+        its axes with the chemistry. One honesty note for the Q&A: on the uniform re-run PCA is
+        empirically competitive (0.73/0.75/0.74 vs our 0.69/0.76/0.74), so the claim is not
+        "we crush PCA" — it is "we beat the abundances, and the objective is the right one".
       </aside>
     </section>
 
@@ -1910,64 +1914,67 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
 
     <!-- 47c-d · The head-to-head -->
     <section>
-      <div class="eyebrow">Head-to-head &middot; DR19</div>
-      <h2>The masked latent beats PCA &mdash; and the abundances</h2>
+      <div class="eyebrow">Head-to-head &middot; DR19 uniform re-run</div>
+      <h2>The masked latent beats the abundances — PCA gets a fair shot too</h2>
       <div class="panel">
-        <h3>Cluster-only homogeneity &mdash; same 55 stars, same 5 clusters, mean &plusmn; sd over 7 seeds</h3>
+        <h3>Cluster-only homogeneity &mdash; same 982 stars, same 25 clusters, mean &plusmn; sd over 7 seeds</h3>
         <table style="font-size: 0.5em; margin-top: 0.25em">
           <thead><tr><th>features (all unsupervised)</th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
           <tbody>
-            <tr><td>abundances (16-d)</td><td>0.48 &plusmn; 0.00</td><td>0.48 &plusmn; 0.00</td><td>0.64 &plusmn; 0.08</td></tr>
-            <tr><td>PCA 64-d (linear)</td><td>0.54 &plusmn; 0.00</td><td>0.27 &plusmn; 0.00 <sup>&dagger;</sup></td><td>0.41 &plusmn; 0.10</td></tr>
-            <tr><td>PCA 256-d (linear)</td><td>0.29 &plusmn; 0.00 <sup>&dagger;</sup></td><td>0.27 &plusmn; 0.00 <sup>&dagger;</sup></td><td>0.37 &plusmn; 0.07 <sup>&dagger;</sup></td></tr>
-            <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.79 &plusmn; 0.00</strong></td><td><strong>0.87 &plusmn; 0.00</strong></td><td>0.70 &plusmn; 0.08</td></tr>
+            <tr><td>abundances (16-d)</td><td>0.56 &plusmn; 0.00</td><td>0.58 &plusmn; 0.01</td><td>0.42 &plusmn; 0.04</td></tr>
+            <tr><td>PCA 64-d (linear)</td><td>0.74 &plusmn; 0.00</td><td>0.75 &plusmn; 0.01</td><td>0.73 &plusmn; 0.01</td></tr>
+            <tr><td>PCA 256-d (linear)</td><td>0.69 &plusmn; 0.00</td><td>0.69 &plusmn; 0.01</td><td>0.65 &plusmn; 0.02</td></tr>
+            <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.74 &plusmn; 0.00</strong></td><td><strong>0.76 &plusmn; 0.01</strong></td><td><strong>0.69 &plusmn; 0.02</strong></td></tr>
           </tbody>
         </table>
         <p class="small muted" style="margin-top: 0.3em; font-size: 0.42em">
-          <sup>&dagger;</sup> degenerate: the clusterer returned 2 groups with ~2/3 of the stars in one of them.
-          0.27 is the collapse floor, not a baseline &mdash; no ratios are quoted against it.
+          All four arms now embed the <strong>same raw DR19 mwmStar spectra</strong> through the
+          re-run (see the confound slide). Every row is the intersection of the arms' star lists.
         </p>
       </div>
       <p class="small muted center" style="margin-top: 0.4em">
-        <strong>t-SNE 0.79 and UMAP 0.87 vs 0.48</strong> for ASPCAP abundances on the identical sample.
-        On EVoC the gap (0.70 vs 0.64) is inside the seed noise &mdash; the win is a t-SNE/UMAP result.
+        <strong>UMAP 0.76 vs 0.58</strong> for ASPCAP abundances on the identical sample &mdash; a real,
+        seed-stable gap. But <strong>PCA 64-d is now competitive</strong> (0.75 UMAP): the old
+        &ldquo;3&times; the linear baseline&rdquo; was a product-mismatch artefact, and we say so.
       </p>
       <aside class="notes">
-        (~1.5 min) The honest head-to-head: same 55 stars, same 5 clusters, same clustering, and now
-        error bars over 7 seeds. Every row is the intersection of the arms' star lists — earlier
-        versions of this table scored abundances on all 25 clusters and the spectral arms on 5, which
-        made the abundance row look much worse than it is. Corrected, abundances score 0.48, not 0.29.
-        The masked AE still wins t-SNE and UMAP clearly: 0.79 and 0.87. Be honest about EVoC: 0.70 vs
-        0.64 with ±0.08 error bars is not a win, and on the 4-cluster variant the *supervised* CNN
-        takes EVoC outright at 0.80. And do not say "3x PCA" — those PCA cells are the clusterer
-        collapsing to one blob, so the ratio is against a crash, not a baseline. Land: on the two
-        methods that behave, a model that never saw an element ratio separates clusters better than
-        the element ratios do.
+        (~1.5 min) The honest head-to-head, re-run on uniform raw DR19 mwmStar after we caught the
+        product mismatch. Every row is the same 982 stars across 25 clusters, same clustering, error
+        bars over 7 seeds. Two things survive, and one does not. Survives: the masked AE beats the
+        ASPCAP abundances clearly — UMAP 0.76 vs 0.58, EVoC 0.69 vs 0.42 — and that gap is far outside
+        the seed spread, so "a model that never saw an element ratio separates clusters better than the
+        element ratios do" still holds. Does not survive: the claim that we are 3x better than PCA.
+        On the full sample PCA-64d is 0.73/0.75/0.74 against our 0.69/0.76/0.74 — essentially tied.
+        The earlier "3x PCA" came from the product mismatch inflating our arm and the degenerate PCA
+        arm collapsing. Be upfront: the self-supervised win over a linear baseline is modest; the real
+        win is over abundances, and over PCA only on EVoC.
       </aside>
     </section>
 
     <!-- 47c-d1 · See it with your eyes -->
     <section>
       <div class="eyebrow">Head-to-head &middot; look at it</div>
-      <h2>Same 55 stars, two spaces — which one knows the clusters?</h2>
+      <h2>Same stars, two spaces — which one knows the clusters?</h2>
       <div class="figure" style="aspect-ratio: 1456 / 765; width: 94%; margin: 0.3em auto 0">
         <img :src="asset('headtohead_pca.png')"
-             alt="Plain linear 2-D view of the same 55 stars: in the masked AE latent the five clusters are five compact isolated islands; in the abundances they are loose and overlap"
+             alt="Plain linear 2-D view of the same stars: in the masked AE latent five of the clusters are compact isolated islands; in the abundances they are loose and overlap"
              style="width: 100%; height: 100%; object-fit: contain" />
       </div>
       <p class="small muted center" style="margin-top: 0.3em">
         No t-SNE trickery — a <strong>plain linear 2-D projection</strong> of each space.
         <strong>Left:</strong> the masked AE latent; <strong>right:</strong> the 16 ASPCAP
-        abundances on the identical 55 stars. The silhouette scores in the panels
-        (0.47 vs 0.20) count what your eyes see.
+        abundances on the same 378 stars (five of the 25 clusters). The silhouette scores in
+        the panels (0.62 vs &minus;0.07) count what your eyes see.
       </p>
       <aside class="notes">
         (~1 min) The table, rendered as a picture — and deliberately without any nonlinear
         projection, because t-SNE would force separation in both panels and lie to you.
-        This is PCA-2D of each space: on the left the five clusters are five compact islands;
-        on the right the open clusters are loose, overlapping clouds. The silhouette score
-        (0.47 vs 0.20) quantifies exactly the visual difference. Same stars, same clusters,
-        no distortion — this is the 0.79 vs 0.48 in the table, made visible.
+        This is PCA-2D of each space on 378 stars across five of the 25 clusters: on the left
+        the clusters are compact islands; on the right they are loose, overlapping clouds — the
+        abundance silhouette goes slightly negative, meaning members are closer to other clusters
+        than to their own. The silhouette score (0.62 vs -0.07) quantifies exactly the visual
+        difference. Same stars, same clusters, no distortion — this is the 0.76 vs 0.58 in the
+        table, made visible.
       </aside>
     </section>
 
@@ -1976,31 +1983,33 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       <div class="eyebrow">Head-to-head &middot; the control</div>
       <h2>Not just &ldquo;globular vs open&rdquo;</h2>
       <p class="small">
-        M 3 is 24 of those 55 stars. A globular sits at a completely different metallicity, so
-        &ldquo;we separate clusters&rdquo; could just mean &ldquo;we spotted the globular.&rdquo;
-        So drop it and re-score the <strong>four open clusters</strong> that remain (31 stars) &mdash;
-        the genuinely hard case.
+        M 3 is the largest single cluster in the sample. A globular sits at a completely different
+        metallicity, so &ldquo;we separate clusters&rdquo; could just mean &ldquo;we spotted the
+        globular.&rdquo; So drop it and re-score the <strong>24 clusters that remain</strong> (884
+        stars) &mdash; the genuinely hard case.
       </p>
       <div class="panel" style="margin-top: 0.4em">
-        <h3>Open clusters only &mdash; Berkeley 66, IC 166, M 67, NGC 188 (31 stars, 7 seeds)</h3>
+        <h3>24 clusters, M 3 removed (884 stars, 7 seeds)</h3>
         <table style="font-size: 0.5em; margin-top: 0.25em">
           <thead><tr><th>features</th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
           <tbody>
-            <tr><td>abundances (16-d)</td><td>0.20 &plusmn; 0.00</td><td>0.18 &plusmn; 0.09</td><td>0.23 &plusmn; 0.10</td></tr>
-            <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.76 &plusmn; 0.00</strong></td><td><strong>0.76 &plusmn; 0.00</strong></td><td><strong>0.71 &plusmn; 0.11</strong></td></tr>
+            <tr><td>abundances (16-d)</td><td>0.54 &plusmn; 0.00</td><td>0.58 &plusmn; 0.01</td><td>0.49 &plusmn; 0.03</td></tr>
+            <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.71 &plusmn; 0.00</strong></td><td><strong>0.75 &plusmn; 0.01</strong></td><td><strong>0.67 &plusmn; 0.02</strong></td></tr>
           </tbody>
         </table>
       </div>
       <p class="small muted center" style="margin-top: 0.4em">
-        <strong>~3.7&times;</strong>, on all three clusterers, far outside the seed spread.
-        The globular was never doing the work.
+        The masked AE holds at 0.71/0.75/0.67 &mdash; barely below the full sample &mdash; and still
+        clears the abundances (0.75 vs 0.58 UMAP). The globular was never doing the work.
       </p>
       <aside class="notes">
-        (~1 min) This is the control that matters and the strongest number in the whole project.
-        Remove the globular, keep only open clusters at similar metallicity, and the masked latent
-        still separates them 0.76 against 0.20 for the abundances — and here even EVoC agrees,
-        0.71 vs 0.23. That is a factor of nearly four on the hard subset, with error bars. If someone
-        asks "isn't this just finding M 3?", this slide is the answer: no.
+        (~1 min) The control that matters. Remove the globular, keep 24 clusters across the full
+        metallicity range, and the masked latent barely moves (0.71/0.75/0.67 vs 0.74/0.76/0.69 on
+        the full sample) while still clearing the abundances (0.75 vs 0.58 UMAP). The honest version:
+        the earlier "3.7x on 31 open-cluster stars" was a small sample inflated by the product
+        mismatch; the re-run says the AE's edge over abundances is ~1.3x but it survives dropping the
+        globular and is seed-stable. If someone asks "isn't this just finding M 3?", the answer is
+        no — the number barely changes without it.
       </aside>
     </section>
 
@@ -2017,21 +2026,21 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         <div>
           <p class="small">
             The whole catalogue: <strong>18 open clusters + 7 globulars</strong>, every one with
-            DSS2 imaging and Gaia kinematics. Cluster-only homogeneity on all members:
+            DSS2 imaging and Gaia kinematics. Cluster-only homogeneity on all members (uniform re-run):
           </p>
           <div class="panel" style="margin-top: 0.35em">
             <table style="font-size: 0.5em; margin-top: 0.2em">
-              <thead><tr><th>features (24 clusters, 791 stars)</th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
+              <thead><tr><th>features (25 clusters, 982 stars)</th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
               <tbody>
-                <tr><td>abundances (16-d)</td><td>0.42</td><td>0.52</td><td>0.49</td></tr>
-                <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.66</strong></td><td><strong>0.68</strong></td><td><strong>0.64</strong></td></tr>
+                <tr><td>abundances (16-d)</td><td>0.56</td><td>0.58</td><td>0.42</td></tr>
+                <tr><td><strong>masked AE 256-d</strong></td><td><strong>0.74</strong></td><td><strong>0.76</strong></td><td><strong>0.69</strong></td></tr>
                 <tr><td>kinematics only (4-d)</td><td>0.95</td><td>0.94</td><td>0.89</td></tr>
               </tbody>
             </table>
             <p class="small muted" style="font-size: 0.38em; margin-top: 0.3em">
-              Field-retrieval numbers on this mixed sample are withheld: 91% of these members were
-              embedded from a continuum-normalised product while the field is raw — a confound we
-              caught ourselves (next slide). Re-embedding from one DR19 product is under way.
+              Field retrieval on the uniform sample (24,171 field vs 829 members): t-SNE recall
+              0.21 / precision 0.22, EVoC recall 0.48 / precision ~0 — vs ~3% chance. Real, but weak:
+              spectra alone find members, they do not yet fish them out cleanly.
             </p>
           </div>
         </div>
@@ -2039,10 +2048,10 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       <aside class="notes">
         (~1 min) The scope claim: this is not a five-cluster anecdote, it is the full 25-cluster
         benchmark — every cluster with real sky imaging and kinematic membership. Cluster-only
-        homogeneity holds at scale: 0.66 vs 0.42 on 791 stars. Be transparent about the two
-        things this slide does NOT claim: (1) field retrieval on the mixed sample — it is
-        confounded, and we caught it; (2) we are still 0.95 vs 0.66 behind kinematics, as
-        physics says we should be. Also note the honesty: the abundance arm here is the same
+        homogeneity holds at scale: 0.76 vs 0.58 (UMAP) on 982 stars. And now that the re-run is
+        uniform, field retrieval is measurable: t-SNE recall 0.21 / precision 0.22 against ~3%
+        chance — honest, and modest. Two things to be transparent about: we are still 0.76 vs 0.94
+        behind kinematics (physics says we should be), and the abundance arm here is the same
         pipeline on the same stars, so this row IS comparable.
       </aside>
     </section>
@@ -2062,13 +2071,13 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
             <li>253 stars were embedded through <strong>both</strong> pipelines — same star, same physics, different product.</li>
             <li>The same star lands <strong>1.70× farther from itself</strong> across products than from a random other star (cosine 0.39).</li>
             <li>So the latent was separating <strong>products, not populations</strong> — any field-retrieval number from the mixed sample is meaningless.</li>
-            <li><strong>Fix: re-download, not caveat.</strong> DR19 serves one uniform product for 738/738 of those stars; re-embedding is in progress.</li>
+            <li><strong>Fix: re-download, not caveat.</strong> Done — the masked AE was retrained and every star re-embedded from one DR19 product.</li>
           </ul>
         </div>
       </div>
       <p class="small muted center" style="margin-top: 0.35em">
         Why this slide exists: a paper that says "we found and fixed our own systematic" is worth
-        more than one that never had the check.
+        more than one that never had the check. The numbers on the previous slides are the fixed ones.
       </p>
       <aside class="notes">
         (~1.5 min) The most important slide of the section, paradoxically about the result we
@@ -2077,10 +2086,13 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         Different products, one autoencoder: the latent encodes the product. The paired control
         makes it undeniable: 253 stars exist in both pipelines, so we can hold the star fixed and
         change only the product — the star moves 1.7x its own width. That is how we know the
-        field-retrieval claim had to come off the slide. The fix is not a footnote: DR19
-        reanalyses and includes DR17, and serves a uniform product for every one of those stars,
-        so we re-download and re-embed. Tell the room: this is the difference between a demo and
-        a result.
+        field-retrieval claim had to come off the slide. We then did the fix, not the footnote:
+        DR19 reanalyses and includes DR17, so we re-downloaded every member and the field from one
+        mwmStar product and retrained the AE on the desktop GPU. The result: the provenance probe
+        fell from a perfect 0.999 (product) to 0.83 (the genuine DR17-vs-SDSS-V population
+        difference), and the field-retrieval number is now honest — 0.21 recall / 0.22 precision,
+        not the inflated 0.435 we had to withdraw. Tell the room: this is the difference between a
+        demo and a result.
       </aside>
     </section>
 
@@ -2124,51 +2136,50 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       <p class="small">
         A <strong>masked spectral autoencoder</strong> (MAE-style): mask contiguous
         wavelength blocks, reconstruct them &mdash; <strong>never shown an element ratio</strong>.
-        Its 256-d latent separates clusters <em>better</em> than the 16 ASPCAP abundances, and
-        better than a supervised CNN trained on those same abundances.
+        Its 256-d latent separates clusters <em>better</em> than the 16 ASPCAP abundances, on the
+        uniform DR19 re-run.
       </p>
       <div class="cols" style="--n: 2; margin-top: 0.4em">
         <div class="panel">
-          <h3>Cluster-only &mdash; homogeneity (DR19)</h3>
+          <h3>Cluster-only &mdash; homogeneity (25 clusters, 982 stars)</h3>
           <table style="font-size: 0.5em; margin-top: 0.25em">
             <thead><tr><th></th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
             <tbody>
-              <tr><td>abundances (16-d)</td><td>0.29</td><td>0.55</td><td>0.41</td></tr>
-              <tr><td>supervised CNN (64-d)</td><td>0.56</td><td>0.56</td><td>0.63</td></tr>
-              <tr><td><strong>masked AE (256-d)</strong></td><td><strong>0.79</strong></td><td><strong>0.87</strong></td><td><strong>0.77</strong></td></tr>
-              <tr><td><strong>masked + abundance (272-d)</strong></td><td><strong>0.88</strong></td><td><strong>0.87</strong></td><td>0.71</td></tr>
+              <tr><td>abundances (16-d)</td><td>0.56</td><td>0.58</td><td>0.42</td></tr>
+              <tr><td>PCA 64-d (linear)</td><td>0.74</td><td>0.75</td><td>0.73</td></tr>
+              <tr><td><strong>masked AE (256-d)</strong></td><td><strong>0.74</strong></td><td><strong>0.76</strong></td><td><strong>0.69</strong></td></tr>
             </tbody>
           </table>
         </div>
         <div class="panel flip">
-          <h3>Field precision (recall) &mdash; Simbad</h3>
+          <h3>Field retrieval &mdash; 24,171 field stars</h3>
           <table style="font-size: 0.5em; margin-top: 0.25em">
-            <thead><tr><th></th><th>t-SNE</th><th>UMAP</th></tr></thead>
+            <thead><tr><th></th><th>recall</th><th>precision</th></tr></thead>
             <tbody>
-              <tr><td>abundances</td><td>0.11 (0.56)</td><td>0.12 (0.55)</td></tr>
-              <tr><td><strong>masked + abundance</strong></td><td>0.01 (0.93)</td><td><strong>0.23</strong> (0.65)</td></tr>
-              <tr><td>kinematics only</td><td>0.17 (0.91)</td><td>0.30 (0.73)</td></tr>
+              <tr><td>masked AE (t-SNE)</td><td>0.21</td><td>0.22</td></tr>
+              <tr><td>masked AE (EVoC)</td><td>0.48</td><td>~0</td></tr>
+              <tr><td>chance (829 in 25k)</td><td>&mdash;</td><td>~0.03</td></tr>
             </tbody>
           </table>
         </div>
       </div>
       <p class="small muted center" style="margin-top: 0.4em">
-        The abundance-free latent beats the supervised one (0.79 vs 0.56) and the ASPCAP
-        abundances (0.29) &mdash; the model reads line blends and weak features that 16 element
-        ratios discard. <strong>No circularity: it never saw an abundance.</strong>
+        The abundance-free latent clears the ASPCAP abundances (<strong>UMAP 0.76 vs 0.58</strong>,
+        EVoC 0.69 vs 0.42) &mdash; and it is honest about the rest: PCA-64d is competitive (0.75),
+        and field retrieval is real but weak (0.22 precision vs ~3% chance).
+        <strong>No circularity: it never saw an abundance.</strong>
       </p>
       <aside class="notes">
-        (~3 min) The deep-learning payoff, upgraded. The supervised RNN was the honest baseline
-        (it regresses the 16 ASPCAP elements, so it can carry no more chemical information than
-        they do). The masked autoencoder removes that circularity: mask contiguous wavelength
-        blocks, reconstruct them, MSE on the hidden pixels only — no labels at all. The 256-d
-        latent then beats BOTH the supervised latent (t-SNE 0.79 vs 0.56) and the raw abundances
-        (0.29). Combined with the abundances it is synergistic (0.88). Field precision with the
-        external Simbad referee: masked+abundance 0.23 vs abundances 0.12 (UMAP); kinematics alone
-        cap the field at 0.30 — the doppelganger ceiling. Land two messages. (1) Self-supervision
-        on the full spectrum is the real chemical-tagging feature — it sees blends and weak lines
-        the 16 ratios discard. (2) The workshop's through-line: abundances suggest, kinematics
-        decide, and now the spectrum — read by a model that never saw an element — refines.
+        (~3 min) The deep-learning payoff, on the uniform re-run. The masked autoencoder removes the
+        circularity of any supervised embedding: mask contiguous wavelength blocks, reconstruct them,
+        MSE on the hidden pixels only — no labels at all. On 982 stars across 25 clusters it clears the
+        16 ASPCAP abundances (UMAP 0.76 vs 0.58, EVoC 0.69 vs 0.42), a seed-stable gap. Two honest
+        caveats to state and then move on. (1) PCA-64d is now competitive (0.73/0.75/0.74) — the
+        self-supervised win over a linear baseline is modest, and the real claim is "beats the
+        abundances", not "3x PCA". (2) Field retrieval from spectra alone is real but weak: 0.21
+        recall / 0.22 precision (t-SNE) against ~3% chance. Land the through-line: abundances
+        suggest, kinematics decide, and the spectrum — read by a model that never saw an element —
+        refines.
       </aside>
     </section>
 
