@@ -17,7 +17,9 @@ import RevealDeck from '@/components/RevealDeck.vue';
 //   (graph embedding, global) → EVoC (fuses UMAP + HDBSCAN* + PLSCAN).
 //
 // Source material: the Garcia-Dias et al. 2020 "Clustering analysis" chapter
-// (K-means, KNN, DBSCAN, SSE/silhouette/dip/homogeneity), Bot et al. 2025
+// (K-means, GMM, DBSCAN, Ward; SSE/silhouette/dip/homogeneity — note it is a
+// psychiatry/neuroimaging methods chapter, not an astronomy paper, and it does
+// not cover KNN), Bot et al. 2025
 // (PLSCAN, persistence-based multiscale density clustering), and Kos et al.
 // 2017 (t-SNE chemical tagging) — then the benchmark we run in this repo:
 // t-SNE vs UMAP vs EVoC on APOGEE DR19 + Gaia DR3, scored against kinematic
@@ -804,7 +806,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 22 · HDBSCAN* -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">Density at all scales · HDBSCAN*</div>
       <h2>HDBSCAN*: a hierarchy over every density</h2>
       <p class="small">
@@ -831,8 +833,9 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
           </p>
           <p class="small">
             m<sub>c</sub> is a <strong>smoothing knob</strong>: raise it and shallow peaks disappear, as if the density
-            were blurred (Bot et al. 2025, Fig. 1). m<sub>c</sub> = 5 makes a five-star clump a cluster; m<sub>c</sub> =
-            50 makes it noise.
+            were blurred (Bot et al. 2025, Fig. 1 &mdash; a 2-D toy cloud, not stars). A small
+            m<sub>c</sub> lets a handful of stars count as a cluster; a large one prunes that peak
+            away and the same stars become noise.
           </p>
         </div>
       </div>
@@ -1052,8 +1055,10 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         <div class="panel flip">
           <h3>The trade-off</h3>
           <p class="small">
-            The pink numbers are the bill: PLSCAN's clusters are more complete but less pure, and it
-            sends more stars to the noise bin. A better ARI is not "better everywhere".
+            The pink numbers are the bill: PLSCAN's clusters are more complete (0.93 vs 0.89) but
+            less pure, and it sends more stars to the noise bin. A better ARI is not "better
+            everywhere" &mdash; and every score is computed <strong>only over non-noise points</strong>,
+            so PLSCAN's 0.66 is measured on the 76% it keeps against HDBSCAN*'s 88%.
           </p>
         </div>
       </div>
@@ -1139,7 +1144,8 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
             <li>Minimise <strong>KL(P‖Q)</strong> by gradient descent</li>
             <li>Barnes-Hut brings the cost to O(N log N)</li>
             <li>Random start, so every run differs</li>
-            <li>Kos et al. keep the lowest-KL map of many</li>
+            <li>Standard practice: keep the lowest-KL map of many &mdash; though Kos et al. report
+              their own repeated runs differed only by a random rotation</li>
           </ul>
         </div>
         <div class="panel">
@@ -2646,7 +2652,7 @@ uv run marimo edit notebooks/chemical_tagging.py</code></pre>
     </section>
 
     <!-- 50b · Where this sits in the literature -->
-    <section>
+    <section class="denser">
       <div class="eyebrow">Positioning &middot; the honest comparison</div>
       <h2>Two papers you should ask me about</h2>
       <div class="cols" style="--n: 2; margin-top: 0.4em">
@@ -2675,6 +2681,13 @@ uv run marimo edit notebooks/chemical_tagging.py</code></pre>
             kinematics and age; we deliberately do not. Different question, overlapping claim &mdash;
             the honest next experiment.
           </p>
+          <p class="small" style="margin-top: 0.3em">
+            <strong>And they tested our idea.</strong> &sect;5.3: clustering their 4-D autoencoder
+            <em>latent</em> recovers only <strong>3 of 6</strong> open clusters, against
+            <strong>5 of 6</strong> in the reconstructed 10-D output &mdash; and <strong>0 of 6</strong>
+            in the raw abundances. Their reason: a latent &ldquo;loses fine chemical details&rdquo; and
+            &ldquo;is not regularized to be continuous or well-structured for clustering&rdquo;.
+          </p>
         </div>
       </div>
       <p class="small muted center" style="margin-top: 0.45em">
@@ -2690,6 +2703,17 @@ uv run marimo edit notebooks/chemical_tagging.py</code></pre>
         attention networks — we have not benchmarked against them, and the right answer to "why not"
         is "not yet, and it's the obvious next run", not hand-waving. What survives both comparisons
         is the labels-free part: our features never saw an element ratio, a velocity or an age.
+        One more thing you must be ready for, because it is the sharpest question in the room:
+        Spina's section 5.3 ran the experiment we are advocating — cluster the autoencoder's latent —
+        and it did worse than their reconstructed output, 3 of 6 clusters against 5 of 6. Do not
+        hide it; it is on the slide. The answer has three parts. One, their latent is 4-D compressing
+        10 abundances; ours is 256-D compressing 8575 pixels, so "the bottleneck discards fine
+        detail" bites very differently. Two, their input is already ASPCAP's lossy summary, so their
+        autoencoder compresses a compression; ours is the first compression of the raw spectrum.
+        Three, and most honestly: their finding is a real warning that reconstruction-trained latents
+        are not optimised for clustering, and it is exactly why our head-to-head against PCA is close.
+        If someone pushes, concede that a like-for-like test — cluster our decoder output as well as
+        our latent — is a run we have not done and should.
       </aside>
     </section>
 
