@@ -432,6 +432,89 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </aside>
     </section>
 
+    <!-- 12a · KNN step 1 -->
+    <section class="dense">
+      <div class="eyebrow">Tool two &middot; KNN &middot; step 1 of 4</div>
+      <h2>Pick k, then measure every distance</h2>
+      <div class="figure" style="width: 74%; max-height: 52vh; margin: 0.3em auto 0">
+        <img :src="asset('knn_step1_distances.png')"
+             alt="One point joined to every other point in the set, showing the exhaustive distance computation"
+             style="width: 100%; height: auto; display: block" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em; max-width: 820px; margin-inline: auto">
+        The only knob is <strong>k</strong>. Naively every query costs O(N); a k-d or ball tree brings
+        it down to about O(log N), which is why the primitive is cheap enough to call constantly.
+      </p>
+      <aside class="notes">
+        (~40 s) Start deliberately dumb: to find the nearest neighbours you first measure everything.
+        Say out loud that nobody implements it this way — the trees are what make it practical — but
+        the definition really is this simple, and that simplicity is why four later methods can lean
+        on it.
+      </aside>
+    </section>
+
+    <!-- 12b · KNN step 2 -->
+    <section class="dense">
+      <div class="eyebrow">Tool two &middot; KNN &middot; step 2 of 4</div>
+      <h2>Keep the k smallest &mdash; that is the neighbourhood</h2>
+      <div class="figure" style="width: 74%; max-height: 52vh; margin: 0.3em auto 0">
+        <img :src="asset('knn_step2_neighbourhood.png')"
+             alt="The same point now joined only to its six nearest neighbours"
+             style="width: 100%; height: auto; display: block" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em; max-width: 820px; margin-inline: auto">
+        One list per star. Everything that follows &mdash; density, reachability, graphs &mdash; is a
+        different <em>use</em> of this one list.
+      </p>
+      <aside class="notes">
+        (~30 s) This is the whole algorithm. The interesting part is not computing the list, it is
+        what you decide the list means — and the next two slides give two completely different
+        answers.
+      </aside>
+    </section>
+
+    <!-- 12c · KNN step 3 -->
+    <section class="dense">
+      <div class="eyebrow">Tool two &middot; KNN &middot; step 3 of 4</div>
+      <h2>Reading 1 &mdash; the k-th distance is a free density estimate</h2>
+      <div class="figure" style="width: 74%; max-height: 52vh; margin: 0.3em auto 0">
+        <img :src="asset('knn_step3_core_distance.png')"
+             alt="Two query points with the same k: the dense one has a small core-distance circle, the sparse one a much larger circle"
+             style="width: 100%; height: auto; display: block" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em; max-width: 880px; margin-inline: auto">
+        Same k, different radius. Small &kappa;(x) = packed, large &kappa;(x) = sparse. <strong>DBSCAN</strong>
+        thresholds this; <strong>HDBSCAN*</strong> builds mutual reachability max(&kappa;(x), &kappa;(y), d(x,y)) from it.
+      </p>
+      <aside class="notes">
+        (~50 s) The pivot. You never asked for a density estimate, but you got one for free: fix the
+        count and let the radius float, and the radius <em>is</em> the density. Point at both circles —
+        same six neighbours, radius roughly three times bigger in the sparse blob. Every density
+        method in this deck is downstream of this one picture.
+      </aside>
+    </section>
+
+    <!-- 12d · KNN step 4 -->
+    <section class="dense">
+      <div class="eyebrow">Tool two &middot; KNN &middot; step 4 of 4</div>
+      <h2>Reading 2 &mdash; keep the edges and you have a graph</h2>
+      <div class="figure" style="width: 74%; max-height: 52vh; margin: 0.3em auto 0">
+        <img :src="asset('knn_step4_graph.png')"
+             alt="Every point joined to its nearest neighbours, forming a k-nearest-neighbour graph over the whole dataset"
+             style="width: 100%; height: auto; display: block" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em; max-width: 880px; margin-inline: auto">
+        Now clustering is a <strong>graph</strong> question, not a geometry question. This object is what
+        <strong>UMAP</strong> lays out and what <strong>EVoC</strong> clusters.
+      </p>
+      <aside class="notes">
+        (~45 s) Second reading of the same list, and the one that carries the back half of the talk.
+        Notice what was thrown away: absolute distances. The graph keeps only who-is-near-whom, which
+        is exactly the robustness UMAP exploits in high dimensions. One primitive, two products —
+        density on the previous slide, topology on this one.
+      </aside>
+    </section>
+
     <!-- 13 · DBSCAN -->
     <section>
       <div class="eyebrow">Tool three · DBSCAN</div>
@@ -1388,6 +1471,91 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
         PLSCAN barcode: it sweeps min_cluster_size, scores each resulting layer by total
         persistence, and the winning layer becomes the labels you get back. Point at the four
         panels as you go; the last one is the persistence score per layer.
+      </aside>
+    </section>
+
+    <!-- 44a · EVoC step 1 -->
+    <section class="dense">
+      <div class="eyebrow">The fusion &middot; EVoC &middot; step 1 of 4</div>
+      <h2>Build the kNN graph on the raw abundances</h2>
+      <div class="figure" style="width: 72%; max-height: 52vh; margin: 0.3em auto 0">
+        <img :src="asset('evoc_step1_graph.png')"
+             alt="A k-nearest-neighbour graph drawn over the full dataset in its original feature space"
+             style="width: 100%; height: auto; display: block" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em; max-width: 880px; margin-inline: auto">
+        Borrowed wholesale from <strong>UMAP</strong>, in cosine geometry, on all 16 dimensions.
+        Note what does <em>not</em> happen here: no 2-D picture is ever made.
+      </p>
+      <aside class="notes">
+        (~40 s) Step 1 is the KNN slide again, unchanged — say that explicitly, it is reassuring.
+        The one thing to stress is the metric: cosine, because the signal is the abundance pattern
+        rather than its amplitude.
+      </aside>
+    </section>
+
+    <!-- 44b · EVoC step 2 -->
+    <section class="dense">
+      <div class="eyebrow">The fusion &middot; EVoC &middot; step 2 of 4</div>
+      <h2>Embed the graph &mdash; into 4&ndash;15-D, not into a picture</h2>
+      <div class="figure" style="width: 72%; max-height: 52vh; margin: 0.3em auto 0">
+        <img :src="asset('evoc_step2_embed.png')"
+             alt="The graph laid out as a node embedding, with the groups now separated"
+             style="width: 100%; height: auto; display: block" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em; max-width: 880px; margin-inline: auto">
+        Sized for the <em>clusterer</em>, not for your eyes &mdash; four dimensions at our
+        n_neighbors&nbsp;=&nbsp;15. Drawn in 2-D here only so it can be put on a slide.
+      </p>
+      <aside class="notes">
+        (~45 s) The key distinction in the whole method, and the one the audience will get wrong if
+        you let them: this is not a visualisation. t-SNE and UMAP squash to 2-D because a human has
+        to look; EVoC embeds to whatever dimension clusters best. Be honest that the slide cheats by
+        showing 2-D — the real thing has no picture at all.
+      </aside>
+    </section>
+
+    <!-- 44c · EVoC step 3 -->
+    <section class="dense">
+      <div class="eyebrow">The fusion &middot; EVoC &middot; step 3 of 4</div>
+      <h2>Run HDBSCAN* on that embedding</h2>
+      <div class="figure" style="width: 72%; max-height: 52vh; margin: 0.3em auto 0">
+        <img :src="asset('evoc_step3_cluster.png')"
+             alt="The embedded points coloured by cluster, with sparse points labelled as noise"
+             style="width: 100%; height: auto; display: block" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em; max-width: 880px; margin-inline: auto">
+        Mutual-reachability MST, then the condensed tree &mdash; <strong>HDBSCAN*</strong>'s own steps,
+        unchanged. Field stars are allowed to be noise, which is what a cluster search needs.
+      </p>
+      <aside class="notes">
+        (~40 s) Nothing new here at all, and that is the point — steps 1–3 are two methods they have
+        already seen, bolted together. Point at the grey noise points: K-means could never produce
+        them, and in a catalogue that is ~97% field stars that ability is the whole game.
+      </aside>
+    </section>
+
+    <!-- 44d · EVoC step 4 -->
+    <section class="dense">
+      <div class="eyebrow">The fusion &middot; EVoC &middot; step 4 of 4</div>
+      <h2>The new idea &mdash; score every layer, keep the best</h2>
+      <div class="figure" style="width: 76%; max-height: 50vh; margin: 0.3em auto 0">
+        <img :src="asset('evoc_step4_persistence.png')"
+             alt="Bar chart of mean cluster stability against min_cluster_size, with the winning layer highlighted"
+             style="width: 100%; height: auto; display: block" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.3em; max-width: 900px; margin-inline: auto">
+        Sweep min_cluster_size, score each layer by <strong>persistence</strong>, keep the winner.
+        Numbers above the bars are clusters found: the smallest setting shatters the data into 45 specks
+        and scores badly; the winning layer recovers the true structure. <strong>No scale left to guess.</strong>
+      </p>
+      <aside class="notes">
+        (~60 s) This is the only genuinely new component, and it is PLSCAN's idea applied to whole
+        layers rather than to individual clusters. Walk the bars left to right: tiny min_cluster_size
+        fragments everything, and fragmentation is penalised because we score the <em>mean</em>
+        persistence — a shattered layer is full of short-lived junk. The winner is the layer whose
+        typical cluster survives the longest span of density thresholds. That is how the method
+        eliminates the knob every earlier algorithm made you guess.
       </aside>
     </section>
 
