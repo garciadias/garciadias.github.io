@@ -7,7 +7,12 @@ import { nextTick, onBeforeUnmount, onMounted, ref } from 'vue'
 // <section> elements (the slides). The deck is initialised on mount and torn
 // down on unmount so navigating away leaves no global key/resize listeners.
 const props = defineProps({
-  options: { type: Object, default: () => ({}) }
+  options: { type: Object, default: () => ({}) },
+  // Extra class on the .reveal root, selecting an alternate palette defined in
+  // this file's global style block (e.g. 'astro-theme'). The base 'deck-theme'
+  // stays on regardless, so a palette override only has to restate the custom
+  // properties it actually changes.
+  themeClass: { type: String, default: '' }
 })
 
 const root = ref(null)
@@ -69,7 +74,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="root" class="reveal deck-theme">
+  <div ref="root" class="reveal deck-theme" :class="props.themeClass">
     <!-- Optional persistent overlay (e.g. branding watermarks): a sibling of
          .slides rather than nested in a section, so it anchors to the stable,
          full-size .reveal box instead of any one slide's own (content-height-
@@ -756,4 +761,152 @@ html:not(.dark) .reveal.deck-theme {
   font-size: 0.44em;
   color: var(--comment);
 }
+
+/* ------------------------------------------------------------------------ *
+   ASTRO THEME — an optional light palette for astronomy decks, selected with
+   <RevealDeck theme-class="astro-theme">. Layered on top of .deck-theme, so it
+   only restates the custom properties it changes; every rule above still
+   applies.
+
+   The palette is keyed to things an astronomer already reads as meaningful,
+   which makes the colour coding teach rather than decorate:
+     --accent        deep indigo   — night sky / the "unknown" (headings, eyebrows)
+     --accent-cyan   hot-star blue — O/B stars, the blue end of the sequence
+     --accent-orange K-giant amber — the red-giant end (APOGEE's targets)
+     --accent-pink   H-alpha rose  — emission, "look here"
+     --accent-green  observed/true — the ground-truth cue
+
+   Deliberately light in BOTH site modes (html.dark included): projected
+   astronomy figures are dark-on-white, the DSS sky cutouts are greyscale, and a
+   dark deck around a white figure is what makes a lecture hall squint. Forcing
+   the light palette here means the deck looks the same on the presenter's dark
+   site and on the projector.                                                  */
+.reveal.deck-theme.astro-theme,
+html.dark .reveal.deck-theme.astro-theme {
+  --r-heading-font: 'Bai Jamjuree', 'Inter', sans-serif;
+
+  --r-background-color: #fbfbfd;
+  --r-main-color: #1c2333;      /* ink, very slightly blue */
+  --r-heading-color: #111827;
+  --r-link-color: #1d4ed8;
+  --r-link-color-hover: #3730a3;
+
+  --accent: #3730a3;            /* indigo — night sky */
+  --accent-cyan: #0369a1;       /* hot-star blue */
+  --accent-pink: #be123c;       /* H-alpha */
+  --accent-green: #15803d;      /* confirmed / truth */
+  --accent-orange: #b45309;     /* K giant */
+
+  --surface: #f2f4f9;           /* panel fill — cool off-white */
+  --line: #d5dae6;
+  --comment: #55607a;           /* muted ink, still WCAG-AA on the surface */
+  --grad-a: #3730a3;
+  --grad-b: #0369a1;
+  --title-sub: #1c2333;
+
+  --fig-bg: #ffffff;
+  --body-veil: rgba(251, 251, 253, 0.88);
+  --fig-border: #dfe3ec;
+  --fig-shadow: 0 8px 26px rgba(17, 24, 39, 0.10);
+
+  --flip-bg: rgba(3, 105, 161, 0.07);
+  --flip-border: #0369a1;
+  --flip-tag-bg: #0369a1;
+  --flip-tag-fg: #ffffff;
+  --pill-bg: rgba(55, 48, 163, 0.09);
+  --pill-color: #27226b;
+  --req-bg: rgba(55, 48, 163, 0.10);
+  --fla3-col-bg: rgba(55, 48, 163, 0.06);
+  --flip-col-bg: rgba(3, 105, 161, 0.06);
+  --code-color: #9d174d;
+
+  color: var(--r-main-color);
+  /* A star field rather than a flat wash: three faint radial "stars" and a very
+     soft indigo dawn at the top. All low-alpha, so body text keeps its contrast
+     and printed/PDF exports stay clean. */
+  background-color: #fbfbfd;
+  background-image:
+    radial-gradient(circle at 12% 18%, rgba(55, 48, 163, 0.05) 0 1.4px, transparent 1.6px),
+    radial-gradient(circle at 78% 12%, rgba(3, 105, 161, 0.06) 0 1.1px, transparent 1.3px),
+    radial-gradient(circle at 63% 74%, rgba(180, 83, 9, 0.05) 0 1.2px, transparent 1.4px),
+    linear-gradient(to bottom, rgba(55, 48, 163, 0.07) 0%, rgba(3, 105, 161, 0.03) 22%, rgba(255, 255, 255, 0) 55%);
+}
+
+/* The eyebrow is the deck's spectral-line motif: a short emission-line tick
+   before the label, so every slide is visually stamped as "a reading". */
+.reveal.deck-theme.astro-theme .eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 1.6em;
+  height: 0.22em;
+  margin-right: 0.7em;
+  vertical-align: 0.22em;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-cyan));
+}
+
+/* Title slide: the gradient wordmark reads as a spectrum (blue → indigo → red),
+   which is the whole lecture's subject in one line of type. */
+.reveal.deck-theme.astro-theme .title-slide h1 {
+  background: linear-gradient(100deg, #0369a1 0%, #3730a3 45%, #be123c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Panels get a faint top rule by default so a row of them reads as a spectrum
+   strip; .flip / .fla3 still override it with their own keyed colour. */
+.reveal.deck-theme.astro-theme .panel {
+  border-top: 3px solid var(--line);
+}
+.reveal.deck-theme.astro-theme .panel.flip { border-top-color: var(--accent-cyan); }
+.reveal.deck-theme.astro-theme .panel.fla3 { border-top-color: var(--accent); }
+
+/* Figures sit on pure white with a hairline: the DSS cutouts and matplotlib
+   panels are themselves white-backed, so the card should disappear around them
+   rather than draw a second frame. */
+.reveal.deck-theme.astro-theme .figure {
+  border-color: var(--fig-border);
+}
+
+/* Density modifiers for content-heavy slides.
+
+   reveal scales the 1280x720 canvas to the viewport, but it does NOT shrink a
+   slide whose content is intrinsically taller than 720 — that content is simply
+   clipped, silently, and you only find out in the lecture hall. These classes
+   scale a slide's own type down so a dense slide fits the canvas instead.
+
+   Prefer splitting a slide over reaching for .denser; use these when the content
+   genuinely belongs together (a reference list, a results table with its
+   caveats). Applied as <section class="dense"> — verified by measuring
+   scrollHeight against 720, not by eye. */
+.reveal.deck-theme.astro-theme section.dense {
+  font-size: 0.88em;
+}
+.reveal.deck-theme.astro-theme section.denser {
+  font-size: 0.78em;
+}
+.reveal.deck-theme.astro-theme section.densest {
+  font-size: 0.68em;
+}
+/* Headings carry most of the vertical cost on a dense slide, so they give up
+   proportionally more than the body text does. */
+.reveal.deck-theme.astro-theme section.dense h2 { font-size: 1.32em; margin-bottom: 0.3em; }
+.reveal.deck-theme.astro-theme section.denser h2 { font-size: 1.24em; margin-bottom: 0.25em; }
+.reveal.deck-theme.astro-theme section.densest h2 { font-size: 1.16em; margin-bottom: 0.22em; }
+.reveal.deck-theme.astro-theme section.dense .panel,
+.reveal.deck-theme.astro-theme section.denser .panel,
+.reveal.deck-theme.astro-theme section.densest .panel { padding: 0.5em 0.7em; }
+.reveal.deck-theme.astro-theme section.denser li,
+.reveal.deck-theme.astro-theme section.densest li { margin-bottom: 0.22em; }
+/* Type scaling alone cannot rescue a slide whose height is set by an image —
+   a figure keeps its intrinsic aspect ratio however small the text gets. On
+   dense slides the figures are capped to a fraction of the canvas so the image
+   shrinks with everything else. */
+.reveal.deck-theme.astro-theme section.dense .figure img { max-height: 60vh; width: auto; }
+.reveal.deck-theme.astro-theme section.denser .figure img { max-height: 54vh; width: auto; }
+.reveal.deck-theme.astro-theme section.densest .figure img { max-height: 48vh; width: auto; }
+.reveal.deck-theme.astro-theme section.dense .figure,
+.reveal.deck-theme.astro-theme section.denser .figure,
+.reveal.deck-theme.astro-theme section.densest .figure { padding: 0.35em; }
 </style>

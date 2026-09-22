@@ -31,7 +31,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
 </script>
 
 <template>
-  <RevealDeck :options="{ center: true }">
+  <RevealDeck :options="{ center: true }" theme-class="astro-theme">
     <template #chrome>
       <DeckBrand :qr="asset('presentation.png')" :show-logos="false" />
     </template>
@@ -283,7 +283,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 9 · The loop, end to end -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">Tool one · K-means · the loop</div>
       <h2>Two moves, repeated until nothing changes</h2>
       <div class="figure" style="display: block; width: 100%; max-width: 880px; margin: 0 auto">
@@ -341,7 +341,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 11 · K-means limits -->
-    <section>
+    <section class="denser">
       <div class="eyebrow">Tool one · K-means limits</div>
       <h2>It assumes round, equal-sized clusters</h2>
       <div class="fig-split" style="--cols: 1.1fr 1fr; margin-top: 0.35em; align-items: start">
@@ -378,7 +378,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 12 · KNN -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">Tool two · KNN</div>
       <h2>KNN: the nearest-neighbour primitive</h2>
       <p class="small">
@@ -776,7 +776,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 23 · Core distance κ(x) -->
-    <section>
+    <section class="denser">
       <div class="eyebrow">Tool four · HDBSCAN* · step 1 of 4</div>
       <h2>Core distance κ(x)</h2>
       <div class="figure" style="display: block; width: 100%; max-width: 740px; margin: 0 auto">
@@ -828,7 +828,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 27 · PLSCAN -->
-    <section>
+    <section class="denser">
       <div class="eyebrow">Persistence · PLSCAN</div>
       <h2>PLSCAN: drop the min-cluster-size knob</h2>
       <p class="small">
@@ -925,7 +925,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 31 · PLSCAN — results & segue -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">Persistence · PLSCAN</div>
       <h2>More stable, less sensitive — and a familiar name</h2>
       <div class="slide-body">
@@ -993,7 +993,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 32 · t-SNE — project to 2-D -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">Embeddings · t-SNE</div>
       <h2>t-SNE: project to 2-D, then look</h2>
       <p class="small">
@@ -1224,7 +1224,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 39 · UMAP -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">Embeddings · UMAP</div>
       <h2>UMAP: a graph embedding with global structure</h2>
       <p class="small muted" style="margin: 0.1em 0 0.3em">
@@ -1392,7 +1392,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 45 · EVoC — why C-space -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">The fusion · EVoC</div>
       <h2>Why this fits chemical space</h2>
       <div class="slide-body">
@@ -1430,7 +1430,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 46 · The benchmark -->
-    <section>
+    <section class="denser">
       <div class="eyebrow">The benchmark · this repo</div>
       <h2>Three methods, one kinematic truth</h2>
       <div class="slide-body">
@@ -1486,7 +1486,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 46b · Baseline — re-create the paper -->
-    <section>
+    <section class="densest">
       <div class="eyebrow">Baseline · re-creating Garcia-Dias et al. 2019</div>
       <h2>First: can we separate the clusters from each other?</h2>
       <p class="small">
@@ -1549,7 +1549,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 46c · Confusion matrix -->
-    <section>
+    <section class="densest">
       <div class="eyebrow">Baseline · the structure behind the score</div>
       <h2>Two families, not twenty clusters</h2>
       <p class="small">
@@ -1595,7 +1595,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 47 · Results -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">Follow-up · retrieval from the field</div>
       <h2>Chemical tagging is hard — that's the finding</h2>
       <p class="small">
@@ -1763,41 +1763,175 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </aside>
     </section>
 
-    <!-- 47c-b · Masked AE mechanics -->
+    <!-- 47c-b · The model itself -->
     <section>
-      <div class="eyebrow">Self-supervision &middot; the masked autoencoder</div>
-      <h2>Mask part of the spectrum, predict it back</h2>
-      <p class="small">
-        A <strong>masked autoencoder</strong> (He et al. 2022): hide <strong>contiguous wavelength
-        blocks</strong>, feed the visible pixels through a conv encoder into a 256-d latent, then
-        reconstruct the hidden pixels with a decoder. <strong>Loss = MSE on the hidden pixels only.</strong>
+      <div class="eyebrow">Tool nine &middot; masked autoencoder</div>
+      <h2>The masked spectral autoencoder</h2>
+      <p class="small" style="margin-bottom: 0.15em; font-size: 0.6em">
+        Everything so far consumed <strong>16 abundances</strong>. This model consumes the
+        <strong>8575-pixel spectrum</strong> itself and learns its own 256 numbers &mdash; with
+        <strong>no labels at all</strong>.
       </p>
-      <div class="cols" style="--n: 3; margin-top: 0.4em">
-        <div class="panel">
-          <h3>1 &middot; Mask</h3>
-          <p class="small">Hide ~50% of pixels in contiguous blocks. The model cannot interpolate across a hidden block.</p>
-        </div>
-        <div class="panel">
-          <h3>2 &middot; Encode</h3>
-          <p class="small">Conv stack reads the visible pixels &rarr; 256-d latent <strong>z</strong>.</p>
-        </div>
-        <div class="panel flip">
-          <h3>3 &middot; Reconstruct</h3>
-          <p class="small">Decoder predicts the hidden pixels from <strong>z</strong>. MSE only there.</p>
-        </div>
+      <div class="figure" style="display: block; width: 100%; max-width: 990px; margin: 0.1em auto 0">
+        <img :src="asset('mae_arch.png')"
+             alt="Architecture: 8575-pixel spectrum, five stride-2 conv blocks narrowing to 64 channels, global pool and linear layer to a 256-d latent, then a mirrored transposed-conv decoder back to 8575 pixels"
+             style="width: 100%; height: auto" />
       </div>
-      <p class="small muted center" style="margin-top: 0.4em">
-        To fill a hidden block, <strong>z</strong> must encode the local line physics &mdash; every
-        element&rsquo;s fingerprint &mdash; not just the bright continuum. <strong>No abundance labels anywhere.</strong>
+      <p class="small muted center" style="margin-top: 0.25em; font-size: 0.52em; max-width: 900px; margin-inline: auto">
+        <strong>8.6M parameters.</strong> Encoder: five <code>Conv1d</code> blocks, stride 2, each
+        halving the length and widening the channels &mdash; then global-average pool and one linear
+        layer to <strong>z &isin; &#8477;<sup>256</sup></strong>. Decoder mirrors it.
+        <strong>z is the only thing we keep.</strong>
       </p>
       <aside class="notes">
-        (~2 min) The mechanics. Masking is the key design choice: contiguous blocks, not random
-        pixels. Random-pixel masking is too easy — the encoder interpolates across a missing pixel
-        from its neighbours. A hidden *block* forces the latent to carry the physics: to reconstruct
-        a masked Fe I window you must know the iron abundance, the temperature, the line blending.
-        The reconstruction objective is self-supervised — the label is the spectrum itself, so the
-        latent is free of the ASPCAP element-ratio circularity. Emphasise: the only loss term is
-        MSE on the hidden pixels; the latent is never told what an element is.
+        (~3 min) The architecture slide the section was missing — draw it out loud, left to right,
+        because everything after this refers back to it. The input is one star's spectrum: 8575
+        flux values, standardised to zero mean and unit sigma per star so brightness cannot be a
+        feature. Then five convolutional blocks, each stride 2, so the sequence halves — 8575, 4288,
+        2144, 1072, 536, 268 — while the channels go the other way: 1024, 512, 256, 128, 64. That is
+        the usual convnet trade: lose resolution, gain abstraction. Then the step people miss:
+        global-average pool over what's left, so the latent does not depend on position, and one
+        linear layer down to 256 numbers. The decoder is the mirror image, transposed convolutions
+        back up to 8575. Say the punchline plainly: at inference we throw the decoder away. The
+        decoder exists only to create the training pressure; z is the product. And 8.6M parameters
+        is small — this trains in under an hour on one GPU, which matters for the hands-on.
+      </aside>
+    </section>
+
+    <!-- 47c-b1 · Step 1 — mask -->
+    <section>
+      <div class="eyebrow">Tool nine &middot; masked AE &middot; step 1 of 4</div>
+      <h2>Hide contiguous blocks of the spectrum</h2>
+      <div class="figure" style="display: block; width: 100%; max-width: 900px; margin: 0 auto">
+        <img :src="asset('mae_step1_mask.png')"
+             alt="A real DR19 spectrum with two shaded 200-pixel windows hidden from the model"
+             style="width: 100%; height: auto" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.35em; max-width: 820px; margin-inline: auto">
+        A real DR19 spectrum. ~50% of it is hidden in <strong>200-pixel blocks</strong> &mdash; the
+        model is handed the blue curve with the shaded windows zeroed out.
+      </p>
+      <aside class="notes">
+        (~45 s) This is a real star, not a cartoon — one of the 39,945 spectra we actually trained
+        on. Two knobs and both matter: mask ratio 50%, block size 200 pixels. Point at a shaded
+        window: the model gets zeros there. It has to produce the missing curve from everything
+        else it can see. Next slide says why the blocks have to be contiguous.
+      </aside>
+    </section>
+
+    <!-- 47c-b2 · Why blocks, not pixels -->
+    <section>
+      <div class="eyebrow">Tool nine &middot; masked AE &middot; the design choice</div>
+      <h2>Why blocks, and not random pixels?</h2>
+      <div class="figure" style="display: block; width: 100%; max-width: 980px; margin: 0 auto">
+        <img :src="asset('mae_why_blocks.png')"
+             alt="Two panels: with random pixels hidden, linear interpolation reconstructs the spectrum almost perfectly; with one contiguous block hidden, interpolation flatlines across it"
+             style="width: 100%; height: auto" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.35em; max-width: 860px; margin-inline: auto">
+        Hide <em>random pixels</em> and plain linear interpolation already wins
+        (MSE&nbsp;0.009) &mdash; the task teaches nothing. Hide <em>one block</em> and interpolation
+        flatlines across it (MSE&nbsp;0.057, <strong>6&times; worse</strong>).
+      </p>
+      <aside class="notes">
+        (~1.5 min) A slide worth the time, because it is the one design decision that makes or
+        breaks a masked model and it generalises far beyond spectra. On the left I hid half the
+        pixels at random and reconstructed them with nothing but straight-line interpolation between
+        the survivors — look how well it does; the red dots sit on the blue curve. A model trained
+        on that objective learns "average your neighbours", which is a statement about sampling, not
+        about stars. On the right I hid one contiguous block: interpolation has nothing local left
+        to lean on and draws a straight line through real absorption features, six times worse. To
+        fill THAT you need to know which lines belong there and how deep they are — the iron, the
+        temperature, the blends. Same principle as BERT masking whole words and MAE masking image
+        patches: the hole must be bigger than the correlation length, or the task is trivial.
+      </aside>
+    </section>
+
+    <!-- 47c-b3 · Step 2 — encode -->
+    <section>
+      <div class="eyebrow">Tool nine &middot; masked AE &middot; step 2 of 4</div>
+      <h2>Squeeze 8575 pixels into 256 numbers</h2>
+      <div class="figure" style="display: block; width: 100%; max-width: 900px; margin: 0 auto">
+        <img :src="asset('mae_step2_encode.png')"
+             alt="Bar chart on a log scale: sequence length falling 8575, 4288, 2144, 1072, 536, 268 while channel count rises 1024 to 64"
+             style="width: 100%; height: auto" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.35em; max-width: 840px; margin-inline: auto">
+        Each stride-2 convolution halves the length. After five, a
+        <strong>64&times;268</strong> map is pooled over wavelength and projected to
+        <strong>z (256-d)</strong> &mdash; a <strong>33&times;</strong> compression.
+      </p>
+      <aside class="notes">
+        (~1 min) Read the bars as the compression story: 8575 down to 268 positions, while each
+        position gets richer — 1024 channels at the top, 64 at the bottom. The convolutions are
+        local, so early layers see individual line profiles and later layers see relationships
+        between regions of the spectrum. Then the global-average pool: collapse the 268 positions
+        entirely, so the latent describes the star rather than a location on the detector. 8575
+        numbers in, 256 out — 33 times smaller, and the compression is exactly what forces the model
+        to decide what matters.
+      </aside>
+    </section>
+
+    <!-- 47c-b4 · Step 3 — reconstruct -->
+    <section>
+      <div class="eyebrow">Tool nine &middot; masked AE &middot; step 3 of 4</div>
+      <h2>Predict the pixels it was never shown</h2>
+      <div class="figure" style="display: block; width: 100%; max-width: 900px; margin: 0 auto">
+        <img :src="asset('mae_step3_recon.png')"
+             alt="The trained model's actual reconstruction, in green, drawn inside the two hidden windows and tracking the true absorption lines"
+             style="width: 100%; height: auto" />
+      </div>
+      <p class="small muted center" style="margin-top: 0.35em; max-width: 860px; margin-inline: auto">
+        The green curve is <strong>our trained model's actual output</strong> inside the hidden
+        windows. It puts the absorption lines back &mdash; in the right places, at roughly the right
+        depths. <strong>The loss is the MSE there and nowhere else.</strong>
+      </p>
+      <aside class="notes">
+        (~2 min) The money slide of the section: this is a real reconstruction from the checkpoint
+        we trained for this talk, not an illustration. The model saw zeros in the shaded windows and
+        drew the green curve. Look at what it got right — the line positions, and broadly the
+        depths. It cannot have interpolated them; it had to infer "this is a star with these
+        parameters, so these lines go here, this deep". That inference is the chemistry, and it is
+        why the latent is a chemical-tagging feature. Then the crucial detail: the loss is computed
+        ONLY on hidden pixels. Score the visible ones too and the model wins by copying its input.
+        MSE 0.144 in standardised flux units — not perfect, and it should not be: a model that
+        reconstructed the noise would be memorising, not generalising.
+      </aside>
+    </section>
+
+    <!-- 47c-b5 · Step 4 — the latent -->
+    <section>
+      <div class="eyebrow">Tool nine &middot; masked AE &middot; step 4 of 4</div>
+      <h2>Throw the decoder away &mdash; keep z</h2>
+      <div class="fig-split" style="--cols: 1.25fr 1fr; margin-top: 0.2em; align-items: center">
+        <div class="figure" style="margin: 0">
+          <img :src="asset('mae_step4_latent.png')"
+               alt="PCA-2D of the 256-d latent for 378 real member stars: five clusters land in distinct groups"
+               style="width: 100%; height: auto; display: block" />
+        </div>
+        <div>
+          <ul class="checklist small">
+            <li>Training done &mdash; <strong>discard the decoder</strong></li>
+            <li>Every star &rarr; <code>embed(x)</code> &rarr; <strong>256 numbers</strong></li>
+            <li>No masking at inference: the full spectrum goes in</li>
+            <li>Those 256 numbers replace the 16 abundances</li>
+            <li>Cluster them with <em>any</em> tool from this lecture</li>
+          </ul>
+          <p class="small muted" style="margin-top: 0.4em">
+            378 real member stars, five clusters, plain PCA-2D of the latent.
+            <strong>The model was never told any of these labels.</strong>
+          </p>
+        </div>
+      </div>
+      <aside class="notes">
+        (~1.5 min) Close the loop back to the lecture's spine. Training is a means, not the end: we
+        keep the encoder, drop the decoder, and stop masking — at inference the whole spectrum goes
+        in and 256 numbers come out. Those numbers are a drop-in replacement for the 16 abundances,
+        which means every algorithm from the last ninety minutes still applies: K-means, HDBSCAN*,
+        UMAP, EVoC, unchanged, just on a different feature vector. The figure is the reward: five
+        real clusters, plain linear PCA of the latent, and they land in distinct regions. Nothing in
+        training knew that M 3 and M 67 exist. Now the fair question — is this actually better than
+        the abundances, and better than PCA on the same pixels? That is the benchmark, next.
       </aside>
     </section>
 
@@ -1952,10 +2086,10 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 47c-d1 · See it with your eyes -->
-    <section>
+    <section class="densest">
       <div class="eyebrow">Head-to-head &middot; look at it</div>
       <h2>Same stars, two spaces — which one knows the clusters?</h2>
-      <div class="figure" style="aspect-ratio: 1456 / 765; width: 94%; margin: 0.3em auto 0">
+      <div class="figure" style="aspect-ratio: 1456 / 765; width: 82%; max-height: 56vh; margin: 0.25em auto 0">
         <img :src="asset('headtohead_pca.png')"
              alt="Plain linear 2-D view of the same stars: in the masked AE latent five of the clusters are compact isolated islands; in the abundances they are loose and overlap"
              style="width: 100%; height: 100%; object-fit: contain" />
@@ -2014,11 +2148,11 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 47c-d3 · The full experiment -->
-    <section>
+    <section class="densest">
       <div class="eyebrow">Head-to-head &middot; the full experiment</div>
       <h2>Not five clusters — twenty-five</h2>
       <div class="fig-split" style="--cols: 1.35fr 1fr; margin-top: 0.35em; align-items: center">
-        <div class="figure" style="aspect-ratio: 1530 / 1530">
+        <div class="figure" style="aspect-ratio: 1530 / 1530; max-height: 52vh">
           <img :src="asset('sky_montage_25.png')"
                alt="Montage of all 25 clusters: 18 open clusters and 7 globulars, DSS2 images"
                style="width: 100%; height: 100%; object-fit: contain" />
@@ -2129,60 +2263,6 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
       </aside>
     </section>
 
-    <!-- 47c · Masked foundation model -->
-    <section>
-      <div class="eyebrow">Deep learning &middot; masked foundation model</div>
-      <h2>A self-supervised latent beats the abundances</h2>
-      <p class="small">
-        A <strong>masked spectral autoencoder</strong> (MAE-style): mask contiguous
-        wavelength blocks, reconstruct them &mdash; <strong>never shown an element ratio</strong>.
-        Its 256-d latent separates clusters <em>better</em> than the 16 ASPCAP abundances, on the
-        uniform DR19 re-run.
-      </p>
-      <div class="cols" style="--n: 2; margin-top: 0.4em">
-        <div class="panel">
-          <h3>Cluster-only &mdash; homogeneity (25 clusters, 982 stars)</h3>
-          <table style="font-size: 0.5em; margin-top: 0.25em">
-            <thead><tr><th></th><th>t-SNE</th><th>UMAP</th><th>EVoC</th></tr></thead>
-            <tbody>
-              <tr><td>abundances (16-d)</td><td>0.56</td><td>0.58</td><td>0.42</td></tr>
-              <tr><td>PCA 64-d (linear)</td><td>0.74</td><td>0.75</td><td>0.73</td></tr>
-              <tr><td><strong>masked AE (256-d)</strong></td><td><strong>0.74</strong></td><td><strong>0.76</strong></td><td><strong>0.69</strong></td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="panel flip">
-          <h3>Field retrieval &mdash; 24,171 field stars</h3>
-          <table style="font-size: 0.5em; margin-top: 0.25em">
-            <thead><tr><th></th><th>recall</th><th>precision</th></tr></thead>
-            <tbody>
-              <tr><td>masked AE (t-SNE)</td><td>0.21</td><td>0.22</td></tr>
-              <tr><td>masked AE (EVoC)</td><td>0.48</td><td>~0</td></tr>
-              <tr><td>chance (829 in 25k)</td><td>&mdash;</td><td>~0.03</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <p class="small muted center" style="margin-top: 0.4em">
-        The abundance-free latent clears the ASPCAP abundances (<strong>UMAP 0.76 vs 0.58</strong>,
-        EVoC 0.69 vs 0.42) &mdash; and it is honest about the rest: PCA-64d is competitive (0.75),
-        and field retrieval is real but weak (0.22 precision vs ~3% chance).
-        <strong>No circularity: it never saw an abundance.</strong>
-      </p>
-      <aside class="notes">
-        (~3 min) The deep-learning payoff, on the uniform re-run. The masked autoencoder removes the
-        circularity of any supervised embedding: mask contiguous wavelength blocks, reconstruct them,
-        MSE on the hidden pixels only — no labels at all. On 982 stars across 25 clusters it clears the
-        16 ASPCAP abundances (UMAP 0.76 vs 0.58, EVoC 0.69 vs 0.42), a seed-stable gap. Two honest
-        caveats to state and then move on. (1) PCA-64d is now competitive (0.73/0.75/0.74) — the
-        self-supervised win over a linear baseline is modest, and the real claim is "beats the
-        abundances", not "3x PCA". (2) Field retrieval from spectra alone is real but weak: 0.21
-        recall / 0.22 precision (t-SNE) against ~3% chance. Land the through-line: abundances
-        suggest, kinematics decide, and the spectrum — read by a model that never saw an element —
-        refines.
-      </aside>
-    </section>
-
     <!-- 47d · Two surveys -->
     <section>
       <div class="eyebrow">Two surveys &middot; giants + main sequence</div>
@@ -2237,7 +2317,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 48 · Lessons -->
-    <section>
+    <section class="dense">
       <div class="eyebrow">What the numbers teach</div>
       <h2>Eight lessons from the benchmark</h2>
       <div class="slide-body">
@@ -2294,7 +2374,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 49b · The assignment -->
-    <section>
+    <section class="densest">
       <div class="eyebrow">The assignment · 25 clusters, ~30 of you</div>
       <h2>Take a cluster, beat our baseline</h2>
       <p class="small">
@@ -2345,7 +2425,7 @@ const asset = (name) => `${import.meta.env.BASE_URL}presentations/iaa-so-chemica
     </section>
 
     <!-- 50 · Hands-on -->
-    <section class="title-slide center">
+    <section class="dense title-slide center">
       <div class="eyebrow">Hands-on module</div>
       <h1>Run it yourself</h1>
       <p class="subtitle">
@@ -2446,7 +2526,7 @@ uv run marimo edit notebooks/chemical_tagging.py</code></pre>
     </section>
 
     <!-- 51 · References -->
-    <section>
+    <section class="denser">
       <div class="eyebrow">References</div>
       <h2>Papers &amp; code behind this talk</h2>
       <div class="cols" style="--n: 3; margin-top: 0.3em; align-items: start">
