@@ -80,7 +80,14 @@ for (let i = 0; i < count; i++) {
     // simply runs over it; .slide-body exists to veil text that does. Report
     // the deepest text node that overlaps, so collisions are measured rather
     // than eyeballed.
-    const chips = [...document.querySelectorAll('.deck-brand-bottom .brand-chip, .deck-brand-top-right')]
+    // A deck can hide its chrome for a slide — the video slide here does, and so
+    // does the QR chip wherever slide content already owns its corner (it
+    // measures that itself at runtime). With the chrome hidden there is nothing
+    // for slide content to collide with, so skip the check.
+    const hidden = [...document.querySelectorAll('.deck-brand-bottom')].every(
+      (el) => getComputedStyle(el).display === 'none'
+    )
+    const chips = (hidden ? [] : [...document.querySelectorAll('.deck-brand-bottom .brand-chip, .deck-brand-top-right')])
       .map(c => c.getBoundingClientRect())
       .filter(b => b.width > 0 && b.height > 0)
     // Measure where the glyphs actually are, not the element box: a centred

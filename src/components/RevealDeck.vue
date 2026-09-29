@@ -780,8 +780,15 @@ html:not(.dark) .reveal.deck-theme {
    astronomy figures are dark-on-white, the DSS sky cutouts are greyscale, and a
    dark deck around a white figure is what makes a lecture hall squint. Forcing
    the light palette here means the deck looks the same on the presenter's dark
-   site and on the projector.                                                  */
+   site and on the projector.
+
+   The mode prefixes are load-bearing, not decoration: the palette rules above
+   are scoped `html:not(.dark) .reveal.deck-theme` / `html.dark .reveal.deck-theme`,
+   which carry one more simple selector than a bare `.reveal.deck-theme.astro-theme`
+   and therefore win — without them this whole block was dead in light mode and
+   the deck silently ran on the base light palette.                             */
 .reveal.deck-theme.astro-theme,
+html:not(.dark) .reveal.deck-theme.astro-theme,
 html.dark .reveal.deck-theme.astro-theme {
   --r-heading-font: 'Bai Jamjuree', 'Inter', sans-serif;
 
