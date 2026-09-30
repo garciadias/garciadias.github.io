@@ -55,7 +55,13 @@ onMounted(async () => {
     transitionSpeed: 'default',
     width: 1280,
     height: 720,
-    margin: 0.055,
+    // Sets the letterbox gutter the DeckBrand band lives in (see
+    // DeckBrand.vue): reveal subtracts this fraction of the viewport and
+    // centres what's left, so the gutter below the slides is margin/2 of
+    // viewport height. Raised from 0.055 to fit the partner logos at a size
+    // that reads from the back of a room without the band overlapping slide
+    // content — the collision the .slide-body veil used to paper over.
+    margin: 0.14,
     minScale: 0.2,
     maxScale: 1.8,
     ...props.options
@@ -130,7 +136,6 @@ html.dark .reveal.deck-theme {
   --grad-b: #8be9fd;
   --title-sub: #f8f8f2;
   --fig-bg: #f8f8f2;
-  --body-veil: rgba(40, 42, 54, 0.82);
   --fig-border: transparent;
   --fig-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
   --flip-bg: rgba(139, 233, 253, 0.08);
@@ -144,7 +149,7 @@ html.dark .reveal.deck-theme {
   --flip-col-bg: rgba(139, 233, 253, 0.07);
   --code-color: #50fa7b;
   background:
-    linear-gradient(to bottom, #282A3600 0%, #282a36 100%),
+    linear-gradient(to bottom, rgba(40, 42, 54, 0) 0%, #282a36 100%);
 }
 
 /* LIGHT theme — default for presenting; better for holding attention */
@@ -166,7 +171,6 @@ html:not(.dark) .reveal.deck-theme {
   --grad-b: #0891b2;
   --title-sub: #21222c;
   --fig-bg: #ffffff;
-  --body-veil: rgba(255, 255, 255, 0.85);
   --fig-border: #e2e2ec;
   --fig-shadow: 0 8px 24px rgba(24, 18, 48, 0.12);
   --flip-bg: rgba(8, 145, 178, 0.07);
@@ -180,7 +184,12 @@ html:not(.dark) .reveal.deck-theme {
   --flip-col-bg: rgba(8, 145, 178, 0.07);
   --code-color: #b91c1c;
   background:
-    linear-gradient(to bottom, #DF428B35 0%, #DF428B20 10%, #ffffff00 60%);
+    linear-gradient(
+      to bottom,
+      rgba(124, 58, 237, 0.09) 0%,
+      rgba(124, 58, 237, 0.045) 12%,
+      rgba(255, 255, 255, 0) 58%
+    );
 }
 
 .reveal.deck-theme .slides {
@@ -217,7 +226,7 @@ html:not(.dark) .reveal.deck-theme {
   line-height: 1.4;
 }
 
-.reveal.deck-theme strong { color: var(--accent); font-weight: 700; }
+.reveal.deck-theme strong { font-weight: 700; }
 .reveal.deck-theme em { color: var(--accent-cyan); font-style: normal; }
 
 /* Colour utilities. The doubled class is load-bearing: written once, these sit
@@ -281,6 +290,9 @@ html:not(.dark) .reveal.deck-theme {
   padding: 0.7em 0.9em;
 }
 .reveal.deck-theme .panel h3 { margin-top: 0; }
+/* A panel in a multi-column grid gets a much narrower measure than one in a
+   .fig-split, so the shared 1.15em heading wrapped to two lines at --n: 3. */
+.reveal.deck-theme .cols .panel h3 { font-size: 0.95em; }
 /* Compact row: panels that are a supporting inventory rather than the slide's
    argument — a label, one short line, its pills — so the figure above them can
    have the vertical space instead. */
@@ -377,9 +389,31 @@ html:not(.dark) .reveal.deck-theme {
 .reveal.deck-theme .stat-label { font-size: 0.55em; color: var(--comment); }
 
 /* Controls / progress tint */
-.reveal.deck-theme .controls { color: var(--accent); }
+/* Lifted clear of the brand band — reveal parks the arrow cluster in the
+   bottom-right corner by default, which now lands on the slide number. */
+.reveal.deck-theme .controls {
+  color: var(--accent);
+  bottom: clamp(64px, 8.5vh, 100px);
+}
 .reveal.deck-theme .progress { color: var(--accent); height: 4px; }
-.reveal.deck-theme .slide-number { background: transparent; color: var(--comment); }
+/* Top-right, reading as one unit with the FLIP mark DeckBrand parks next to
+   it. Same band height as .deck-brand-top so the two align on one line. */
+.reveal.deck-theme .slide-number {
+  right: 1.1em;
+  top: 0;
+  bottom: auto;
+  height: clamp(64px, 8.5vh, 100px);
+  /* Centred with line-height rather than flex: reveal's own .slide-number rule
+     sets display:block and wins here, so align-items never applies. */
+  line-height: clamp(64px, 8.5vh, 100px);
+  padding: 0;
+  background: transparent;
+  color: var(--comment);
+  font-family: var(--r-code-font);
+  font-size: 0.42em;
+  letter-spacing: 0.1em;
+  z-index: 3;
+}
 
 /* Lists */
 .reveal.deck-theme ul { margin-left: 1em; }
@@ -452,41 +486,23 @@ html:not(.dark) .reveal.deck-theme {
 }
 
 /* Everything on a slide that isn't the eyebrow or the heading lives in one of
-   these. The persistent DeckBrand logo bar is anchored to the .reveal box, so
-   tall slides can run over it — white logo chips behind body text made both
-   unreadable. A semi-transparent veil in the deck's own background colour keeps
-   the text legible wherever it lands, while still letting the branding show
-   through. Backdrop blur is a progressive enhancement: browsers without it
-   simply get the flat translucent panel, which is already enough. */
+   these. This used to carry a translucent, blurred veil: DeckBrand's logo bar
+   sat *inside* the slide area, so tall slides ran over it and white logo chips
+   behind body text made both unreadable. The bar now lives in the letterbox
+   gutter reveal already leaves below the slides (see DeckBrand.vue), which
+   removes the collision at its source — so this is a plain block again, and
+   slides get back the padding and the two nested card edges the veil cost. */
 .reveal.deck-theme .slide-body {
-  background: var(--body-veil);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 14px;
-  padding: 0.5em 0.7em;
   position: relative;
   z-index: 1;
 }
-/* Centred slides (title/divider) read better without a hard-edged panel, so the
-   veil there is a soft pad rather than a card. */
-.reveal.deck-theme .title-slide .slide-body {
-  background: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-  padding: 0;
-}
-/* fit-content + auto margins, NOT inline-block: the veil hugs the text but each
-   child keeps its own line, so a byline and a pill don't end up side by side. */
+/* fit-content + auto margins, NOT inline-block: each child keeps its own line,
+   so a byline and a pill don't end up side by side. */
 .reveal.deck-theme .title-slide .slide-body > * {
   width: fit-content;
   max-width: 100%;
   margin-left: auto;
   margin-right: auto;
-  background: var(--body-veil);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 12px;
-  padding: 0.15em 0.6em;
 }
 /* .venue-note is already a pill with its own background and padding — leave it
    alone rather than stacking a second veil behind it. */
@@ -521,19 +537,12 @@ html:not(.dark) .reveal.deck-theme {
   --req-bg: rgba(124, 58, 237, 0.12);
   --line: #cfcde0;
   --title-sub: #21222c;
-  --body-veil: transparent;
   color: var(--r-main-color);
   background: rgba(255, 255, 255, 0.62);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   border-radius: 18px;
   padding: 0.6em 1em 0.8em;
-}
-/* The section is already the card — don't stack a second veil inside it. */
-.reveal.deck-theme section.video-hero .slide-body > * {
-  background: none;
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 .reveal.deck-theme section.video-hero .slide-body > .venue-note {
   background: var(--req-bg);
@@ -697,6 +706,16 @@ html:not(.dark) .reveal.deck-theme {
   gap: 1em;
   align-items: center;
 }
+/* A grid item's automatic minimum size is its min-content, so one wide,
+   unbreakable child (a long code token, a fixed-width image) can override the
+   fr ratios entirely and crush its neighbour to nothing — which is exactly what
+   a run of <code> verbs did to the outbound-only slide. min-width: 0 removes
+   that floor, so --cols always means what it says and a too-wide child
+   overflows its own column instead of stealing the other's width. */
+.reveal.deck-theme .fig-split > *,
+.reveal.deck-theme .cols > * {
+  min-width: 0;
+}
 .reveal.deck-theme .fig-split .figure { width: 100%; text-align: center; }
 /* .figure img/video are display:block with margin:0, so a picture narrower than
    its (100%-wide) split column would hug the left edge — text-align can't move
@@ -705,6 +724,12 @@ html:not(.dark) .reveal.deck-theme {
 .reveal.deck-theme .fig-split .figure img,
 .reveal.deck-theme .fig-split .figure video { margin-inline: auto; }
 .reveal.deck-theme .fig-split .figure-placeholder { width: 100%; }
+
+/* Line art supplied as black-on-transparent (the UK outline on the next-steps
+   slide) is invisible against the dark deck. Inverting it there turns the
+   strokes white, so one asset reads correctly in both themes without keeping
+   two files or sitting it on a light card it doesn't need. */
+html.dark .reveal.deck-theme .ink-art { filter: invert(1); }
 
 /* Rounded portrait chips, the same trick DeckBrand uses for the logo bar: the
    corners come from a wrapper that clips its contents, not from the picture, so
