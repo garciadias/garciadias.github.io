@@ -2446,11 +2446,21 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
         <section class="denser">
             <div class="eyebrow">Validation · internal · silhouette</div>
             <h2>Silhouette: is this point closer to home than to next door?</h2>
-            <div class="figure" style="margin: 0.15em auto 0; max-width: 1020px">
+            <div
+                class="figure"
+                style="margin: 0.15em auto 0; max-width: 1020px"
+            >
                 <img
                     :src="asset('silhouette_explained.png')"
                     alt="Left: one point with dashed rings showing its mean distance to its own cluster and to the nearest other cluster. Right: a silhouette plot with every point's score sorted inside each cluster, the overall mean marked, and the Kaufman and Rousseeuw thresholds."
-                    style="width: auto; max-width: 100%; max-height: 330px; height: auto; display: block; margin: 0 auto"
+                    style="
+                        width: auto;
+                        max-width: 100%;
+                        max-height: 330px;
+                        height: auto;
+                        display: block;
+                        margin: 0 auto;
+                    "
                 />
             </div>
             <div class="cols compact" style="--n: 3; margin-top: 0.4em">
@@ -2497,16 +2507,16 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 they are equal it sits on the border at 0; if a is bigger the
                 point is closer to the neighbours than to its own label and the
                 score goes negative. The figure's numbers are computed, not
-                drawn: a = 0.90, b = 3.34, so s = 0.73 for that point.
-                Then the right panel, and this is the part people skip: the
-                overall mean here is 0.65, but the value of the silhouette is
-                the <em>shape</em> of the plot. Three clusters sit at 0.67,
-                0.67 and 0.59; had one been at 0.15 the mean would still look
-                respectable while one cluster was junk. Land the two caveats.
-                First, the thresholds are stricter than people assume, 0.65 is
-                only "reasonable", not "strong". Second, it is a convexity
-                score: it prefers round separated blobs, so a low silhouette on
-                a half-moon or a filament means the metric disagrees with the
+                drawn: a = 0.90, b = 3.34, so s = 0.73 for that point. Then the
+                right panel, and this is the part people skip: the overall mean
+                here is 0.65, but the value of the silhouette is the
+                <em>shape</em> of the plot. Three clusters sit at 0.67, 0.67 and
+                0.59; had one been at 0.15 the mean would still look respectable
+                while one cluster was junk. Land the two caveats. First, the
+                thresholds are stricter than people assume, 0.65 is only
+                "reasonable", not "strong". Second, it is a convexity score: it
+                prefers round separated blobs, so a low silhouette on a
+                half-moon or a filament means the metric disagrees with the
                 shape, not that the cluster is fake. That is precisely why the
                 dip test comes first and why this deck does not let silhouette
                 pick the winner on its own.
@@ -2574,11 +2584,21 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
         <section class="denser">
             <div class="eyebrow">Validation · external · homogeneity</div>
             <h2>Homogeneity: does every cluster hold just one kind of star?</h2>
-            <div class="figure" style="margin: 0.15em auto 0; max-width: 1020px">
+            <div
+                class="figure"
+                style="margin: 0.15em auto 0; max-width: 1020px"
+            >
                 <img
                     :src="asset('homogeneity_explained.png')"
                     alt="Three clusterings of the same labelled points: one recovers the truth and scores 1.00 on both measures; one shatters each class into three and still scores homogeneity 1.00 while completeness falls to 0.50; one merges two classes and scores completeness 1.00 with homogeneity 0.58."
-                    style="width: auto; max-width: 100%; max-height: 330px; height: auto; display: block; margin: 0 auto"
+                    style="
+                        width: auto;
+                        max-width: 100%;
+                        max-height: 330px;
+                        height: auto;
+                        display: block;
+                        margin: 0 auto;
+                    "
                 />
             </div>
             <div class="cols compact" style="--n: 3; margin-top: 0.4em">
@@ -2617,8 +2637,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             </p>
             <aside class="notes">
                 (~2 min) The figure is one labelled set clustered three ways,
-                and the scores are computed by scikit-learn, not asserted.
-                Start left: recovering the truth gives 1.00 and 1.00, the
+                and the scores are computed by scikit-learn, not asserted. Start
+                left: recovering the truth gives 1.00 and 1.00, the
                 uninteresting case. The middle panel is the one that matters:
                 every true class cut into three still scores homogeneity 1.00,
                 because every cluster is still pure, while completeness
@@ -2626,8 +2646,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 finely enough; in the limit, one star per cluster scores a
                 perfect 1.00 and has told you nothing. The right panel is the
                 opposite failure, two classes lumped together: completeness
-                1.00, homogeneity 0.58. So homogeneity alone is not a result,
-                it is half of one. Connect it forward twice: this is the pair
+                1.00, homogeneity 0.58. So homogeneity alone is not a result, it
+                is half of one. Connect it forward twice: this is the pair
                 behind the V-measure numbers in the benchmark table, and it is
                 why we quote a chance level there, a random partition into
                 similarly sized groups already scores well above zero. It is
@@ -6338,9 +6358,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     <h3>1 · Beat the baseline</h3>
                     <p class="small">
                         Take your cluster, extend the pipeline, move recall,
-                        precision or purity. The research track: open-ended,
-                        and a null result honestly explained counts. Details on
-                        the next slide.
+                        precision or purity. The research track: open-ended, and
+                        a null result honestly explained counts. Details on the
+                        next slide.
                     </p>
                 </div>
                 <div class="panel">
@@ -6359,28 +6379,28 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         <strong>56 exercises</strong> across 16 chapters, each
                         with a Jupyter deck and a worked solution module. Do
                         them, disagree with an answer, send a better one. The
-                        guided track, and the slide after next.
+                        guided track, detailed in three slides' time.
                     </p>
                 </div>
             </div>
             <p class="small center muted" style="margin-top: 0.5em">
-                Fork first, branch, then <em>Contribute → Open pull request</em>.
-                Everything you need is in
-                <code>day_4_clustering/CONTRIBUTING.md</code>.
+                Fork first, branch, then
+                <em>Contribute → Open pull request</em>. Everything you need is
+                in <code>day_4_clustering/CONTRIBUTING.md</code>.
             </p>
             <aside class="notes">
                 (~1 min) Say plainly that the room is not one kind of person.
                 Some want the open research problem, some would rather improve
                 the writing, some learn by working problems with a solution to
                 check against. All three land in the same repository through the
-                same mechanism, a pull request, so all three teach the part
-                this school actually cares about: contributing to someone
-                else's codebase in public. Mention the fork requirement once
-                here and then move on; they already forked it this morning for
-                the download, and if they cloned the original instead,
-                CONTRIBUTING has the section on repointing the remote rather
-                than re-cloning five gigabytes. Then walk the three slides: the
-                assignment next, then the workbook and exercises detail.
+                same mechanism, a pull request, so all three teach the part this
+                school actually cares about: contributing to someone else's
+                codebase in public. Mention the fork requirement once here and
+                then move on; they already forked it this morning for the
+                download, and if they cloned the original instead, CONTRIBUTING
+                has the section on repointing the remote rather than re-cloning
+                five gigabytes. Then walk the three slides: the assignment next,
+                then the workbook and exercises detail.
             </aside>
         </section>
 
@@ -6479,8 +6499,10 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         class="small"
                         style="text-align: left; margin: 0.15em 0 0"
                     ><code>cd day_4_clustering/article
-docker run --rm -v "$PWD:/w" -w /w \
-  texlive/texlive latexmk -pdf workbook.tex</code></pre>
+docker run --rm \ 
+-v "$PWD:/w" -w /w 
+texlive/texlive 
+latexmk -pdf workbook.tex</code></pre>
                     <p class="small" style="margin-top: 0.3em">
                         No LaTeX on your laptop. Not building at all is fine
                         too; the diff on the <code>.tex</code> is what gets
@@ -6514,13 +6536,88 @@ docker run --rm -v "$PWD:/w" -w /w \
                 because it is the one thing that will bounce their PR: the bib
                 is the single source of truth, cite() raises on a key that is
                 not in it, and the test suite checks. The build command is a
-                one-off container, the same trick as the workshop image: no
-                TeX distribution on their laptop, and the figures are already
+                one-off container, the same trick as the workshop image: no TeX
+                distribution on their laptop, and the figures are already
                 committed so it compiles straight from a clean checkout
-                (measured: 67 pages, no errors). Finally, warn them the
-                exercise statements are in these same chapter files, so editing
-                one means the exercise deck must be rebuilt, which is the next
-                slide.
+                (measured: 67 pages, no errors). Finally, warn them the exercise
+                statements are in these same chapter files, so editing one means
+                the exercise deck must be rebuilt, which is track 3, two slides
+                on.
+            </aside>
+        </section>
+
+        <!-- 49c2 · The workbook itself, and where to get it -->
+        <section class="dense">
+            <div class="eyebrow">Track 2 · take it with you</div>
+            <h2>
+                The workbook: 67 pages of content on the topics covered here
+            </h2>
+            <div
+                class="fig-split"
+                style="
+                    --cols: 1.15fr 1fr;
+                    margin-top: 0.4em;
+                    align-items: center;
+                "
+            >
+                <div class="figure" style="margin: 0; padding: 0.3em">
+                    <img
+                        :src="asset('workbook.png')"
+                        alt="Title page of the companion workbook: Unsupervised Learning, high-dimensional embeddings and clustering algorithms applied to chemical tagging of star clusters, by Rafael Garcia-Dias, with the abstract and keywords below"
+                        style="
+                            width: auto;
+                            max-width: 100%;
+                            max-height: 500px;
+                            height: auto;
+                            display: block;
+                            margin: 0 auto;
+                        "
+                    />
+                </div>
+                <div>
+                    <p class="small">
+                        The long-form companion to this lecture. Every algorithm
+                        of the morning written out properly, the mathematics
+                        included, then applied to the 25 clusters of the
+                        afternoon. It is the text the exercises are set from.
+                    </p>
+                    <p class="small" style="margin-top: 0.4em">
+                        Download the PDF straight from the repository:
+                    </p>
+                    <p class="small" style="margin-top: 0.25em">
+                        <a
+                            href="https://github.com/iaa-so-training/iaa-advanced-neural-networks-2026/raw/main/day_4_clustering/article/workbook.pdf"
+                            target="_blank"
+                            rel="noopener"
+                            ><strong>workbook.pdf</strong></a
+                        >
+                        <span class="muted"
+                            >&nbsp;·&nbsp; 6.3 MB &nbsp;·&nbsp;
+                            <code>day_4_clustering/article/</code></span
+                        >
+                    </p>
+                    <p class="small muted" style="margin-top: 0.4em">
+                        It is rebuilt from the sources on the previous slide, so
+                        the PDF you download already contains every merged
+                        correction, including yours.
+                    </p>
+                </div>
+            </div>
+            <aside class="notes">
+                (~45 s) Show them the artefact before asking them to improve it:
+                the previous slide said the text is editable, this one says what
+                the text actually is and how to get it. 67 pages, the same
+                seventeen chapters they would be sending a PR against, and it is
+                theirs to keep after the school. Tell them not to type the URL,
+                the QR code on this deck and the repository link on the closing
+                slide both reach it, and the file sits in the checkout they
+                already cloned this morning at
+                day_4_clustering/article/workbook.pdf. Worth saying once: the
+                PDF in the repository is rebuilt from the chapter sources, so a
+                merged correction shows up in the next download. That is the
+                loop that makes a documentation PR feel worth doing, and it is
+                the cleanest hand-off into track 3 on the next slide, because
+                the exercises they are about to meet are set by this text.
             </aside>
         </section>
 
@@ -6545,8 +6642,9 @@ mkdir -p data results notebooks
 docker compose up      # localhost:9999</code></pre>
                     <p class="small" style="margin-top: 0.35em">
                         Then open
-                        <code>notebooks/exercises/chapter_09_validation.ipynb</code>,
-                        or <code>workbook_exercises.ipynb</code> for all 16.
+                        <code
+                            >notebooks/exercises/chapter_09_validation.ipynb</code
+                        >, or <code>workbook_exercises.ipynb</code> for all 16.
                         Each exercise is three or four cells: the question as
                         the workbook states it, an empty cell pre-seeded with
                         the imports the solution uses, the answer, and for
@@ -6586,8 +6684,8 @@ result = solve()    # recompute it yourself</code></pre>
                 have seen all 56. The scratch cell is worth pointing at on
                 screen: the imports in it are read out of the solution module
                 automatically, so it tells them which part of the codebase
-                already does the work without handing over the answer. Warn
-                them that the notebooks are generated from the modules and the
+                already does the work without handing over the answer. Warn them
+                that the notebooks are generated from the modules and the
                 chapter text, so an edit to the .ipynb is destroyed by the next
                 rebuild and CI's drift check will catch it first. Their PR
                 should change a module or a chapter, then include the rebuilt
@@ -6595,10 +6693,10 @@ result = solve()    # recompute it yourself</code></pre>
                 rebuild, so nobody needs Python or uv on their laptop; the
                 mounted notebooks folder means the cells they edit are saved
                 into their own checkout and go into the PR. Last thing:
-                disagreeing with one of our answers is a
-                welcome PR. Every number in those answers was run, not guessed,
-                but they were run by us, and chapter 9 is the whole argument for
-                checking rather than trusting.
+                disagreeing with one of our answers is a welcome PR. Every
+                number in those answers was run, not guessed, but they were run
+                by us, and chapter 9 is the whole argument for checking rather
+                than trusting.
             </aside>
         </section>
 
@@ -6725,18 +6823,18 @@ docker compose up      # localhost:9999</code></pre>
             </div>
             <aside class="notes">
                 (~2 min) Close on the workshop. Everything runs in Docker, so
-                the only prerequisites are the ones from section B of the
-                school install guide; there is no pip, no conda and no Python
-                version to argue with. Three steps: pull the DR19 Astra ASPCAP
-                file (1.17 GB, so do it on the hotel wifi tonight, not now),
-                one run, one notebook server. run.sh is only a wrapper that
-                types the mount flags for them; docker compose up is the same
-                image serving JupyterLab on 9999. The fast run caps the field
-                at 25 000 stars and finishes in about a minute; `--full` drops
-                the cap and takes ten to twenty. Invite them to add
-                `--cluster "M 67" --region 30` and watch the precision column
-                jump; that is lesson one from the previous slide, reproduced on
-                their own laptop in sixty seconds.
+                the only prerequisites are the ones from section B of the school
+                install guide; there is no pip, no conda and no Python version
+                to argue with. Three steps: pull the DR19 Astra ASPCAP file
+                (1.17 GB, so do it on the hotel wifi tonight, not now), one run,
+                one notebook server. run.sh is only a wrapper that types the
+                mount flags for them; docker compose up is the same image
+                serving JupyterLab on 9999. The fast run caps the field at 25
+                000 stars and finishes in about a minute; `--full` drops the cap
+                and takes ten to twenty. Invite them to add `--cluster "M 67"
+                --region 30` and watch the precision column jump; that is lesson
+                one from the previous slide, reproduced on their own laptop in
+                sixty seconds.
             </aside>
         </section>
 
