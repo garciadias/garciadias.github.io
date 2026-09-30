@@ -153,12 +153,12 @@ const onPlayerStateChange = (event) => {
     if (effective && Math.abs(effective - picked) > 0.01) {
         console.warn(
             `[iaa-so-chemical-tagging] video slide: asked for ${picked}x, player is running at ${effective}x`,
-       );
+        );
     } else if (picked !== VIDEO.rate) {
         console.info(
             `[iaa-so-chemical-tagging] video slide: ${VIDEO.rate}x is what the notes ask for, ` +
                 `${picked}x is the fastest this player offers`,
-       );
+        );
     }
 };
 
@@ -210,7 +210,7 @@ onMounted(async () => {
                 console.warn(
                     "[iaa-so-chemical-tagging] video slide: player error",
                     event?.data,
-               ),
+                ),
         },
     });
 });
@@ -264,7 +264,7 @@ const syncChrome = (section) => {
         let node = walker.nextNode();
         node && !covered;
         node = walker.nextNode()
-   ) {
+    ) {
         if (!node.nodeValue?.trim()) continue;
         const range = document.createRange();
         range.selectNodeContents(node);
@@ -273,7 +273,7 @@ const syncChrome = (section) => {
     }
     for (const element of section.querySelectorAll(
         "img, svg text, canvas, video",
-   )) {
+    )) {
         if (touches(element.getBoundingClientRect()))
             covered = element.tagName.toLowerCase();
     }
@@ -286,13 +286,13 @@ onMounted(() => {
     const measure = () => {
         const section = document.querySelector(
             ".reveal .slides > section.present",
-       );
+        );
         if (section) syncChrome(section);
     };
     const check = () => {
         const section = document.querySelector(
             ".reveal .slides > section.present",
-       );
+        );
         // Fragments change classes too; only a slide change needs re-measuring.
         if (!section || section === presentSlide) return;
         presentSlide = section;
@@ -364,8 +364,8 @@ onBeforeUnmount(() => {
             <aside class="notes">
                 (~2 min) One-sentence hook: a cluster's chemistry is a fossil
                 that survives long after the cluster itself has scattered into
-                the field. Frame the day's three blocks up front, the next
-                slide lays them out in one picture: 90 minutes of toolbox (one
+                the field. Frame the day's three blocks up front, the next slide
+                lays them out in one picture: 90 minutes of toolbox (one
                 algorithm at a time, each fixing the last one's failure, landing
                 on EVoC), 90 minutes of the real problem, and 120 minutes where
                 they run it themselves. Then we start.
@@ -386,8 +386,8 @@ onBeforeUnmount(() => {
                     <h3>90 min · Introduction</h3>
                     <p class="small">
                         What chemical tagging is, and the eight methods that go
-                        after it (K-means → EVoC) each one fixing the last
-                        one's failure.
+                        after it (K-means → EVoC) each one fixing the last one's
+                        failure.
                     </p>
                 </div>
                 <div class="panel">
@@ -418,8 +418,8 @@ onBeforeUnmount(() => {
                 arrives six slides later, in the middle of the introduction, and
                 anyone who starts it now has 2.2 GB less to wait for at the end.
                 Also say how the day finishes; they send a pull request to the
-                school repository, so the workshop leaves a record rather than
-                a laptop full of files.
+                school repository, so the workshop leaves a record rather than a
+                laptop full of files.
             </aside>
         </section>
 
@@ -498,11 +498,10 @@ onBeforeUnmount(() => {
                         />
                     </div>
                     <p class="caption center">
-                        Unsupervised learning on APOGEE
-                        (IAC, 2015-2018)
+                        Unsupervised learning on APOGEE (IAC, 2015-2018)
                     </p>
                 </div>
-                 <!-- 1 · Portrait — real image, but itself replaceable -->
+                <!-- 1 · Portrait — real image, but itself replaceable -->
                 <div>
                     <div
                         class="figure"
@@ -528,7 +527,7 @@ onBeforeUnmount(() => {
                         PhD in ML applied to astrophysics (IAC, 2015-2018)
                     </p>
                 </div>
-                 <!-- 1 · Portrait — real image, but itself replaceable -->
+                <!-- 1 · Portrait — real image, but itself replaceable -->
                 <div>
                     <div
                         class="figure"
@@ -550,13 +549,11 @@ onBeforeUnmount(() => {
                             "
                         />
                     </div>
-                    <p class="caption center">
-                        Codemotion Milan (2019)
-                    </p>
+                    <p class="caption center">Codemotion Milan (2019)</p>
                 </div>
             </div>
 
-          <!-- career timeline, adapted from the boehringer deck's svg. colour is the
+            <!-- career timeline, adapted from the boehringer deck's svg. colour is the
            astro palette doing its usual job — blue for the astronomy years, pink
            for healthcare ai, amber for industry ml — with the green ring marking
            the current role. layout facts, all measured rather than eyed: the
@@ -931,12 +928,12 @@ onBeforeUnmount(() => {
                 workshop ships a Docker path. The MONAI work runs alongside
                 rather than as a separate job, core contributor, and chair of
                 its federated-learning working group with NVIDIA, which is the
-                bridge between the two halves of this slide. The four photo cards
-                carry real material now, the 2018 paper's first page, the
+                bridge between the two halves of this slide. The four photo
+                cards carry real material now, the 2018 paper's first page, the
                 APOGEE survey, the IAC and Codemotion Milan; to swap any of
                 them, drop a replacement into
-                public/presentations/iaa-so-chemical-tagging-2026/ and change the
-                name inside its asset(...).
+                public/presentations/iaa-so-chemical-tagging-2026/ and change
+                the name inside its asset(...).
             </aside>
         </section>
 
@@ -962,7 +959,9 @@ onBeforeUnmount(() => {
          the two Trusts in the federation are GSTT and KCH. -->
         <section class="dense">
             <div class="eyebrow">Current work · what I do now</div>
-            <h2>Federated learning across the NHS, without moving patient data</h2>
+            <h2>
+                Federated learning across the NHS, without moving patient data
+            </h2>
             <div
                 class="cols"
                 style="
@@ -1014,18 +1013,17 @@ onBeforeUnmount(() => {
                             >: one model trained across NHS Trusts (GSTT, KCH)
                             and a Thai partner (BDMS)
                             <strong
-                                >patient data never leaves the
-                                hospital</strong
+                                >patient data never leaves the hospital</strong
                             >.
                         </p>
                     </div>
                     <div class="panel" style="margin-bottom: 0.5em">
                         <h3>NHS · the deployment</h3>
                         <p class="small">
-                            Production AI infrastructure and distributed training
-                            across three large NHS Trusts, millions of patients
-                            with KCL, GSTT, NVIDIA, deepc, Flower Labs and
-                            OneLondon.
+                            Production AI infrastructure and distributed
+                            training across three large NHS Trusts, millions of
+                            patients with KCL, GSTT, NVIDIA, deepc, Flower Labs
+                            and OneLondon.
                         </p>
                     </div>
                     <div class="panel">
@@ -1034,8 +1032,8 @@ onBeforeUnmount(() => {
                             <strong
                                 >Federated Learning Chair of the MONAI Working
                                 Group</strong
-                            >, co-chairing with NVIDIA; contributor to MONAI Core
-                            and Generative.
+                            >, co-chairing with NVIDIA; contributor to MONAI
+                            Core and Generative.
                         </p>
                     </div>
                 </div>
@@ -1102,16 +1100,16 @@ onBeforeUnmount(() => {
                 </div>
             </div>
             <aside class="notes">
-                (~2 min) The self-description ends on "Senior AI engineer · AIC /
-                KCL / FLIP", so this is the question a school audience asks next:
-                what is the current work? Three sentences carry it, the platform
-                (FLIP: privacy-preserving training across trusts, live since
-                February 2026, the data never moves), the scale (production AI
-                across NHS Trusts with NVIDIA, deepc, Flower Labs and OneLondon),
-                and the standards work (chair of MONAI's federated-learning
-                working group, alongside NVIDIA).
-                The preprint is also the bridge back to this talk's own subject:
-                it is federated learning in healthcare, but the question in it is
+                (~2 min) The self-description ends on "Senior AI engineer · AIC
+                / KCL / FLIP", so this is the question a school audience asks
+                next: what is the current work? Three sentences carry it, the
+                platform (FLIP: privacy-preserving training across trusts, live
+                since February 2026, the data never moves), the scale
+                (production AI across NHS Trusts with NVIDIA, deepc, Flower Labs
+                and OneLondon), and the standards work (chair of MONAI's
+                federated-learning working group, alongside NVIDIA). The
+                preprint is also the bridge back to this talk's own subject: it
+                is federated learning in healthcare, but the question in it is
                 the one they are about to spend the day on; how do you validate
                 a model against something real? Say one honest thing about
                 timing: if you are presenting on 30 September the caption is
@@ -1268,9 +1266,9 @@ onBeforeUnmount(() => {
                 </div>
             </div>
             <aside class="notes">
-                (~2 min) Frame the input; this is the same dataset they will
-                use in the hands-on. Make two points. First, standardisation is
-                not cosmetic: every algorithm from here on is a statement about
+                (~2 min) Frame the input; this is the same dataset they will use
+                in the hands-on. Make two points. First, standardisation is not
+                cosmetic: every algorithm from here on is a statement about
                 distance, and an unstandardised element with ten times the
                 scatter would silently own that distance. Second, the plot is a
                 trap; it shows 2 of 16 dimensions, and the red clump is only
@@ -1293,8 +1291,8 @@ onBeforeUnmount(() => {
                 <div class="panel">
                     <h3>Multimodality first</h3>
                     <p class="small">
-                        An algorithm <em>always</em> returns groups, even from
-                        a uniform cloud. Test for a multi-peaked distribution
+                        An algorithm <em>always</em> returns groups, even from a
+                        uniform cloud. Test for a multi-peaked distribution
                         first (dip test).
                     </p>
                 </div>
@@ -1402,34 +1400,34 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             </p>
             <aside class="notes">
                 (~90 s) The only slide they have to act on, so leave it up long
-                enough to read. The download is ~2.2 GB, the 1.17 GB SDSS-V
-                DR19 catalogue plus the ~1.0 GB embeddings bundle from Hugging
-                Face, and it does not need them while it runs: that is the
-                whole point of doing it now, so it finishes during the
-                algorithms. Say the prerequisite line plainly: git and
-                Docker-with-Compose are the only things on their laptops;
-                everything else is in the image and nothing is installed on the
-                host. Two reassurances worth giving: the download is resumable
-                and skips what is already on disk, so flaky wifi is not fatal;
-                and the ~2 min smoke run (`./run.sh run --fast`) is how they
-                know they are ready before the session starts. If anyone has no
-                Docker at all, the native path is `uv sync` with Python ≥ 3.13,
-                same commands and flags, see `day_4_clustering/README.md`. The
-                notebook is JupyterLab on port **8889**, deliberately not
-                Jupyter's usual 8888, which is often already taken on a school
-                laptop, and the deck ships `.ipynb` files now, so say the port
-                and the file name out loud once: it saves twenty people asking.
-                The fork is not bureaucracy, say it in one line: they can only
-                push to their own copy of the repo, so the fork is where their
-                branch lives, click Fork on the school repo page first, then
-                clone YOUR fork, which is why the clone line carries their
-                username. Two things to tell them before they go: branch before
-                they start editing, and the fork's Contribute → Open pull
-                request button already targets base `main`. Expect a CI click:
-                GitHub holds the workflow run on each student's *first* PR until
-                a maintainer approves it, so their checks will sit pending until
-                one of us hits Approve and run. The next slide is the fork page
-                itself: show it here, before they clone.
+                enough to read. The download is ~2.2 GB, the 1.17 GB SDSS-V DR19
+                catalogue plus the ~1.0 GB embeddings bundle from Hugging Face,
+                and it does not need them while it runs: that is the whole point
+                of doing it now, so it finishes during the algorithms. Say the
+                prerequisite line plainly: git and Docker-with-Compose are the
+                only things on their laptops; everything else is in the image
+                and nothing is installed on the host. Two reassurances worth
+                giving: the download is resumable and skips what is already on
+                disk, so flaky wifi is not fatal; and the ~2 min smoke run
+                (`./run.sh run --fast`) is how they know they are ready before
+                the session starts. If anyone has no Docker at all, the native
+                path is `uv sync` with Python ≥ 3.13, same commands and flags,
+                see `day_4_clustering/README.md`. The notebook is JupyterLab on
+                port **8889**, deliberately not Jupyter's usual 8888, which is
+                often already taken on a school laptop, and the deck ships
+                `.ipynb` files now, so say the port and the file name out loud
+                once: it saves twenty people asking. The fork is not
+                bureaucracy, say it in one line: they can only push to their own
+                copy of the repo, so the fork is where their branch lives, click
+                Fork on the school repo page first, then clone YOUR fork, which
+                is why the clone line carries their username. Two things to tell
+                them before they go: branch before they start editing, and the
+                fork's Contribute → Open pull request button already targets
+                base `main`. Expect a CI click: GitHub holds the workflow run on
+                each student's *first* PR until a maintainer approves it, so
+                their checks will sit pending until one of us hits Approve and
+                run. The next slide is the fork page itself: show it here,
+                before they clone.
             </aside>
         </section>
 
@@ -1447,19 +1445,15 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <h2>Then fork: your own copy to push to</h2>
             <p class="small">
                 Before you clone: the fork is what gives you a copy of your own,
-                your branch, your push, and later your pull request. One
-                click, and no permission needed from anyone.
+                your branch, your push, and later your pull request. One click,
+                and no permission needed from anyone.
             </p>
             <div style="text-align: center; margin-top: 0.5em">
                 <div class="figure" style="padding: 0.3em">
                     <img
                         :src="asset('fork.png')"
                         alt="The school repository's front page: Public badge, Fork button, and the licence named in the sidebar"
-                        style="
-                            display: block;
-                            max-height: 440px;
-                            width: auto;
-                        "
+                        style="display: block; max-height: 440px; width: auto"
                     />
                 </div>
             </div>
@@ -1580,10 +1574,10 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <aside class="notes">
                 (~30 s) The only decision the algorithm cannot make for you.
                 Land it: K is an input, never a result. Note the three centres
-                already carry a colour and a shape; nothing is assigned yet,
-                but each centre has an identity, so the colours on the next
-                slide read as "belongs to that centre" rather than as three
-                arbitrary groups.
+                already carry a colour and a shape; nothing is assigned yet, but
+                each centre has an identity, so the colours on the next slide
+                read as "belongs to that centre" rather than as three arbitrary
+                groups.
             </aside>
         </section>
 
@@ -1622,10 +1616,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 nothing else. Then step back and let the bundles do the work.
                 Two things to name. The seam where two fans meet is dead
                 straight, because "nearest centre" is decided by a perpendicular
-                bisector; that geometry is the failure mode we come back to.
-                And these spokes are long, which is the point: add up their
-                squared lengths and you have the SSE the algorithm is trying to
-                shrink.
+                bisector; that geometry is the failure mode we come back to. And
+                these spokes are long, which is the point: add up their squared
+                lengths and you have the SSE the algorithm is trying to shrink.
             </aside>
         </section>
 
@@ -1702,9 +1695,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 (~30 s) Hold this next to step 2: there the spokes reach right
                 across the field, here each centre sits at the heart of a short,
                 tidy fan. That shortening is the algorithm working, because the
-                total squared spoke length is exactly the SSE, the two moves
-                are just the two ways of shortening it, and each can only make
-                it smaller, so the loop must stop. It stops at a local minimum,
+                total squared spoke length is exactly the SSE, the two moves are
+                just the two ways of shortening it, and each can only make it
+                smaller, so the loop must stop. It stops at a local minimum,
                 which is the hook for the slide after next.
             </aside>
         </section>
@@ -1798,15 +1791,15 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 First, the figure: same data, two different seeds, the good run
                 finds the three-way split, the bad run merges two clusters into
                 one at a visibly higher SSE. That worse answer is a local
-                minimum, not a bug (cluster labels still carry no meaning,
-                never compare cluster "2" across runs). Second, the real hazard:
-                SSE is a non-convex objective, so K-means descends into
-                whichever local minimum its seed is nearest, and the chapter's
-                example has one run in five landing at half the accuracy of the
-                others. The cheap fix is restarts plus keeping the lowest SSE;
-                K-means is fast enough that hundreds of restarts still beat one
-                run of anything smarter. Close by flagging the gap this leaves:
-                SSE cannot choose K, because it falls monotonically as K grows.
+                minimum, not a bug (cluster labels still carry no meaning, never
+                compare cluster "2" across runs). Second, the real hazard: SSE
+                is a non-convex objective, so K-means descends into whichever
+                local minimum its seed is nearest, and the chapter's example has
+                one run in five landing at half the accuracy of the others. The
+                cheap fix is restarts plus keeping the lowest SSE; K-means is
+                fast enough that hundreds of restarts still beat one run of
+                anything smarter. Close by flagging the gap this leaves: SSE
+                cannot choose K, because it falls monotonically as K grows.
                 Silhouette (Rousseeuw 1987) is the usual tool for that, and we
                 come back to it in the validation section, with the same caveat
                 as everything else here: only believe a clear peak.
@@ -1839,16 +1832,16 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                             is split in two.
                         </li>
                         <li>
-                            <strong>Different scales</strong>, one wide
-                            Gaussian eats the rest.
+                            <strong>Different scales</strong>, one wide Gaussian
+                            eats the rest.
                         </li>
                         <li>
                             <strong>Unbalanced sizes</strong>, the small group
                             is absorbed.
                         </li>
                         <li>
-                            <strong>Straight boundaries</strong>, nearest
-                            centre cuts with lines.
+                            <strong>Straight boundaries</strong>, nearest centre
+                            cuts with lines.
                         </li>
                     </ul>
                     <p class="small muted" style="margin-top: 0.4em">
@@ -1891,8 +1884,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     <h3>The algorithm</h3>
                     <ol class="contribs tight small">
                         <li>
-                            <strong>Pick k</strong>, the neighbourhood size,
-                            and the method's only knob.
+                            <strong>Pick k</strong>, the neighbourhood size, and
+                            the method's only knob.
                         </li>
                         <li>
                             <strong>Measure</strong> the distance d(x,
@@ -2004,8 +1997,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 style="margin-top: 0.3em; max-width: 820px; margin-inline: auto"
             >
                 One list per star. Everything that follows (density,
-                reachability, graphs) is a different <em>use</em> of this
-                one list.
+                reachability, graphs) is a different <em>use</em> of this one
+                list.
             </p>
             <aside class="notes">
                 (~30 s) This is the whole algorithm. The interesting part is not
@@ -2019,9 +2012,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <div class="eyebrow">
                 Tool two &middot; KNN &middot; step 3 of 4
             </div>
-            <h2>
-                Reading 1; the k-th distance is a free density estimate
-            </h2>
+            <h2>Reading 1; the k-th distance is a free density estimate</h2>
             <div
                 class="figure"
                 style="width: 74%; max-height: 52vh; margin: 0.3em auto 0"
@@ -2081,8 +2072,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 carries the back half of the talk. Notice what was thrown away:
                 absolute distances. The graph keeps only who-is-near-whom, which
                 is exactly the robustness UMAP exploits in high dimensions. One
-                primitive, two products, density on the previous slide,
-                topology on this one.
+                primitive, two products, density on the previous slide, topology
+                on this one.
             </aside>
         </section>
 
@@ -2147,9 +2138,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         </div>
                         <p class="small muted" style="margin-top: 0.5em">
                             The KNN thread: the core test is still a neighbour
-                            count, <strong>k fixed, radius free</strong> in
-                            KNN; <strong>radius fixed, k free</strong> in
-                            DBSCAN.
+                            count, <strong>k fixed, radius free</strong> in KNN;
+                            <strong>radius fixed, k free</strong> in DBSCAN.
                         </p>
                     </div>
                 </div>
@@ -2324,8 +2314,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 K-means cut down the middle on the limits slide.
             </p>
             <aside class="notes">
-                (~30 s) Same ε, same minPts, no new machinery, just more
-                points. Two wins over K-means, and both are on this one picture.
+                (~30 s) Same ε, same minPts, no new machinery, just more points.
+                Two wins over K-means, and both are on this one picture.
                 Arbitrary shapes: these are the interleaved crescents that
                 K-means sliced in half back on the limits slide, and a chain of
                 ε-balls follows a curve as happily as a blob. And noise is an
@@ -2381,8 +2371,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 (~2 min) The no-free-lunch beat (the BigDataLDN through-line).
                 No model is "bad"; each encodes assumptions, and the failure is
                 applying a model outside them. KNN is the odd one out by design:
-                it makes no clusters at all, it just measures locality, which
-                is why it shows up inside every method that follows. This is the
+                it makes no clusters at all, it just measures locality, which is
+                why it shows up inside every method that follows. This is the
                 philosophical core the whole school wants you to internalise,
                 and it leads straight into the density section.
             </aside>
@@ -2394,8 +2384,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <h2>How do you know the clusters are real?</h2>
             <p class="small">
                 <strong>Internal</strong> validation uses only the data and the
-                labels the algorithm just produced, no answer key. Three
-                scores, three different questions, and a sharp caveat on each.
+                labels the algorithm just produced, no answer key. Three scores,
+                three different questions, and a sharp caveat on each.
             </p>
             <div class="cols" style="--n: 3; margin-top: 0.4em">
                 <div class="panel">
@@ -2403,8 +2393,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     <p class="small">
                         Summed squared distance from every object to its own
                         cluster mean. It falls with every extra cluster, so it
-                        cannot choose K, but across random restarts the run
-                        with the lowest SSE is the one to keep.
+                        cannot choose K, but across random restarts the run with
+                        the lowest SSE is the one to keep.
                     </p>
                 </div>
                 <div class="panel">
@@ -2429,18 +2419,19 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 </div>
             </div>
             <p class="small center muted" style="margin-top: 0.5em">
-                Homogeneity and ARI need true labels; that is
-                <em>external</em> validation, next slide.
+                Silhouette gets a slide of its own next. Homogeneity and ARI
+                need true labels; that is <em>external</em> validation, two
+                slides on.
             </p>
             <aside class="notes">
                 (~3 min) The chapter's §13.2.2, in the order you should actually
                 use them: (1) is the data multipeaked at all, the dip test, and
-                if it fails, stop; (2) how many groups, the silhouette, and
-                only if it has a clear peak, because on unstructured data it
-                returns essentially random values; (3) which run to keep, the
-                lowest SSE across restarts, since SSE falls monotonically with K
-                and can never pick K for you. Say the honest bottom line the
-                chapter states: these scores are aids, not oracles, and the
+                if it fails, stop; (2) how many groups, the silhouette, and only
+                if it has a clear peak, because on unstructured data it returns
+                essentially random values; (3) which run to keep, the lowest SSE
+                across restarts, since SSE falls monotonically with K and can
+                never pick K for you. Say the honest bottom line the chapter
+                states: these scores are aids, not oracles, and the
                 interpretation has to be informed by domain knowledge. Then flag
                 the trap on the last line, homogeneity (Rosenberg &amp;
                 Hirschberg 2007, and the score the chapter itself uses to
@@ -2448,6 +2439,77 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 were internal scores, but both compare against truth, which is a
                 completely different kind of check. The luxury of this problem
                 is that we have one, which is the next slide.
+            </aside>
+        </section>
+
+        <!-- 19b · Silhouette, in detail -->
+        <section class="denser">
+            <div class="eyebrow">Validation · internal · silhouette</div>
+            <h2>Silhouette: is this point closer to home than to next door?</h2>
+            <div class="figure" style="margin: 0.15em auto 0; max-width: 1020px">
+                <img
+                    :src="asset('silhouette_explained.png')"
+                    alt="Left: one point with dashed rings showing its mean distance to its own cluster and to the nearest other cluster. Right: a silhouette plot with every point's score sorted inside each cluster, the overall mean marked, and the Kaufman and Rousseeuw thresholds."
+                    style="width: auto; max-width: 100%; max-height: 330px; height: auto; display: block; margin: 0 auto"
+                />
+            </div>
+            <div class="cols compact" style="--n: 3; margin-top: 0.4em">
+                <div class="panel">
+                    <h3>Per point, not per cluster</h3>
+                    <p class="small">
+                        <strong>a</strong> is the mean distance to its own
+                        cluster, <strong>b</strong> the mean distance to the
+                        nearest cluster it is <em>not</em> in. The score is
+                        their gap over the larger of the two, so it lands
+                        between &minus;1 and 1 whatever the units.
+                    </p>
+                </div>
+                <div class="panel">
+                    <h3>Read the plot, not the average</h3>
+                    <p class="small">
+                        One mean hides everything. The plot shows each cluster's
+                        own spread, and a cluster whose bars run short or
+                        negative is the one to distrust, even when the headline
+                        number looks healthy.
+                    </p>
+                </div>
+                <div class="panel flip">
+                    <h3>Where it misleads</h3>
+                    <p class="small">
+                        It rewards <strong>round, separated</strong> blobs, so
+                        it marks down exactly the shapes DBSCAN exists to find,
+                        and it needs every pairwise distance. In high dimension
+                        the distances converge and the whole scale compresses.
+                    </p>
+                </div>
+            </div>
+            <p class="small center muted" style="margin-top: 0.45em">
+                Kaufman &amp; Rousseeuw's published reading:
+                <strong>0.71+</strong> strong, <strong>0.51</strong> reasonable,
+                <strong>0.26</strong> weak and possibly artificial, below that,
+                no substantial structure.
+            </p>
+            <aside class="notes">
+                (~2 min) Walk the left panel first: pick one star, measure the
+                average distance to its own cluster (a), then to the nearest
+                cluster it does not belong to (b). If b is much bigger than a
+                the point is comfortably home and the score approaches 1; if
+                they are equal it sits on the border at 0; if a is bigger the
+                point is closer to the neighbours than to its own label and the
+                score goes negative. The figure's numbers are computed, not
+                drawn: a = 0.90, b = 3.34, so s = 0.73 for that point.
+                Then the right panel, and this is the part people skip: the
+                overall mean here is 0.65, but the value of the silhouette is
+                the <em>shape</em> of the plot. Three clusters sit at 0.67,
+                0.67 and 0.59; had one been at 0.15 the mean would still look
+                respectable while one cluster was junk. Land the two caveats.
+                First, the thresholds are stricter than people assume, 0.65 is
+                only "reasonable", not "strong". Second, it is a convexity
+                score: it prefers round separated blobs, so a low silhouette on
+                a half-moon or a filament means the metric disagrees with the
+                shape, not that the cluster is fake. That is precisely why the
+                dip test comes first and why this deck does not let silhouette
+                pick the winner on its own.
             </aside>
         </section>
 
@@ -2483,11 +2545,10 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 <div class="panel flip">
                     <h3>Why it matters</h3>
                     <p class="small">
-                        Most unsupervised problems (brain imaging, say) have
-                        no answer key, so the argument never ends. Chemical
-                        tagging has one, and that is what turns it into a
-                        benchmark: the results later in this talk are measured,
-                        not hoped for.
+                        Most unsupervised problems (brain imaging, say) have no
+                        answer key, so the argument never ends. Chemical tagging
+                        has one, and that is what turns it into a benchmark: the
+                        results later in this talk are measured, not hoped for.
                     </p>
                 </div>
             </div>
@@ -2506,6 +2567,72 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 means something: we do not have to argue about whose silhouette
                 is better, we can quote recall and precision. Keep this in your
                 back pocket; it returns at the benchmark slides.
+            </aside>
+        </section>
+
+        <!-- 20b · Homogeneity, in detail -->
+        <section class="denser">
+            <div class="eyebrow">Validation · external · homogeneity</div>
+            <h2>Homogeneity: does every cluster hold just one kind of star?</h2>
+            <div class="figure" style="margin: 0.15em auto 0; max-width: 1020px">
+                <img
+                    :src="asset('homogeneity_explained.png')"
+                    alt="Three clusterings of the same labelled points: one recovers the truth and scores 1.00 on both measures; one shatters each class into three and still scores homogeneity 1.00 while completeness falls to 0.50; one merges two classes and scores completeness 1.00 with homogeneity 0.58."
+                    style="width: auto; max-width: 100%; max-height: 330px; height: auto; display: block; margin: 0 auto"
+                />
+            </div>
+            <div class="cols compact" style="--n: 3; margin-top: 0.4em">
+                <div class="panel">
+                    <h3>Purity, one cluster at a time</h3>
+                    <p class="small">
+                        Look inside a cluster and ask how mixed the true labels
+                        are. All one class is zero uncertainty and scores 1.
+                        Formally <strong>h = 1 &minus; H(C|K)/H(C)</strong>, the
+                        class entropy left once the cluster is known.
+                    </p>
+                </div>
+                <div class="panel">
+                    <h3>It cannot be read alone</h3>
+                    <p class="small">
+                        Give every star its own cluster and homogeneity is a
+                        perfect 1.00, having learned nothing. That is the middle
+                        panel. <strong>Completeness</strong> asks the mirror
+                        question, and V-measure is the harmonic mean of the two.
+                    </p>
+                </div>
+                <div class="panel flip">
+                    <h3>Why this deck uses it</h3>
+                    <p class="small">
+                        It needs no cluster-to-class matching and does not care
+                        how the labels are numbered, so it compares runs that
+                        found different numbers of clusters. But it moves with
+                        the number of clusters, so quote it with a chance level.
+                    </p>
+                </div>
+            </div>
+            <p class="small center muted" style="margin-top: 0.45em">
+                Cluster count fixed by the algorithm, not by you, so always
+                report homogeneity <em>and</em> completeness; one without the
+                other is a number you can game.
+            </p>
+            <aside class="notes">
+                (~2 min) The figure is one labelled set clustered three ways,
+                and the scores are computed by scikit-learn, not asserted.
+                Start left: recovering the truth gives 1.00 and 1.00, the
+                uninteresting case. The middle panel is the one that matters:
+                every true class cut into three still scores homogeneity 1.00,
+                because every cluster is still pure, while completeness
+                collapses to 0.50. Purity is free if you are allowed to cut
+                finely enough; in the limit, one star per cluster scores a
+                perfect 1.00 and has told you nothing. The right panel is the
+                opposite failure, two classes lumped together: completeness
+                1.00, homogeneity 0.58. So homogeneity alone is not a result,
+                it is half of one. Connect it forward twice: this is the pair
+                behind the V-measure numbers in the benchmark table, and it is
+                why we quote a chance level there, a random partition into
+                similarly sized groups already scores well above zero. It is
+                also the score the chapter itself uses to compare K-means, GMM
+                and DBSCAN, so the audience will meet it again.
             </aside>
         </section>
 
@@ -2602,17 +2729,17 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     <h3>The knob you still pick</h3>
                     <p class="small">
                         Two survive: <strong>k</strong> (behind κ) and
-                        <strong>min_cluster_size m<sub>c</sub></strong>, how
-                        many stars a branch needs to count as a cluster rather
-                        than a wiggle.
+                        <strong>min_cluster_size m<sub>c</sub></strong
+                        >, how many stars a branch needs to count as a cluster
+                        rather than a wiggle.
                     </p>
                     <p class="small">
                         m<sub>c</sub> is a <strong>smoothing knob</strong>:
                         raise it and shallow peaks disappear, as if the density
-                        were blurred (Bot et al. 2025, Fig. 1, a 2-D toy
-                        cloud, not stars). A small m<sub>c</sub> lets a handful
-                        of stars count as a cluster; a large one prunes that
-                        peak away and the same stars become noise.
+                        were blurred (Bot et al. 2025, Fig. 1, a 2-D toy cloud,
+                        not stars). A small m<sub>c</sub> lets a handful of
+                        stars count as a cluster; a large one prunes that peak
+                        away and the same stars become noise.
                     </p>
                 </div>
             </div>
@@ -3066,8 +3193,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                             The pink numbers are the bill: PLSCAN's clusters are
                             more complete (0.93 vs 0.89) but less pure, and it
                             sends more stars to the noise bin. A better ARI is
-                            not "better everywhere", and every score is
-                            computed
+                            not "better everywhere", and every score is computed
                             <strong>only over non-noise points</strong>, so
                             PLSCAN's 0.66 is measured on the 76% it keeps
                             against HDBSCAN*'s 88%.
@@ -3204,8 +3330,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         <li>Random start, so every run differs</li>
                         <li>
                             Standard practice: keep the lowest-KL map of many
-                            though Kos et al. report their own repeated
-                            runs differed only by a random rotation
+                            though Kos et al. report their own repeated runs
+                            differed only by a random rotation
                         </li>
                     </ul>
                 </div>
@@ -3214,8 +3340,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     <p class="small">
                         Each σ<sub>i</sub> is tuned until star i's neighbour
                         distribution has the <strong>perplexity</strong> you
-                        asked for, an effective neighbour count, typically
-                        5–50. It plays the role k plays in KNN.
+                        asked for, an effective neighbour count, typically 5–50.
+                        It plays the role k plays in KNN.
                     </p>
                     <p class="small">
                         Low → fine local clumps. High → coarse global shape.
@@ -3412,9 +3538,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         <li>Nine observed: six globular, three open</li>
                         <li>
                             <strong>Two new Pleiades members</strong>,
-                            kinematically confirmed; one had been a
-                            supercluster candidate before; the other is new to
-                            the literature
+                            kinematically confirmed; one had been a supercluster
+                            candidate before; the other is new to the literature
                         </li>
                         <li>One of them 6° out, a full tidal radius</li>
                         <li>
@@ -3427,8 +3552,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                             (the paper can only guess why)
                         </li>
                         <li>
-                            <strong>NGC 2516</strong>, only an edge observed,
-                            so no verdict
+                            <strong>NGC 2516</strong>, only an edge observed, so
+                            no verdict
                         </li>
                         <li>Some field-star contamination in the groups</li>
                         <li>
@@ -3441,27 +3566,27 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 </div>
             </div>
             <aside class="notes">
-                (~3 min) This is the proof the approach works on real stars,
-                say the numbers out loud, then spend equal time on the
-                right-hand column. Two of the nine failed for completely
-                different reasons: 47 Tuc simply has no chemical group in the
-                map, while NGC 2516 was barely observed, so it is a data
-                failure, not a method failure. Worth flagging that the Pleiades
-                sub-groups A and B the paper sees in The Cannon abundances could
-                not be confirmed with SME; the hierarchy claim is about the
-                projection preserving structure, not about that particular split
-                being real. Close on the paper's own verdict: with 13 elements a
-                large fraction of stars are untaggable. Chemical tagging is hard
-                which is exactly why we benchmark it. If asked what
-                "recovered" means: a majority of members land in one group, not
-                all of them, 17 of the 27 known Pleiades members sit in groups
-                A and B (the Fig. 2 caption). The new-member logic is a two-step
-                funnel: chemistry cuts 9408 stars to about 30 candidates, then
-                radial velocity, proper motion and distance cut those 30 to 2.
-                The paper's chance estimate for a coincidence is 2 × 30 / 9400 ≈
-                0.006 stars. One of the two (star 2) was already a supercluster
-                candidate that their own membership cut had missed; star 1 has
-                no previous link to the Pleiades.
+                (~3 min) This is the proof the approach works on real stars, say
+                the numbers out loud, then spend equal time on the right-hand
+                column. Two of the nine failed for completely different reasons:
+                47 Tuc simply has no chemical group in the map, while NGC 2516
+                was barely observed, so it is a data failure, not a method
+                failure. Worth flagging that the Pleiades sub-groups A and B the
+                paper sees in The Cannon abundances could not be confirmed with
+                SME; the hierarchy claim is about the projection preserving
+                structure, not about that particular split being real. Close on
+                the paper's own verdict: with 13 elements a large fraction of
+                stars are untaggable. Chemical tagging is hard which is exactly
+                why we benchmark it. If asked what "recovered" means: a majority
+                of members land in one group, not all of them, 17 of the 27
+                known Pleiades members sit in groups A and B (the Fig. 2
+                caption). The new-member logic is a two-step funnel: chemistry
+                cuts 9408 stars to about 30 candidates, then radial velocity,
+                proper motion and distance cut those 30 to 2. The paper's chance
+                estimate for a coincidence is 2 × 30 / 9400 ≈ 0.006 stars. One
+                of the two (star 2) was already a supercluster candidate that
+                their own membership cut had missed; star 1 has no previous link
+                to the Pleiades.
             </aside>
         </section>
 
@@ -3565,8 +3690,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     </ol>
                     <ul class="dotlist small" style="margin-top: 0.35em">
                         <li>
-                            <strong>n_neighbors</strong>, how local the graph
-                            is (cf. perplexity)
+                            <strong>n_neighbors</strong>, how local the graph is
+                            (cf. perplexity)
                         </li>
                         <li>
                             <strong>min_dist</strong>, how tightly the layout
@@ -3765,9 +3890,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             </div>
             <aside class="notes">
                 (~4 min) This is the payoff of the whole tour, so make the three
-                columns explicit: nothing in EVoC is new; column one is the
-                UMAP graph, column two is HDBSCAN*, column three is PLSCAN. What
-                is new is that they share one fit, so the embedding is built for
+                columns explicit: nothing in EVoC is new; column one is the UMAP
+                graph, column two is HDBSCAN*, column three is PLSCAN. What is
+                new is that they share one fit, so the embedding is built for
                 the clustering rather than for your eyes. Correct the obvious
                 misreading before it happens: EVoC does not cluster the raw 16-D
                 vectors, it clusters its own internal node embedding, the point
@@ -3784,8 +3909,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <h2>EVoC, under the hood</h2>
             <ol class="contribs small tight" style="margin-top: 0.2em">
                 <li>
-                    <strong>kNN graph</strong>, n_neighbors neighbours per
-                    star, on all 16 abundances, in cosine geometry.
+                    <strong>kNN graph</strong>, n_neighbors neighbours per star,
+                    on all 16 abundances, in cosine geometry.
                 </li>
                 <li>
                     <strong>Node embedding</strong>, UMAP-style layout of that
@@ -3875,9 +4000,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <div class="eyebrow">
                 The fusion &middot; EVoC &middot; step 2 of 4
             </div>
-            <h2>
-                Embed the graph, into 4–15-D, not into a picture
-            </h2>
+            <h2>Embed the graph, into 4–15-D, not into a picture</h2>
             <div
                 class="figure"
                 style="width: 72%; max-height: 52vh; margin: 0.3em auto 0"
@@ -4043,7 +4166,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         />
                     </div>
                 </div>
-           </div>
+            </div>
             <aside class="notes">
                 (~2 min) Bring the corner plot back from the data slide; it is
                 the shape of the problem in two of the sixteen dimensions, and
@@ -4078,8 +4201,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <div class="slide-body">
                 <p class="small">
                     Part 2 changes two things. The stars are
-                    <strong>real</strong>, with ground truth, so the methods
-                    get graded rather than admired. And the judge is
+                    <strong>real</strong>, with ground truth, so the methods get
+                    graded rather than admired. And the judge is
                     <strong>kinematics</strong>, not chemistry.
                 </p>
                 <p class="small">
@@ -4097,11 +4220,11 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 (~1 min) This is the hinge of the day: everything so far was the
                 toolbox, everything after it is judged. Say it in one breath and
                 do not re-argue the previous 90 minutes, the last slide already
-                ended on the question ("that is the benchmark") so the only
-                job here is to name the change of mode. Two practical things do
-                fit naturally at this boundary: ask for hands on the download
-                state (it is the first pause since the setup slide) and, if you
-                take a break, say exactly when you restart. Then walk into the
+                ended on the question ("that is the benchmark") so the only job
+                here is to name the change of mode. Two practical things do fit
+                naturally at this boundary: ask for hands on the download state
+                (it is the first pause since the setup slide) and, if you take a
+                break, say exactly when you restart. Then walk into the
                 benchmark.
             </aside>
         </section>
@@ -4114,7 +4237,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
          instance of it — the hands-on ends with a pull request to the school
          repo, which CI tests and a maintainer merges. -->
         <section>
-            <div class="eyebrow">Working together · three slides before part 2</div>
+            <div class="eyebrow">
+                Working together · three slides before part 2
+            </div>
             <h2>Software is a social contract written in machine language</h2>
             <p class="small">
                 The compiler reads the code. The <strong>contract</strong> is
@@ -4129,11 +4254,11 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 <div class="panel">
                     <h3>What you sign when you contribute</h3>
                     <p class="small">
-                        You are joining a project's rules, not just its code: the
-                        licence says what may be done with the work, the
-                        contributing guide says how they want it done, the issues
-                        say what is already in flight. Skipping them is how a
-                        good change gets closed unread.
+                        You are joining a project's rules, not just its code:
+                        the licence says what may be done with the work, the
+                        contributing guide says how they want it done, the
+                        issues say what is already in flight. Skipping them is
+                        how a good change gets closed unread.
                     </p>
                 </div>
                 <div class="panel">
@@ -4187,21 +4312,17 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             </div>
             <h2>The licence: what you may do with the work</h2>
             <p class="small">
-                In this order: <strong>may I</strong> →
-                <strong>how</strong> → <strong>is it already known</strong>,
-                then fork. First stop, the licence: BSD-3 here, use it, change
-                it, ship it; keep the notice and the copyright.
+                In this order: <strong>may I</strong> → <strong>how</strong> →
+                <strong>is it already known</strong>, then fork. First stop, the
+                licence: BSD-3 here, use it, change it, ship it; keep the notice
+                and the copyright.
             </p>
             <div style="text-align: center; margin-top: 0.5em">
                 <div class="figure" style="padding: 0.3em">
                     <img
                         :src="asset('license_screen.png')"
                         alt="Astropy's LICENSE on GitHub: the BSD-3-Clause summary and full text"
-                        style="
-                            display: block;
-                            max-height: 440px;
-                            width: auto;
-                        "
+                        style="display: block; max-height: 440px; width: auto"
                     />
                 </div>
             </div>
@@ -4212,11 +4333,11 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <aside class="notes">
                 (~45 s) The first of the four things to read, and the only one
                 with legal weight: can I use this, and what must I keep? Point
-                at the three columns (permissions, limitations, conditions)
-                and give the BSD-3 shorthand out loud: use it, change it, ship
-                it, keep the notice. Then say what no licence would have meant:
-                no permission to use it at all, however public the code looks.
-                That sentence is worth more than the screenshot.
+                at the three columns (permissions, limitations, conditions) and
+                give the BSD-3 shorthand out loud: use it, change it, ship it,
+                keep the notice. Then say what no licence would have meant: no
+                permission to use it at all, however public the code looks. That
+                sentence is worth more than the screenshot.
             </aside>
         </section>
 
@@ -4236,11 +4357,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     <img
                         :src="asset('contribution_guide.png')"
                         alt="Astropy's CONTRIBUTING.md: reporting issues, contributing code and documentation, and an anti-imposter-syndrome section"
-                        style="
-                            display: block;
-                            max-height: 440px;
-                            width: auto;
-                        "
+                        style="display: block; max-height: 440px; width: auto"
                     />
                 </div>
             </div>
@@ -4253,10 +4370,10 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 and it is the page that decides whether your change is welcome
                 or wasted: what to report, how to structure a patch, what the
                 maintainers will ask for in review. Scroll them to the third
-                heading on the screenshot, "anti imposter syndrome
-                reassurance", because it answers the objection half the room is
-                silently holding: you do not have to be ready, you have to be
-                useful; documentation and small fixes count.
+                heading on the screenshot, "anti imposter syndrome reassurance",
+                because it answers the objection half the room is silently
+                holding: you do not have to be ready, you have to be useful;
+                documentation and small fixes count.
             </aside>
         </section>
 
@@ -4277,11 +4394,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     <img
                         :src="asset('issues_screen.png')"
                         alt="An open issue list, with a banner prompting contributors to read the contributing guidelines before opening an issue"
-                        style="
-                            display: block;
-                            max-height: 440px;
-                            width: auto;
-                        "
+                        style="display: block; max-height: 440px; width: auto"
                     />
                 </div>
             </div>
@@ -4316,11 +4429,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     <img
                         :src="asset('fork.png')"
                         alt="The school repository's front page: Public badge, Fork button, and the licence named in the sidebar"
-                        style="
-                            display: block;
-                            max-height: 440px;
-                            width: auto;
-                        "
+                        style="display: block; max-height: 440px; width: auto"
                     />
                 </div>
             </div>
@@ -4329,13 +4438,13 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             </p>
             <aside class="notes">
                 (~45 s) Close the sequence on their own repo: this is the page
-                they will fork in an hour. Three things to point at, the
-                Public badge (you can read and fork it without asking), the
-                Fork button (that is where your copy comes from), and the
-                licence in the sidebar, which is the same BSD-3 they just saw on
-                astropy. Then the sentence that ties the four slides together:
-                every one of these pages existed before you arrived, and reading
-                them is the whole skill; the code is the easy part.
+                they will fork in an hour. Three things to point at, the Public
+                badge (you can read and fork it without asking), the Fork button
+                (that is where your copy comes from), and the licence in the
+                sidebar, which is the same BSD-3 they just saw on astropy. Then
+                the sentence that ties the four slides together: every one of
+                these pages existed before you arrived, and reading them is the
+                whole skill; the code is the easy part.
             </aside>
         </section>
 
@@ -4398,10 +4507,10 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 mistake surfaces before the test run, formatting done by a tool
                 so the diff only contains the change. Be honest about the
                 workshop's own state: the type check runs in strict mode but is
-                labelled informational because it is not clean yet that is
-                what standards look like in real projects, a direction rather
-                than a perfect score. Close by pointing at the two docs in their
-                clone; they will be graded against the same standard.
+                labelled informational because it is not clean yet that is what
+                standards look like in real projects, a direction rather than a
+                perfect score. Close by pointing at the two docs in their clone;
+                they will be graded against the same standard.
             </aside>
         </section>
 
@@ -4463,9 +4572,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 (~3 min) This is the repo's whole point: the workshop module.
                 t-SNE and UMAP only embed, so HDBSCAN* clusters their 2-D maps;
                 EVoC clusters the 16-D vectors internally. Everything is scored
-                against the same kinematic ground truth, recall (did we find
-                the members?) and precision (were we right?), plus kNN purity as
-                a parameter-free cohesion score. Say out loud that kNN purity is
+                against the same kinematic ground truth, recall (did we find the
+                members?) and precision (were we right?), plus kNN purity as a
+                parameter-free cohesion score. Say out loud that kNN purity is
                 the automated version of the paper's "draw a polygon round the
                 group" test, no hyperparameters, so no way to tune yourself a
                 good answer. The footnote matters too: row-normalisation is what
@@ -4526,8 +4635,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         Paper reported 0.85, but on a
                         <em>supervised</em> LDA projection, with membership
                         2&sigma;-clipped in the same abundances (circular). Our
-                        honest kinematic membership: 0.42–0.58, mean of 7
-                        seeds.
+                        honest kinematic membership: 0.42–0.58, mean of 7 seeds.
                     </p>
                 </div>
                 <div class="panel flip">
@@ -4564,8 +4672,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     </table>
                     <p class="small muted" style="margin-top: 0.3em">
                         Add parallax + proper motion + radial velocity:
-                        homogeneity jumps to 0.70–0.75. The signal
-                        chemistry can't find is in the motion.
+                        homogeneity jumps to 0.70–0.75. The signal chemistry
+                        can't find is in the motion.
                     </p>
                 </div>
             </div>
@@ -4582,80 +4690,16 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 numbers are fully unsupervised. Second, their membership was
                 2σ-clipped in the same abundances it then clustered, circular.
                 Our kinematic (Gaia) membership has no such leak, and the honest
-                abundances-only number is 0.42–0.58 over seven seeds.
-                Point at t-SNE's instability, not just its score: in five of
-                nine row orders HDBSCAN* finds just two groups,
-                completeness 0.96, homogeneity 0.22, the similar-age open
-                clusters merged into one blob, which is the paper's own
-                "indistinguishable pairs". Then the flip panel: add parallax,
-                proper motion and radial velocity and homogeneity jumps to
-                0.70–0.75. Chemistry narrows; kinematics decide. That is
-                the sentence the rest of the talk hangs on, and it lands us on
-                the next slide, pulling clusters out of the field, not just
-                apart from each other.
-            </aside>
-        </section>
-
-        <!-- 46c · Confusion matrix -->
-        <section class="densest">
-            <div class="eyebrow">Baseline · the structure behind the score</div>
-            <h2>Two families, not twenty-five clusters</h2>
-            <p class="small">
-                t-SNE's confusion matrix, row-normalised: each row is a true
-                cluster, each column a predicted one. With
-                <strong>abundances alone</strong> every globular collapses into
-                one column and every open cluster into another, chemistry sees
-                <em>families</em>, not individuals. Add
-                <strong>kinematics</strong> and the diagonal lights up.
-            </p>
-            <div
-                class="fig-split"
-                style="
-                    --cols: 1fr 1.4fr;
-                    margin-top: 0.35em;
-                    align-items: start;
-                "
-            >
-                <div class="figure">
-                    <img
-                        :src="asset('baseline_confusion_chem.png')"
-                        alt="Confusion matrix for abundances only: two bright columns, one catching all globulars and one all open clusters"
-                        style="width: 100%; height: auto"
-                    />
-                    <div class="caption">
-                        Abundances only (t-SNE &rarr; HDBSCAN) one globular
-                        column (c0), one open-cluster column (c1).
-                    </div>
-                </div>
-                <div class="figure">
-                    <img
-                        :src="asset('baseline_confusion_kin.png')"
-                        alt="Confusion matrix for abundances plus kinematics: a bright diagonal, 17 of 25 clusters with their own column"
-                        style="width: 100%; height: auto"
-                    />
-                    <div class="caption">
-                        Abundances + kinematics (t-SNE &rarr; HDBSCAN) the
-                        diagonal recovers the clusters.
-                    </div>
-                </div>
-            </div>
-            <aside class="notes">
-                (~2 min) The numbers from the last slide, made visible. With
-                abundances alone, t-SNE's confusion matrix has essentially two
-                bright columns: c0 catches all seven globulars, c1 catches all
-                eighteen open clusters. That is weak chemical tagging, the
-                paper's own conclusion: chemistry identifies the *family*
-                (metal-poor vs solar), not the individual cluster. Point at the
-                open-cluster column and name the paper's indistinguishable
-                pairs: NGC 2158, NGC 2420 and the Pleiades all share c1. Then
-                the right panel: add parallax, proper motion and radial velocity
-                and the diagonal appears, 15 of the 25 clusters get a
-                column of their own and 17 are matched at all, while eight land
-                mostly in HDBSCAN's noise label (M 15, M 3, M 92, NGC 6791,
-                Berkeley 66, Berkeley 71, King 5, King 7) and M 107 shares one
-                with M 71. Same data, same algorithm, one extra feature block.
-                That is the whole story in a picture: abundances suggest the
-                family, kinematics decide the cluster.
+                abundances-only number is 0.42–0.58 over seven seeds. Point at
+                t-SNE's instability, not just its score: in five of nine row
+                orders HDBSCAN* finds just two groups, completeness 0.96,
+                homogeneity 0.22, the similar-age open clusters merged into one
+                blob, which is the paper's own "indistinguishable pairs". Then
+                the flip panel: add parallax, proper motion and radial velocity
+                and homogeneity jumps to 0.70–0.75. Chemistry narrows;
+                kinematics decide. That is the sentence the rest of the talk
+                hangs on, and it lands us on the next slide, pulling clusters
+                out of the field, not just apart from each other.
             </aside>
         </section>
 
@@ -4669,10 +4713,10 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     discovery.</strong
                 >
                 In the 30&deg; region sweep UMAP recovers the most members
-                (0.56) at precision 0.08; ~92% of its "cluster" is field.
-                t-SNE gives recall away and buys the only usable precision: 0.83
-                on M 67, which is 10 of that cluster's 269 members. Macro kNN
-                purity: 0.12 t-SNE, 0.07 UMAP.
+                (0.56) at precision 0.08; ~92% of its "cluster" is field. t-SNE
+                gives recall away and buys the only usable precision: 0.83 on M
+                67, which is 10 of that cluster's 269 members. Macro kNN purity:
+                0.12 t-SNE, 0.07 UMAP.
             </p>
             <table style="font-size: 0.52em; margin-top: 0.3em">
                 <thead>
@@ -4724,24 +4768,24 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 />
                 <div class="caption">
                     Embeddings coloured by true membership, field stars grey.
-                    Right panel: EVoC's labels on the UMAP canvas, EVoC
-                    clusters in 16-D, it never embeds.
+                    Right panel: EVoC's labels on the UMAP canvas, EVoC clusters
+                    in 16-D, it never embeds.
                 </div>
             </div>
             <aside class="notes">
                 (~3 min) Read the table honestly, row by row. Fast all-sky with
-                abundances: everything is mediocre. Region mode (the
-                paper's own method) is what moves precision, and t-SNE's
-                0.83 on M 67 is the one number on this slide you could publish;
-                say what it costs: that group of 12 stars holds 10 true members,
-                so recall is 0.04, or 10 of M 67's 269 members. UMAP's 0.56
-                recall looks like a win until you read across: precision 0.08,
-                so eleven of every twelve stars in that "cluster" are field.
-                That is the blob. Then the picture: same data three ways,
-                members coloured, field grey. Point out that the third panel is
-                not an EVoC projection; EVoC has no 2-D output, so its labels
-                are painted onto the UMAP canvas. Land it as: chemistry narrows
-                the candidate list, kinematics decide.
+                abundances: everything is mediocre. Region mode (the paper's own
+                method) is what moves precision, and t-SNE's 0.83 on M 67 is the
+                one number on this slide you could publish; say what it costs:
+                that group of 12 stars holds 10 true members, so recall is 0.04,
+                or 10 of M 67's 269 members. UMAP's 0.56 recall looks like a win
+                until you read across: precision 0.08, so eleven of every twelve
+                stars in that "cluster" are field. That is the blob. Then the
+                picture: same data three ways, members coloured, field grey.
+                Point out that the third panel is not an EVoC projection; EVoC
+                has no 2-D output, so its labels are painted onto the UMAP
+                canvas. Land it as: chemistry narrows the candidate list,
+                kinematics decide.
             </aside>
         </section>
 
@@ -4860,9 +4904,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <p class="small">
                 The spectrum is <strong>8575 pixels</strong> of
                 highly-correlated flux. The obvious move is
-                <strong>PCA</strong>, project onto the top eigenvectors
-                of the pixel covariance. Linear, fast, no labels. Let&rsquo;s
-                see how far it gets.
+                <strong>PCA</strong>, project onto the top eigenvectors of the
+                pixel covariance. Linear, fast, no labels. Let&rsquo;s see how
+                far it gets.
             </p>
             <div class="cols" style="--n: 2; margin-top: 0.4em">
                 <div class="panel">
@@ -4888,8 +4932,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                             variance)
                         </li>
                         <li>
-                            <strong>blends</strong>, overlapping lines
-                            from several species
+                            <strong>blends</strong>, overlapping lines from
+                            several species
                         </li>
                         <li>
                             the
@@ -4954,15 +4998,14 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             >
                 <strong>8.6M parameters.</strong> Encoder: five
                 <code>Conv1d</code> blocks, stride 2, each halving the length
-                and widening the channels; then global-average pool and
-                one linear layer to
-                <strong>z &isin; &#8477;<sup>256</sup></strong
+                and widening the channels; then global-average pool and one
+                linear layer to <strong>z &isin; &#8477;<sup>256</sup></strong
                 >. Decoder mirrors it.
                 <strong>z is the only thing we keep.</strong>
             </p>
             <aside class="notes">
-                (~3 min) The architecture slide the section was missing, draw
-                it out loud, left to right, because everything after this refers
+                (~3 min) The architecture slide the section was missing, draw it
+                out loud, left to right, because everything after this refers
                 back to it. The input is one star's spectrum: 8575 flux values,
                 standardised to zero mean and unit sigma per star so brightness
                 cannot be a feature. Then five convolutional blocks, each stride
@@ -5010,8 +5053,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 "
             >
                 A real DR19 spectrum. ~50% of it is hidden in
-                <strong>200-pixel blocks</strong>, the model is handed
-                the blue curve with the shaded windows zeroed out.
+                <strong>200-pixel blocks</strong>, the model is handed the blue
+                curve with the shaded windows zeroed out.
             </p>
             <aside class="notes">
                 (~45 s) This is a real star, not a cartoon; one of the 39,945
@@ -5053,8 +5096,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 "
             >
                 Hide <em>random pixels</em> and plain linear interpolation
-                already wins (MSE&nbsp;0.009), the task teaches nothing.
-                Hide <em>one block</em> and interpolation flatlines across it
+                already wins (MSE&nbsp;0.009), the task teaches nothing. Hide
+                <em>one block</em> and interpolation flatlines across it
                 (MSE&nbsp;0.057, <strong>6&times; worse</strong>).
             </p>
             <aside class="notes">
@@ -5112,9 +5155,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             </p>
             <aside class="notes">
                 (~1 min) Read the bars as the compression story: 8575 down to
-                268 positions, while each position gets richer, 1024 channels
-                at the top, 64 at the bottom. The convolutions are local, so
-                early layers see individual line profiles and later layers see
+                268 positions, while each position gets richer, 1024 channels at
+                the top, 64 at the bottom. The convolutions are local, so early
+                layers see individual line profiles and later layers see
                 relationships between regions of the spectrum. Then the
                 global-average pool: collapse the 268 positions entirely, so the
                 latent describes the star rather than a location on the
@@ -5155,8 +5198,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             >
                 The green curve is
                 <strong>our trained model's actual output</strong> inside the
-                hidden windows. It puts the absorption lines back, in the
-                right places, at roughly the right depths.
+                hidden windows. It puts the absorption lines back, in the right
+                places, at roughly the right depths.
                 <strong>The loss is the MSE there and nowhere else.</strong>
             </p>
             <aside class="notes">
@@ -5185,7 +5228,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <div
                 class="fig-split"
                 style="
-                    --cols: 1.25fr 1fr;
+                    --cols: 1.15fr 1fr;
                     margin-top: 0.2em;
                     align-items: center;
                 "
@@ -5249,15 +5292,15 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <div class="cols" style="--n: 2; margin-top: 0.4em">
                 <div class="panel">
                     <h3>PCA, maximise variance</h3>
-                    <ul class="small">
+                    <ul class="dotlist small">
                         <li>
                             objective: keep the directions of
                             <strong>largest pixel variance</strong>
                         </li>
                         <li>budget spent on the continuum + temperature</li>
                         <li>
-                            <strong>linear</strong>, one global linear
-                            map for all stars
+                            <strong>linear</strong>, one global linear map for
+                            all stars
                         </li>
                         <li>
                             the element lines are low-variance &rarr; discarded
@@ -5266,7 +5309,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 </div>
                 <div class="panel flip">
                     <h3>Masked AE, maximise predictability</h3>
-                    <ul class="small">
+                    <ul class="dotlist small">
                         <li>
                             objective:
                             <strong>reconstruct hidden blocks</strong> from the
@@ -5277,8 +5320,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                             to fill a block)
                         </li>
                         <li>
-                            <strong>nonlinear</strong>, a learned
-                            manifold per stellar regime
+                            <strong>nonlinear</strong>, a learned manifold per
+                            stellar regime
                         </li>
                         <li>the lines are the only clue &rarr; preserved</li>
                     </ul>
@@ -5463,13 +5506,12 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
         <section>
             <div class="eyebrow">Head-to-head &middot; DR19 uniform re-run</div>
             <h2>
-                The masked latent beats the abundances, PCA gets a fair shot
-                too
+                The masked latent beats the abundances, PCA gets a fair shot too
             </h2>
             <div class="panel">
                 <h3>
-                    Cluster-only homogeneity, same 982 stars, same 25
-                    clusters, mean &plusmn; sd over 7 seeds
+                    Cluster-only homogeneity, same 982 stars, same 25 clusters,
+                    mean &plusmn; sd over 7 seeds
                 </h3>
                 <table style="font-size: 0.5em; margin-top: 0.25em">
                     <thead>
@@ -5580,8 +5622,7 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 negative, meaning members are closer to other clusters than to
                 their own. The silhouette score (0.62 vs -0.07) quantifies
                 exactly the visual difference. Same stars, same clusters, no
-                distortion; this is the 0.76 vs 0.58 in the table, made
-                visible.
+                distortion; this is the 0.76 vs 0.58 in the table, made visible.
             </aside>
         </section>
 
@@ -5631,14 +5672,14 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     style="font-size: 0.42em; margin: 0.25em 0 0"
                 >
                     * collapsed: on the abundances, t-SNE → HDBSCAN* finds only
-                    2 clusters, with 75% of the stars in one, a floor,
-                    not a comparison. Compare on UMAP and EVoC.
+                    2 clusters, with 75% of the stars in one, a floor, not a
+                    comparison. Compare on UMAP and EVoC.
                 </p>
             </div>
             <p class="small muted center" style="margin-top: 0.4em">
-                The masked AE holds at 0.71/0.74/0.66, barely below the
-                full sample, and still clears the abundances (0.74 vs
-                0.58 UMAP). The globular was never doing the work.
+                The masked AE holds at 0.71/0.74/0.66, barely below the full
+                sample, and still clears the abundances (0.74 vs 0.58 UMAP). The
+                globular was never doing the work.
             </p>
             <aside class="notes">
                 (~1 min) The control that matters. Remove the globular, keep 24
@@ -5728,96 +5769,23 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                             1.00 / 0.001 (a blob), EVoC 0.56 / 0.003; the
                             spectral arms (PCA 64-d, masked AE) reach recall
                             0.42 / precision 0.62. Spectra double the recall and
-                            lift precision 2.6×, real, but still
-                            not a fishing net.
+                            lift precision 2.6×, real, but still not a fishing
+                            net.
                         </p>
                     </div>
                 </div>
             </div>
             <aside class="notes">
                 (~1 min) The scope claim: this is not a five-cluster anecdote,
-                it is the full 25-cluster benchmark; every cluster with real
-                sky imaging and kinematic membership. Cluster-only homogeneity
-                holds at scale: 0.76 vs 0.58 (UMAP) on 982 stars. And now that
-                the re-run is uniform, field retrieval is measurable: t-SNE
-                recall 0.21 / precision 0.22 against ~3% chance, honest, and
-                modest. Two things to be transparent about: we are still 0.76 vs
-                0.94 behind kinematics (physics says we should be), and the
-                abundance arm here is the same pipeline on the same stars, so
-                this row IS comparable.
-            </aside>
-        </section>
-
-        <!-- 47c-d4 · Rigour: the confound we caught -->
-        <section>
-            <div class="eyebrow">Head-to-head &middot; rigour</div>
-            <h2>We caught our own confound; here is the proof</h2>
-            <div
-                class="fig-split"
-                style="
-                    --cols: 1.3fr 1fr;
-                    margin-top: 0.35em;
-                    align-items: center;
-                "
-            >
-                <div class="figure" style="aspect-ratio: 1196 / 815">
-                    <img
-                        :src="asset('paired_control.png')"
-                        alt="Paired control: the same 253 stars embedded through both data products land 1.7x farther from themselves than from a random different star"
-                        style="width: 100%; height: 100%; object-fit: contain"
-                    />
-                </div>
-                <div>
-                    <ul class="checklist small">
-                        <li>
-                            253 stars were embedded through
-                            <strong>both</strong> pipelines, same star, same
-                            physics, different product.
-                        </li>
-                        <li>
-                            The same star lands
-                            <strong>1.70× farther from itself</strong> across
-                            products than from a random other star (cosine
-                            0.39).
-                        </li>
-                        <li>
-                            So the latent was separating
-                            <strong>products, not populations</strong>, any
-                            field-retrieval number from the mixed sample is
-                            meaningless.
-                        </li>
-                        <li>
-                            <strong>Fix: re-download, not caveat.</strong> Done
-                            the masked AE was retrained and every star
-                            re-embedded from one DR19 product.
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <p class="small muted center" style="margin-top: 0.35em">
-                Why this slide exists: a paper that says "we found and fixed our
-                own systematic" is worth more than one that never had the check.
-                The numbers on the previous slides are the fixed ones.
-            </p>
-            <aside class="notes">
-                (~1.5 min) The most important slide of the section,
-                paradoxically about the result we withdrew. When we merged the
-                full sample, 91% of members came from DR17 aspcapStar,
-                continuum-normalised, median flux ~1, while the field came from
-                DR19 apStar, raw, ~6e3. Different products, one autoencoder: the
-                latent encodes the product. The paired control makes it
-                undeniable: 253 stars exist in both pipelines, so we can hold
-                the star fixed and change only the product, the star moves 1.7x
-                its own width. That is how we know the field-retrieval claim had
-                to come off the slide. We then did the fix, not the footnote:
-                DR19 reanalyses and includes DR17, so we re-downloaded every
-                member and the field from one mwmStar product and retrained the
-                AE on the desktop GPU. The result: the provenance probe fell
-                from a perfect 0.999 (product) to 0.83 (the genuine
-                DR17-vs-SDSS-V population difference), and the field-retrieval
-                number is now honest, 0.21 recall / 0.22 precision, not the
-                inflated 0.435 we had to withdraw. Tell the room: this is the
-                difference between a demo and a result.
+                it is the full 25-cluster benchmark; every cluster with real sky
+                imaging and kinematic membership. Cluster-only homogeneity holds
+                at scale: 0.76 vs 0.58 (UMAP) on 982 stars. And now that the
+                re-run is uniform, field retrieval is measurable: t-SNE recall
+                0.21 / precision 0.22 against ~3% chance, honest, and modest.
+                Two things to be transparent about: we are still 0.76 vs 0.94
+                behind kinematics (physics says we should be), and the abundance
+                arm here is the same pipeline on the same stars, so this row IS
+                comparable.
             </aside>
         </section>
 
@@ -5848,8 +5816,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             </div>
             <p class="small muted center" style="margin-top: 0.4em">
                 <strong>The spectrum is its own label.</strong> No catalogue, no
-                element ratios, no circularity, and the resulting latent
-                is the best chemical-tagging feature we measured.
+                element ratios, no circularity, and the resulting latent is the
+                best chemical-tagging feature we measured.
             </p>
             <aside class="notes">
                 (~1 min) Close the arc. "Dimensionality reduction" is
@@ -5874,10 +5842,10 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <p class="small">
                 GALAH (DEC &#8818; +25&deg;) sees the
                 <strong>main sequence + turnoff</strong>; APOGEE sees the
-                <strong>giants</strong>. Combine them, 6 clusters, 14
-                common abundances, Gaia parallax/PM/RV, and the cluster
-                parameters finally separate: the red clump pins the distance,
-                the main sequence pins the age.
+                <strong>giants</strong>. Combine them, 6 clusters, 14 common
+                abundances, Gaia parallax/PM/RV, and the cluster parameters
+                finally separate: the red clump pins the distance, the main
+                sequence pins the age.
             </p>
             <div class="cols" style="--n: 2; margin-top: 0.4em">
                 <div class="panel">
@@ -5994,8 +5962,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                     >
                         <li>
                             175 red-clump members of
-                            <strong>31 thin-disc open clusters</strong>,
-                            and no field stars to confuse the question.
+                            <strong>31 thin-disc open clusters</strong>, and no
+                            field stars to confuse the question.
                         </li>
                         <li>
                             16 elements measured
@@ -6010,8 +5978,8 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                                 >maximise the number of clusters
                                 recovered</strong
                             >
-                            a sample they call their own
-                            &ldquo;best-case scenario&rdquo;.
+                            a sample they call their own &ldquo;best-case
+                            scenario&rdquo;.
                         </li>
                     </ul>
                 </div>
@@ -6033,9 +6001,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                                 >70 % of the groups found are
                                 statistical</strong
                             >
-                            they mix stars from different clusters. Four
-                            of the nine recovered groups are 100 % pure, and
-                            most of those hold only two of the cluster's stars.
+                            they mix stars from different clusters. Four of the
+                            nine recovered groups are 100 % pure, and most of
+                            those hold only two of the cluster's stars.
                         </li>
                         <li>
                             Put the field back in (APOGEE DR16 red clump, 16 193
@@ -6050,10 +6018,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 Why it cannot go better, in their words: the clusters' chemical
                 signatures
                 <em>overlap widely</em>, across only &minus;0.2 to 0.1 dex in
-                [X/H]; the disc's birth gas was
-                <strong>well mixed</strong>, with a scatter of 0.02–0.03
-                dex (Kreckel et al. 2020) that is the size of the measurement
-                precision itself.
+                [X/H]; the disc's birth gas was <strong>well mixed</strong>,
+                with a scatter of 0.02–0.03 dex (Kreckel et al. 2020) that is
+                the size of the measurement precision itself.
             </p>
             <aside class="notes">
                 (~1.5 min) The paper to beat, and the closest published
@@ -6067,9 +6034,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 because it answers "why is this hard": the clusters formed from
                 a well-mixed disc, so the chemical difference between two
                 clusters is the size of the error bar. Then flag the two
-                differences we cannot control and do not hide them; they
-                have ~6 stars per cluster from high-resolution spectroscopy; we
-                have ~39 per cluster from survey ASPCAP abundances.
+                differences we cannot control and do not hide them; they have ~6
+                stars per cluster from high-resolution spectroscopy; we have ~39
+                per cluster from survey ASPCAP abundances.
             </aside>
         </section>
 
@@ -6139,36 +6106,35 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         >V-measure does not transfer between samples.</strong
                     >
                     Shuffle their labels into groups of the observed sizes and a
-                    random partition already scores V = 0.44–0.51, so
-                    their published 0.55 sits 0.04–0.11 above their own
-                    chance level; our 0.58 sits 0.45–0.49 above ours.
-                    Recovery fraction is the comparison that does carry;
-                    its chance level is &le; 0.04 in both samples.
+                    random partition already scores V = 0.44–0.51, so their
+                    published 0.55 sits 0.04–0.11 above their own chance level;
+                    our 0.58 sits 0.45–0.49 above ours. Recovery fraction is the
+                    comparison that does carry; its chance level is &le; 0.04 in
+                    both samples.
                 </li>
                 <li>
                     <strong
                         >Their pipeline recovers less on our stars than on
                         theirs</strong
                     >
-                    (0.08 against 0.29); ours lands in their range
-                    (0.32–0.40) on survey-quality abundances.
+                    (0.08 against 0.29); ours lands in their range (0.32–0.40)
+                    on survey-quality abundances.
                 </li>
                 <li>
                     <strong
                         >The survivors are the edge cases in both
                         papers.</strong
                     >
-                    Theirs: NGC 2420, the most metal-poor cluster in
-                    their sample, plus NGC 6705 and NGC 2682. Ours: NGC
-                    2420 again, recovered in 7 of 7 seeds by UMAP on the open
-                    clusters.
+                    Theirs: NGC 2420, the most metal-poor cluster in their
+                    sample, plus NGC 6705 and NGC 2682. Ours: NGC 2420 again,
+                    recovered in 7 of 7 seeds by UMAP on the open clusters.
                 </li>
             </ul>
             <p class="small muted" style="margin: 0.4em 0 0 170px">
                 Not a head-to-head: different samples and different abundance
                 quality. One published pipeline and its metric triple, not a
-                survey of the field, and we do not re-run the Spina et
-                al. graph-attention autoencoder (that comparison is on the
+                survey of the field, and we do not re-run the Spina et al.
+                graph-attention autoencoder (that comparison is on the
                 &ldquo;two papers&rdquo; slide).
             </p>
             <aside class="notes">
@@ -6176,21 +6142,20 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 samples are not the same number, and we say so before anyone
                 else does. V depends on how many groups you cut and how big they
                 are, so a random partition of their 175 stars already scores
-                0.44–0.51: their published 0.55 is 0.04–0.11 above
-                their floor, while ours is 0.45–0.49 above ours. Different
-                quantity, different partition, different sample. What does carry
-                across is the recovery fraction: 9 of 31 for them; 2 of 25 when
-                we run their pipeline on our stars; 8 of 25 for our t-SNE and
-                UMAP arms; 7 of 18 open clusters for the open-only run, which is
-                the subset closest to their sample. The honest summary is "we
-                match their best case on coarser abundances", not "we
-                beat them". Then the caveats, out loud: ~6 stars per cluster
-                against our ~39, differential abundances against survey ASPCAP,
-                one published pipeline rather than a survey of the field. If
-                someone asks why their pipeline drops to 0.08 on our stars, the
-                two candidate reasons are the abundance precision and the mixed
-                evolutionary stages in our sample, and we cannot separate them
-                yet.
+                0.44–0.51: their published 0.55 is 0.04–0.11 above their floor,
+                while ours is 0.45–0.49 above ours. Different quantity,
+                different partition, different sample. What does carry across is
+                the recovery fraction: 9 of 31 for them; 2 of 25 when we run
+                their pipeline on our stars; 8 of 25 for our t-SNE and UMAP
+                arms; 7 of 18 open clusters for the open-only run, which is the
+                subset closest to their sample. The honest summary is "we match
+                their best case on coarser abundances", not "we beat them". Then
+                the caveats, out loud: ~6 stars per cluster against our ~39,
+                differential abundances against survey ASPCAP, one published
+                pipeline rather than a survey of the field. If someone asks why
+                their pipeline drops to 0.08 on our stars, the two candidate
+                reasons are the abundance precision and the mixed evolutionary
+                stages in our sample, and we cannot separate them yet.
             </aside>
         </section>
 
@@ -6202,9 +6167,9 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 <ol class="contribs tight small">
                     <li>
                         <strong>All-sky collapses.</strong> One embedding of
-                        every clean star buries each cluster in the field, cut
-                        a sky region around it, as Kos et al. did (40° around
-                        the Pleiades).
+                        every clean star buries each cluster in the field, cut a
+                        sky region around it, as Kos et al. did (40° around the
+                        Pleiades).
                     </li>
                     <li>
                         <strong>Precision is the hard part.</strong> Even region
@@ -6242,15 +6207,12 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                         recall and precision together.
                     </li>
                     <li>
-                        <strong
-                            >Spectra beat abundances, but not
-                            PCA.</strong
-                        >
+                        <strong>Spectra beat abundances, but not PCA.</strong>
                         A self-supervised masked autoencoder on the raw spectrum
                         separates the 25 clusters better than the 16 ASPCAP
-                        abundances (0.76 vs 0.58, UMAP, the same 982 stars)
-                        and a plain PCA of the same spectra does about
-                        as well (0.75).
+                        abundances (0.76 vs 0.58, UMAP, the same 982 stars) and
+                        a plain PCA of the same spectra does about as well
+                        (0.75).
                     </li>
                     <li>
                         <strong>Two surveys, two parameters.</strong> APOGEE
@@ -6291,12 +6253,6 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
         <section>
             <div class="eyebrow">Take-away</div>
             <h2>No bad models, only mismatched ones</h2>
-            <p class="small">
-                Every algorithm in this tour encodes a guess: K-means guesses
-                round and equal-sized; DBSCAN guesses one density everywhere;
-                HDBSCAN* and PLSCAN drop that guess; t-SNE and UMAP guess that
-                the neighbourhood graph is what matters.
-            </p>
             <ul class="checklist medium">
                 <li>
                     There are no bad models, only models applied outside their
@@ -6366,9 +6322,71 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             </aside>
         </section>
 
+        <!-- 49a2 · Three ways to contribute -->
+        <section class="dense">
+            <div class="eyebrow">Your turn · pick a track</div>
+            <h2>Three ways in, all of them real contributions</h2>
+            <p class="small">
+                The deliverable is a <strong>pull request</strong> either way,
+                against
+                <code>iaa-so-training/iaa-advanced-neural-networks-2026</code>,
+                folder <code>day_4_clustering/</code>. Pick the one that suits
+                how you like to work; they are worth the same.
+            </p>
+            <div class="cols" style="--n: 3; margin-top: 0.5em">
+                <div class="panel">
+                    <h3>1 · Beat the baseline</h3>
+                    <p class="small">
+                        Take your cluster, extend the pipeline, move recall,
+                        precision or purity. The research track: open-ended,
+                        and a null result honestly explained counts. Details on
+                        the next slide.
+                    </p>
+                </div>
+                <div class="panel">
+                    <h3>2 · Improve the workbook</h3>
+                    <p class="small">
+                        The text you are reading is LaTeX in
+                        <code>article/chapters/*.tex</code>, 17 chapters. Fix an
+                        explanation that did not land, an error, a missing
+                        citation into <code>references.bib</code>. If it
+                        confused you, it will confuse the next reader.
+                    </p>
+                </div>
+                <div class="panel flip">
+                    <h3>3 · Work the exercises</h3>
+                    <p class="small">
+                        <strong>56 exercises</strong> across 16 chapters, each
+                        with a Jupyter deck and a worked solution module. Do
+                        them, disagree with an answer, send a better one. The
+                        guided track, and the slide after next.
+                    </p>
+                </div>
+            </div>
+            <p class="small center muted" style="margin-top: 0.5em">
+                Fork first, branch, then <em>Contribute → Open pull request</em>.
+                Everything you need is in
+                <code>day_4_clustering/CONTRIBUTING.md</code>.
+            </p>
+            <aside class="notes">
+                (~1 min) Say plainly that the room is not one kind of person.
+                Some want the open research problem, some would rather improve
+                the writing, some learn by working problems with a solution to
+                check against. All three land in the same repository through the
+                same mechanism, a pull request, so all three teach the part
+                this school actually cares about: contributing to someone
+                else's codebase in public. Mention the fork requirement once
+                here and then move on; they already forked it this morning for
+                the download, and if they cloned the original instead,
+                CONTRIBUTING has the section on repointing the remote rather
+                than re-cloning five gigabytes. Then walk the three slides: the
+                assignment next, then the workbook and exercises detail.
+            </aside>
+        </section>
+
         <!-- 49b · The assignment -->
         <section class="densest">
-            <div class="eyebrow">The assignment · 25 clusters, ~30 of you</div>
+            <div class="eyebrow">The assignment · 25 clusters</div>
             <h2>Take a cluster, beat our baseline</h2>
             <p class="small">
                 The results you just saw are a
@@ -6430,8 +6448,157 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
                 re-checking on the current data. Their real job is the next
                 lever, specific to their cluster. Stress that a null result is
                 still a result: if a cluster refuses to tag cleanly, say why;
-                that is the paper's own finding for 47 Tuc. Close by pointing at
-                the next slide, the three commands that get them running.
+                that is the paper's own finding for 47 Tuc. Close by reminding
+                them this is track 1 of three, and the other two are next.
+            </aside>
+        </section>
+
+        <!-- 49c · Track 2, the workbook -->
+        <section class="dense">
+            <div class="eyebrow">Track 2 · the workbook</div>
+            <h2>Send a PR to the text itself</h2>
+            <p class="small">
+                The companion workbook is LaTeX in the same repository, one file
+                per chapter under <code>article/chapters/</code>, compiled into
+                <code>workbook.pdf</code>. Prose is as reviewable as code, and a
+                confusing paragraph is a defect.
+            </p>
+            <div class="cols compact" style="--n: 3; margin-top: 0.45em">
+                <div class="panel">
+                    <h3>What is worth a PR</h3>
+                    <ul class="dotlist small" style="margin: 0.1em 0 0">
+                        <li>A passage you had to read three times.</li>
+                        <li>A wrong or missing number.</li>
+                        <li>A claim cited to the wrong paper, or to none.</li>
+                        <li>A figure whose caption does not say the point.</li>
+                    </ul>
+                </div>
+                <div class="panel">
+                    <h3>How to build it</h3>
+                    <pre
+                        class="small"
+                        style="text-align: left; margin: 0.15em 0 0"
+                    ><code>cd day_4_clustering/article
+docker run --rm -v "$PWD:/w" -w /w \
+  texlive/texlive latexmk -pdf workbook.tex</code></pre>
+                    <p class="small" style="margin-top: 0.3em">
+                        No LaTeX on your laptop. Not building at all is fine
+                        too; the diff on the <code>.tex</code> is what gets
+                        reviewed.
+                    </p>
+                </div>
+                <div class="panel flip">
+                    <h3>The one hard rule</h3>
+                    <p class="small">
+                        Citations are <strong>keys</strong> into
+                        <code>article/references.bib</code>, never a typed
+                        author-year string. An unknown key fails the tests
+                        instead of printing a reference nobody can follow. Add
+                        the entry in the same PR.
+                    </p>
+                </div>
+            </div>
+            <p class="small center muted" style="margin-top: 0.45em">
+                17 chapters, 64 figures, one bibliography. Exercise statements
+                live here too, so changing one is a change to the exercise.
+            </p>
+            <aside class="notes">
+                (~1 min 30 s) This is the track for the people who would rather
+                write than tune hyperparameters, and it is not the consolation
+                prize: the workbook is what the next cohort reads, and a
+                paragraph that lost you is a real defect in it. Point out that
+                they are the ideal reviewers right now, today, because they have
+                just met this material cold and will never be this unfamiliar
+                with it again; by next week they will read past the confusing
+                paragraph without noticing. Name the citation rule explicitly
+                because it is the one thing that will bounce their PR: the bib
+                is the single source of truth, cite() raises on a key that is
+                not in it, and the test suite checks. The build command is a
+                one-off container, the same trick as the workshop image: no
+                TeX distribution on their laptop, and the figures are already
+                committed so it compiles straight from a clean checkout
+                (measured: 67 pages, no errors). Finally, warn them the
+                exercise statements are in these same chapter files, so editing
+                one means the exercise deck must be rebuilt, which is the next
+                slide.
+            </aside>
+        </section>
+
+        <!-- 49d · Track 3, the exercises -->
+        <section class="denser">
+            <div class="eyebrow">Track 3 · the exercises</div>
+            <h2>56 exercises, 16 notebooks, one module each</h2>
+            <p class="small">
+                Every chapter has a Jupyter deck. Open it, work the problem in
+                the empty cell, then reveal the worked answer. The notebooks
+                <strong>compute nothing</strong>; each answer lives in a Python
+                module you can open, read and re-run.
+            </p>
+            <div class="cols compact" style="--n: 2; margin-top: 0.4em">
+                <div class="panel">
+                    <h3>Open one</h3>
+                    <pre
+                        class="small"
+                        style="text-align: left; margin: 0.15em 0 0"
+                    ><code>cd day_4_clustering
+mkdir -p data results notebooks
+docker compose up      # localhost:9999</code></pre>
+                    <p class="small" style="margin-top: 0.35em">
+                        Then open
+                        <code>notebooks/exercises/chapter_09_validation.ipynb</code>,
+                        or <code>workbook_exercises.ipynb</code> for all 16.
+                        Each exercise is three or four cells: the question as
+                        the workbook states it, an empty cell pre-seeded with
+                        the imports the solution uses, the answer, and for
+                        computational ones a cell that recomputes it.
+                    </p>
+                </div>
+                <div class="panel">
+                    <h3>Import, modify, re-run</h3>
+                    <pre
+                        class="small"
+                        style="text-align: left; margin: 0.15em 0 0"
+                    ><code>from exercises.exercise_09_1 import ANSWER, solve
+
+show(ANSWER)        # the worked prose
+result = solve()    # recompute it yourself</code></pre>
+                    <p class="small" style="margin-top: 0.35em">
+                        <code>solve()</code> takes no arguments and reads the
+                        data you already downloaded. Copy its body into your
+                        cell, change it, and compare; that is the exercise.
+                    </p>
+                </div>
+            </div>
+            <p class="small center muted" style="margin-top: 0.4em">
+                The decks are <strong>generated</strong>. Edit the module or the
+                chapter, then rebuild in the same container:
+                <code
+                    >docker compose run --rm jupyter uv run python
+                    scripts/make_exercise_notebooks.py</code
+                >.
+            </p>
+            <aside class="notes">
+                (~2 min) Walk the shape once, because it is the part people get
+                wrong. Everything is named after the workbook: chapter 9
+                exercise 1 is exercise_09_1.py, so there is never a question
+                about which module answers what. Every module exposes exactly
+                two things, ANSWER and solve(), so once they have seen one they
+                have seen all 56. The scratch cell is worth pointing at on
+                screen: the imports in it are read out of the solution module
+                automatically, so it tells them which part of the codebase
+                already does the work without handing over the answer. Warn
+                them that the notebooks are generated from the modules and the
+                chapter text, so an edit to the .ipynb is destroyed by the next
+                rebuild and CI's drift check will catch it first. Their PR
+                should change a module or a chapter, then include the rebuilt
+                notebooks. Everything here runs in the container, including the
+                rebuild, so nobody needs Python or uv on their laptop; the
+                mounted notebooks folder means the cells they edit are saved
+                into their own checkout and go into the PR. Last thing:
+                disagreeing with one of our answers is a
+                welcome PR. Every number in those answers was run, not guessed,
+                but they were run by us, and chapter 9 is the whole argument for
+                checking rather than trusting.
             </aside>
         </section>
 
@@ -6440,15 +6607,16 @@ cd iaa-advanced-neural-networks-2026/day_4_clustering
             <div class="eyebrow">Hands-on module</div>
             <h1>Run it yourself</h1>
             <p class="subtitle">
-                Reproduce and extend Kos et al. 2017 (t-SNE vs UMAP vs EVoC)
-                in ~1 minute, on a laptop or in Docker.
+                Reproduce and extend Kos et al. 2017 (t-SNE vs UMAP vs EVoC) in
+                ~1 minute. Everything runs in Docker; nothing to install.
             </p>
             <pre
                 class="small"
-                style="text-align: left; max-width: 28em; margin: 0.6em auto"
-            ><code>uv sync &amp;&amp; uv run cluster download
-uv run cluster run --fast
-uv run jupyter lab    # localhost:8889</code></pre>
+                style="text-align: left; max-width: 30em; margin: 0.6em auto"
+            ><code>cd day_4_clustering
+./run.sh download --all
+./run.sh run --fast
+docker compose up      # localhost:9999</code></pre>
             <p class="byline">
                 <a
                     href="https://github.com/garciadias/iaa-advanced-neural-networks-2026-draft"
@@ -6462,7 +6630,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                 <code>docs/student_activities.md</code> &nbsp;&middot;&nbsp;
                 cluster assignment &middot;
                 <code>docs/cluster_assignment.md</code> &nbsp;&middot;&nbsp;
-                Docker-only path &middot; <code>docs/docker.md</code>
+                container details &middot; <code>docs/docker.md</code>
             </p>
             <div
                 class="cols"
@@ -6556,11 +6724,16 @@ uv run jupyter lab    # localhost:8889</code></pre>
                 </div>
             </div>
             <aside class="notes">
-                (~2 min) Close on the workshop. Three commands: install and pull
-                the DR19 Astra ASPCAP file (1.17 GB, so do it on the hotel wifi
-                tonight, not now), one run, one notebook. The fast run caps the
-                field at 25 000 stars and finishes in about a minute; `--full`
-                drops the cap and takes ten to twenty. Invite them to add
+                (~2 min) Close on the workshop. Everything runs in Docker, so
+                the only prerequisites are the ones from section B of the
+                school install guide; there is no pip, no conda and no Python
+                version to argue with. Three steps: pull the DR19 Astra ASPCAP
+                file (1.17 GB, so do it on the hotel wifi tonight, not now),
+                one run, one notebook server. run.sh is only a wrapper that
+                types the mount flags for them; docker compose up is the same
+                image serving JupyterLab on 9999. The fast run caps the field
+                at 25 000 stars and finishes in about a minute; `--full` drops
+                the cap and takes ten to twenty. Invite them to add
                 `--cluster "M 67" --region 30` and watch the precision column
                 jump; that is lesson one from the previous slide, reproduced on
                 their own laptop in sixty seconds.
@@ -6609,8 +6782,8 @@ uv run jupyter lab    # localhost:8889</code></pre>
                         The closest competitor, and
                         <strong>we have not benchmarked against it</strong>.
                         They inject kinematics and age; we deliberately do not.
-                        Different question, overlapping claim, the honest
-                        next experiment.
+                        Different question, overlapping claim, the honest next
+                        experiment.
                     </p>
                     <p class="small" style="margin-top: 0.3em">
                         <strong>And they tested our idea.</strong> &sect;5.3:
@@ -6628,29 +6801,29 @@ uv run jupyter lab    # localhost:8889</code></pre>
             </div>
             <p class="small muted center" style="margin-top: 0.45em">
                 What is genuinely new here: the features come from the
-                <strong>raw spectrum with no labels at all</strong>, not
-                Cannon abundances, not ASPCAP abundances, not orbits or ages.
+                <strong>raw spectrum with no labels at all</strong>, not Cannon
+                abundances, not ASPCAP abundances, not orbits or ages.
             </p>
             <aside class="notes">
                 (~1.5 min) Put this in before someone in the audience does. Hogg
                 2016 is titled "Chemical Tagging Can Work" and it is the
-                counter-result to the framing of this talk, so state it
-                yourself and scope the claim: we are not saying abundances
-                cannot tag, we are saying that on our ASPCAP precision and our
-                cluster set, the self-supervised latent tags better. Spina 2025
-                is the direct competitor, published last year, doing deep
-                chemical tagging with graph attention networks; we have not
-                benchmarked against them, and the right answer to "why not" is
-                "not yet, and it's the obvious next run", not hand-waving. What
-                survives both comparisons is the labels-free part: our features
-                never saw an element ratio, a velocity or an age. One more thing
-                you must be ready for, because it is the sharpest question in
-                the room: Spina's section 5.3 ran the experiment we are
-                advocating (cluster the autoencoder's latent) and it did worse
-                than their reconstructed output, 3 of 6 clusters against 5 of 6.
-                Do not hide it; it is on the slide. The answer has three parts.
-                One, their latent is 4-D compressing 10 abundances; ours is
-                256-D compressing 8575 pixels, so "the bottleneck discards fine
+                counter-result to the framing of this talk, so state it yourself
+                and scope the claim: we are not saying abundances cannot tag, we
+                are saying that on our ASPCAP precision and our cluster set, the
+                self-supervised latent tags better. Spina 2025 is the direct
+                competitor, published last year, doing deep chemical tagging
+                with graph attention networks; we have not benchmarked against
+                them, and the right answer to "why not" is "not yet, and it's
+                the obvious next run", not hand-waving. What survives both
+                comparisons is the labels-free part: our features never saw an
+                element ratio, a velocity or an age. One more thing you must be
+                ready for, because it is the sharpest question in the room:
+                Spina's section 5.3 ran the experiment we are advocating
+                (cluster the autoencoder's latent) and it did worse than their
+                reconstructed output, 3 of 6 clusters against 5 of 6. Do not
+                hide it; it is on the slide. The answer has three parts. One,
+                their latent is 4-D compressing 10 abundances; ours is 256-D
+                compressing 8575 pixels, so "the bottleneck discards fine
                 detail" bites very differently. Two, their input is already
                 ASPCAP's lossy summary, so their autoencoder compresses a
                 compression; ours starts from the raw spectrum (so does our PCA
@@ -6659,8 +6832,8 @@ uv run jupyter lab    # localhost:8889</code></pre>
                 finding is a real warning that reconstruction-trained latents
                 are not optimised for clustering, and it is exactly why our
                 head-to-head against PCA is close. If someone pushes, concede
-                that a like-for-like test, cluster our decoder output as well
-                as our latent, is a run we have not done and should.
+                that a like-for-like test, cluster our decoder output as well as
+                our latent, is a run we have not done and should.
             </aside>
         </section>
 
@@ -6688,9 +6861,8 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Kos et al. 2017</a
-                            >,
-                            GALAH: chemical tagging of star clusters &amp; new
-                            members in the Pleiades.
+                            >, GALAH: chemical tagging of star clusters &amp;
+                            new members in the Pleiades.
                             <span class="muted">arXiv:1709.00794</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6699,8 +6871,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Freeman &amp; Bland-Hawthorn 2002</a
-                            >,
-                            The New Galaxy: signatures of its formation.
+                            >, The New Galaxy: signatures of its formation.
                             <span class="muted">ARA&amp;A 40, 487</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6709,8 +6880,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Hogg et al. 2016</a
-                            >,
-                            Chemical tagging <em>can</em> work: phase-space
+                            >, Chemical tagging <em>can</em> work: phase-space
                             structures found by abundance similarity alone.
                             <span class="muted">ApJ 833, 262</span>
                         </li>
@@ -6720,8 +6890,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Garcia-Dias et al. 2018</a
-                            >,
-                            Machine learning in APOGEE: unsupervised spectral
+                            >, Machine learning in APOGEE: unsupervised spectral
                             classification with K-means.
                             <span class="muted">A&amp;A 612, A98</span>
                         </li>
@@ -6731,8 +6900,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Garcia-Dias et al. 2019</a
-                            >,
-                            Machine learning in APOGEE: stellar populations.
+                            >, Machine learning in APOGEE: stellar populations.
                             <span class="muted">A&amp;A 629, A34</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6741,8 +6909,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Garcia-Dias et al. 2020</a
-                            >,
-                            Clustering analysis (book chapter).
+                            >, Clustering analysis (book chapter).
                             <span class="muted">Elsevier</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6751,9 +6918,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Casamiquela et al. 2021</a
-                            >,
-                            The (im)possibility of strong chemical
-                            tagging.
+                            >, The (im)possibility of strong chemical tagging.
                             <span class="muted">A&amp;A 654, A151</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6762,8 +6927,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Kreckel et al. 2020</a
-                            >,
-                            Measuring the mixing scale of the ISM within
+                            >, Measuring the mixing scale of the ISM within
                             nearby spiral galaxies.
                             <span class="muted">MNRAS 499, 193</span>
                         </li>
@@ -6773,8 +6937,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Spina et al. 2025</a
-                            >,
-                            Deep chemical tagging: open clusters &amp; moving
+                            >, Deep chemical tagging: open clusters &amp; moving
                             groups with graph attention networks.
                             <span class="muted">A&amp;A 702, A267</span>
                         </li>
@@ -6784,8 +6947,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Bot, McInnes &amp; Aerts 2025</a
-                            >,
-                            Persistent multiscale density-based clustering
+                            >, Persistent multiscale density-based clustering
                             (PLSCAN).
                             <span class="muted">arXiv:2512.16558</span>
                         </li>
@@ -6807,14 +6969,13 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Lloyd 1982</a
-                            >,
-                            Least squares quantization in PCM (K-means).
+                            >, Least squares quantization in PCM (K-means).
                             <span class="muted">IEEE TIT</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
-                            MacQueen 1967, Some methods for classification
-                            &amp; analysis of multivariate observations
-                            (K-means). <span class="muted">Berkeley Symp.</span>
+                            MacQueen 1967, Some methods for classification &amp;
+                            analysis of multivariate observations (K-means).
+                            <span class="muted">Berkeley Symp.</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
                             <a
@@ -6832,9 +6993,8 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Ester et al. 1996</a
-                            >,
-                            A density-based algorithm for discovering clusters
-                            (DBSCAN). <span class="muted">KDD</span>
+                            >, A density-based algorithm for discovering
+                            clusters (DBSCAN). <span class="muted">KDD</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
                             Ankerst et al. 1999, OPTICS: ordering points to
@@ -6847,8 +7007,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Campello et al. 2013</a
-                            >,
-                            Density-based clustering via hierarchical density
+                            >, Density-based clustering via hierarchical density
                             estimates. <span class="muted">PAKDD</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6857,8 +7016,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Campello et al. 2015</a
-                            >,
-                            Hierarchical density estimates (HDBSCAN*).
+                            >, Hierarchical density estimates (HDBSCAN*).
                             <span class="muted">ACM TKDD</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6867,8 +7025,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >McInnes &amp; Healy 2017</a
-                            >,
-                            Accelerated hierarchical density clustering (the
+                            >, Accelerated hierarchical density clustering (the
                             <code>hdbscan</code> library).
                             <span class="muted">arXiv:1705.07321</span>
                         </li>
@@ -6890,8 +7047,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >van der Maaten &amp; Hinton 2008</a
-                            >,
-                            Visualizing data using t-SNE.
+                            >, Visualizing data using t-SNE.
                             <span class="muted">JMLR 9</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6905,8 +7061,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >McInnes, Healy &amp; Melville 2018</a
-                            >,
-                            UMAP: uniform manifold approximation &amp;
+                            >, UMAP: uniform manifold approximation &amp;
                             projection.
                             <span class="muted">arXiv:1802.03426</span>
                         </li>
@@ -6916,8 +7071,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Rousseeuw 1987</a
-                            >,
-                            Silhouettes: a graphical aid.
+                            >, Silhouettes: a graphical aid.
                             <span class="muted">J. Comput. Appl. Math.</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6926,8 +7080,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Hartigan &amp; Hartigan 1985</a
-                            >,
-                            The dip test of unimodality.
+                            >, The dip test of unimodality.
                             <span class="muted">Ann. Stat.</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6936,8 +7089,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Rosenberg &amp; Hirschberg 2007</a
-                            >,
-                            V-measure: external cluster evaluation.
+                            >, V-measure: external cluster evaluation.
                             <span class="muted">EMNLP</span>
                         </li>
                         <li style="margin-bottom: 0.12em">
@@ -6946,8 +7098,7 @@ uv run jupyter lab    # localhost:8889</code></pre>
                                 target="_blank"
                                 rel="noopener"
                                 >Nanetti et al. 2009</a
-                            >,
-                            Repeated K-means cortical parcellation.
+                            >, Repeated K-means cortical parcellation.
                             <span class="muted">NeuroImage</span>
                         </li>
                     </ul>
