@@ -220,12 +220,18 @@ html:not(.dark) .reveal.deck-theme {
 .reveal.deck-theme strong { color: var(--accent); font-weight: 700; }
 .reveal.deck-theme em { color: var(--accent-cyan); font-style: normal; }
 
-.reveal.deck-theme .accent { color: var(--accent); }
-.reveal.deck-theme .cyan { color: var(--accent-cyan); }
-.reveal.deck-theme .pink { color: var(--accent-pink); }
-.reveal.deck-theme .green { color: var(--accent-green); }
-.reveal.deck-theme .orange { color: var(--accent-orange); }
-.reveal.deck-theme .muted { color: var(--comment); }
+/* Colour utilities. The doubled class is load-bearing: written once, these sit
+   at the same specificity (0,3,0) as component rules like `.reveal.deck-theme
+   .stat`, which is declared later and therefore won. A `<div class="stat pink">`
+   then painted --accent and the deck showed no colour difference at all. Doubling
+   takes the utilities to (0,4,0) so an explicit colour on the markup beats the
+   component's default, which is the whole point of a utility class. */
+.reveal.deck-theme .accent.accent { color: var(--accent); }
+.reveal.deck-theme .cyan.cyan { color: var(--accent-cyan); }
+.reveal.deck-theme .pink.pink { color: var(--accent-pink); }
+.reveal.deck-theme .green.green { color: var(--accent-green); }
+.reveal.deck-theme .orange.orange { color: var(--accent-orange); }
+.reveal.deck-theme .muted.muted { color: var(--comment); }
 .reveal.deck-theme .small { font-size: 0.7em; }
 .reveal.deck-theme .medium { font-size: 0.85em; }
 .reveal.deck-theme .center { text-align: center; }
